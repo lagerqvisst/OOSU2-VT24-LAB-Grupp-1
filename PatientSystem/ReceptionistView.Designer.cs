@@ -78,6 +78,7 @@
             btnManageAppointments.TabIndex = 3;
             btnManageAppointments.Text = "Manage Appointsments";
             btnManageAppointments.UseVisualStyleBackColor = false;
+            btnManageAppointments.Click += btnManageAppointments_Click;
             // 
             // label1
             // 

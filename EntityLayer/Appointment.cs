@@ -4,28 +4,45 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
 namespace EntityLayer
 {
     public class Appointment
     {
         public int appointmentId { get; set; }
-        public int patientId { get; set; }
+        public int patientId { get; set; } //FK
+        public string patientName { get; set; }
+
         public Patient patient { get; set; }
         public DateTime appointmentDate { get; set; }
         public string appointmentReason { get; set; }
-        public int responsibleDoctorId { get; set; }
-        public Doctor responsibleDoctor { get; set; }
-        public int responsibleReceptionistId { get; set; }
-        public Receptionist responsibleReceptionist { get; set; }
 
-        public Appointment(int patientId, DateTime appointmentDate, string appointmentReason, int responsibleDoctorId, int responsibleReceptionistId)
+        public Doctor doctor { get; set; }
+        public int doctorID { get; set; } //FK
+        public string doctorName { get; set; }
+
+        public Receptionist receptionist { get; set; }
+        public int receptionistId { get; set; } //FK
+        public string receptionistName { get; set; }
+
+        public Appointment(int patientId, DateTime appointmentDate, string appointmentReason, int doctorID, int receptionistId)
         {
             this.patientId = patientId;
             this.appointmentDate = appointmentDate.Date;
             this.appointmentReason = appointmentReason;
-            this.responsibleDoctorId = responsibleDoctorId;
-            this.responsibleReceptionistId = responsibleReceptionistId;
+            this.doctorID = doctorID;
+            this.receptionistId = receptionistId;
+
+
         }
+        public void SetNames(Patient patient, Doctor doctor, Receptionist receptionist)
+        {
+            patientName = patient.name;
+            doctorName = doctor.name;
+            receptionistName = receptionist.name;
+        }
+
     }
 
 

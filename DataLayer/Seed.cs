@@ -48,6 +48,8 @@ namespace DataLayer
             patientMgmtContext.Receptionists.Add(new Receptionist("Hannah Evans", "receptionistpass666"));
             patientMgmtContext.Receptionists.Add(new Receptionist("Logan Hughes", "receptionistpass777"));
 
+            //patientMgmtContext.Appointments.Add(new Appointment(2, new DateTime(2022, 03, 25, 14, 30, 0),"leg injury", 1, 1));
+
             /*
             patientMgmtContext.Appointments.Add(new Appointment(1, 1, new DateTime(2022, 03, 25, 14, 30, 0), "reason", 1, 1));
             patientMgmtContext.Appointments.Add(new Appointment(2, 2, new DateTime(2024, 02, 10, 10, 00, 0), "Annual checkup", 2, 12));
