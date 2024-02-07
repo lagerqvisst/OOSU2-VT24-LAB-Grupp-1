@@ -47,5 +47,11 @@ namespace PresentationLayer
             UpdatePatientView updatePatientView = new UpdatePatientView();
             updatePatientView.Show();
         }
+
+        private void btnSearchPatients_Click(object sender, EventArgs e)
+        {
+            SearchForPatientsView searchForPatientsView = new SearchForPatientsView();
+            searchForPatientsView.Show();
+        }
     }
 }

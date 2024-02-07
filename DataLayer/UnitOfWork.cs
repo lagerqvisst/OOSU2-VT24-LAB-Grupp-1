@@ -200,6 +200,98 @@ namespace DataLayer
            
         }
 
+        public List<Patient> GetPatientByName(string name)
+        {
+            //Alternativt: return patientMgmtContext.Patients.Where(patient => patient.Name == name).ToList(); - FRÅN JOHANNES MEJL 
+            var result = from p in patientMgmtContext.Patients
+                         where p.name.Contains(name)
+                         select p;
+
+            List<Patient> patients  = new List<Patient>();
+            Patient patient;
+
+            foreach(var patientInDb in result)
+            {
+                patient = new Patient(patientInDb.personalNumber, patientInDb.name, patientInDb.address, patientInDb.phonenumber, patientInDb.emailaddress);
+                patients.Add(patient);
+            }
+
+            return patients;
+          
+        }
+
+        public List<Patient> GetPatientByPersonalNumber(string personalNumber)
+        {
+            var result = from p in patientMgmtContext.Patients
+                         where p.personalNumber.Contains(personalNumber)
+                         select p;
+
+            List<Patient> patients = new List<Patient>();
+            Patient patient;
+
+            foreach (var patientInDb in result)
+            {
+                patient = new Patient(patientInDb.personalNumber, patientInDb.name, patientInDb.address, patientInDb.phonenumber, patientInDb.emailaddress);
+                patients.Add(patient);
+            }
+
+            return patients;
+        }
+
+        public List<Patient> GetPatientByAddress(string address)
+        {
+            var result = from p in patientMgmtContext.Patients
+                         where p.address.Contains(address)
+                         select p;
+
+            List<Patient> patients = new List<Patient>();
+            Patient patient;
+
+            foreach (var patientInDb in result)
+            {
+                patient = new Patient(patientInDb.personalNumber, patientInDb.name, patientInDb.address, patientInDb.phonenumber, patientInDb.emailaddress);
+                patients.Add(patient);
+            }
+
+            return patients;
+        }   
+
+        public List<Patient> GetPatientByPhoneNumber(string phoneNumber)
+        {
+            var result = from p in patientMgmtContext.Patients
+                         where p.phonenumber.Contains(phoneNumber)
+                         select p;
+
+            List<Patient> patients = new List<Patient>();
+            Patient patient;
+
+            foreach (var patientInDb in result)
+            {
+                patient = new Patient(patientInDb.personalNumber, patientInDb.name, patientInDb.address, patientInDb.phonenumber, patientInDb.emailaddress);
+                patients.Add(patient);
+            }
+
+            return patients;
+        }
+
+        public List<Patient> GetPatientsByEmailAddress(string emailAddress)
+        {
+            var result = from p in patientMgmtContext.Patients
+                         where p.emailaddress.Contains(emailAddress)
+                         select p;
+
+            List<Patient> patients = new List<Patient>();
+            Patient patient;
+
+            foreach (var patientInDb in result)
+            {
+                patient = new Patient(patientInDb.personalNumber, patientInDb.name, patientInDb.address, patientInDb.phonenumber, patientInDb.emailaddress);
+                patients.Add(patient);
+            }
+
+            return patients;
+        }
+
 
 
 

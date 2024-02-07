@@ -35,6 +35,31 @@ namespace BusinessLayer
 
         }
 
+        public List<Patient> GetPatientsByName(string name)
+        {
+            return unitOfWork.GetPatientByName(name);
+        }
+
+        public List<Patient> GetPatientsByPersonalNum(string personalNumber)
+        {
+            return unitOfWork.GetPatientByPersonalNumber(personalNumber);
+        }
+
+        public List<Patient> GetPatientsByAddress(string address)
+        {
+            return unitOfWork.GetPatientByAddress(address);
+        }
+
+        public List<Patient> GetPatientsByEmailAddress(string email)
+        {
+            return unitOfWork.GetPatientsByEmailAddress(email);
+        }
+
+        public List<Patient> GetPatientsByPhoneNumber(string phoneNumber)
+        {
+            return unitOfWork.GetPatientByPhoneNumber(phoneNumber);
+        }
+
         public void UpdatePatientName(Patient patient , string name)
         {
            unitOfWork.UpdatePatientName(patient, name);

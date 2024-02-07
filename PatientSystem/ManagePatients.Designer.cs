@@ -34,11 +34,12 @@
             btnDeletePatient = new Button();
             label1 = new Label();
             btnReturnToMainMenu = new Button();
+            btnSearchPatients = new Button();
             SuspendLayout();
             // 
             // btnCreateNewPatient
             // 
-            btnCreateNewPatient.Location = new Point(87, 108);
+            btnCreateNewPatient.Location = new Point(87, 96);
             btnCreateNewPatient.Name = "btnCreateNewPatient";
             btnCreateNewPatient.Size = new Size(143, 32);
             btnCreateNewPatient.TabIndex = 0;
@@ -48,7 +49,7 @@
             // 
             // btnUpdatePatient
             // 
-            btnUpdatePatient.Location = new Point(87, 157);
+            btnUpdatePatient.Location = new Point(87, 150);
             btnUpdatePatient.Name = "btnUpdatePatient";
             btnUpdatePatient.Size = new Size(143, 33);
             btnUpdatePatient.TabIndex = 1;
@@ -58,7 +59,7 @@
             // 
             // btnViewPatients
             // 
-            btnViewPatients.Location = new Point(87, 207);
+            btnViewPatients.Location = new Point(87, 200);
             btnViewPatients.Name = "btnViewPatients";
             btnViewPatients.Size = new Size(143, 34);
             btnViewPatients.TabIndex = 2;
@@ -68,7 +69,7 @@
             // 
             // btnDeletePatient
             // 
-            btnDeletePatient.Location = new Point(87, 264);
+            btnDeletePatient.Location = new Point(87, 253);
             btnDeletePatient.Name = "btnDeletePatient";
             btnDeletePatient.Size = new Size(143, 36);
             btnDeletePatient.TabIndex = 3;
@@ -89,7 +90,7 @@
             // btnReturnToMainMenu
             // 
             btnReturnToMainMenu.Font = new Font("Segoe UI", 8.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            btnReturnToMainMenu.Location = new Point(100, 369);
+            btnReturnToMainMenu.Location = new Point(2, 379);
             btnReturnToMainMenu.Name = "btnReturnToMainMenu";
             btnReturnToMainMenu.Size = new Size(118, 23);
             btnReturnToMainMenu.TabIndex = 5;
@@ -97,11 +98,22 @@
             btnReturnToMainMenu.UseVisualStyleBackColor = true;
             btnReturnToMainMenu.Click += btnReturnToMainMenu_Click;
             // 
+            // btnSearchPatients
+            // 
+            btnSearchPatients.Location = new Point(87, 311);
+            btnSearchPatients.Name = "btnSearchPatients";
+            btnSearchPatients.Size = new Size(143, 36);
+            btnSearchPatients.TabIndex = 6;
+            btnSearchPatients.Text = "SEARCH FOR PATIENTS";
+            btnSearchPatients.UseVisualStyleBackColor = true;
+            btnSearchPatients.Click += btnSearchPatients_Click;
+            // 
             // ManagePatients
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(300, 404);
+            Controls.Add(btnSearchPatients);
             Controls.Add(btnReturnToMainMenu);
             Controls.Add(label1);
             Controls.Add(btnDeletePatient);
@@ -122,5 +134,6 @@
         private Button btnDeletePatient;
         private Label label1;
         private Button btnReturnToMainMenu;
+        private Button btnSearchPatients;
     }
 }
