@@ -62,8 +62,10 @@ namespace BusinessLayer
             return unitOfWork.GetPatientByPhoneNumber(phoneNumber);
         }
 
+        //Update methods 
         public void UpdatePatientName(Patient patient , string name)
         {
+
            unitOfWork.UpdatePatientName(patient, name);
         }
 

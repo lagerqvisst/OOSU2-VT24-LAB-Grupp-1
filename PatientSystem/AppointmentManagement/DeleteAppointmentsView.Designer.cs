@@ -31,6 +31,7 @@
             btnReturnFromDelete = new Button();
             dataGridViewAppointments = new DataGridView();
             btnDeleteSelectedAppointment = new Button();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridViewAppointments).BeginInit();
             SuspendLayout();
             // 
@@ -49,12 +50,14 @@
             dataGridViewAppointments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewAppointments.Location = new Point(45, 65);
             dataGridViewAppointments.Name = "dataGridViewAppointments";
-            dataGridViewAppointments.Size = new Size(464, 211);
+            dataGridViewAppointments.Size = new Size(570, 211);
             dataGridViewAppointments.TabIndex = 1;
             dataGridViewAppointments.CellClick += dataGridViewAppointments_CellClick;
             // 
             // btnDeleteSelectedAppointment
             // 
+            btnDeleteSelectedAppointment.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDeleteSelectedAppointment.ForeColor = Color.IndianRed;
             btnDeleteSelectedAppointment.Location = new Point(47, 310);
             btnDeleteSelectedAppointment.Name = "btnDeleteSelectedAppointment";
             btnDeleteSelectedAppointment.Size = new Size(151, 30);
@@ -63,11 +66,22 @@
             btnDeleteSelectedAppointment.UseVisualStyleBackColor = true;
             btnDeleteSelectedAppointment.Click += btnDeleteSelectedAppointment_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Georgia", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(45, 28);
+            label1.Name = "label1";
+            label1.Size = new Size(360, 23);
+            label1.TabIndex = 3;
+            label1.Text = "Select an appointment you want to delete";
+            // 
             // DeleteAppointmentsView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label1);
             Controls.Add(btnDeleteSelectedAppointment);
             Controls.Add(dataGridViewAppointments);
             Controls.Add(btnReturnFromDelete);
@@ -75,6 +89,7 @@
             Text = "DeleteAppointmentsView";
             ((System.ComponentModel.ISupportInitialize)dataGridViewAppointments).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -82,5 +97,6 @@
         private Button btnReturnFromDelete;
         private DataGridView dataGridViewAppointments;
         private Button btnDeleteSelectedAppointment;
+        private Label label1;
     }
 }

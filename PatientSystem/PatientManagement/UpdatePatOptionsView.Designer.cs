@@ -1,6 +1,6 @@
 ﻿namespace PresentationLayer
 {
-    partial class UpdateOptionsView
+    partial class UpdatePatOptionsView
     {
         /// <summary>
         /// Required designer variable.

@@ -26,7 +26,7 @@ namespace PresentationLayer
 
         private void btnCreateNewPatient_Click(object sender, EventArgs e)
         {
-            CreatePatient createPatient = new CreatePatient(receptionst);
+            CreatePatient createPatient = new CreatePatient();
             createPatient.Show();
         }
 

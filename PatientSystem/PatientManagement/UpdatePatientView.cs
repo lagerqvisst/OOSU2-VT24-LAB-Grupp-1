@@ -16,7 +16,6 @@ namespace PresentationLayer
     {
         PatientController patientController = new PatientController();
         Patient clickedPatient;
-        int patientId;
         public UpdatePatientView()
         {
             InitializeComponent();
@@ -36,15 +35,17 @@ namespace PresentationLayer
 
         private void dataGridView_PatientsToUpdate_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            patientId = (int)dataGridView_PatientsToUpdate.Rows[e.RowIndex].Cells[0].Value;
-            clickedPatient = patientController.GetPatientById(patientId);
+            //patientId = (int)dataGridView_PatientsToUpdate.Rows[e.RowIndex].Cells[0].Value;
+            //clickedPatient = patientController.GetPatientById(patientId);
+
+            clickedPatient = dataGridView_PatientsToUpdate.SelectedRows[0].DataBoundItem as Patient;
         }
 
         private void btnSelectPatientToUpdate_Click(object sender, EventArgs e)
         {
             if (clickedPatient != null)
             {
-                UpdateOptionsView updateOptionsView = new UpdateOptionsView(clickedPatient, patientId);
+                UpdatePatOptionsView updateOptionsView = new UpdatePatOptionsView(clickedPatient);
                 updateOptionsView.Show();
             }
             else

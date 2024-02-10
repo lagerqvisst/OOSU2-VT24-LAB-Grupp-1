@@ -18,9 +18,8 @@ namespace PresentationLayer
     public partial class UpdateAppointmentView : Form
     {
         AppointmentController appointmentController = new AppointmentController();
-        DoctorController doctorController = new DoctorController();
         Appointment appointment;
-        int appointmentId;
+
 
         public UpdateAppointmentView()
         {
@@ -33,6 +32,7 @@ namespace PresentationLayer
            
 
             dataGridViewAppointments.DataSource = new BindingList<Appointment>(appointmentController.GetAllAppointments());
+            //Gömmer onödiga kolumner
             dataGridViewAppointments.Columns["doctor"].Visible = false;
             dataGridViewAppointments.Columns["receptionist"].Visible = false;
             dataGridViewAppointments.Columns["patient"].Visible = false;
@@ -44,14 +44,25 @@ namespace PresentationLayer
 
         private void dataGridViewAppointments_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            appointmentId = (int)dataGridViewAppointments.Rows[e.RowIndex].Cells[0].Value;
-            appointment = appointmentController.GetAppointmentById(appointmentId);
+            //appointmentId = (int)dataGridViewAppointments.Rows[e.RowIndex].Cells[0].Value;
+            //appointment = appointmentController.GetAppointmentById(appointmentId);
+
+            appointment = dataGridViewAppointments.SelectedRows[0].DataBoundItem as Appointment;
         }
 
         private void btnSelectAppToUpdate_Click(object sender, EventArgs e)
         {
-            UpdateAppsOptionsView updateAppsOptionsView = new UpdateAppsOptionsView(appointment);
-            updateAppsOptionsView.Show();
+            if (appointment == null)
+            {
+                MessageBox.Show("Please select an appointment to update");
+                return;
+            }
+            else
+            {
+                UpdateAppsOptionsView updateAppsOptionsView = new UpdateAppsOptionsView(appointment);
+                updateAppsOptionsView.Show();
+            }
+            
         }
 
         private void btnReturn_Click(object sender, EventArgs e)

@@ -16,7 +16,6 @@ namespace PresentationLayer
     {
         Appointment appointment;
         Doctor doctor;
-        int doctorId;
 
         DoctorController doctorController = new DoctorController();
         AppointmentController appointmentController = new AppointmentController();
@@ -26,7 +25,6 @@ namespace PresentationLayer
             InitializeComponent();
             this.appointment = appointment;
             RefreshDoctorDataGridview();
-            MessageBox.Show($"Appointment selected {appointment.appointmentId}");
         }
 
         private void RefreshDoctorDataGridview()
@@ -35,15 +33,15 @@ namespace PresentationLayer
             dataGridViewDoctors.Columns["doctorId"].Visible = false;
             dataGridViewDoctors.Columns["password"].Visible = false;
 
-            
 
         }
 
         private void dataGridViewDoctors_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            doctorId = (int)dataGridViewDoctors.Rows[e.RowIndex].Cells[0].Value;
-            doctor = doctorController.GetDoctorById(doctorId);
-            MessageBox.Show($"Doctor selected {doctor.name}");
+            //doctorId = (int)dataGridViewDoctors.Rows[e.RowIndex].Cells[0].Value;
+            //doctor = doctorController.GetDoctorById(doctorId);
+
+            doctor = dataGridViewDoctors.SelectedRows[0].DataBoundItem as Doctor;
         }
 
         private void btnReturnFromAppUpdateOps_Click(object sender, EventArgs e)
@@ -69,8 +67,17 @@ namespace PresentationLayer
 
         private void btnUpdateDoctor_Click(object sender, EventArgs e)
         {
-            appointmentController.UpdateAppointmentDoctor(appointment, doctor);
-            MessageBox.Show("Doctor updated");
+            if(doctor == null)
+            {
+                MessageBox.Show("Please select a doctor to update");
+                return;
+            }
+            else
+            {
+                appointmentController.UpdateAppointmentDoctor(appointment, doctor);
+                MessageBox.Show("Doctor updated");
+            }
+            
         }
     }
 }

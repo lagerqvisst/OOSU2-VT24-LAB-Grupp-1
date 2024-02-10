@@ -38,6 +38,7 @@
             textBoxReasonAppointment = new TextBox();
             textBoxReason = new Label();
             btnScheduleAppointment = new Button();
+            labelSummary = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridViewPatients).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewDoctors).BeginInit();
             SuspendLayout();
@@ -75,18 +76,18 @@
             label1.AutoSize = true;
             label1.Location = new Point(23, 31);
             label1.Name = "label1";
-            label1.Size = new Size(78, 15);
+            label1.Size = new Size(204, 15);
             label1.TabIndex = 3;
-            label1.Text = "Select patient";
+            label1.Text = "Select patient by marking the full row";
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Location = new Point(23, 277);
             label2.Name = "label2";
-            label2.Size = new Size(76, 15);
+            label2.Size = new Size(202, 15);
             label2.TabIndex = 4;
-            label2.Text = "Select doctor";
+            label2.Text = "Select doctor by marking the full row";
             // 
             // textBoxDateAppointment
             // 
@@ -125,19 +126,31 @@
             // 
             // btnScheduleAppointment
             // 
-            btnScheduleAppointment.Location = new Point(619, 358);
+            btnScheduleAppointment.BackColor = Color.YellowGreen;
+            btnScheduleAppointment.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnScheduleAppointment.Location = new Point(619, 400);
             btnScheduleAppointment.Name = "btnScheduleAppointment";
             btnScheduleAppointment.Size = new Size(359, 46);
             btnScheduleAppointment.TabIndex = 9;
-            btnScheduleAppointment.Text = "Schedule Appointment";
-            btnScheduleAppointment.UseVisualStyleBackColor = true;
+            btnScheduleAppointment.Text = "SCHEDULE APPOINTMENT";
+            btnScheduleAppointment.UseVisualStyleBackColor = false;
             btnScheduleAppointment.Click += btnScheduleAppointment_Click;
+            // 
+            // labelSummary
+            // 
+            labelSummary.AutoSize = true;
+            labelSummary.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            labelSummary.Location = new Point(619, 295);
+            labelSummary.Name = "labelSummary";
+            labelSummary.Size = new Size(0, 15);
+            labelSummary.TabIndex = 10;
             // 
             // CreateAppointment
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1211, 602);
+            Controls.Add(labelSummary);
             Controls.Add(btnScheduleAppointment);
             Controls.Add(textBoxReason);
             Controls.Add(textBoxReasonAppointment);
@@ -168,5 +181,6 @@
         private TextBox textBoxReasonAppointment;
         private Label textBoxReason;
         private Button btnScheduleAppointment;
+        private Label labelSummary;
     }
 }

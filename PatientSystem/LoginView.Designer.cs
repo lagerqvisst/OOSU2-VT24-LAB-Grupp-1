@@ -58,7 +58,7 @@
             // 
             // BtnSignIn
             // 
-            BtnSignIn.Location = new Point(121, 267);
+            BtnSignIn.Location = new Point(121, 257);
             BtnSignIn.Name = "BtnSignIn";
             BtnSignIn.Size = new Size(241, 31);
             BtnSignIn.TabIndex = 2;

@@ -16,10 +16,7 @@ namespace PresentationLayer
     {
         Receptionist receptionist;
         Doctor doctor;
-        int doctorId;
         Patient patient;
-        int patientId;
-
         DateTime appointmentDate;
         string appointmentReason;
 
@@ -48,14 +45,22 @@ namespace PresentationLayer
 
         private void dataGridViewPatients_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            patientId = (int)dataGridViewPatients.Rows[e.RowIndex].Cells[0].Value;
-            patient = patientController.GetPatientById(patientId);
+            //patientId = (int)dataGridViewPatients.Rows[e.RowIndex].Cells[0].Value;
+            //patient = patientController.GetPatientById(patientId);
+
+            patient = dataGridViewPatients.SelectedRows[0].DataBoundItem as Patient;
+
+            MessageBox.Show($"{patient.name} selected");
         }
 
         private void dataGridViewDoctors_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            doctorId = (int)dataGridViewDoctors.Rows[e.RowIndex].Cells[0].Value;
-            doctor = doctorController.GetDoctorById(doctorId);
+            //Funkar utan att använda byID metod
+            //doctorId = (int)dataGridViewDoctors.Rows[e.RowIndex].Cells[0].Value;
+            //doctor = doctorController.GetDoctorById(doctorId);
+
+            doctor = dataGridViewDoctors.SelectedRows[0].DataBoundItem as Doctor;
+            MessageBox.Show($"{doctor.name} selected");
         }
 
         private void btnScheduleAppointment_Click(object sender, EventArgs e)
@@ -66,6 +71,8 @@ namespace PresentationLayer
             appointmentReason = textBoxReasonAppointment.Text;
             appointmentController.CreateNewAppointment(patient.patientId, appointmentDate, appointmentReason, doctor.doctorID, receptionist.receptionistId);
             MessageBox.Show("Appointment created"); 
+
+            labelSummary.Text = $"Appointment created for {patient.name} with {doctor.name} on {appointmentDate} for {appointmentReason}";
         }
 
 

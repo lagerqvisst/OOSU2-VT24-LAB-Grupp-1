@@ -41,8 +41,13 @@ namespace PresentationLayer
 
         private void btnUpdateApps_Click(object sender, EventArgs e)
         {
-            UpdateAppointmentView updateAppointmentView = new UpdateAppointmentView();  
+            UpdateAppointmentView updateAppointmentView = new UpdateAppointmentView();
             updateAppointmentView.Show();
+        }
+
+        private void btnReturn_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

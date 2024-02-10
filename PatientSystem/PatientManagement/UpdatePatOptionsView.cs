@@ -12,10 +12,9 @@ using BusinessLayer;
 
 namespace PresentationLayer
 {
-    public partial class UpdateOptionsView : Form
+    public partial class UpdatePatOptionsView : Form
     {
         Patient patientToUpdate;
-        int patientId;
         PatientController patientController = new PatientController();
 
         string nameToUpdate;
@@ -24,11 +23,11 @@ namespace PresentationLayer
         string phoneNumberToUpdate;
         string emailToUpdate;
 
-        public UpdateOptionsView(Patient patient, int patientId)
+        public UpdatePatOptionsView(Patient patient)
         {
             InitializeComponent();
             this.patientToUpdate = patient;
-            this.patientId = patientId;
+
             labelOptionsHeading.Text = $"Update options for {patientToUpdate.name}";
             //RefreshTextBoxes();
         }

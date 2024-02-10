@@ -14,12 +14,10 @@ namespace PresentationLayer
 {
     public partial class CreatePatient : Form
     {
-        Receptionist receptionst;
         PatientController patientController = new PatientController();
-        public CreatePatient(Receptionist receptionist)
+        public CreatePatient()
         {
             InitializeComponent();
-            this.receptionst = receptionist;
         }
 
         private void btnBackFromCreate_Click(object sender, EventArgs e)

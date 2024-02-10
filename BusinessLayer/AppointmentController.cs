@@ -16,10 +16,12 @@ namespace BusinessLayer
         {
             Appointment appointment = new Appointment(patientId, appointmentDate, appointmentReason, doctorID, receptionistId);
 
+            //För att sätta namnen på patient, doktor och receptionist där namnen är kopplade med faktiska objekt och inte lösa strängar i appointment
             appointment.SetNames(unitOfWork.PatientRepository.FirstOrDefault(p => p.patientId == patientId),
                                 unitOfWork.DoctorRepository.FirstOrDefault(d => d.doctorID == doctorID),
                                 unitOfWork.ReceptionistRepository.FirstOrDefault(r => r.receptionistId == receptionistId));
             
+           
 
             unitOfWork.CreateAppointment(appointment);
             return appointment;
@@ -30,6 +32,7 @@ namespace BusinessLayer
             return unitOfWork.AppointmentRepository.Find(a => true).ToList();
         }
 
+        //Onödig metod, använd hela objekt istället... 
         public Appointment GetAppointmentById(int id)
         {
             return unitOfWork.AppointmentRepository.FirstOrDefault(a => a.appointmentId == id);

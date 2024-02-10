@@ -44,8 +44,11 @@ namespace PresentationLayer
         private void dataGridView_PatientsToDelete_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Hämta värdet från primary key-kolumnen
-            patientId = (int)dataGridView_PatientsToDelete.Rows[e.RowIndex].Cells[0].Value;
-            clickedPatient = patientController.GetPatientById(patientId);
+            //patientId = (int)dataGridView_PatientsToDelete.Rows[e.RowIndex].Cells[0].Value;
+            //clickedPatient = patientController.GetPatientById(patientId);
+
+            clickedPatient = dataGridView_PatientsToDelete.SelectedRows[0].DataBoundItem as Patient;
+
         }
 
 

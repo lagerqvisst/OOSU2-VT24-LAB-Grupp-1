@@ -18,7 +18,7 @@ namespace PresentationLayer
     {
         AppointmentController appointmentController = new AppointmentController();
         Appointment appointment;
-        int appointmentId;
+
         public DeleteAppointmentsView()
         {
             InitializeComponent();
@@ -40,15 +40,26 @@ namespace PresentationLayer
 
         private void dataGridViewAppointments_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            appointmentId = (int)dataGridViewAppointments.Rows[e.RowIndex].Cells[0].Value;
-            appointment = appointmentController.GetAppointmentById(appointmentId);
+            //appointmentId = (int)dataGridViewAppointments.Rows[e.RowIndex].Cells[0].Value;
+            //appointment = appointmentController.GetAppointmentById(appointmentId);
+
+            appointment = dataGridViewAppointments.SelectedRows[0].DataBoundItem as Appointment;
         }
 
         private void btnDeleteSelectedAppointment_Click(object sender, EventArgs e)
         {
-            appointmentController.AppointmentToDelete(appointment);
-            MessageBox.Show("Appointment removed");
-            RefreshAppointmentsDataGridView();
+            if (appointment == null)
+            {
+                MessageBox.Show("Please select an appointment to delete");
+                return;
+            }
+            else
+            {
+                appointmentController.AppointmentToDelete(appointment);
+                MessageBox.Show("Appointment removed");
+                RefreshAppointmentsDataGridView();
+            }
+ 
         }
     }
 }

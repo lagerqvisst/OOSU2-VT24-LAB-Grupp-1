@@ -33,13 +33,14 @@
             btnDeleteAppointments = new Button();
             btnViewAllAppointmentsView = new Button();
             btnUpdateApps = new Button();
+            btnReturn = new Button();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Georgia", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(239, 44);
+            label1.Location = new Point(76, 50);
             label1.Name = "label1";
             label1.Size = new Size(232, 23);
             label1.TabIndex = 1;
@@ -47,7 +48,7 @@
             // 
             // btnCreateAppointView
             // 
-            btnCreateAppointView.Location = new Point(239, 104);
+            btnCreateAppointView.Location = new Point(76, 110);
             btnCreateAppointView.Name = "btnCreateAppointView";
             btnCreateAppointView.Size = new Size(232, 23);
             btnCreateAppointView.TabIndex = 2;
@@ -57,7 +58,7 @@
             // 
             // btnDeleteAppointments
             // 
-            btnDeleteAppointments.Location = new Point(239, 188);
+            btnDeleteAppointments.Location = new Point(76, 194);
             btnDeleteAppointments.Name = "btnDeleteAppointments";
             btnDeleteAppointments.Size = new Size(232, 27);
             btnDeleteAppointments.TabIndex = 3;
@@ -67,7 +68,7 @@
             // 
             // btnViewAllAppointmentsView
             // 
-            btnViewAllAppointmentsView.Location = new Point(239, 147);
+            btnViewAllAppointmentsView.Location = new Point(76, 153);
             btnViewAllAppointmentsView.Name = "btnViewAllAppointmentsView";
             btnViewAllAppointmentsView.Size = new Size(232, 23);
             btnViewAllAppointmentsView.TabIndex = 4;
@@ -77,7 +78,7 @@
             // 
             // btnUpdateApps
             // 
-            btnUpdateApps.Location = new Point(239, 239);
+            btnUpdateApps.Location = new Point(76, 245);
             btnUpdateApps.Name = "btnUpdateApps";
             btnUpdateApps.Size = new Size(232, 25);
             btnUpdateApps.TabIndex = 5;
@@ -85,11 +86,22 @@
             btnUpdateApps.UseVisualStyleBackColor = true;
             btnUpdateApps.Click += btnUpdateApps_Click;
             // 
+            // btnReturn
+            // 
+            btnReturn.Location = new Point(12, 410);
+            btnReturn.Name = "btnReturn";
+            btnReturn.Size = new Size(151, 28);
+            btnReturn.TabIndex = 6;
+            btnReturn.Text = "Return to main menu";
+            btnReturn.UseVisualStyleBackColor = true;
+            btnReturn.Click += btnReturn_Click;
+            // 
             // ManageAppointments
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(370, 450);
+            Controls.Add(btnReturn);
             Controls.Add(btnUpdateApps);
             Controls.Add(btnViewAllAppointmentsView);
             Controls.Add(btnDeleteAppointments);
@@ -107,5 +119,6 @@
         private Button btnDeleteAppointments;
         private Button btnViewAllAppointmentsView;
         private Button btnUpdateApps;
+        private Button btnReturn;
     }
 }
