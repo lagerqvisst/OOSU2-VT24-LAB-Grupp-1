@@ -53,6 +53,7 @@ namespace PresentationLayer
             {
 
                 appointment = dataGridViewAppointments.Rows[e.RowIndex].DataBoundItem as Appointment;
+                MessageBox.Show($"Appointment: {appointment.appointmentId} selected");  
 
             }
         }

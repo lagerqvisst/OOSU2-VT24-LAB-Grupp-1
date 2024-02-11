@@ -85,7 +85,7 @@
             textBox_phoneNumber.Name = "textBox_phoneNumber";
             textBox_phoneNumber.Size = new Size(230, 23);
             textBox_phoneNumber.TabIndex = 4;
-            textBox_phoneNumber.TextChanged += textBox_phoneNumber_TextChanged;
+
             // 
             // textBox_emailaddress
             // 

@@ -42,7 +42,7 @@ namespace PresentationLayer
             {
 
                 clickedPatient = dataGridView_PatientsToUpdate.Rows[e.RowIndex].DataBoundItem as Patient;
-                // Gör vad du behöver göra med clickedPatient här
+                MessageBox.Show($"Patient: {clickedPatient.name} selected");
             }
         }
 

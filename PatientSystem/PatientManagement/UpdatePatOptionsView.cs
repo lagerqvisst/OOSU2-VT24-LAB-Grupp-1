@@ -48,11 +48,6 @@ namespace PresentationLayer
 
         }
 
-        private void textBox_phoneNumber_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         public void btnUpdateName_Click(object sender, EventArgs e)
         {
             //RefreshTextBoxes();

@@ -52,6 +52,7 @@ namespace PresentationLayer
             {
 
                 clickedPatient = dataGridView_PatientsToDelete.Rows[e.RowIndex].DataBoundItem as Patient;
+                MessageBox.Show($"Patient: {clickedPatient.name} selected");
                 
             }
 

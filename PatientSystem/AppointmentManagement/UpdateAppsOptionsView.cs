@@ -46,6 +46,7 @@ namespace PresentationLayer
             {
 
                 doctor = dataGridViewDoctors.Rows[e.RowIndex].DataBoundItem as Doctor;
+                MessageBox.Show($"Doctor: {doctor.name} selected");
 
             }
 

@@ -52,10 +52,11 @@ namespace PresentationLayer
             {
 
                 patient = dataGridViewPatients.Rows[e.RowIndex].DataBoundItem as Patient;
+                MessageBox.Show($"Patient: {patient.name} selected");
 
             }
 
-            MessageBox.Show($"Patient: {patient.name} selected");
+            
         }
 
         private void dataGridViewDoctors_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -68,22 +69,28 @@ namespace PresentationLayer
             {
 
                 doctor = dataGridViewDoctors.Rows[e.RowIndex].DataBoundItem as Doctor;
+                MessageBox.Show($"Doctor: {doctor.name} selected");
 
             }
 
-            MessageBox.Show($"Doctor: {doctor.name} selected");
+            
         }
 
         private void btnScheduleAppointment_Click(object sender, EventArgs e)
         {
-            appointmentDate = DateTime.Parse(textBoxDateAppointment.Text);
-            appointmentDate = appointmentDate.Date;
+
+            if (DateTime.TryParse(textBoxDateAppointment.Text, out appointmentDate))
+            {
+                appointmentDate = appointmentDate.Date;
+                string formattedDate = appointmentDate.ToString("yyyy-MM-dd");
+                
+            }
 
             appointmentReason = textBoxReasonAppointment.Text;
             appointmentController.CreateNewAppointment(patient.patientId, appointmentDate, appointmentReason, doctor.doctorID, receptionist.receptionistId);
             MessageBox.Show("Appointment created"); 
 
-            labelSummary.Text = $"Appointment created for {patient.name} with {doctor.name} on {appointmentDate} for {appointmentReason}";
+            labelSummary.Text = $"Appointment created for {patient.name} with {doctor.name} on {appointmentDate.ToString("yyyy-MM-dd")} for {appointmentReason}";
         }
 
 
