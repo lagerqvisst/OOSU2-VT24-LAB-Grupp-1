@@ -36,7 +36,7 @@
             // 
             // btnReturnFromViewApps
             // 
-            btnReturnFromViewApps.Location = new Point(59, 383);
+            btnReturnFromViewApps.Location = new Point(34, 339);
             btnReturnFromViewApps.Name = "btnReturnFromViewApps";
             btnReturnFromViewApps.Size = new Size(75, 23);
             btnReturnFromViewApps.TabIndex = 0;
@@ -47,16 +47,16 @@
             // dataGridViewAppointments
             // 
             dataGridViewAppointments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewAppointments.Location = new Point(59, 96);
+            dataGridViewAppointments.Location = new Point(34, 96);
             dataGridViewAppointments.Name = "dataGridViewAppointments";
-            dataGridViewAppointments.Size = new Size(649, 199);
+            dataGridViewAppointments.Size = new Size(723, 199);
             dataGridViewAppointments.TabIndex = 1;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Georgia", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(59, 41);
+            label1.Location = new Point(34, 57);
             label1.Name = "label1";
             label1.Size = new Size(250, 23);
             label1.TabIndex = 2;

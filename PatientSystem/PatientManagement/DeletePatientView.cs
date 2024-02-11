@@ -47,7 +47,14 @@ namespace PresentationLayer
             //patientId = (int)dataGridView_PatientsToDelete.Rows[e.RowIndex].Cells[0].Value;
             //clickedPatient = patientController.GetPatientById(patientId);
 
-            clickedPatient = dataGridView_PatientsToDelete.SelectedRows[0].DataBoundItem as Patient;
+
+            if (e.RowIndex >= 0) // Kontrollera att det är en giltig rad
+            {
+
+                clickedPatient = dataGridView_PatientsToDelete.Rows[e.RowIndex].DataBoundItem as Patient;
+                
+            }
+
 
         }
 

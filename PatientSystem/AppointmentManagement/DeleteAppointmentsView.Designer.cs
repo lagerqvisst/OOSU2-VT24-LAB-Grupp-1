@@ -50,7 +50,7 @@
             dataGridViewAppointments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewAppointments.Location = new Point(45, 65);
             dataGridViewAppointments.Name = "dataGridViewAppointments";
-            dataGridViewAppointments.Size = new Size(570, 211);
+            dataGridViewAppointments.Size = new Size(719, 211);
             dataGridViewAppointments.TabIndex = 1;
             dataGridViewAppointments.CellClick += dataGridViewAppointments_CellClick;
             // 

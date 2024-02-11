@@ -41,7 +41,14 @@ namespace PresentationLayer
             //doctorId = (int)dataGridViewDoctors.Rows[e.RowIndex].Cells[0].Value;
             //doctor = doctorController.GetDoctorById(doctorId);
 
-            doctor = dataGridViewDoctors.SelectedRows[0].DataBoundItem as Doctor;
+           
+            if (e.RowIndex >= 0) // Kontrollera att det är en giltig rad
+            {
+
+                doctor = dataGridViewDoctors.Rows[e.RowIndex].DataBoundItem as Doctor;
+
+            }
+
         }
 
         private void btnReturnFromAppUpdateOps_Click(object sender, EventArgs e)

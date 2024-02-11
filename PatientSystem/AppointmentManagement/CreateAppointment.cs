@@ -48,9 +48,14 @@ namespace PresentationLayer
             //patientId = (int)dataGridViewPatients.Rows[e.RowIndex].Cells[0].Value;
             //patient = patientController.GetPatientById(patientId);
 
-            patient = dataGridViewPatients.SelectedRows[0].DataBoundItem as Patient;
+            if (e.RowIndex >= 0) // Kontrollera att det är en giltig rad
+            {
 
-            MessageBox.Show($"{patient.name} selected");
+                patient = dataGridViewPatients.Rows[e.RowIndex].DataBoundItem as Patient;
+
+            }
+
+            MessageBox.Show($"Patient: {patient.name} selected");
         }
 
         private void dataGridViewDoctors_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -59,8 +64,14 @@ namespace PresentationLayer
             //doctorId = (int)dataGridViewDoctors.Rows[e.RowIndex].Cells[0].Value;
             //doctor = doctorController.GetDoctorById(doctorId);
 
-            doctor = dataGridViewDoctors.SelectedRows[0].DataBoundItem as Doctor;
-            MessageBox.Show($"{doctor.name} selected");
+            if (e.RowIndex >= 0) // Kontrollera att det är en giltig rad
+            {
+
+                doctor = dataGridViewDoctors.Rows[e.RowIndex].DataBoundItem as Doctor;
+
+            }
+
+            MessageBox.Show($"Doctor: {doctor.name} selected");
         }
 
         private void btnScheduleAppointment_Click(object sender, EventArgs e)

@@ -41,7 +41,7 @@
             dataGridViewAppointments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewAppointments.Location = new Point(37, 68);
             dataGridViewAppointments.Name = "dataGridViewAppointments";
-            dataGridViewAppointments.Size = new Size(587, 267);
+            dataGridViewAppointments.Size = new Size(723, 267);
             dataGridViewAppointments.TabIndex = 0;
             dataGridViewAppointments.CellClick += dataGridViewAppointments_CellClick;
             // 
@@ -67,7 +67,7 @@
             // 
             // btnRefreshGrid
             // 
-            btnRefreshGrid.Location = new Point(526, 357);
+            btnRefreshGrid.Location = new Point(662, 352);
             btnRefreshGrid.Name = "btnRefreshGrid";
             btnRefreshGrid.Size = new Size(98, 26);
             btnRefreshGrid.TabIndex = 3;

@@ -47,7 +47,14 @@ namespace PresentationLayer
             //appointmentId = (int)dataGridViewAppointments.Rows[e.RowIndex].Cells[0].Value;
             //appointment = appointmentController.GetAppointmentById(appointmentId);
 
-            appointment = dataGridViewAppointments.SelectedRows[0].DataBoundItem as Appointment;
+   
+
+            if (e.RowIndex >= 0) // Kontrollera att det är en giltig rad
+            {
+
+                appointment = dataGridViewAppointments.Rows[e.RowIndex].DataBoundItem as Appointment;
+
+            }
         }
 
         private void btnSelectAppToUpdate_Click(object sender, EventArgs e)
