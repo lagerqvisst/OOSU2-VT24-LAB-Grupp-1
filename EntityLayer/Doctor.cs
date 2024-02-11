@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EntityLayer
 {
-    public class Doctor
+    public class Doctor: IUser
     {
         public int doctorID { get; set; }   
         public string specialization { get; set; }

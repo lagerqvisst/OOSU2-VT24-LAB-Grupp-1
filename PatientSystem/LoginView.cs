@@ -19,7 +19,7 @@ namespace PatientSystem
 
         }
 
-
+        /*
         private void BtnSignIn_Click(object sender, EventArgs e)
         {
             Receptionist receptionst = loginController.Login(userNameField.Text, userPasswordField.Text);
@@ -34,30 +34,34 @@ namespace PatientSystem
                 MessageBox.Show("Invalid username or password");
             }
         }
-
+        */
         //Uppdaterar sign in för senare implementation 
-        /*private void BtnSignIn_Click(object sender, EventArgs e)
+        private void BtnSignIn_Click(object sender, EventArgs e)
         {
-            dynamic user = loginController.Login(userNameField.Text, userPasswordField.Text);
+            IUser user = loginController.Login(userNameField.Text, userPasswordField.Text) as IUser;
 
-            if (user is Receptionist)
+            if (user != null)
             {
-                Receptionist receptionst = user;
-                ReceptionistView receptionistView = new ReceptionistView(receptionst);
-                receptionistView.Show();
-            }
-            else if (user is Doctor)
-            {
-                Doctor doctor = user;
-                DoctorView doctorView = new DoctorView(doctor);
-                doctorView.Show();
+                if (user is Receptionist)
+                {
+                    Receptionist receptionst = (Receptionist)user;
+                    ReceptionistView receptionistView = new ReceptionistView(receptionst);
+                    receptionistView.Show();
+                }
+                else if (user is Doctor)
+                {
+                    /* EJ IMPLEMENTERAD ÄN
+                    Doctor doctor = (Doctor)user;
+                    DoctorView doctorView = new DoctorView(doctor);
+                    doctorView.Show(); */
+                }
             }
             else
             {
                 MessageBox.Show("Invalid username or password");
             }
         }
-        */
+        
 
     }
 }
