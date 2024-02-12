@@ -12,9 +12,13 @@ namespace DataLayer
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\Local;Database=PatientSystem;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=sqlutb2-db.hb.se,56077;Database=oosu2401;User Id=oosu2401;Password=DES049;TrustServerCertificate=True;");
+
+
+
             base.OnConfiguring(optionsBuilder);
         }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
