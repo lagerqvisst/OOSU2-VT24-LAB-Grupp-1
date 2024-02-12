@@ -1,4 +1,5 @@
 ﻿using EntityLayer;
+using EntityLayer.Junction;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -44,6 +45,16 @@ namespace DataLayer
             get; private set;
         }
 
+        public Repository<Drug> DrugRepository
+        {
+            get; private set;
+        }
+
+        public Repository<PrescriptionDrug> PrescriptionDrugRepository
+        {
+            get; private set;
+        }
+
         /// <summary>
         ///  Create a new instance.
         /// </summary>
@@ -57,7 +68,10 @@ namespace DataLayer
             AppointmentRepository = new Repository<Appointment>();
             DoctorRepository = new Repository<Doctor>();
             ReceptionistRepository = new Repository<Receptionist>();
+            DrugRepository = new Repository<Drug>();
+            PrescriptionDrugRepository = new Repository<PrescriptionDrug>();
 
+            
             //Initialize the tables if this is the first UnitOfWork.
             if (PatientRepository.IsEmpty())
             {
@@ -83,6 +97,8 @@ namespace DataLayer
             var appointmentsFromDb = patientMgmtContext.Appointments.ToList();
             var diagnosesFromDb = patientMgmtContext.Diagnoses.ToList();
             var prescriptionsFromDb = patientMgmtContext.Prescriptions.ToList();
+            var drugsFromDb = patientMgmtContext.Drugs.ToList();
+            var prescriptionDrugsFromDb = patientMgmtContext.PrescriptionDrugs.ToList();
 
             foreach (var patient in patientsFromDb)
             {
@@ -113,10 +129,31 @@ namespace DataLayer
             {
                 PrescriptionRepository.Add(prescription);
             }
+            foreach(var drug in drugsFromDb)
+            {
+                DrugRepository.Add(drug);
+            }
+
+            foreach (var prescriptionDrug in prescriptionDrugsFromDb)
+            {
+                PrescriptionDrugRepository.Add(prescriptionDrug);
+            }
 
             
         }
 
+        public void CreatePrescription(Prescription prescription)
+        {
+            PrescriptionRepository.Add(prescription);
+            patientMgmtContext.Prescriptions.Add(prescription);
+
+            foreach (var prescriptionDrug in prescription.PrescriptionDrugs)
+            {
+                patientMgmtContext.PrescriptionDrugs.Add(prescriptionDrug);
+            }
+
+            Save();
+        }
         public void CreatePatient(Patient patient)
         {
           
@@ -357,6 +394,23 @@ namespace DataLayer
             }
 
             return patients;
+        }
+
+        public void SeedDBDrugs()
+        {
+            // Hämta alla läkemedel från repository
+            var allDrugs = DrugRepository.Find(drug => true); // Här används en lambda-funktion för att få alla läkemedel
+
+            // Loopa igenom varje läkemedel och lägg till eller uppdatera i kontexten
+            foreach (var drug in allDrugs)
+            {
+                
+                patientMgmtContext.Drugs.Add(drug);
+                
+            }
+
+            // Spara ändringar till databasen
+            Save();
         }
 
 

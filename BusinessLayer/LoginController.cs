@@ -13,8 +13,7 @@ namespace BusinessLayer
 
         }
 
-        //För senare implementation
-        /*
+      
         public dynamic LoginTest(string username, string password)
         {
             // Försök hitta en receptionist med användarnamn och lösenord
@@ -34,7 +33,7 @@ namespace BusinessLayer
             // Om varken en receptionist eller en läkare hittades, returnera null
             return null;
         }
-        */
+        
 
     }
 }

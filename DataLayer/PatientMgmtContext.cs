@@ -1,4 +1,5 @@
 ﻿using EntityLayer;
+using EntityLayer.Junction;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -27,17 +28,33 @@ namespace DataLayer
                 .WithMany(p => p.patientAppointments)
                 .HasForeignKey(a => a.patientId);
 
-            modelBuilder.Entity<Appointment>()  
+            modelBuilder.Entity<Appointment>()
                 .HasOne(a => a.doctor)
                 .WithMany(d => d.Appointments)
-                .HasForeignKey(a => a.doctorID)
-                .OnDelete(DeleteBehavior.Cascade);
-                
-
+                .HasForeignKey(a => a.doctorID);
+   
             modelBuilder.Entity<Appointment>()
                 .HasOne(a => a.receptionist)
                 .WithMany(r => r.receptionistAppointments)
-                .HasForeignKey(a => a.receptionistId);      
+                .HasForeignKey(a => a.receptionistId);
+
+            modelBuilder.Entity<Prescription>()
+                .HasOne(p => p.patient)
+                .WithMany(p => p.patientPrescriptions)
+                .HasForeignKey(p => p.patientId);
+
+            modelBuilder.Entity<PrescriptionDrug>()
+              .HasKey(pd => new { pd.prescriptionId, pd.drugId });
+
+            modelBuilder.Entity<PrescriptionDrug>()
+                .HasOne(pd => pd.Prescription)
+                .WithMany(p => p.PrescriptionDrugs)
+                .HasForeignKey(pd => pd.prescriptionId);
+
+            modelBuilder.Entity<PrescriptionDrug>()
+                .HasOne(pd => pd.Drug)
+                .WithMany(d => d.PrescriptionDrugs)
+                .HasForeignKey(pd => pd.drugId);
 
 
         }
@@ -47,6 +64,8 @@ namespace DataLayer
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Diagnosis> Diagnoses { get; set; }
         public DbSet<Prescription> Prescriptions { get; set; }
+        public DbSet<Drug> Drugs { get; set; }
+        public DbSet<PrescriptionDrug> PrescriptionDrugs { get; set; }  
 
     }
 }
