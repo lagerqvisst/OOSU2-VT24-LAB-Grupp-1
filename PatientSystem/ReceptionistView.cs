@@ -22,6 +22,14 @@ namespace PresentationLayer
             labelrecepview.Text = $"Sign in as {receptionist.name}";
         }
 
+        public ManagePatients ManagePatients
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         private void btnBacktoSignin_Click(object sender, EventArgs e)
         {
             this.Close();

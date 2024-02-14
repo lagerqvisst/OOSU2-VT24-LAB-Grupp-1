@@ -27,6 +27,14 @@ namespace PresentationLayer
             RefreshAppointmentsDataGridView();
         }
 
+        public UpdateAppsOptionsView UpdateAppsOptionsView
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         private void RefreshAppointmentsDataGridView()
         {
            

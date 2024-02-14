@@ -43,6 +43,7 @@ namespace DataLayer
                 .WithMany(p => p.patientPrescriptions)
                 .HasForeignKey(p => p.patientId);
 
+
             modelBuilder.Entity<PrescriptionDrug>()
               .HasKey(pd => new { pd.prescriptionId, pd.drugId });
 

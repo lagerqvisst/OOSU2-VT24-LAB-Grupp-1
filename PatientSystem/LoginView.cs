@@ -19,6 +19,14 @@ namespace PatientSystem
 
         }
 
+        public ReceptionistView ReceptionistView
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         /*
         private void BtnSignIn_Click(object sender, EventArgs e)
         {
@@ -38,7 +46,7 @@ namespace PatientSystem
         //Uppdaterar sign in för senare implementation 
         private void BtnSignIn_Click(object sender, EventArgs e)
         {
-            IUser user = loginController.LoginTest(userNameField.Text, userPasswordField.Text) as IUser;
+            IUser user = loginController.CheckUserLogin(userNameField.Text, userPasswordField.Text) as IUser;
 
             if (user != null)
             {

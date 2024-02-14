@@ -14,7 +14,7 @@ namespace BusinessLayer
         }
 
       
-        public dynamic LoginTest(string username, string password)
+        public IUser CheckUserLogin(string username, string password)
         {
             // Försök hitta en receptionist med användarnamn och lösenord
             Receptionist receptionist = unitOfWork.ReceptionistRepository.FirstOrDefault(r => r.name == username && r.password == password);

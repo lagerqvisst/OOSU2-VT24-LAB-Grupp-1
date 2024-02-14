@@ -45,7 +45,7 @@
             userNameField.Name = "userNameField";
             userNameField.Size = new Size(241, 23);
             userNameField.TabIndex = 0;
-            userNameField.Text = "Tom Crane";
+            userNameField.Text = "Rebecca Smith";
             // 
             // userPasswordField
             // 
@@ -54,7 +54,7 @@
             userPasswordField.Name = "userPasswordField";
             userPasswordField.Size = new Size(241, 23);
             userPasswordField.TabIndex = 1;
-            userPasswordField.Text = "wowdoctorimgood123";
+            userPasswordField.Text = "receptionistpass123";
             // 
             // BtnSignIn
             // 

@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="EntityLayer.Appointment">
+    <Position X="0.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAIJAAJAAAAAAAAAAAAAIABABAAAAAAIAGCAAEAAAAA=</HashCode>
+      <FileName>Appointment.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="patient" />
+      <Property Name="doctor" />
+      <Property Name="receptionist" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="EntityLayer.Diagnosis">
+    <Position X="8.75" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAJAAAAAAAAAAAAAAAAAgAAAAAAAACAAAgIAAAAAAA=</HashCode>
+      <FileName>Diagnosis.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="patient" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="EntityLayer.Doctor">
+    <Position X="4.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAQAAEAAAAAAAAAgQAAAA=</HashCode>
+      <FileName>Doctor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="EntityLayer.Drug">
+    <Position X="12.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAEAAAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Drug.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityLayer.Patient">
+    <Position X="4.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAABIAAAAAAAAAAAAABAAEAAAEIEAAACAAAAAAACAAA=</HashCode>
+      <FileName>Patient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntityLayer.Prescription">
+    <Position X="7.25" Y="7" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAIJBEAAAAAAAIAAAAAAAAAIAAABAAAAAAAACAAAAIA=</HashCode>
+      <FileName>Prescription.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="patient" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="EntityLayer.Receptionist">
+    <Position X="0.5" Y="4.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAQAAAAEAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Receptionst.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="1.45" />
+  </Class>
+  <Class Name="EntityLayer.Junction.PrescriptionDrug">
+    <Position X="9" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAIQAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Junction\PrescriptionDrug.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Prescription" />
+      <Property Name="Drug" />
+    </ShowAsAssociation>
+  </Class>
+  <Interface Name="EntityLayer.IUser">
+    <Position X="2.5" Y="8" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>IUser.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

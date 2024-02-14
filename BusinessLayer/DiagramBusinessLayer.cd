@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BusinessLayer.LoginController">
+    <Position X="18" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>LoginController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="unitOfWork" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BusinessLayer.PatientController">
+    <Position X="17" Y="1" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAJAAgAABAAAAAAAAAABEADgQAAAACAAEgAAAgAAEAA=</HashCode>
+      <FileName>PatientController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="unitOfWork" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BusinessLayer.PrescriptionController">
+    <Position X="21.25" Y="10.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACQAAAgAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>PrescriptionController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="unitOfWork" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BusinessLayer.DrugController">
+    <Position X="21.25" Y="5.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>ACAAEAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>DrugController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="unitOfWork" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BusinessLayer.DoctorController">
+    <Position X="15.5" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAABCAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DoctorController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="unitOfWork" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BusinessLayer.AppointmentController">
+    <Position X="21.25" Y="7.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQCAAAACAAACCAAAAAAAAAACAAAAAIIAA=</HashCode>
+      <FileName>AppointmentController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="unitOfWork" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DataLayer.UnitOfWork">
+    <Position X="16.25" Y="6.5" Width="2.5" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Field Name="patientMgmtContext" />
+      <Property Name="AppointmentRepository" />
+      <Property Name="DiagnosisRepository" />
+      <Property Name="DoctorRepository" />
+      <Property Name="DrugRepository" />
+      <Property Name="PatientRepository" />
+      <Property Name="PrescriptionDrugRepository" />
+      <Property Name="PrescriptionRepository" />
+      <Property Name="ReceptionistRepository" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DataLayer.PatientMgmtContext">
+    <Position X="7.75" Y="4" Width="3.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DataLayer.Repository&lt;T&gt;">
+    <Position X="7.75" Y="8" Width="3.25" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

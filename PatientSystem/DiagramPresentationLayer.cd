@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PatientSystem.SignIn">
+    <Position X="0.5" Y="1" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>ABACAAIAACAAAAAAAACAAAACAABAAAAEAAACAABAAIA=</HashCode>
+      <FileName>LoginView.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="loginController" />
+      <Property Name="ReceptionistView" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BusinessLayer.LoginController">
+    <Position X="5.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PresentationLayer.ReceptionistView">
+    <Position X="4.5" Y="3" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAABACCCABAAAACAAAAKBAAAAAAAAEAAABAAAAQ=</HashCode>
+      <FileName>ReceptionistView.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ManagePatients" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PresentationLayer.ManagePatients">
+    <Position X="9.25" Y="5.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAGCACABCEIACAgAgCAEBAYAAAEQCIAAAIAAA=</HashCode>
+      <FileName>PatientManagement\ManagePatients.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CreatePatient" />
+      <Property Name="DeleteAppointmentsView" />
+      <Property Name="UpdateAppointmentView" />
+      <Property Name="ViewPatients" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PresentationLayer.CreatePatient">
+    <Position X="8.5" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAASAAABABAACAAAASAAiAQAQgAAAIAABAAAA=</HashCode>
+      <FileName>PatientManagement\CreatePatient.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="patientController" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PresentationLayer.DeleteAppointmentsView">
+    <Position X="14" Y="6" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAACAAABAgAADACAACBAAAAAAAAAAwBAAQAAA=</HashCode>
+      <FileName>AppointmentManagement\DeleteAppointmentsView.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="appointmentController" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PresentationLayer.UpdateAppointmentView">
+    <Position X="15" Y="11" Width="2" />
+    <TypeIdentifier>
+      <HashCode>QIAgQAAAECAAABAAAQDACAACAAAAAAAAAAAQBAQACAA=</HashCode>
+      <FileName>AppointmentManagement\UpdateAppointmentView.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="appointmentController" />
+      <Property Name="UpdateAppsOptionsView" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PresentationLayer.UpdateAppsOptionsView">
+    <Position X="14.5" Y="16" Width="3.25" />
+    <AssociationLine Name="appointmentController" Type="BusinessLayer.AppointmentController" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="16.656" Y="16" />
+        <Point X="16.656" Y="15.625" />
+        <Point X="23" Y="15.625" />
+        <Point X="23" Y="12.45" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>QqAAAAEIACAAABAAAALACAIyREAAABAAAgAAAAAAAAA=</HashCode>
+      <FileName>AppointmentManagement\UpdateAppsOptionsView.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="appointmentController" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PresentationLayer.ViewPatients">
+    <Position X="14" Y="2.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABAAAACDAAASQAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>PatientManagement\ViewPatients.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="patientController" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BusinessLayer.PatientController">
+    <Position X="19.25" Y="0.5" Width="3" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="BusinessLayer.AppointmentController">
+    <Position X="21" Y="10" Width="3" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

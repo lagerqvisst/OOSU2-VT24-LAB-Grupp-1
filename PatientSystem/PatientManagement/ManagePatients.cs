@@ -19,6 +19,38 @@ namespace PresentationLayer
             InitializeComponent();
         }
 
+        public CreatePatient CreatePatient
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public DeleteAppointmentsView DeleteAppointmentsView
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public UpdateAppointmentView UpdateAppointmentView
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public ViewPatients ViewPatients
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         private void btnReturnToMainMenu_Click(object sender, EventArgs e)
         {
             this.Close();
