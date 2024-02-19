@@ -50,7 +50,7 @@
             // 
             mainLabelRecepview.AutoSize = true;
             mainLabelRecepview.Font = new Font("Georgia", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            mainLabelRecepview.Location = new Point(168, 26);
+            mainLabelRecepview.Location = new Point(168, 28);
             mainLabelRecepview.Name = "mainLabelRecepview";
             mainLabelRecepview.Size = new Size(109, 23);
             mainLabelRecepview.TabIndex = 1;

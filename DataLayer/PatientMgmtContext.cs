@@ -23,26 +23,7 @@ namespace DataLayer
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Appointment>()
-                .HasOne(a => a.patient)
-                .WithMany(p => p.patientAppointments)
-                .HasForeignKey(a => a.patientId);
-
-            modelBuilder.Entity<Appointment>()
-                .HasOne(a => a.doctor)
-                .WithMany(d => d.Appointments)
-                .HasForeignKey(a => a.doctorID);
-   
-            modelBuilder.Entity<Appointment>()
-                .HasOne(a => a.receptionist)
-                .WithMany(r => r.receptionistAppointments)
-                .HasForeignKey(a => a.receptionistId);
-
-            modelBuilder.Entity<Prescription>()
-                .HasOne(p => p.patient)
-                .WithMany(p => p.patientPrescriptions)
-                .HasForeignKey(p => p.patientId);
-
+    
 
             modelBuilder.Entity<PrescriptionDrug>()
               .HasKey(pd => new { pd.prescriptionId, pd.drugId });
