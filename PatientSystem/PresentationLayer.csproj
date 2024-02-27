@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj" />
     <ProjectReference Include="..\DataLayer\DataLayer.csproj" />
+    <ProjectReference Include="..\WPF\WPF.csproj" />
   </ItemGroup>
 
   <ItemGroup>

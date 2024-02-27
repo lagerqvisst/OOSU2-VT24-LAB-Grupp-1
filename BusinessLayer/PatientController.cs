@@ -44,6 +44,7 @@ namespace BusinessLayer
 
         public List<Patient> GetPatientsByPersonalNum(string personalNumber)
         {
+            
             return unitOfWork.GetPatientByPersonalNumber(personalNumber);
         }
 

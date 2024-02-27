@@ -2,6 +2,7 @@ using BusinessLayer;
 using EntityLayer;
 using PresentationLayer;
 using DataLayer;
+using WPF;
 
 namespace PatientSystem
 {
@@ -60,8 +61,12 @@ namespace PatientSystem
                 {
                     
                     Doctor doctor = (Doctor)user;
+                    /*
                     DoctorView doctorView = new DoctorView(doctor);
                     doctorView.Show(); 
+                    */
+                    MainWindow mainWindow = new MainWindow(doctor);
+                    mainWindow.Show();
                 }
             }
             else
