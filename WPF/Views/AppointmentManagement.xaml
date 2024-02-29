@@ -1,0 +1,64 @@
+﻿<Window x:Class="WPF.Views.AppointmentManagement"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF.Views"
+        mc:Ignorable="d"
+        Title="AppointmentManagement" Height="450" Width="800">
+    
+    <DockPanel LastChildFill="True">
+        <!--MENY START -->
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="Logga ut" x:Name="menuSignout"></MenuItem>
+
+            </MenuItem>
+        </Menu>
+        <!--MENY SLUT -->
+
+        <StatusBar DockPanel.Dock="Bottom">
+            <TextBlock Text="{Binding ElementName=doctorName}" x:Name="doctorName"></TextBlock>
+
+        </StatusBar>
+        <!--STATUS MESSAGE slut -->
+
+        <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+            <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical" Margin="0,10,0,10">
+                <TextBlock Text="AppID" FontSize="10"></TextBlock>
+                <TextBlock Text="Patient Name" FontSize="10"></TextBlock>
+                <TextBlock Text="Patient ID" FontSize="10"></TextBlock>
+                <TextBlock Text="Appointment reason" FontSize="10"></TextBlock>
+            </StackPanel>
+
+            <StackPanel Grid.Column="0" Grid.Row="1">
+                <Label Content="Add doctors note"></Label>
+                <TextBox Name="txtBoxDoctorNote" Text="placeholder text" FontSize="10" Height="50"></TextBox>
+            </StackPanel>
+            <Button Grid.Column="1" Grid.Row="1"  Content="Add note" Width="75" Height="75"  x:Name="btnAddDoctorsNote"
+                         Command="{Binding Path=DataContext.AddDoctorsNoteCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         CommandParameter="{Binding ElementName=txtBoxDoctorNote, Path=Text}"/>
+
+
+            <Label Grid.Column="0" Grid.Row="2" Content="Add Diagnosis"></Label>
+            <Button Grid.Column="1" Grid.Row="2"  Content="Add diagnosis" Width="75" Height="75"></Button>
+
+            <Button Grid.Column="0"  Grid.Row="3"  Content="Add prescription" Width="200" Height="75"></Button>
+        </Grid>
+    
+    
+    
+   </DockPanel>
+</Window>

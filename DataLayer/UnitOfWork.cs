@@ -301,6 +301,18 @@ namespace DataLayer
             Save();
         }
 
+        public void UpdateAppointmentDoctorsNote(Appointment appointment, string newNote)
+        {
+            // Hitta det befintliga Appointment-objektet med hjälp av appointmentId
+            var appointmentToUpdate = patientMgmtContext.Appointments.FirstOrDefault(a => a.appointmentId == appointment.appointmentId);
+
+            appointmentToUpdate.doctorsNote = newNote;
+            AppointmentRepository.FirstOrDefault(a => a.appointmentId == appointment.appointmentId).doctorsNote = newNote;
+
+            // Spara ändringar till databasen
+            Save();
+        }
+
 
 
 

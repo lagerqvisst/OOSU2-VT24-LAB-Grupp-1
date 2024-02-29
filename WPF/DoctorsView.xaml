@@ -6,12 +6,14 @@
         xmlns:local="clr-namespace:WPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    
+    
 
     <DockPanel LastChildFill="True">
         <!--MENY START -->
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
-                <MenuItem Header="Logga ut" x:Name="menuSignout" Click="menuSignout_Click"></MenuItem>
+                <MenuItem Header="Logga ut" x:Name="menuSignout"></MenuItem>
                 
             </MenuItem>
         </Menu>
@@ -34,15 +36,14 @@
 
             <StackPanel Grid.Column="1" Margin="10,10,10,10">
                 <Label Content="Rubrik: Placeholder för att visa läkarbesök för en specifik doktor"></Label>
-                <DataGrid AutoGenerateColumns="False">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Patient" Binding="{Binding Column1}" />
-                        <DataGridTextColumn Header="Date" Binding="{Binding Column2}" />
-                        <DataGridTextColumn Header="Reason" Binding="{Binding Column3}" />
-                        <DataGridTextColumn Header="X" Binding="{Binding Column4}" />
-                    </DataGrid.Columns>
+                <DataGrid Name="dgAppointment" ItemsSource="{Binding appointments}">
+
                 </DataGrid>
-                <Button  Content="Choose appointment"  x:Name="btnChosenAppointment" Click="btnChosenAppointment_Click" Width="250" HorizontalAlignment="Left" Margin="0,30,0,0"  Background="Azure"></Button>
+                <Button  Content="Choose appointment"  x:Name="btnChosenAppointment" Width="250" HorizontalAlignment="Left" Margin="0,30,0,0"  Background="Azure"
+                         Command="{Binding Path=DataContext.OpenAppMgmtCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                         CommandParameter="{Binding ElementName=dgAppointment, Path=SelectedItem}">
+                    
+                </Button>
                 
             </StackPanel>
 

@@ -16,7 +16,7 @@ namespace PatientSystem
 
             loginController = new LoginController();
 
-
+            
 
         }
 
@@ -67,6 +67,7 @@ namespace PatientSystem
                     */
                     MainWindow mainWindow = new MainWindow(doctor);
                     mainWindow.Show();
+                    mainWindow.Focus();
                 }
             }
             else

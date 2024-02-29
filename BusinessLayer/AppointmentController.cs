@@ -32,6 +32,12 @@ namespace BusinessLayer
             return unitOfWork.AppointmentRepository.Find(a => true).ToList();
         }
 
+        //Använd denna i viewmodel i WPF för att visa appointments för en specifik doktor som är inloggad.
+        public List<Appointment> GetDoctorSpecificAppointments(Doctor doctor)
+        {
+            return unitOfWork.AppointmentRepository.Find(a => a.doctorID == doctor.doctorID).ToList();
+        }
+
         //Onödig metod, använd hela objekt istället... 
         public Appointment GetAppointmentById(int id)
         {
@@ -61,6 +67,10 @@ namespace BusinessLayer
             unitOfWork.UpdateAppointmentDoctor(apppointment, newDoctor);
            
             
+        }
+        public void UpdateAppointmentDoctorsNote(Appointment appointment, string newNote)
+        {
+            unitOfWork.UpdateAppointmentDoctorsNote(appointment, newNote);
         }
     }
 }

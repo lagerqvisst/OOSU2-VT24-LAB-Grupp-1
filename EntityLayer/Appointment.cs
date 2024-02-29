@@ -18,6 +18,8 @@ namespace EntityLayer
         public DateTime appointmentDate { get; set; }
         public string appointmentReason { get; set; }
 
+        public string ? doctorsNote { get; set; }
+
         public Doctor doctor { get; set; }
         public int doctorID { get; set; } //FK
         public string doctorName { get; set; }
@@ -33,6 +35,7 @@ namespace EntityLayer
             this.appointmentReason = appointmentReason;
             this.doctorID = doctorID;
             this.receptionistId = receptionistId;
+            doctorsNote = "N/A";
 
 
         }
