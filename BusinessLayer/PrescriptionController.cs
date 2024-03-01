@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using EntityLayer;
 using DataLayer;
 using EntityLayer.Junction;
+using System.Collections.ObjectModel;
 
 namespace BusinessLayer
 {
@@ -14,7 +15,7 @@ namespace BusinessLayer
         UnitOfWork unitOfWork = new UnitOfWork();
         PatientController patientController = new PatientController();  
 
-        public void CreatePrescription(int patientId, DateTime dateofPrescription, List<Drug> drugs)
+        public Prescription CreatePrescription(int patientId, DateTime dateofPrescription, ObservableCollection<Drug> drugs)
         {
             Prescription prescription = new Prescription(patientId, dateofPrescription);
 
@@ -28,10 +29,15 @@ namespace BusinessLayer
             prescription.SetPatientName(patientController.GetPatientById(patientId).name);
             unitOfWork.CreatePrescription(prescription);
             
+            return prescription;
         }
         public List<Prescription> GetAllPrescriptions()
         {
             return unitOfWork.PrescriptionRepository.Find(unitOfWork => true).ToList(); 
+        }
+        public List<Prescription> GetPatientPrescriptionHistory(int patientId) 
+        {
+            return unitOfWork.PrescriptionRepository.Find(p => p.patientId == patientId).ToList();
         }
     }
 }

@@ -84,7 +84,7 @@ namespace PresentationLayer.PrescriptionManagement
         private void btnCreatePrescription_Click(object sender, EventArgs e)
         {
             DateTime date = DateTime.Now.Date;
-            prescriptionController.CreatePrescription(patient.patientId, date, drugs);
+            //prescriptionController.CreatePrescription(patient.patientId, date, drugs);
 
             labelSummary.Text = $"Prescription registered for {patient.name} at {date} with {drugs.Count} drugs.";
 

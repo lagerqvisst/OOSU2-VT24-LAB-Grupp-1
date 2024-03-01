@@ -15,8 +15,16 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace WpfLayer.ViewModels
 {
-    public class AppMgmtViewModel: ObservableObject
+    public class AppMgmtViewModel : ObservableObject
     {
+        //Textbindings 
+
+        private string patientName;
+        private string patientId;
+        private string appointmentId;
+        private string appointmentReason;
+
+
         //CONTROLLER KLASSER 
         public AppointmentController appointmentController = new AppointmentController();
         public DoctorController doctorController = new DoctorController();
@@ -24,14 +32,14 @@ namespace WpfLayer.ViewModels
         public DiagnosisController diagnosisController = new DiagnosisController();
 
         //LISTOR SOM KOMMER VISAS I DATAGRIDS 
-        
+
         public ObservableCollection<Appointment> appointments { get; set; } = new ObservableCollection<Appointment>();
 
         public Appointment appointment;
         public Diagnosis diagnosis;
         public Patient patient;
 
-        
+
         public ICommand MakeNoteCmd { get; private set; }
         public ICommand MakeDiagnosisCmd { get; private set; }
 
@@ -44,7 +52,13 @@ namespace WpfLayer.ViewModels
             MakeNoteCmd = new RelayCommand(MakeNote, CanMakeNote);
             MakeDiagnosisCmd = new RelayCommand(MakeDiagnosis, CanMakeDiagnosis);
             OpenPrescriptionMgmtCmd = new RelayCommand(OpenPrescriptionView, CanOpenPrescriptionView);
-            
+
+            patientName = $"Patient name: {patient.name}";
+            patientId = $"Patient ID: {patient.patientId}";
+            appointmentId = $"Appointment ID: {appointment.appointmentId}";
+            appointmentReason = $"Appointment reason: {appointment.appointmentReason}";
+
+
         }
 
         //START DOCTORS NOTE FUNKTIONALITET
@@ -73,7 +87,7 @@ namespace WpfLayer.ViewModels
                 appointmentController.UpdateAppointmentDoctorsNote(appointment, DoctorsNote);
                 MessageBox.Show("Doktorsnoteringen har uppdaterats");
             }
-            
+
         }
         //SLUT DOCTORS NOTE FUNKTIONALITET
 
@@ -101,7 +115,7 @@ namespace WpfLayer.ViewModels
             }
         }
 
-        private bool CanMakeDiagnosis() 
+        private bool CanMakeDiagnosis()
         {
             return !string.IsNullOrEmpty(DiagnosisDescription) && !string.IsNullOrEmpty(TreatmentSuggestion);
         }
@@ -111,7 +125,7 @@ namespace WpfLayer.ViewModels
             DateTime dateOfDiagnosis = DateTime.Now;
 
             diagnosis = diagnosisController.AddDiagnosis(appointment.patientId, DiagnosisDescription, dateOfDiagnosis, TreatmentSuggestion);
-                
+
             MessageBox.Show("Diagnos har lagts till");
 
         }
@@ -127,10 +141,35 @@ namespace WpfLayer.ViewModels
             }
             else return false;
         }
-        private void OpenPrescriptionView() 
+        private void OpenPrescriptionView()
         {
             PrescriptionView prescriptionView = new PrescriptionView(patient);
-            prescriptionView.Show(); 
+            prescriptionView.Show();
+        }
+
+        //TEXT LÄNGST UPP MED INFO OM PATIENTEN OCH APPOINTMENT
+
+        public string PatientId
+        {
+            get { return patientId; }
+            set { patientId = value; OnPropertyChanged(); }
+        }
+
+        public string PatientName { 
+            get { return patientName; } 
+            set { patientName = value; OnPropertyChanged(); } 
+        }
+
+        public string AppId
+        {
+            get { return appointmentId; }
+            set { AppId = value; OnPropertyChanged(); }
+        }
+
+        public string AppointmentReason
+        {
+            get { return appointmentReason; }
+            set { AppointmentReason = value; OnPropertyChanged(); }
         }
     }
 }

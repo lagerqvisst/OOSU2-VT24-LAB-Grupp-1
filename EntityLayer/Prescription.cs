@@ -1,6 +1,7 @@
 ﻿using EntityLayer.Junction;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace EntityLayer
         public string patientName { get; set; }
         public DateTime dateofPrescription { get; set; }
 
-        public List<Drug> drugs { get; set; }
+        public ObservableCollection<Drug> drugs { get; set; } = new ObservableCollection<Drug>();
 
         public int drugCount { get; set; }
 
@@ -29,9 +30,9 @@ namespace EntityLayer
             this.patientId = patientId;
             this.patient = patient;
             this.dateofPrescription = dateofPrescription.Date;
-            drugs = new List<Drug>();
+            drugs = new ObservableCollection<Drug>();
 
-             
+
         }
         public void SetPatientName(string patientName)
         {

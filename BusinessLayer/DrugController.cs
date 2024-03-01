@@ -66,5 +66,10 @@ namespace BusinessLayer
         {
             return unitOfWork.DrugRepository.Find(d => true).ToList();
         }
+
+        public List<Drug> GetDrugsByPrescriptionId(int prescriptionId)
+        {
+            return unitOfWork.PrescriptionDrugRepository.Find(p => p.prescriptionId == prescriptionId).Select(p => p.Drug).ToList();
+        }
     }
 }
