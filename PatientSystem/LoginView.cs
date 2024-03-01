@@ -2,7 +2,7 @@ using BusinessLayer;
 using EntityLayer;
 using PresentationLayer;
 using DataLayer;
-using WPF;
+
 
 namespace PatientSystem
 {
@@ -28,23 +28,7 @@ namespace PatientSystem
             }
         }
 
-        /*
-        private void BtnSignIn_Click(object sender, EventArgs e)
-        {
-            Receptionist receptionst = loginController.Login(userNameField.Text, userPasswordField.Text);
-
-            if (receptionst != null)
-            {
-                ReceptionistView receptionistView = new ReceptionistView(receptionst);
-                receptionistView.Show();
-            }
-            else
-            {
-                MessageBox.Show("Invalid username or password");
-            }
-        }
-        */
-        //Uppdaterar sign in för senare implementation 
+  
         private void BtnSignIn_Click(object sender, EventArgs e)
         {
             IUser user = loginController.CheckUserLogin(userNameField.Text, userPasswordField.Text) as IUser;
@@ -65,9 +49,9 @@ namespace PatientSystem
                     DoctorView doctorView = new DoctorView(doctor);
                     doctorView.Show(); 
                     */
-                    MainWindow mainWindow = new MainWindow(doctor);
-                    mainWindow.Show();
-                    mainWindow.Focus();
+                    //MainWindow mainWindow = new MainWindow(doctor);
+                    //mainWindow.Show();
+                    //mainWindow.Focus();
                 }
             }
             else

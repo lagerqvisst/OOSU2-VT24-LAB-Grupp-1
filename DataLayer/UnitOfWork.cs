@@ -166,6 +166,16 @@ namespace DataLayer
             Save();
         }
 
+        public void CreateDiagnosis(Diagnosis diagnosis)
+        {
+            // Lägg till den nya patienten i repository
+            DiagnosisRepository.Add(diagnosis);
+            patientMgmtContext.Diagnoses.Add(diagnosis);
+
+            // Spara ändringar till databasen
+            Save();
+        }
+
         public void CreateAppointment(Appointment appointment)
         {
             // Lägg till den nya patienten i repository

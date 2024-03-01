@@ -12,10 +12,10 @@ using PresentationLayer.PrescriptionManagement;
 
 namespace PresentationLayer
 {
-    public partial class DoctorView : Form
+    public partial class DoctorViewWinforms : Form
     {
         Doctor doctor;
-        public DoctorView(Doctor doctor)
+        public DoctorViewWinforms(Doctor doctor)
         {
             InitializeComponent();
             this.doctor = doctor;

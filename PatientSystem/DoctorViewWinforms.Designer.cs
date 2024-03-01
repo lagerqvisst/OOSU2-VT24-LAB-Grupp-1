@@ -1,6 +1,6 @@
 ﻿namespace PresentationLayer
 {
-    partial class DoctorView
+    partial class DoctorViewWinforms
     {
         /// <summary>
         /// Required designer variable.
