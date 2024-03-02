@@ -23,9 +23,10 @@ namespace DataLayer
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-    
 
-            modelBuilder.Entity<PrescriptionDrug>()
+
+
+        modelBuilder.Entity<PrescriptionDrug>()
               .HasKey(pd => new { pd.prescriptionId, pd.drugId });
 
             modelBuilder.Entity<PrescriptionDrug>()

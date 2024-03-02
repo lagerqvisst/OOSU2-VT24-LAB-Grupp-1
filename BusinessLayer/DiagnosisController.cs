@@ -18,5 +18,10 @@ namespace BusinessLayer
             unitOfWork.CreateDiagnosis(diagnosis);
             return diagnosis;
         }
+
+        public List<Diagnosis> PatientDiagnosis(Patient patient)
+        {
+            return unitOfWork.DiagnosisRepository.Find(d => d.patientId == patient.patientId).ToList(); 
+        }
     }
 }

@@ -24,6 +24,9 @@ namespace WpfLayer.ViewModels
         private string appointmentId;
         private string appointmentReason;
 
+        private string newAppointmentReason;
+        private DateTime appointmentDate = DateTime.Now;
+
 
         //CONTROLLER KLASSER 
         public AppointmentController appointmentController = new AppointmentController();
@@ -34,10 +37,14 @@ namespace WpfLayer.ViewModels
         //LISTOR SOM KOMMER VISAS I DATAGRIDS 
 
         public ObservableCollection<Appointment> appointments { get; set; } = new ObservableCollection<Appointment>();
+        public ObservableCollection<Appointment> patientAppointmentHistory { get; set; } = new ObservableCollection<Appointment>();
+
+        public ObservableCollection<Diagnosis> diagnosisHistory { get; set; } = new ObservableCollection<Diagnosis>();
 
         public Appointment appointment;
         public Diagnosis diagnosis;
         public Patient patient;
+        public Doctor doctor;
 
 
         public ICommand MakeNoteCmd { get; private set; }
@@ -45,13 +52,18 @@ namespace WpfLayer.ViewModels
 
         public ICommand OpenPrescriptionMgmtCmd { get; private set; }
 
+        public ICommand MakeNewAppointmentCmd { get; private set; }
+
         public AppMgmtViewModel(Appointment appointment)
         {
             this.appointment = appointment;
             patient = patientController.GetPatientById(appointment.patientId);
+            doctor = doctorController.GetDoctorById(appointment.doctorID);
+
             MakeNoteCmd = new RelayCommand(MakeNote, CanMakeNote);
             MakeDiagnosisCmd = new RelayCommand(MakeDiagnosis, CanMakeDiagnosis);
             OpenPrescriptionMgmtCmd = new RelayCommand(OpenPrescriptionView, CanOpenPrescriptionView);
+            MakeNewAppointmentCmd = new RelayCommand(MakeNewAppointment, CanMakeNewAppointment);
 
             patientName = $"Patient name: {patient.name}";
             patientId = $"Patient ID: {patient.patientId}";
@@ -59,6 +71,9 @@ namespace WpfLayer.ViewModels
             appointmentReason = $"Appointment reason: {appointment.appointmentReason}";
 
 
+
+            patientAppointmentHistory = new ObservableCollection<Appointment>(appointmentController.GetPatientAppointments(patient));
+            diagnosisHistory = new ObservableCollection<Diagnosis>(diagnosisController.PatientDiagnosis(patient));
         }
 
         //START DOCTORS NOTE FUNKTIONALITET
@@ -171,6 +186,31 @@ namespace WpfLayer.ViewModels
             get { return appointmentReason; }
             set { AppointmentReason = value; OnPropertyChanged(); }
         }
+
+        public DateTime AppointmentDate
+        {
+            get { return appointmentDate; }
+            set { appointmentDate = value; OnPropertyChanged(); }
+        }
+
+        public string NewAppointmentReason
+        {
+            get { return newAppointmentReason; }
+            set { newAppointmentReason = value; OnPropertyChanged(); }
+        }
+        
+        private bool CanMakeNewAppointment()
+        {
+            return !string.IsNullOrEmpty(NewAppointmentReason) && AppointmentDate != null;
+        }
+
+        private void MakeNewAppointment()
+        {
+            appointmentController.NewAppointmentByDoctor(patient.patientId, AppointmentDate, NewAppointmentReason, doctor.doctorID, 1);
+            MessageBox.Show("Ny tid har bokats");
+        }
+
+
     }
 }
 

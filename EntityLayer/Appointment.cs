@@ -25,7 +25,7 @@ namespace EntityLayer
         public string doctorName { get; set; }
 
         public Receptionist receptionist { get; set; }
-        public int receptionistId { get; set; } //FK
+        public int? receptionistId { get; set; } //FK
         public string receptionistName { get; set; }
 
         public Appointment(int patientId, DateTime appointmentDate, string appointmentReason, int doctorID, int receptionistId)
@@ -36,15 +36,31 @@ namespace EntityLayer
             this.doctorID = doctorID;
             this.receptionistId = receptionistId;
             doctorsNote = "N/A";
-
-
         }
+
+        public Appointment(int patientId, DateTime appointmentDate, string appointmentReason, int doctorID)
+        {
+            this.patientId = patientId;
+            this.appointmentDate = appointmentDate.Date;
+            this.appointmentReason = appointmentReason;
+            this.doctorID = doctorID;
+            doctorsNote = "N/A";
+        }
+
+
+
         public void SetNames(Patient patient, Doctor doctor, Receptionist receptionist)
         {
             patientName = patient.name;
             doctorName = doctor.name;
-            receptionistName = receptionist.name;
+
+            
+           receptionistName = receptionist.name;
+           
+          
         }
+
+
 
     }
 
