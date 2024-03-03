@@ -24,6 +24,8 @@ namespace WpfLayer
             DataContext = mainViewModel;
 
             InitializeComponent();
+
+            this.Title = "Sign in";
         }
     }
 }

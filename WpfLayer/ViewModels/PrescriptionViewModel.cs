@@ -14,41 +14,67 @@ namespace WpfLayer.ViewModels
 {
     public class PrescriptionViewModel : ObservableObject
     {
-        Patient patient;
-        private string patientName;
-        private string patientId;
 
+        Patient patient; //Local variable that passes patient object from the previous view, see constructor for assignemnt.
+
+        //Controller classes to extract and create data from the database
         DrugController drugController = new DrugController();
         PrescriptionController prescriptionController = new PrescriptionController();
-        public ObservableCollection<Drug> Drugs { get; set; } = new ObservableCollection<Drug>(); //DATAGRID
 
+        // Properties that are binded in XAML
+        public ObservableCollection<Drug> Drugs { get; set; } = new ObservableCollection<Drug>(); //DATAGRID
         public ObservableCollection<Drug> DrugsInPrescription { get; set; } = new ObservableCollection<Drug>(); //DATAGRID
         public ObservableCollection<Drug> SelectedDrugs { get; set; } = new ObservableCollection<Drug>(); //DATAGRID 
+        private ObservableCollection<Prescription> prescriptionHistory;
 
-        public ObservableCollection<Prescription> prescriptionHistory;
+        private string patientName;
+        private string patientId;
+        private string statusBarPatientInfo;
 
+        // Objects that help to call on controller methods and set values to properties bounded in XAML
         private Drug selectedDrug;
         private Drug selectedDrugToRemove;
         private Prescription selectedPrescription;
+
+        // Commands 
         public ICommand AddDrugCmd { get; private set; }
         public ICommand RemoveDrugCmd { get; private set; }
         public ICommand SavePrescriptionCmd { get; private set; }
-
         public ICommand ShowDrugsFromPrescriptionCmd { get; private set; }
+        public ICommand CloseWindowCmd { get; private set; }
 
         public PrescriptionViewModel(Patient patient)
         {
+            //Assigning the patient object to the local variable
             this.patient = patient;
-            patientName = $"Patient name: {patient.name}";
-            patientId = $"Patient ID: {patient.patientId}";
 
-            Drugs = new ObservableCollection<Drug>(drugController.GetAllDrugs());
-            prescriptionHistory = new ObservableCollection<Prescription>(prescriptionController.GetPatientPrescriptionHistory(patient.patientId));
-
+            //Initialize commands
             AddDrugCmd = new RelayCommand(AddDrugToList, CanAddDrug);
             RemoveDrugCmd = new RelayCommand(RemoveDrug, CanRemoveDrug);
             SavePrescriptionCmd = new RelayCommand(CreatePrescription, CanCreatePrescription);
             ShowDrugsFromPrescriptionCmd = new RelayCommand(ShowDrugsFromPrescription, CanShowDrugsFromPrescription);
+            CloseWindowCmd = new RelayCommand(CloseWidnow);
+
+            //Setting the patient's name and ID to the properties that are binded in XAML
+            patientName = $"Patient name: {patient.name}";
+            patientId = $"Patient ID: {patient.patientId}";
+            statusBarPatientInfo = $"Currently managing prescription for Patient: {patient.name} - ID: {patient.patientId}";
+
+            //Assigning the drugs and prescription from the database to the ObservableCollection
+            Drugs = new ObservableCollection<Drug>(drugController.GetAllDrugs());
+            prescriptionHistory = new ObservableCollection<Prescription>(prescriptionController.GetPatientPrescriptionHistory(patient.patientId));
+
+        }
+
+        // Properties that are binded in XAML
+        public string StatusBarPatientInfo
+        {
+            get { return statusBarPatientInfo; }
+            set
+            {
+                statusBarPatientInfo = value;
+                OnPropertyChanged();
+            }
         }
 
         public ObservableCollection<Prescription> PrescriptionHistory
@@ -82,7 +108,6 @@ namespace WpfLayer.ViewModels
         }
 
         
-
         public Drug SelectedDrug
         {
             get { return selectedDrug; }
@@ -94,6 +119,17 @@ namespace WpfLayer.ViewModels
             set { selectedDrugToRemove = value; OnPropertyChanged(); }
         }
 
+        
+ 
+
+        public Prescription SelectedPrescription
+        {
+            get { return selectedPrescription; }
+            set { selectedPrescription = value; OnPropertyChanged(); }
+        }
+
+        // Methos that are binded to the commands
+
         private bool CanAddDrug()
         {
             return SelectedDrug != null;
@@ -101,11 +137,11 @@ namespace WpfLayer.ViewModels
 
         private void AddDrugToList()
         {
-            if(SelectedDrug != null)
+            if (SelectedDrug != null)
             {
                 SelectedDrugs.Add(SelectedDrug);
             }
-            
+
         }
 
         private bool CanRemoveDrug()
@@ -115,7 +151,7 @@ namespace WpfLayer.ViewModels
 
         private void RemoveDrug()
         {
-            if(SelectedDrugToRemove != null)
+            if (SelectedDrugToRemove != null)
             {
                 SelectedDrugs.Remove(SelectedDrugToRemove);
             }
@@ -141,17 +177,11 @@ namespace WpfLayer.ViewModels
 
             MessageBox.Show("Prescription has been created");
 
-            
+
 
             SelectedDrugs.Clear(); // Ta bort befintliga element
         }
 
-
-        public Prescription SelectedPrescription
-        {
-            get { return selectedPrescription; }
-            set { selectedPrescription = value; OnPropertyChanged(); }
-        }
 
         private bool CanShowDrugsFromPrescription()
         {
@@ -173,6 +203,13 @@ namespace WpfLayer.ViewModels
 
                 OnPropertyChanged(nameof(DrugsInPrescription));
             }
+        }
+
+        //Other Methods for navigation
+        private void CloseWidnow()
+        {
+            Window currentWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
+            currentWindow?.Close();
         }
 
     }

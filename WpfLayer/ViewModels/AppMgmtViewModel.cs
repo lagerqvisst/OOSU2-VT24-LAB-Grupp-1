@@ -17,66 +17,69 @@ namespace WpfLayer.ViewModels
 {
     public class AppMgmtViewModel : ObservableObject
     {
-        //Textbindings 
-
-        private string patientName;
-        private string patientId;
-        private string appointmentId;
-        private string appointmentReason;
-
-        private string newAppointmentReason;
-        private DateTime appointmentDate = DateTime.Now;
-
-
-        //CONTROLLER KLASSER 
+        //Controller classes used to extract and create data from repoisitories
         public AppointmentController appointmentController = new AppointmentController();
         public DoctorController doctorController = new DoctorController();
         public PatientController patientController = new PatientController();
         public DiagnosisController diagnosisController = new DiagnosisController();
 
-        //LISTOR SOM KOMMER VISAS I DATAGRIDS 
+        // Properties that are binded in XAML
+        private string patientName;
+        private string patientId;
+        private string appointmentId;
+        private string appointmentReason;
+        private string newAppointmentReason;
+        private DateTime appointmentDate = DateTime.Now;
+        private string statusBarMessage;
+        private string _diagnosisDescription;
+        private string _treatmentSuggestion;
 
+        //Collections that are binded in XAML through DataGrids
         public ObservableCollection<Appointment> appointments { get; set; } = new ObservableCollection<Appointment>();
         public ObservableCollection<Appointment> patientAppointmentHistory { get; set; } = new ObservableCollection<Appointment>();
-
         public ObservableCollection<Diagnosis> diagnosisHistory { get; set; } = new ObservableCollection<Diagnosis>();
 
+        //Objects that help to call on controller methods and set values to properties bounded in XAML
         public Appointment appointment;
         public Diagnosis diagnosis;
         public Patient patient;
         public Doctor doctor;
 
-
+        // Commands
         public ICommand MakeNoteCmd { get; private set; }
         public ICommand MakeDiagnosisCmd { get; private set; }
-
         public ICommand OpenPrescriptionMgmtCmd { get; private set; }
-
         public ICommand MakeNewAppointmentCmd { get; private set; }
+        public ICommand CloseWindowCmd { get; private set; }
 
         public AppMgmtViewModel(Appointment appointment)
         {
-            this.appointment = appointment;
-            patient = patientController.GetPatientById(appointment.patientId);
-            doctor = doctorController.GetDoctorById(appointment.doctorID);
-
+            //Initialize commands
             MakeNoteCmd = new RelayCommand(MakeNote, CanMakeNote);
             MakeDiagnosisCmd = new RelayCommand(MakeDiagnosis, CanMakeDiagnosis);
             OpenPrescriptionMgmtCmd = new RelayCommand(OpenPrescriptionView, CanOpenPrescriptionView);
             MakeNewAppointmentCmd = new RelayCommand(MakeNewAppointment, CanMakeNewAppointment);
+            CloseWindowCmd = new RelayCommand(CloseWidnow);
 
+            //Property values assigned.
+            this.appointment = appointment;
+            patient = patientController.GetPatientById(appointment.patientId);
+            doctor = doctorController.GetDoctorById(appointment.doctorID);
+
+            //XAML bounded properties assigned values
             patientName = $"Patient name: {patient.name}";
             patientId = $"Patient ID: {patient.patientId}";
             appointmentId = $"Appointment ID: {appointment.appointmentId}";
             appointmentReason = $"Appointment reason: {appointment.appointmentReason}";
+            statusBarMessage = $"Currently managing appointment for Patient: {patient.name} - ID: {patient.patientId}\n" +
+                $"Date for appointment: {appointment.appointmentDate}, Reason: {appointment.appointmentReason}";
 
-
-
+            //Collections assigned values through controller methods
             patientAppointmentHistory = new ObservableCollection<Appointment>(appointmentController.GetPatientAppointments(patient));
             diagnosisHistory = new ObservableCollection<Diagnosis>(diagnosisController.PatientDiagnosis(patient));
         }
 
-        //START DOCTORS NOTE FUNKTIONALITET
+        // Properties that are binded in XAML
         private string _doctorsNote;
         public string DoctorsNote
         {
@@ -88,27 +91,16 @@ namespace WpfLayer.ViewModels
             }
         }
 
-        private bool CanMakeNote()
+        public string StatusBarMessage
         {
-            // Implementera logik för att avgöra om inloggning är möjlig
-            return !string.IsNullOrEmpty(DoctorsNote);
-        }
-
-        private void MakeNote()
-        {
-            // Implementera logik för inloggning
-            if (appointment != null)
+            get { return statusBarMessage; }
+            set
             {
-                appointmentController.UpdateAppointmentDoctorsNote(appointment, DoctorsNote);
-                MessageBox.Show("Doktorsnoteringen har uppdaterats");
+                statusBarMessage = value;
+                OnPropertyChanged();
             }
-
         }
-        //SLUT DOCTORS NOTE FUNKTIONALITET
 
-
-        //START DIAGNOS FUNKTIONALITET
-        private string _diagnosisDescription;
         public string DiagnosisDescription
         {
             get { return _diagnosisDescription; }
@@ -119,7 +111,7 @@ namespace WpfLayer.ViewModels
             }
         }
 
-        private string _treatmentSuggestion;
+
         public string TreatmentSuggestion
         {
             get { return _treatmentSuggestion; }
@@ -130,49 +122,16 @@ namespace WpfLayer.ViewModels
             }
         }
 
-        private bool CanMakeDiagnosis()
-        {
-            return !string.IsNullOrEmpty(DiagnosisDescription) && !string.IsNullOrEmpty(TreatmentSuggestion);
-        }
-
-        private void MakeDiagnosis()
-        {
-            DateTime dateOfDiagnosis = DateTime.Now;
-
-            diagnosis = diagnosisController.AddDiagnosis(appointment.patientId, DiagnosisDescription, dateOfDiagnosis, TreatmentSuggestion);
-
-            MessageBox.Show("Diagnos har lagts till");
-
-        }
-        //SLUT DIAGNOSIS COMMAND 
-
-        //START ÖPPNA PRESCRIPTION COMMAND 
-
-        private bool CanOpenPrescriptionView()
-        {
-            if (patient != null)
-            {
-                return true;
-            }
-            else return false;
-        }
-        private void OpenPrescriptionView()
-        {
-            PrescriptionView prescriptionView = new PrescriptionView(patient);
-            prescriptionView.Show();
-        }
-
-        //TEXT LÄNGST UPP MED INFO OM PATIENTEN OCH APPOINTMENT
-
         public string PatientId
         {
             get { return patientId; }
             set { patientId = value; OnPropertyChanged(); }
         }
 
-        public string PatientName { 
-            get { return patientName; } 
-            set { patientName = value; OnPropertyChanged(); } 
+        public string PatientName
+        {
+            get { return patientName; }
+            set { patientName = value; OnPropertyChanged(); }
         }
 
         public string AppId
@@ -198,6 +157,62 @@ namespace WpfLayer.ViewModels
             get { return newAppointmentReason; }
             set { newAppointmentReason = value; OnPropertyChanged(); }
         }
+
+        // Methos that are binded to the commands
+        private bool CanMakeNote()
+        {
+            // Implementera logik för att avgöra om inloggning är möjlig
+            return !string.IsNullOrEmpty(DoctorsNote);
+        }
+
+        private void MakeNote()
+        {
+            // Implementera logik för inloggning
+            if (appointment != null)
+            {
+                appointmentController.UpdateAppointmentDoctorsNote(appointment, DoctorsNote);
+                patientAppointmentHistory = new ObservableCollection<Appointment>(appointmentController.GetPatientAppointments(patient));
+                
+                MessageBox.Show("Doktorsnoteringen har uppdaterats");
+                DoctorsNote = "";   
+            }
+
+        }
+
+
+        private bool CanMakeDiagnosis()
+        {
+            return !string.IsNullOrEmpty(DiagnosisDescription) && !string.IsNullOrEmpty(TreatmentSuggestion);
+        }
+
+        private void MakeDiagnosis()
+        {
+            DateTime dateOfDiagnosis = DateTime.Now;
+
+            diagnosis = diagnosisController.AddDiagnosis(appointment.patientId, DiagnosisDescription, dateOfDiagnosis, TreatmentSuggestion);
+            diagnosisHistory.Add(diagnosis);
+            MessageBox.Show("Diagnos har lagts till");
+            DiagnosisDescription = "";
+
+        }
+
+        private bool CanOpenPrescriptionView()
+        {
+            if (patient != null)
+            {
+                return true;
+            }
+            else return false;
+        }
+        private void OpenPrescriptionView()
+        {
+            PrescriptionView prescriptionView = new PrescriptionView(patient);
+            prescriptionView.ShowDialog();
+        }
+
+ 
+
+ 
         
         private bool CanMakeNewAppointment()
         {
@@ -207,7 +222,16 @@ namespace WpfLayer.ViewModels
         private void MakeNewAppointment()
         {
             appointmentController.NewAppointmentByDoctor(patient.patientId, AppointmentDate, NewAppointmentReason, doctor.doctorID, 1);
+
             MessageBox.Show("Ny tid har bokats");
+            NewAppointmentReason = "";
+        }
+
+        //Other Methods for navigation
+        private void CloseWidnow()
+        {
+            Window currentWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
+            currentWindow?.Close();
         }
 
 

@@ -24,10 +24,13 @@ namespace WpfLayer.Views
         DoctorViewModel doctorViewModel;
         public DoctorView(Doctor doctor)
         {
+            //Passing the doctor object from the sign in view to the DoctorViewModel
             doctorViewModel = new DoctorViewModel(doctor);
             DataContext = doctorViewModel;
 
             InitializeComponent();
+
+            this.Title = "Doctor Appointments";
 
         }
     }

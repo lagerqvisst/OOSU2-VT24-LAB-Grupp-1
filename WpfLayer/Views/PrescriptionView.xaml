@@ -3,64 +3,103 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfLayer.Views"
+        xmlns:local="clr-namespace:WpfLayer.Views" xmlns:viewmodels="clr-namespace:WpfLayer.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:PrescriptionViewModel}"
         mc:Ignorable="d"
-        Title="PrescriptionView" Height="600" Width="1000">
+        Title="PrescriptionView" Height="700" Width="1600">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
-            <MenuItem Header="_File">
-                <MenuItem Header="Return"/>
-            </MenuItem>
-        </Menu> 
-            <Grid>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="Return to previous window"  Command="{Binding Path=DataContext.CloseWindowCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"></MenuItem>
+
+                </MenuItem>
+            </Menu>
+        </Menu>
+
+        <StatusBar DockPanel.Dock="Bottom">
+            <TextBlock Text="{Binding StatusBarPatientInfo}" FontStyle="Italic"></TextBlock>
+
+        </StatusBar>
+        <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="50"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical">
-                <Label Content="{Binding PatientName}"/>
-                <Label Content="{Binding PatientId}"/>
+            <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Vertical">
+                <Label Content="{Binding PatientName}" FontWeight="Bold"/>
+                <Label Content="{Binding PatientId}"  FontWeight="Bold"/>
             </StackPanel>
 
-            <Label Grid.Column="0" Grid.Row="1" Content="Available drugs in database"></Label>
-            <DataGrid Grid.Column="0" Grid.Row="2" ItemsSource="{Binding Drugs}" SelectedItem="{Binding SelectedDrug, Mode=TwoWay}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                
+            <Label Grid.Column="1" Grid.Row="1" Content="Available drugs in database" FontWeight="Bold" FontSize="15"></Label>
+            <DataGrid Grid.Column="1" Grid.Row="2"  ItemsSource="{Binding Drugs}" SelectedItem="{Binding SelectedDrug, Mode=TwoWay}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Drug ID" Binding="{Binding DrugId}"/>
+                    <DataGridTextColumn Header="Description" Binding="{Binding DrugName}"/>
+                </DataGrid.Columns>
+
             </DataGrid>
 
-            
-                <Button Grid.Column="0" Grid.Row="3" Content="Add" Width="100" HorizontalAlignment="Left"
-                        Command="{Binding Path=DataContext.AddDrugCmd,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
-                        CommandParameter="{Binding ElementName=SelectedDrug, Path=SelectedItem}"/>
+            <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal">
+                <Button Content="Add" Width="100" HorizontalAlignment="Left" Margin="0,10,0,0" Background="Cornsilk"
+                          Command="{Binding Path=DataContext.AddDrugCmd,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
+                            CommandParameter="{Binding ElementName=SelectedDrug, Path=SelectedItem}"/>
                 
-                <Button Grid.Column="1" Grid.Row="3" Content="Remove" Width="Auto"
+                <Button Content="Save Prescription" Width="100" Margin="40,10,0,0" Background="LightGreen"
+                        Command="{Binding Path=DataContext.SavePrescriptionCmd,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
+                 />
+            </StackPanel>
+
+
+            <Button Grid.Column="3" Grid.Row="3" Content="Remove" Width="Auto" Margin="0,10,0,0" Background="Red" HorizontalAlignment="Left"
                          Command="{Binding Path=DataContext.RemoveDrugCmd,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
                          CommandParameter="{Binding ElementName=SelectedDrugToRemove, Path=SelectedItem}"/>
-            
 
-            <Button Grid.Column="0" Grid.Row="4" Content="Save Prescription" Width="100" HorizontalAlignment="Left"
-                    Command="{Binding Path=DataContext.SavePrescriptionCmd,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
-                    />
 
-            <Label Grid.Column="1" Grid.Row="1" Content="Added drugs"/>
-            <DataGrid Grid.Column="1" Grid.Row="2" ItemsSource="{Binding SelectedDrugs}" SelectedItem="{Binding SelectedDrugToRemove, Mode=TwoWay}"></DataGrid>
 
-             <Label Grid.Column="2" Grid.Row="1" Content="Prescription History"/>
-            <DataGrid Grid.Column="2" Grid.Row="2" ItemsSource="{Binding PrescriptionHistory,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedPrescription, Mode=TwoWay}"></DataGrid>
 
-            <Button Grid.Column="2" Grid.Row="3" Content="Show Prescription Details (Drugs)"
+            <Label Grid.Column="3" Grid.Row="1" Content="Added drugs" FontWeight="Bold" FontSize="15"/>
+            <DataGrid Grid.Column="3" Grid.Row="2" ItemsSource="{Binding SelectedDrugs}" SelectedItem="{Binding SelectedDrugToRemove, Mode=TwoWay}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Drug ID" Binding="{Binding DrugId}"/>
+                    <DataGridTextColumn Header="Description" Binding="{Binding DrugName}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Label Grid.Column="5" Grid.Row="1" Content="Prescription History" FontWeight="Bold" FontSize="15"/>
+            <DataGrid Grid.Column="5" Grid.Row="2" ItemsSource="{Binding PrescriptionHistory,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedPrescription, Mode=TwoWay}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Prescription ID" Binding="{Binding prescriptionId}"/>
+                    <DataGridTextColumn Header="Date" Binding="{Binding dateofPrescription}"/>
+                    <DataGridTextColumn Header="Amount of drugs" Binding="{Binding drugCount}"/>
+                </DataGrid.Columns>
+
+            </DataGrid>
+
+            <Button Grid.Column="5" Grid.Row="3" Content="Show Prescription Details (Drugs)" Margin="0,10,0,0" Width="Auto" HorizontalAlignment="Left"
                    Command="{Binding Path=DataContext.ShowDrugsFromPrescriptionCmd,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
                    CommandParameter="{Binding ElementName=SelectedPrescription, Path=SelectedItem}">
             </Button>
-            <DataGrid Grid.Column="2" Grid.Row="4" ItemsSource="{Binding DrugsInPrescription,UpdateSourceTrigger=PropertyChanged}"></DataGrid>
+            <Label Grid.Column="6" Grid.Row="1" Content="Drugs in selected prescription" FontWeight="Bold" FontSize="15"/>
+            <DataGrid Grid.Column="6" Grid.Row="2" ItemsSource="{Binding DrugsInPrescription,UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Drug ID" Binding="{Binding DrugId}"/>
+                    <DataGridTextColumn Header="Description" Binding="{Binding DrugName}"/>
+                </DataGrid.Columns>
+            </DataGrid>
 
         </Grid>
         

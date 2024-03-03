@@ -25,10 +25,13 @@ namespace WpfLayer.Views
         Patient patient;
         public PrescriptionView(Patient patient)
         {
+            //Passing the patient object from the doctor view to the PrescriptionViewModel
             this.patient = patient;
             prescriptionViewModel = new PrescriptionViewModel(patient);
             DataContext = prescriptionViewModel;
             InitializeComponent();
+
+            this.Title = "Prescription Management";
         }
     }
 }
