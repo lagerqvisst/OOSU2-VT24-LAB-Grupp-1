@@ -26,9 +26,9 @@ namespace EntityLayer
 
         public Receptionist receptionist { get; set; }
         public int? receptionistId { get; set; } //FK
-        public string receptionistName { get; set; }
+        public string? receptionistName { get; set; }
 
-        public Appointment(int patientId, DateTime appointmentDate, string appointmentReason, int doctorID, int receptionistId)
+        public Appointment(int patientId, DateTime appointmentDate, string appointmentReason, int doctorID, int? receptionistId)
         {
             this.patientId = patientId;
             this.appointmentDate = appointmentDate.Date;
@@ -58,6 +58,16 @@ namespace EntityLayer
            receptionistName = receptionist.name;
            
           
+        }
+        public void SetNames(Patient patient, Doctor doctor)
+        {
+            patientName = patient.name;
+            doctorName = doctor.name;
+
+
+            
+
+
         }
 
 

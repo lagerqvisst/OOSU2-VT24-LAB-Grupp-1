@@ -7,6 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="450">
 
+
+
+
+
     <DockPanel LastChildFill="True">
         <!--MENY START -->
         <Menu DockPanel.Dock="Top">
@@ -35,27 +39,29 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Column="1" Grid.Row="1" Content="Sign in to your account" FontWeight="Bold" FontSize="15" HorizontalAlignment="Center" Margin="0,20"></Label>
-            
-            <StackPanel Grid.Column="1" Grid.Row="2" Margin="20,5,5,5">
-                <Label Content="Username "></Label>
-                <TextBox Text="{Binding Path=UserName,UpdateSourceTrigger=PropertyChanged}" ></TextBox>
-            </StackPanel>
+            <Border Grid.Column="1" Grid.Row="2" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="5" Margin="5,0,0,5" Background="White"  Opacity="0.8">
+                <StackPanel>
+                    <StackPanel Margin="20,5,5,5">
+                        <Label Content="Username"></Label>
+                        <TextBox Text="{Binding Path=UserName, UpdateSourceTrigger=PropertyChanged}" ></TextBox>
+                    </StackPanel>
 
-            <StackPanel Grid.Column="1" Grid.Row="3" Margin="20,5,5,5">
-                <Label Content="Password "></Label>
-                <TextBox Text="{Binding Path=Password,UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            </StackPanel>
+                    <StackPanel Margin="20,5,5,5">
+                        <Label Content="Password"></Label>
+                        <TextBox Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    </StackPanel>
 
-            <Button Grid.Column="1" Grid.Row="4" Content="Sign in" Width="50" HorizontalAlignment="Left"  Margin="20,5,5,5" Background="Goldenrod"
-                    Command="{Binding SignInCommand}"></Button>
-            
+                    <Button Content="Sign in" Width="50" HorizontalAlignment="Left" Margin="20,5,5,5" Background="Goldenrod" Command="{Binding SignInCommand}" Padding="3"></Button>
+                </StackPanel>
+            </Border>
+
             <Label Grid.Column="1" Grid.Row="5" Content="Auto-populate user credentials" Margin="15,30,0,0" FontStyle="Italic"></Label>
             <StackPanel Grid.Column="1" Grid.Row="6" Margin="20,5,5,5">
                 <Button  Content="Doctor credentials" Width="Auto" HorizontalAlignment="Left"  Margin="0,5,5,5"
-                    Command="{Binding AutoGenDocCredCmd}"></Button>
+                    Command="{Binding AutoGenDocCredCmd}" Padding="3"></Button>
                 
-                <Button Content="Receptionist credentials" Width="Auto" HorizontalAlignment="Left"  Margin="0,5,5,5"
-                Command="{Binding AutoGenRecCredCmd}"></Button>
+                <Button Content="Receptionist credentials" Width="Auto" HorizontalAlignment="Left"  Margin="0,5,5,5" Padding="3"
+                Command="{Binding AutoGenRecCredCmd}" ></Button>
             </StackPanel>
 
 

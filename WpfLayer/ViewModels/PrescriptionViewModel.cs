@@ -27,6 +27,8 @@ namespace WpfLayer.ViewModels
         public ObservableCollection<Drug> SelectedDrugs { get; set; } = new ObservableCollection<Drug>(); //DATAGRID 
         private ObservableCollection<Prescription> prescriptionHistory;
 
+        private int totalDrugsOfAllPrescriptions { get; set; }
+
         private string patientName;
         private string patientId;
         private string statusBarPatientInfo;
@@ -63,6 +65,12 @@ namespace WpfLayer.ViewModels
             //Assigning the drugs and prescription from the database to the ObservableCollection
             Drugs = new ObservableCollection<Drug>(drugController.GetAllDrugs());
             prescriptionHistory = new ObservableCollection<Prescription>(prescriptionController.GetPatientPrescriptionHistory(patient.patientId));
+
+            //Assigning the total number of drugs from all prescriptions to the property that is binded in XAML in warning textblock
+            foreach(var prescription in prescriptionHistory)
+            {
+                totalDrugsOfAllPrescriptions += prescription.drugCount;
+            }
 
         }
 
@@ -128,6 +136,12 @@ namespace WpfLayer.ViewModels
             set { selectedPrescription = value; OnPropertyChanged(); }
         }
 
+        public int TotalDrugsOfAllPrescriptions
+        {
+            get { return totalDrugsOfAllPrescriptions; }
+            set { totalDrugsOfAllPrescriptions = value; OnPropertyChanged(); }
+        }
+
         // Methos that are binded to the commands
 
         private bool CanAddDrug()
@@ -164,6 +178,27 @@ namespace WpfLayer.ViewModels
 
         private void CreatePrescription()
         {
+            if(prescriptionHistory.Count > 0) //Warning only prompts if there are existing prescriptions
+            {
+                MessageBoxResult result = MessageBox.Show($"Patient {patient.name} has {prescriptionHistory.Count} prescriptions on record, totaling {TotalDrugsOfAllPrescriptions} drugs prescribed.\n\nBefore proceeding, have you ensured that the current prescription does not contraindicate with any existing or concurrent prescriptions?\n\nPlease review the Prescription History for further information. \n\nThis can help reduce the risk of unwanted side effects.", "Drug Interaction Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    AddPrescription();
+                }
+
+            }
+            else
+            {
+                AddPrescription();
+            }
+
+
+
+        }
+
+        private void AddPrescription()
+        {
             DateTime dateOfPrescription = DateTime.Now;
 
             // Skapa receptet asynkront
@@ -175,9 +210,7 @@ namespace WpfLayer.ViewModels
             // Meddela gränssnittet om uppdateringen
             OnPropertyChanged(nameof(PrescriptionHistory));
 
-            MessageBox.Show("Prescription has been created");
-
-
+            MessageBox.Show($"Prescription has been created.\n{precription.drugCount} drugs were prescribed to patient.");
 
             SelectedDrugs.Clear(); // Ta bort befintliga element
         }

@@ -25,6 +25,8 @@ namespace BusinessLayer
                 prescription.PrescriptionDrugs.Add(prescriptionDrug);
             }
 
+            prescription.SetPatientName(patientController.GetPatientById(patientId).name);
+            prescription.SetDrugCount(drugs.Count);
             
             unitOfWork.CreatePrescription(prescription);
             

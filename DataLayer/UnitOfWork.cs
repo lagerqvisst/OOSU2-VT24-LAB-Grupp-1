@@ -73,6 +73,8 @@ namespace DataLayer
 
             
             //Initialize the tables if this is the first UnitOfWork.
+            
+            
             if (PatientRepository.IsEmpty())
             {
                 Fill();

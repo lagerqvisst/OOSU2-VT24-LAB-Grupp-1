@@ -27,14 +27,13 @@ namespace BusinessLayer
             return appointment;
         }
 
-        public Appointment NewAppointmentByDoctor(int patientId, DateTime appointmentDate, string appointmentReason, int doctorID, int receptionistId)
+        public Appointment NewAppointmentByDoctor(int patientId, DateTime appointmentDate, string appointmentReason, int doctorID)
         {
-            Appointment appointment = new Appointment(patientId, appointmentDate, appointmentReason, doctorID, receptionistId);
+            Appointment appointment = new Appointment(patientId, appointmentDate, appointmentReason, doctorID);
 
             //För att sätta namnen på patient, doktor och receptionist där namnen är kopplade med faktiska objekt och inte lösa strängar i appointment
             appointment.SetNames(unitOfWork.PatientRepository.FirstOrDefault(p => p.patientId == patientId),
-                                unitOfWork.DoctorRepository.FirstOrDefault(d => d.doctorID == doctorID),
-                                unitOfWork.ReceptionistRepository.FirstOrDefault(r => r.receptionistId == receptionistId));
+                                               unitOfWork.DoctorRepository.FirstOrDefault(d => d.doctorID == doctorID));
 
 
 

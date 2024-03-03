@@ -221,7 +221,7 @@ namespace WpfLayer.ViewModels
 
         private void MakeNewAppointment()
         {
-            appointmentController.NewAppointmentByDoctor(patient.patientId, AppointmentDate, NewAppointmentReason, doctor.doctorID, 1);
+            appointmentController.NewAppointmentByDoctor(patient.patientId, AppointmentDate, NewAppointmentReason, doctor.doctorID);
 
             MessageBox.Show("Ny tid har bokats");
             NewAppointmentReason = "";

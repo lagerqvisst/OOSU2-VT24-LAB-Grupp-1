@@ -26,7 +26,7 @@ namespace DataLayer
 
 
 
-        modelBuilder.Entity<PrescriptionDrug>()
+            modelBuilder.Entity<PrescriptionDrug>()
               .HasKey(pd => new { pd.prescriptionId, pd.drugId });
 
             modelBuilder.Entity<PrescriptionDrug>()
