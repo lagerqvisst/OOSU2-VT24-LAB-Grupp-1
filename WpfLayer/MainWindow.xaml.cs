@@ -26,6 +26,8 @@ namespace WpfLayer
             InitializeComponent();
 
             this.Title = "Sign in";
+
+            
         }
     }
 }

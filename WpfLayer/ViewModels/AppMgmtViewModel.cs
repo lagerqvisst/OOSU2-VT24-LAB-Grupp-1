@@ -33,6 +33,9 @@ namespace WpfLayer.ViewModels
         private string statusBarMessage;
         private string _diagnosisDescription;
         private string _treatmentSuggestion;
+        private Appointment selectedAppointment;
+        private string selectedAppointmentDoctorsNote;
+        private string selectedAppointmentReason;
 
         //Collections that are binded in XAML through DataGrids
         public ObservableCollection<Appointment> appointments { get; set; } = new ObservableCollection<Appointment>();
@@ -41,6 +44,7 @@ namespace WpfLayer.ViewModels
 
         //Objects that help to call on controller methods and set values to properties bounded in XAML
         public Appointment appointment;
+        public Appointment newAppointment;
         public Diagnosis diagnosis;
         public Patient patient;
         public Doctor doctor;
@@ -51,6 +55,9 @@ namespace WpfLayer.ViewModels
         public ICommand OpenPrescriptionMgmtCmd { get; private set; }
         public ICommand MakeNewAppointmentCmd { get; private set; }
         public ICommand CloseWindowCmd { get; private set; }
+        public ICommand DataGridShowDoctorsNoteCmd { get; private set; }
+
+        public ICommand DataGridShowReasonCmd { get; private set; }
 
         public AppMgmtViewModel(Appointment appointment)
         {
@@ -60,6 +67,8 @@ namespace WpfLayer.ViewModels
             OpenPrescriptionMgmtCmd = new RelayCommand(OpenPrescriptionView, CanOpenPrescriptionView);
             MakeNewAppointmentCmd = new RelayCommand(MakeNewAppointment, CanMakeNewAppointment);
             CloseWindowCmd = new RelayCommand(CloseWidnow);
+            DataGridShowDoctorsNoteCmd = new RelayCommand(OpenAppointmentDocNote, CanOpenAppointmentDocNote);
+            DataGridShowReasonCmd = new RelayCommand(OpenAppointmentReason, CanOpenAppointmentReason);
 
             //Property values assigned.
             this.appointment = appointment;
@@ -111,6 +120,23 @@ namespace WpfLayer.ViewModels
             }
         }
 
+        public Appointment SelectedAppointment
+        {
+            get { return selectedAppointment; }
+            set { selectedAppointment = value; OnPropertyChanged(); }
+        }
+
+        public string SelectedAppointmentDoctorsNote
+        {
+            get { return selectedAppointmentDoctorsNote; }
+            set { selectedAppointmentDoctorsNote = value; OnPropertyChanged(); }
+        }
+
+        public string SelectedAppointmentReason
+        {
+            get { return selectedAppointmentReason; }
+            set { selectedAppointmentReason = value; OnPropertyChanged(); }
+        }
 
         public string TreatmentSuggestion
         {
@@ -121,6 +147,13 @@ namespace WpfLayer.ViewModels
                 OnPropertyChanged(); // Förutsatt att du har implementerat INotifyPropertyChanged
             }
         }
+
+        public ObservableCollection<Appointment> PatientAppointmentHistory
+        {
+            get { return patientAppointmentHistory; }
+            set { patientAppointmentHistory = value; OnPropertyChanged(); }
+        }
+
 
         public string PatientId
         {
@@ -167,17 +200,18 @@ namespace WpfLayer.ViewModels
 
         private void MakeNote()
         {
-            // Implementera logik för inloggning
             if (appointment != null)
             {
                 appointmentController.UpdateAppointmentDoctorsNote(appointment, DoctorsNote);
-                patientAppointmentHistory = new ObservableCollection<Appointment>(appointmentController.GetPatientAppointments(patient));
-                
+                // Rensa befintliga objekt i patientAppointmentHistory
+                patientAppointmentHistory.Clear();
+                // Lägg till uppdaterade objekt till patientAppointmentHistory
+                appointmentController.GetPatientAppointments(patient).ToList().ForEach(patientAppointmentHistory.Add);
                 MessageBox.Show("Doktorsnoteringen har uppdaterats");
-                DoctorsNote = "";   
+                DoctorsNote = "";
             }
-
         }
+
 
 
         private bool CanMakeDiagnosis()
@@ -190,11 +224,15 @@ namespace WpfLayer.ViewModels
             DateTime dateOfDiagnosis = DateTime.Now;
 
             diagnosis = diagnosisController.AddDiagnosis(appointment.patientId, DiagnosisDescription, dateOfDiagnosis, TreatmentSuggestion);
+            // Lägg till den nya diagnosen i diagnosisHistory
             diagnosisHistory.Add(diagnosis);
             MessageBox.Show("Diagnos har lagts till");
             DiagnosisDescription = "";
 
+            // Uppdatera gränssnittet genom att meddela att en egenskap har ändrats
+            OnPropertyChanged(nameof(diagnosisHistory));
         }
+
 
         private bool CanOpenPrescriptionView()
         {
@@ -210,21 +248,62 @@ namespace WpfLayer.ViewModels
             prescriptionView.ShowDialog();
         }
 
- 
 
- 
-        
+
+
+
         private bool CanMakeNewAppointment()
         {
-            return !string.IsNullOrEmpty(NewAppointmentReason) && AppointmentDate != null;
+            // Kontrollera att NewAppointmentReason är ifyllt och att AppointmentDate är i framtiden eller nuet
+            return !string.IsNullOrEmpty(NewAppointmentReason) &&
+                   AppointmentDate != null;
         }
 
         private void MakeNewAppointment()
         {
-            appointmentController.NewAppointmentByDoctor(patient.patientId, AppointmentDate, NewAppointmentReason, doctor.doctorID);
+            if(AppointmentDate < DateTime.Now)
+            {
+                MessageBox.Show("Unable to schedule appointments for dates earlier than today");
+                return;
+            }
+            else
+            {
+                newAppointment = appointmentController.NewAppointmentByDoctor(patient.patientId, AppointmentDate, NewAppointmentReason, doctor.doctorID);
 
-            MessageBox.Show("Ny tid har bokats");
-            NewAppointmentReason = "";
+                patientAppointmentHistory.Add(newAppointment);
+                MessageBox.Show("Appointment scheduled");
+                NewAppointmentReason = "";
+
+            }
+
+        }
+
+        private bool CanOpenAppointmentDocNote()
+        {
+            return SelectedAppointment != null;
+        }
+
+        private void OpenAppointmentDocNote()
+        {
+            if (SelectedAppointment != null)
+            {
+                SelectedAppointmentDoctorsNote = SelectedAppointment.doctorsNote;
+                MessageBox.Show($"Expanded note: {SelectedAppointmentDoctorsNote} ");
+            }
+        }
+
+        private bool CanOpenAppointmentReason()
+        {
+            return SelectedAppointment != null;
+        }
+
+        private void OpenAppointmentReason()
+        {
+            if (SelectedAppointment != null)
+            {
+                SelectedAppointmentReason = SelectedAppointment.appointmentReason;
+                MessageBox.Show($"Expanded note: {SelectedAppointmentReason} ");
+            }
         }
 
         //Other Methods for navigation

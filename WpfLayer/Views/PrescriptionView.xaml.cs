@@ -31,6 +31,8 @@ namespace WpfLayer.Views
             DataContext = prescriptionViewModel;
             InitializeComponent();
 
+            
+
             this.Title = "Prescription Management";
         }
     }

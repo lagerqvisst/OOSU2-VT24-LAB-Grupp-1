@@ -202,15 +202,15 @@ namespace WpfLayer.ViewModels
             DateTime dateOfPrescription = DateTime.Now;
 
             // Skapa receptet asynkront
-            Prescription precription = prescriptionController.CreatePrescription(patient.patientId, dateOfPrescription, SelectedDrugs);
+            Prescription prescription = prescriptionController.CreatePrescription(patient.patientId, dateOfPrescription, SelectedDrugs);
 
             // Uppdatera recept historiken
-            PrescriptionHistory.Add(precription);
+            PrescriptionHistory.Add(prescription);
 
-            // Meddela gränssnittet om uppdateringen
+            // Uppdatera gränssnittet genom att meddela att en egenskap har ändrats
             OnPropertyChanged(nameof(PrescriptionHistory));
 
-            MessageBox.Show($"Prescription has been created.\n{precription.drugCount} drugs were prescribed to patient.");
+            MessageBox.Show($"Prescription has been created.\n{prescription.drugCount} drugs were prescribed to patient.");
 
             SelectedDrugs.Clear(); // Ta bort befintliga element
         }
@@ -225,9 +225,10 @@ namespace WpfLayer.ViewModels
         {
             if (SelectedPrescription != null)
             {
-                var drugs = drugController.GetDrugsByPrescriptionId(SelectedPrescription.prescriptionId);
+                // Rensa befintliga droger innan du lägger till nya
+                DrugsInPrescription.Clear();
 
-                DrugsInPrescription.Clear(); // Ta bort befintliga element
+                var drugs = drugController.GetDrugsByPrescriptionId(SelectedPrescription.prescriptionId);
 
                 foreach (var drug in drugs)
                 {
@@ -237,6 +238,7 @@ namespace WpfLayer.ViewModels
                 OnPropertyChanged(nameof(DrugsInPrescription));
             }
         }
+
 
         //Other Methods for navigation
         private void CloseWidnow()

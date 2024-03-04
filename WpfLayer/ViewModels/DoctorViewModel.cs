@@ -37,7 +37,7 @@ namespace WpfLayer.ViewModels
             doctorName = $"Signed in as Doctor: {doctor.name}";
             
             //Assigning the doctor's appointments to the ObservableCollection
-            Appointments = new ObservableCollection<Appointment>(appointmentController.GetDoctorSpecificAppointments(doctor));
+            Appointments = new ObservableCollection<Appointment>(appointmentController.GetDoctorSpecificAppointmentsTodayAndFuture(doctor));
 
             //Initialize commands
             OpenAppMgmtCmd = new RelayCommand(OpenAppointmentManagement, CanOpenAppointmentManagement);

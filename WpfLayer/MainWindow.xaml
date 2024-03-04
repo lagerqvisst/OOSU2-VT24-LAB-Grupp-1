@@ -51,7 +51,9 @@
                         <TextBox Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     </StackPanel>
 
-                    <Button Content="Sign in" Width="50" HorizontalAlignment="Left" Margin="20,5,5,5" Background="Goldenrod" Command="{Binding SignInCommand}" Padding="3"></Button>
+                    <Button Content="Sign in" Width="50" HorizontalAlignment="Left" Margin="20,5,5,5" Background="Goldenrod" Command="{Binding SignInCommand}" Padding="3">
+
+                    </Button>
                 </StackPanel>
             </Border>
 

@@ -47,10 +47,13 @@ namespace BusinessLayer
         }
 
         //Använd denna i viewmodel i WPF för att visa appointments för en specifik doktor som är inloggad.
-        public List<Appointment> GetDoctorSpecificAppointments(Doctor doctor)
+        public List<Appointment> GetDoctorSpecificAppointmentsTodayAndFuture(Doctor doctor)
         {
-            return unitOfWork.AppointmentRepository.Find(a => a.doctorID == doctor.doctorID).ToList();
+            return unitOfWork.AppointmentRepository
+                .Find(a => a.doctorID == doctor.doctorID && a.appointmentDate.Date >= DateTime.Today)
+                .ToList();
         }
+
 
         //Onödig metod, använd hela objekt istället... 
         public Appointment GetAppointmentById(int id)
