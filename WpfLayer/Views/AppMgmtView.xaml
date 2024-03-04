@@ -26,9 +26,9 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
-                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="70"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="550"/>
                 <ColumnDefinition Width="70"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="20"/>
@@ -54,25 +54,27 @@
                 <StackPanel Margin="0,15,0,30">
                     <Label Content="Add doctors note" FontWeight="Bold" />
                     <TextBox Name="txtBoxDoctorNote" Text="{Binding DoctorsNote, UpdateSourceTrigger=PropertyChanged}" FontSize="10" 
-             Height="Auto" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"/>
+                        Height="Auto" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"/>
                     <Button Content="Add note" Width="100" Height="30" Margin="0,10,0,0" Background="LightGreen" x:Name="btnAddDoctorsNote" 
-            HorizontalAlignment="Left" Command="{Binding Path=DataContext.MakeNoteCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
+                        HorizontalAlignment="Left" Command="{Binding Path=DataContext.MakeNoteCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
                 </StackPanel>
 
 
 
             </Border>
             <Border Grid.Column="1" Grid.Row="3" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5,10,0,5" Width="Auto">
-                <StackPanel   Margin="0,0,0,30">
-                    <Label Content="Diagnosis" FontWeight="Bold"></Label>
-                    <Label Content="Description of diagnosis" FontStyle="Italic" FontSize="10"></Label>
-                    <TextBox Text="{Binding DiagnosisDescription,UpdateSourceTrigger=PropertyChanged}" FontSize="10" Height="40"></TextBox>
-                    <Label Content="Treatment Suggestion" FontStyle="Italic" FontSize="10"></Label>
-                    <TextBox Text="{Binding TreatmentSuggestion,UpdateSourceTrigger=PropertyChanged}" FontSize="10"  Height="40"></TextBox>
+                <StackPanel Margin="0,0,0,30">
+                    <Label Content="Diagnosis" FontWeight="Bold" />
+                    <Label Content="Description of diagnosis" FontStyle="Italic" FontSize="10" />
+                    <TextBox Text="{Binding DiagnosisDescription, UpdateSourceTrigger=PropertyChanged}" FontSize="10" Height="Auto" 
+                        AcceptsReturn="True" TextWrapping="Wrap" />
+                    <Label Content="Treatment Suggestion" FontStyle="Italic" FontSize="10" />
+                    <TextBox Text="{Binding TreatmentSuggestion, UpdateSourceTrigger=PropertyChanged}" FontSize="10" Height="Auto" 
+                    AcceptsReturn="True" TextWrapping="Wrap" />
                     <Button Content="Add diagnosis" Width="100" Height="30" HorizontalAlignment="Left" Margin="0,10,0,0" Background="LightGreen"
-         Command="{Binding Path=DataContext.MakeDiagnosisCmd,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"></Button>
-
+                    Command="{Binding Path=DataContext.MakeDiagnosisCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" />
                 </StackPanel>
+
             </Border>
 
             <Border Grid.Column="3"  Grid.Row="4" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5,20,0,5" Width="350" HorizontalAlignment="Left">
@@ -115,8 +117,10 @@
             </Border>
             <Border Grid.Column="3" Grid.Row="3" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5,10,0,5" Width="Auto">
                 <StackPanel >
+                    <Button Content="Show expanded diagnosis description from selected diagnosis" Command="{Binding DataGridShowDiagnosisCmd}"  Width="180" FontSize="7" FontStyle="Italic" HorizontalAlignment="Left"  Padding="4" Background="Bisque" Margin="10,10"></Button>
+                    <Button Content="Show expanded description of treatment from selected diagnosis" Command="{Binding DataGridShowTreatmentCmd}"  Width="180" FontSize="7" FontStyle="Italic" HorizontalAlignment="Left"  Padding="4" Background="Beige" Margin="10,0,0,0"></Button>
                     <Label Content="Diagnosis and Treatment history" FontWeight="SemiBold"></Label>
-                    <DataGrid ItemsSource="{Binding diagnosisHistory}" AutoGenerateColumns="False">
+                    <DataGrid ItemsSource="{Binding diagnosisHistory}" SelectedItem="{Binding SelectedDiagnosis}" AutoGenerateColumns="False">
 
                         <DataGrid.Columns>
                             <!-- Exempel på en synlig kolumn -->
@@ -133,18 +137,40 @@
                 </StackPanel>
             </Border>
             <Border Grid.Column="5" Grid.Row="2" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="5" Margin="5,0,0,5" Width="300" >
-                <StackPanel  Margin="5,0,0,5">
-                    <Label Content="Schedule a new appointment" FontWeight="Bold"></Label>
+                <StackPanel Margin="5">
+                    <Label Content="Choose Date and Time" FontWeight="Bold" />
 
                     <!-- DatePicker för att välja datum -->
-                    <DatePicker SelectedDate="{Binding AppointmentDate, Mode=TwoWay}" DisplayDateStart="2022-01-01" DisplayDateEnd="2025-12-31" SelectedDateFormat="Short" Width="200" HorizontalAlignment="Left" />
+                    <DatePicker SelectedDate="{Binding AppointmentDate, Mode=TwoWay}" 
+                DisplayDateStart="2022-01-01" DisplayDateEnd="2025-12-31" 
+                SelectedDateFormat="Short" Width="200" HorizontalAlignment="Left" />
 
-                    <Label Content="Appointment reason" FontStyle="Italic" FontSize="10" Margin="0,5,0,5"></Label>
-                    <TextBox Text="{Binding NewAppointmentReason, UpdateSourceTrigger=PropertyChanged}" FontSize="10" Height="40" Width="200" HorizontalAlignment="Left"></TextBox>
+                    <Label Content="Select time of day" FontStyle="Italic" FontSize="10" Margin="0,5,0,5" />
+                    <!-- ComboBox för att välja tid på dagen -->
+                    <ComboBox SelectedIndex="{Binding SelectedTimeIndex, Mode=TwoWay}" Width="200" HorizontalAlignment="Left">
+                        <ComboBoxItem>08:00</ComboBoxItem>
+                        <ComboBoxItem>09:00</ComboBoxItem>
+                        <ComboBoxItem>10:00</ComboBoxItem>
+                        <ComboBoxItem>11:00</ComboBoxItem>
+                        <ComboBoxItem>12:00</ComboBoxItem>
+                        <ComboBoxItem>13:00</ComboBoxItem>
+                        <ComboBoxItem>14:00</ComboBoxItem>
+                        <ComboBoxItem>15:00</ComboBoxItem>
+                        <ComboBoxItem>16:00</ComboBoxItem>
+                        <ComboBoxItem>17:00</ComboBoxItem>
+                        <ComboBoxItem>18:00</ComboBoxItem>
+                        <!-- Fyll på med fler alternativ efter behov -->
+                    </ComboBox>
 
-                    <Button Content="Schedule new appointment" Width="200" Height="40" Background="Cornsilk" HorizontalAlignment="Left" Margin="0,20,0,0" Padding="4"
-                        Command="{Binding MakeNewAppointmentCmd}" />
+                    <Label Content="Appointment reason" FontStyle="Italic" FontSize="10" Margin="0,5,0,5" />
+                    <TextBox Text="{Binding NewAppointmentReason, UpdateSourceTrigger=PropertyChanged}" 
+             FontSize="10" Height="40" Width="200" HorizontalAlignment="Left" />
+
+                    <Button Content="Schedule new appointment" Width="200" Height="40" Background="Cornsilk" 
+            HorizontalAlignment="Left" Margin="0,20,0,0" Padding="4"
+            Command="{Binding MakeNewAppointmentCmd}" />
                 </StackPanel>
+
             </Border>
 
 

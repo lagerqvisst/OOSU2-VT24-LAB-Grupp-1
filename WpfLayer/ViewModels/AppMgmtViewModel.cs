@@ -36,6 +36,10 @@ namespace WpfLayer.ViewModels
         private Appointment selectedAppointment;
         private string selectedAppointmentDoctorsNote;
         private string selectedAppointmentReason;
+        private Diagnosis selectedDiagnosis;
+        private string selectedDiagnosisDescription;
+        private string selectedTreatmentSuggestion;
+        private int selectedTimeIndex;
 
         //Collections that are binded in XAML through DataGrids
         public ObservableCollection<Appointment> appointments { get; set; } = new ObservableCollection<Appointment>();
@@ -56,8 +60,10 @@ namespace WpfLayer.ViewModels
         public ICommand MakeNewAppointmentCmd { get; private set; }
         public ICommand CloseWindowCmd { get; private set; }
         public ICommand DataGridShowDoctorsNoteCmd { get; private set; }
-
         public ICommand DataGridShowReasonCmd { get; private set; }
+
+        public ICommand DataGridShowDiagnosisCmd { get; private set; }
+        public ICommand DataGridShowTreatmentCmd { get; private set; }
 
         public AppMgmtViewModel(Appointment appointment)
         {
@@ -69,6 +75,8 @@ namespace WpfLayer.ViewModels
             CloseWindowCmd = new RelayCommand(CloseWidnow);
             DataGridShowDoctorsNoteCmd = new RelayCommand(OpenAppointmentDocNote, CanOpenAppointmentDocNote);
             DataGridShowReasonCmd = new RelayCommand(OpenAppointmentReason, CanOpenAppointmentReason);
+            DataGridShowDiagnosisCmd = new RelayCommand(OpenDiagnosisDescription, CanOpenDiagnosDescription);
+            DataGridShowTreatmentCmd = new RelayCommand(OpenDiagnosisTreatment, CanOpenDiagnosisTreatment);
 
             //Property values assigned.
             this.appointment = appointment;
@@ -100,6 +108,17 @@ namespace WpfLayer.ViewModels
             }
         }
 
+        public int SelectedTimeIndex
+        {
+            get { return selectedTimeIndex; }
+            set
+            {
+                selectedTimeIndex = value;
+                OnPropertyChanged(nameof(SelectedTimeIndex)); // Säkerställ att ändringen notifieras till vyn
+            }
+        }
+
+
         public string StatusBarMessage
         {
             get { return statusBarMessage; }
@@ -108,6 +127,24 @@ namespace WpfLayer.ViewModels
                 statusBarMessage = value;
                 OnPropertyChanged();
             }
+        }
+
+        public string SelectedDiagnosisDescription
+        {
+            get { return selectedDiagnosisDescription; }
+            set { selectedDiagnosisDescription = value; OnPropertyChanged(); }
+        }
+
+        public string SelectedTreatmentSuggestion
+        {
+            get { return selectedTreatmentSuggestion; }
+            set { selectedTreatmentSuggestion = value; OnPropertyChanged(); }
+        }
+
+        public Diagnosis SelectedDiagnosis
+        {
+            get { return selectedDiagnosis; }
+            set { selectedDiagnosis = value; OnPropertyChanged(); }
         }
 
         public string DiagnosisDescription
@@ -256,27 +293,46 @@ namespace WpfLayer.ViewModels
         {
             // Kontrollera att NewAppointmentReason är ifyllt och att AppointmentDate är i framtiden eller nuet
             return !string.IsNullOrEmpty(NewAppointmentReason) &&
-                   AppointmentDate != null;
+                   AppointmentDate != null && SelectedTimeIndex != null;
         }
 
         private void MakeNewAppointment()
         {
-            if(AppointmentDate < DateTime.Now)
+            if (AppointmentDate < DateTime.Now)
             {
                 MessageBox.Show("Unable to schedule appointments for dates earlier than today");
                 return;
             }
-            else
+
+            // Hämta vald tid från ComboBox
+            var selectedTime = SelectedTimeIndex switch
             {
-                newAppointment = appointmentController.NewAppointmentByDoctor(patient.patientId, AppointmentDate, NewAppointmentReason, doctor.doctorID);
+                0 => TimeSpan.FromHours(8),   // 08:00 AM
+                1 => TimeSpan.FromHours(9),   // 09:00 AM
+                2 => TimeSpan.FromHours(10), 
+                3 => TimeSpan.FromHours(11),
+                4 => TimeSpan.FromHours(12),
+                5 => TimeSpan.FromHours(13),
+                6 => TimeSpan.FromHours(14),
+                7 => TimeSpan.FromHours(15),
+                8 => TimeSpan.FromHours(16),
+                9 => TimeSpan.FromHours(17),
+                10 => TimeSpan.FromHours(18),
+                                              // Lägg till fler alternativ efter behov
+              
+            };
 
-                patientAppointmentHistory.Add(newAppointment);
-                MessageBox.Show("Appointment scheduled");
-                NewAppointmentReason = "";
+            // Kombinera valt datum och tid för att skapa ett DateTime-objekt
+            DateTime appointmentDateTime = AppointmentDate.Date + selectedTime;
 
-            }
+            newAppointment = appointmentController.NewAppointmentByDoctor(patient.patientId, appointmentDateTime, NewAppointmentReason, doctor.doctorID);
 
+            patientAppointmentHistory.Add(newAppointment);
+            MessageBox.Show("Appointment scheduled");
+            NewAppointmentReason = "";
         }
+
+
 
         private bool CanOpenAppointmentDocNote()
         {
@@ -305,6 +361,35 @@ namespace WpfLayer.ViewModels
                 MessageBox.Show($"Expanded note: {SelectedAppointmentReason} ");
             }
         }
+
+        public bool CanOpenDiagnosDescription()
+        {
+            return SelectedDiagnosis != null;
+        }
+
+        public void OpenDiagnosisDescription()
+        {
+            if (SelectedDiagnosis != null)
+            {
+                SelectedDiagnosisDescription = SelectedDiagnosis.diagnosisDescription;
+                MessageBox.Show($"Expanded note: {SelectedDiagnosisDescription} ");
+            }
+        }
+
+        public bool CanOpenDiagnosisTreatment()
+        {
+            return SelectedDiagnosis != null;
+        }
+
+        public void OpenDiagnosisTreatment()
+        {
+            if (SelectedDiagnosis != null)
+            {
+                SelectedTreatmentSuggestion = SelectedDiagnosis.treatmentSuggestion;
+                MessageBox.Show($"Expanded note: {SelectedTreatmentSuggestion} ");
+            }
+        }
+        
 
         //Other Methods for navigation
         private void CloseWidnow()

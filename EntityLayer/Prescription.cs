@@ -12,7 +12,6 @@ namespace EntityLayer
     {
         public int prescriptionId { get; set; }
         public int patientId { get; set; }  // FK för Patient
-        public Patient patient { get; set; }
 
         public string patientName { get; set; }
         public DateTime dateofPrescription { get; set; }
@@ -28,9 +27,10 @@ namespace EntityLayer
         public Prescription(int patientId,DateTime dateofPrescription)
         {
             this.patientId = patientId;
-            this.patient = patient;
             this.dateofPrescription = dateofPrescription.Date;
             drugs = new ObservableCollection<Drug>();
+            PrescriptionDrugs = new List<PrescriptionDrug>();
+            patientName = "";
 
 
         }

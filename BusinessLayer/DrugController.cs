@@ -12,7 +12,7 @@ namespace BusinessLayer
     public class DrugController
     {
         UnitOfWork unitOfWork = new UnitOfWork();
-        public  List<string> ApiDrugDataExtract()
+        public List<string> ApiDrugDataExtract()
         {
             var client = new HttpClient();
             var request = new HttpRequestMessage
@@ -60,7 +60,7 @@ namespace BusinessLayer
 
             }
 
-            
+
         }
         public List<Drug> GetAllDrugs()
         {
@@ -71,5 +71,10 @@ namespace BusinessLayer
         {
             return unitOfWork.PrescriptionDrugRepository.Find(p => p.prescriptionId == prescriptionId).Select(p => p.Drug).ToList();
         }
+        public Drug GetDrugsByDrugId(int drugId)
+        {
+            return unitOfWork.DrugRepository.FirstOrDefault(d => d.DrugId == drugId);
+        }
+
     }
 }

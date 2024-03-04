@@ -152,11 +152,17 @@ namespace DataLayer
 
             foreach (var prescriptionDrug in prescription.PrescriptionDrugs)
             {
+                PrescriptionDrugRepository.Add(prescriptionDrug);
                 patientMgmtContext.PrescriptionDrugs.Add(prescriptionDrug);
             }
 
+
+
             Save();
         }
+
+
+
         public void CreatePatient(Patient patient)
         {
           

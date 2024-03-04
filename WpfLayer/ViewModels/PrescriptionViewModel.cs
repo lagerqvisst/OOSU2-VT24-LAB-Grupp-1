@@ -9,6 +9,7 @@ using BusinessLayer;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.Windows;
+using EntityLayer.Junction;
 
 namespace WpfLayer.ViewModels
 {
@@ -205,7 +206,8 @@ namespace WpfLayer.ViewModels
             Prescription prescription = prescriptionController.CreatePrescription(patient.patientId, dateOfPrescription, SelectedDrugs);
 
             // Uppdatera recept historiken
-            PrescriptionHistory.Add(prescription);
+            prescriptionHistory.Add(prescription);
+            
 
             // Uppdatera gränssnittet genom att meddela att en egenskap har ändrats
             OnPropertyChanged(nameof(PrescriptionHistory));
@@ -214,6 +216,7 @@ namespace WpfLayer.ViewModels
 
             SelectedDrugs.Clear(); // Ta bort befintliga element
         }
+
 
 
         private bool CanShowDrugsFromPrescription()
@@ -228,16 +231,19 @@ namespace WpfLayer.ViewModels
                 // Rensa befintliga droger innan du lägger till nya
                 DrugsInPrescription.Clear();
 
-                var drugs = drugController.GetDrugsByPrescriptionId(SelectedPrescription.prescriptionId);
+                // Hämta läkemedel för det valda recept-ID
+                List<Drug> drugs = prescriptionController.GetDrugsByPrescriptionId(SelectedPrescription.prescriptionId);
 
-                foreach (var drug in drugs)
+                // Lägg till de hämtade läkemedlen i DrugsInPrescription-listan
+                foreach (Drug drug in drugs)
                 {
-                    DrugsInPrescription.Add(drug); // Lägg till nya element
+                    DrugsInPrescription.Add(drug);
                 }
 
                 OnPropertyChanged(nameof(DrugsInPrescription));
             }
         }
+
 
 
         //Other Methods for navigation
