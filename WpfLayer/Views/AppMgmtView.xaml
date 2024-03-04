@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfLayer.Views" xmlns:viewmodels="clr-namespace:WpfLayer.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AppMgmtViewModel}"
         mc:Ignorable="d"
-        Title="AppMgmtView" Height="800" Width="1500">
+        Title="AppMgmtView" Height="1000" Width="1500">
 
     <DockPanel LastChildFill="True">
         <!--MENY START -->
@@ -39,6 +39,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
         
@@ -49,7 +50,7 @@
                 <TextBlock Text="{Binding AppId}" FontSize="10"></TextBlock>
                 <TextBlock  Text="{Binding AppointmentReason}" FontSize="10"></TextBlock>
             </StackPanel>
-            <Border Grid.Column="1" Grid.Row="2" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5,15,0,5" Width="Auto">
+            <Border Grid.Column="1" Grid.Row="2" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5,15,0,5" Width="Auto" Height="150">
 
                 <StackPanel Margin="0,15,0,30">
                     <Label Content="Add doctors note" FontWeight="Bold" />
@@ -65,11 +66,27 @@
             <Border Grid.Column="1" Grid.Row="3" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5,10,0,5" Width="Auto">
                 <StackPanel Margin="0,0,0,30">
                     <Label Content="Diagnosis" FontWeight="Bold" />
-                    <Label Content="Description of diagnosis" FontStyle="Italic" FontSize="10" />
-                    <TextBox Text="{Binding DiagnosisDescription, UpdateSourceTrigger=PropertyChanged}" FontSize="10" Height="Auto" 
-                        AcceptsReturn="True" TextWrapping="Wrap" />
-                    <Label Content="Treatment Suggestion" FontStyle="Italic" FontSize="10" />
-                    <TextBox Text="{Binding TreatmentSuggestion, UpdateSourceTrigger=PropertyChanged}" FontSize="10" Height="Auto" 
+                    
+                    <Label Content="Use drop-down list to choose from stored conditions. Then enter a diagnosis description." FontStyle="Italic" FontSize="11" Margin="0,0,0,20" />
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Choose a Medical condition (API)" FontStyle="Italic" FontSize="12" />
+                        <StackPanel Orientation="Horizontal">
+                            <ComboBox ItemsSource="{Binding MedicalConditions}" SelectedItem="{Binding SelectedMedicalCondition}" Width="200" HorizontalAlignment="Left" Background="Coral"></ComboBox>
+                            <Button Content="Diagnosis Helper" Margin="10,0,0,0" Padding="4"  HorizontalAlignment="Left" Background="Gold" Command="{Binding OpenDiagnosisHelperCmd}"></Button>
+                            <Button Content="?" Width="30"  HorizontalAlignment="Left" Margin="10,0,0,0" Background="DarkGray" Command="{Binding ApiExplained}"></Button>
+                        </StackPanel>
+                        
+                        <Label Content="Diagnosis (free text)" FontStyle="Italic" FontSize="11" Margin="0,10,0,0" />
+                        <TextBox Text="{Binding DiagnosisDescription, UpdateSourceTrigger=PropertyChanged}" FontSize="11" Height="Auto" Width="400" HorizontalAlignment="Left"
+                        AcceptsReturn="True" TextWrapping="Wrap" Margin="0,0,0,10"/>
+                        
+                    </StackPanel>
+                    
+                    
+                    
+                    <Label Content="Describe suggested treatment (free text)" FontStyle="Italic" FontSize="11" />
+                    <TextBox Text="{Binding TreatmentSuggestion, UpdateSourceTrigger=PropertyChanged}" FontSize="11" Height="Auto" Width="400" HorizontalAlignment="Left"
                     AcceptsReturn="True" TextWrapping="Wrap" />
                     <Button Content="Add diagnosis" Width="100" Height="30" HorizontalAlignment="Left" Margin="0,10,0,0" Background="LightGreen"
                     Command="{Binding Path=DataContext.MakeDiagnosisCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" />
@@ -77,13 +94,14 @@
 
             </Border>
 
-            <Border Grid.Column="3"  Grid.Row="4" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5,20,0,5" Width="350" HorizontalAlignment="Left">
+            <Border Grid.Column="5"  Grid.Row="3" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Margin="0,10,0,0" Width="300" Height="150"  HorizontalAlignment="Left">
 
                 <StackPanel >
 
-                    <Label Content="Create new prescriptions and view medical history" FontWeight="Bold" FontSize="12" HorizontalAlignment="Center"></Label>
-                    <Button   Content="Manage Prescriptions" Width="200" Height="40" Background="Bisque" HorizontalAlignment="Center" 
-        Command="{Binding Path=DataContext.OpenPrescriptionMgmtCmd ,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"></Button>
+                    <Label Content="Prescriptions" FontWeight="Bold" FontSize="12" HorizontalAlignment="Left" Margin="10,10,0,0"></Label>
+                    <Label Content="Add new prescriptions to patient or view medical history." FontStyle="Italic" FontSize="10" HorizontalAlignment="Left" Margin="10,5,0,5" />
+                    <Button   Content="Manage Prescriptions" Width="200" Height="40" Background="Bisque" HorizontalAlignment="Left" Margin="10,0,0,0"
+                    Command="{Binding Path=DataContext.OpenPrescriptionMgmtCmd ,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"></Button>
                 </StackPanel>
 
             </Border>
@@ -171,9 +189,11 @@
             Command="{Binding MakeNewAppointmentCmd}" />
                 </StackPanel>
 
+                
+
             </Border>
 
-
+            
 
         </Grid>
 

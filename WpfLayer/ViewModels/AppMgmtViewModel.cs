@@ -40,11 +40,15 @@ namespace WpfLayer.ViewModels
         private string selectedDiagnosisDescription;
         private string selectedTreatmentSuggestion;
         private int selectedTimeIndex;
+        private string medicalCondition;
+        private string selectedMedicalCondition;
 
         //Collections that are binded in XAML through DataGrids
         public ObservableCollection<Appointment> appointments { get; set; } = new ObservableCollection<Appointment>();
         public ObservableCollection<Appointment> patientAppointmentHistory { get; set; } = new ObservableCollection<Appointment>();
         public ObservableCollection<Diagnosis> diagnosisHistory { get; set; } = new ObservableCollection<Diagnosis>();
+
+        public ObservableCollection<String> medicalConditions { get; set; } = new ObservableCollection<String>();
 
         //Objects that help to call on controller methods and set values to properties bounded in XAML
         public Appointment appointment;
@@ -65,6 +69,10 @@ namespace WpfLayer.ViewModels
         public ICommand DataGridShowDiagnosisCmd { get; private set; }
         public ICommand DataGridShowTreatmentCmd { get; private set; }
 
+        public ICommand ApiExplained { get; private set; }
+
+        public ICommand OpenDiagnosisHelperCmd { get; private set; }
+
         public AppMgmtViewModel(Appointment appointment)
         {
             //Initialize commands
@@ -77,6 +85,8 @@ namespace WpfLayer.ViewModels
             DataGridShowReasonCmd = new RelayCommand(OpenAppointmentReason, CanOpenAppointmentReason);
             DataGridShowDiagnosisCmd = new RelayCommand(OpenDiagnosisDescription, CanOpenDiagnosDescription);
             DataGridShowTreatmentCmd = new RelayCommand(OpenDiagnosisTreatment, CanOpenDiagnosisTreatment);
+            ApiExplained = new RelayCommand(ApiExplaination);
+            OpenDiagnosisHelperCmd = new RelayCommand(OpenDiagnosisHelper);
 
             //Property values assigned.
             this.appointment = appointment;
@@ -94,6 +104,7 @@ namespace WpfLayer.ViewModels
             //Collections assigned values through controller methods
             patientAppointmentHistory = new ObservableCollection<Appointment>(appointmentController.GetPatientAppointments(patient));
             diagnosisHistory = new ObservableCollection<Diagnosis>(diagnosisController.PatientDiagnosis(patient));
+            medicalConditions = new ObservableCollection<String>(diagnosisController.ExtractMedicalConditionsFromApi());
         }
 
         // Properties that are binded in XAML
@@ -228,6 +239,24 @@ namespace WpfLayer.ViewModels
             set { newAppointmentReason = value; OnPropertyChanged(); }
         }
 
+        public string MedicalCondition
+        {
+            get { return medicalCondition; }
+            set { medicalCondition = value; OnPropertyChanged(); }
+        }
+
+        public ObservableCollection<String> MedicalConditions
+        {
+            get { return medicalConditions; }
+            set { medicalConditions = value; OnPropertyChanged(); }
+        }
+
+        public string SelectedMedicalCondition
+        {
+            get { return selectedMedicalCondition; }
+            set { selectedMedicalCondition = value; OnPropertyChanged(); }
+        }
+
         // Methos that are binded to the commands
         private bool CanMakeNote()
         {
@@ -253,12 +282,16 @@ namespace WpfLayer.ViewModels
 
         private bool CanMakeDiagnosis()
         {
-            return !string.IsNullOrEmpty(DiagnosisDescription) && !string.IsNullOrEmpty(TreatmentSuggestion);
+            // Kan skapa diagnos om man valt från dropdown eller skrivit i fritext
+            return !string.IsNullOrEmpty(DiagnosisDescription) !=null && SelectedMedicalCondition != null && !string.IsNullOrEmpty(TreatmentSuggestion); 
         }
+
 
         private void MakeDiagnosis()
         {
             DateTime dateOfDiagnosis = DateTime.Now;
+
+            DiagnosisDescription = SelectedMedicalCondition + ": " + DiagnosisDescription;
 
             diagnosis = diagnosisController.AddDiagnosis(appointment.patientId, DiagnosisDescription, dateOfDiagnosis, TreatmentSuggestion);
             // Lägg till den nya diagnosen i diagnosisHistory
@@ -286,7 +319,11 @@ namespace WpfLayer.ViewModels
         }
 
 
-
+        private void OpenDiagnosisHelper()
+        {
+            DiagnosisHelperView diagnosisHelperView = new DiagnosisHelperView();
+            diagnosisHelperView.ShowDialog();
+        }
 
 
         private bool CanMakeNewAppointment()
@@ -396,6 +433,11 @@ namespace WpfLayer.ViewModels
         {
             Window currentWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
             currentWindow?.Close();
+        }
+
+        private void ApiExplaination()
+        {
+            MessageBox.Show("API Explanation:\n\nThe API retrieves medical conditions from an external source (https://clinicaltables.nlm.nih.gov/apidoc/conditions/v3/doc.html#params).\n\nIt utilizes the LHC FHIR Tools Clinical Table Search Service, allowing users to search for medical conditions using partial or complete terms.\n\nThe API fetches a list of over 2,400 medical conditions along with associated codes and terms. However, due to constraints, it retrieves a maximum of 500 conditions per query.\n\nUsers can search for conditions using various parameters and receive detailed information including ICD-10-CM codes, ICD-9-CM codes, synonyms, and more.\n\nWe have only utilized the API to extract examples of medical conditions.\n\nThe idea is for the doctor to choose a general classification for the condition and the to add a more detailed description for the specific patient.\r\n");
         }
 
 

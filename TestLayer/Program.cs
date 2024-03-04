@@ -8,14 +8,18 @@ namespace TestLayer {
             PatientMgmtContext context = new PatientMgmtContext();
             UnitOfWork unitOfWork = new UnitOfWork();
             DrugController drugController = new DrugController();
+            DiagnosisController diagnosisController = new DiagnosisController();
+
+            
+
             //context.Database.EnsureDeleted();
 
             //context.Database.EnsureCreated();
             //Seed.SeedData(context);
             
 
-            drugController.FillDrugsFromApi();
-            unitOfWork.SeedDBDrugs();
+            //drugController.FillDrugsFromApi();
+            //unitOfWork.SeedDBDrugs();
             
         }
     }

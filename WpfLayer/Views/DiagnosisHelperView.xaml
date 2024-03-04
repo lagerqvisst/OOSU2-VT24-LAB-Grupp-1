@@ -1,0 +1,65 @@
+﻿<Window x:Class="WpfLayer.Views.DiagnosisHelperView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfLayer.Views"
+        mc:Ignorable="d"
+        Title="DiagnosisHelperView" Height="500" Width="800">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="Return" Command="{Binding CloseDiagnosisHelperCmd}"/>
+            </MenuItem>
+        </Menu>
+
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <TextBlock Text="{Binding StatusBarMessage}"/>
+            </StatusBarItem>
+        </StatusBar>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="1">
+                <Label  Content="Diagnosis Helper" FontWeight="Bold" FontSize="16" Margin="0,20,0,0"/>
+                <Label  Content="Use the search box below to return medical conditions" FontSize="15" Margin="0,20,0,0"/>
+            </StackPanel>
+            
+            <Label Grid.Column="1" Grid.Row="2" Content="Enter search term:" FontWeight="Bold" FontSize="15" Margin="0,20,0,0"/>
+            <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+                <TextBox Text="{Binding SearchInput, UpdateSourceTrigger=PropertyChanged}" Width="300" Height="30"/>
+                <Button Grid.Row="3" Grid.Column="1" Content="Search"  Margin="10,10" Height="30" Command="{Binding MakeSearchCmd}"/>
+            </StackPanel>
+
+            <Slider Grid.Column="2" Grid.Row="3" Minimum="0" Maximum="500" Value="{Binding MaxResults, Mode=TwoWay}" Width="200" HorizontalAlignment="Left" Margin="0,10,0,0" />
+
+            <StackPanel Grid.Column="2" Grid.Row="2" Orientation="Horizontal">
+                <Label  Content="Max search results:" Margin="0,20,0,0"/>
+                <Label  Content="{Binding MaxResults}" Margin="0,20,0,0"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row="4" Orientation="Horizontal">
+                <Label  Content="Conditions found:" FontWeight="Bold" Margin="0,20,0,0"/>
+                <Label Content="{Binding ResultsCount}" Margin="2,20,0,0"/>
+            </StackPanel>
+            
+            <ListView Grid.Row="5" Grid.Column="1" ItemsSource="{Binding MedicalConditions}"/>
+        </Grid>
+
+    </DockPanel>
+
+</Window>
