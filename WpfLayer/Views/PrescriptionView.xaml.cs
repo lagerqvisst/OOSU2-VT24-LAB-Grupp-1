@@ -36,9 +36,5 @@ namespace WpfLayer.Views
             this.Title = "Prescription Management";
         }
 
-        private void dgHistory_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }
