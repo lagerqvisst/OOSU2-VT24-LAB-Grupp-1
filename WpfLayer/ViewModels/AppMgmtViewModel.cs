@@ -73,6 +73,8 @@ namespace WpfLayer.ViewModels
 
         public ICommand OpenDiagnosisHelperCmd { get; private set; }
 
+        public ICommand OpenAppScheduleView { get; private set; }
+
         public AppMgmtViewModel(Appointment appointment)
         {
             //Initialize commands
@@ -87,6 +89,7 @@ namespace WpfLayer.ViewModels
             DataGridShowTreatmentCmd = new RelayCommand(OpenDiagnosisTreatment, CanOpenDiagnosisTreatment);
             ApiExplained = new RelayCommand(ApiExplaination);
             OpenDiagnosisHelperCmd = new RelayCommand(OpenDiagnosisHelper);
+            OpenAppScheduleView = new RelayCommand(OpenAppScheduleViewer);
 
             //Property values assigned.
             this.appointment = appointment;
@@ -428,6 +431,12 @@ namespace WpfLayer.ViewModels
                 SelectedTreatmentSuggestion = SelectedDiagnosis.treatmentSuggestion;
                 MessageBox.Show($"Expanded note: {SelectedTreatmentSuggestion} ");
             }
+        }
+
+        public void OpenAppScheduleViewer()
+        {
+            NewAppointmentView appScheduleView = new NewAppointmentView(doctor, patient);
+            appScheduleView.ShowDialog();
         }
         
 
