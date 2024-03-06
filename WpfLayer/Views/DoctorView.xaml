@@ -40,7 +40,7 @@
 
             <StackPanel Grid.Column="1" Margin="10,10,10,10" Grid.ColumnSpan="2">
                 <Label Content="Select an appointment below to proceed" FontWeight="DemiBold"></Label>
-                <DataGrid Name="dgAppointment" ItemsSource="{Binding Appointments}" SelectedItem="{Binding SelectedAppointment, Mode=TwoWay}" AutoGenerateColumns="False" >
+                <DataGrid Name="dgAppointment" ItemsSource="{Binding Appointments}" SelectedItem="{Binding SelectedAppointment, Mode=TwoWay}" AutoGenerateColumns="False" Background="#CEE6F2" >
 
                     <DataGrid.Columns>
 
