@@ -23,11 +23,7 @@ namespace TestLayer {
             //drugController.FillDrugsFromApi();
             //unitOfWork.SeedDBDrugs();
 
-<<<<<<< HEAD
-         
-=======
-       
->>>>>>> a2a05d2657f916a6b875873b2197213c4e67c4dd
+
             
         }
         
