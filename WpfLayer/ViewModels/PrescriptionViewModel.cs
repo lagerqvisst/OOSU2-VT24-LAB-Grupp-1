@@ -212,7 +212,14 @@ namespace WpfLayer.ViewModels
             // Uppdatera gränssnittet genom att meddela att en egenskap har ändrats
             OnPropertyChanged(nameof(PrescriptionHistory));
 
+
+            totalDrugsOfAllPrescriptions += prescription.drugCount;
+            
+
+            OnPropertyChanged(nameof(TotalDrugsOfAllPrescriptions)); //FUNGERAR INTE ATT UPPDATERA. 
+
             MessageBox.Show($"Prescription has been created.\n{prescription.drugCount} drugs were prescribed to patient.");
+            
 
             SelectedDrugs.Clear(); // Ta bort befintliga element
         }
