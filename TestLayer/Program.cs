@@ -21,7 +21,7 @@ namespace TestLayer {
             //drugController.FillDrugsFromApi();
             //unitOfWork.SeedDBDrugs();
 
-            Console.WriteLine("hejhej");
+         
             
         }
     }
