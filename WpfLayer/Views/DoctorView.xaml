@@ -14,7 +14,7 @@
 
     <DockPanel LastChildFill="True">
         <!--MENY START -->
-        <Menu DockPanel.Dock="Top" Background="#FFFFFF">
+        <Menu DockPanel.Dock="Top" Background="CornflowerBlue">
             <MenuItem Header="_File" Background="LightGray">
                 <MenuItem Header="Sign out"  Command="{Binding Path=DataContext.SignOutCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Background="Red"></MenuItem>
 
@@ -23,14 +23,14 @@
         <!--MENY SLUT -->
 
         <!--STATUS MESSAGE START -->
-        <StatusBar DockPanel.Dock="Bottom" Background="#FFFFFF">
+        <StatusBar DockPanel.Dock="Bottom" Background="CornflowerBlue">
             <TextBlock Text="{Binding DoctorName}" FontStyle="Italic" ></TextBlock>
 
         </StatusBar>
         <!--STATUS MESSAGE slut -->
 
         <!--LÄKARBESÖK FÖR DOCTOR START -->
-        <Grid Background="Gray">
+        <Grid Background="LightGoldenrodYellow">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10"></ColumnDefinition>
                 <ColumnDefinition Width="464.368"></ColumnDefinition>
@@ -57,9 +57,20 @@
 
                 </DataGrid>
 
-                <Button  Content="Choose appointment"  x:Name="btnChosenAppointment" Width="250" HorizontalAlignment="Left" Margin="0,30,0,0" Background="White"
+                <Button  Content="Choose appointment"  x:Name="btnChosenAppointment" Width="250" HorizontalAlignment="Left" Margin="0,30,0,0" Background="CornflowerBlue" 
                          Command="{Binding Path=DataContext.OpenAppMgmtCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                          CommandParameter="{Binding ElementName=SelectedAppointment, Path=SelectedItem}" FontFamily="Gineva" Height="25"  MaxWidth="160" FontWeight="UltraLight">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="15">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
                 </Button>
 
             </StackPanel>
