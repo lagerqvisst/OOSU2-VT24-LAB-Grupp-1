@@ -1,5 +1,6 @@
 ﻿using DataLayer;
 using BusinessLayer;
+using Microsoft.Data.SqlClient;
 
 namespace TestLayer {     
     class Program {
@@ -9,6 +10,7 @@ namespace TestLayer {
             UnitOfWork unitOfWork = new UnitOfWork();
             DrugController drugController = new DrugController();
             DiagnosisController diagnosisController = new DiagnosisController();
+            //context.Reset();
 
 
 
@@ -21,8 +23,12 @@ namespace TestLayer {
             //drugController.FillDrugsFromApi();
             //unitOfWork.SeedDBDrugs();
 
-            Console.WriteLine("hejhej");
+       
             
         }
+        
+
+
     }
 }
+
