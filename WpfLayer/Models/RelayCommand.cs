@@ -7,6 +7,8 @@ using WpfLayer.Commands;
 
 namespace WpfLayer.Models
 {
+    //Här finns RelayCommands XD
+    //Som använder sig av CommandBase
     public class RelayCommand : CommandBase
     {
         private readonly Action _execute = null!;

@@ -19,9 +19,10 @@ namespace TestLayer {
             //context.Database.EnsureCreated();
             //Seed.SeedData(context);
             
+            
 
-            drugController.FillDrugsFromApi();
-            unitOfWork.SeedDBDrugs();
+            //drugController.FillDrugsFromApi();
+            //unitOfWork.SeedDBDrugs();
             
         }
         
