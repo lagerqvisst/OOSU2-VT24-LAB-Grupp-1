@@ -40,16 +40,11 @@
             </Grid.RowDefinitions>
 
 
-            <Label Grid.Column="1" Grid.Row="1" Background="AntiqueWhite" Content="Sign in to your account" FontWeight="Medium" FontSize="17" HorizontalAlignment="Center" Margin="0,20"></Label>
-
-
-            
-
-
-
-
-
-            
+            <Label Grid.Column="1" Grid.Row="1" Background="MediumAquamarine" Content="Sign in to your account" FontWeight="SemiBold" FontSize="16" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20" Padding="15">
+                <Label.Effect>
+                    <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="5" Opacity="0.5"/>
+                </Label.Effect>
+            </Label>
 
             <Border Grid.Column="1" Grid.Row="2" BorderBrush="MediumAquamarine" BorderThickness="2" CornerRadius="5" Padding="5" Margin="5,0,0,5" Background="White"  Opacity="0.8">
 
