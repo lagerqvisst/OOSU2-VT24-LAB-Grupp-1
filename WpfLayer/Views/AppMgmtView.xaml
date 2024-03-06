@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfLayer.Views" xmlns:viewmodels="clr-namespace:WpfLayer.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AppMgmtViewModel}"
         mc:Ignorable="d"
-        Title="AppMgmtView" Height="1000" Width="1500">
+        Title="AppMgmtView" Height="800" Width="1500">
 
     <DockPanel LastChildFill="True">
         <!--MENY START -->
@@ -133,7 +133,7 @@
 
                     <Label Content="Prescriptions" FontWeight="Bold" FontSize="12" HorizontalAlignment="Left" Margin="10,10,0,0"></Label>
                     <Label Content="Add new prescriptions to patient or view medical history." FontStyle="Italic" FontSize="10" HorizontalAlignment="Left" Margin="10,5,0,5" />
-                    <Button   Content="Manage Prescriptions" Width="200" Height="40" Background="Bisque" HorizontalAlignment="Left" Margin="10,0,0,0"
+                    <Button   Content="Manage Prescriptions" Width="200" Height="40" Background="Bisque" HorizontalAlignment="Left" Margin="10,30,0,0"
                     Command="{Binding Path=DataContext.OpenPrescriptionMgmtCmd ,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"></Button>
                 </StackPanel>
 
@@ -170,7 +170,7 @@
                 <StackPanel >
                     <Button Content="Show expanded diagnosis description from selected diagnosis" Command="{Binding DataGridShowDiagnosisCmd}"  Width="350" Height="30"  FontSize="12" FontStyle="Italic" HorizontalAlignment="Right"  Padding="4" Background="Bisque" Margin="10,10,0,0"></Button>
                     <Button Content="Show expanded description of treatment from selected diagnosis" Command="{Binding DataGridShowTreatmentCmd}"  Width="350" Height="30"  FontSize="12" FontStyle="Italic" HorizontalAlignment="Right"  Padding="4" Background="Beige" Margin="10,5,0,0"></Button>
-                    <Label Content="Diagnosis and Treatment history" FontWeight="SemiBold"></Label>
+                    <Label Content="Diagnosis and Treatment history" FontWeight="SemiBold" Margin="0,20,0,0" ></Label>
                     <DataGrid ItemsSource="{Binding diagnosisHistory}" SelectedItem="{Binding SelectedDiagnosis}" AutoGenerateColumns="False">
 
                         <DataGrid.Columns>
@@ -215,7 +215,7 @@
 
                     <Label Content="Appointment reason" FontStyle="Italic" FontSize="10" Margin="0,5,0,5" />
                     <TextBox Text="{Binding NewAppointmentReason, UpdateSourceTrigger=PropertyChanged}" 
-             FontSize="10" Height="40" Width="200" HorizontalAlignment="Left" />
+                     FontSize="10" Height="40" Width="200" HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto" />
 
                     <Button Content="Schedule new appointment" Width="200" Height="40" Background="Cornsilk" 
             HorizontalAlignment="Left" Margin="0,20,0,0" Padding="4"
