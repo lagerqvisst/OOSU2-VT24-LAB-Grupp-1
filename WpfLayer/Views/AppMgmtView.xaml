@@ -20,7 +20,7 @@
         <!--MENY SLUT -->
 
         <StatusBar DockPanel.Dock="Bottom" Background="#22202f">
-            <TextBlock Text="{Binding StatusBarMessage}" FontStyle="Italic" ></TextBlock>
+            <TextBlock Text="{Binding StatusBarMessage}" FontStyle="Italic" Foreground="White" ></TextBlock>
 
         </StatusBar>
         <!--STATUS MESSAGE slut -->
@@ -60,7 +60,7 @@
                     <Label Content="(free text)" FontStyle="Italic" FontSize="11" Margin="0,0,0,0" />
                     <TextBox Name="txtBoxDoctorNote" Text="{Binding DoctorsNote, UpdateSourceTrigger=PropertyChanged}" FontSize="10"  Margin="5,10,0,0"
                         Height="50" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"/>
-                    <Button Content="Add note" Width="100" Height="30" Foreground="White" HorizontalAlignment="Left" Margin="5,30,0,0"
+                    <Button Content="Add note" Width="100" Height="30" FontSize="10" Background="Gold" HorizontalAlignment="Left" Margin="5,30,0,0"
                         x:Name="btnAddDoctorsNote" Command="{Binding Path=DataContext.MakeNoteCmd, 
                         RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
         >
@@ -92,7 +92,7 @@
                         <StackPanel Orientation="Horizontal">
                             <ComboBox ItemsSource="{Binding MedicalConditions}" SelectedItem="{Binding SelectedMedicalCondition}" Width="200" HorizontalAlignment="Left" Background="Coral"></ComboBox>
                             <Button Content="Diagnosis Helper" Margin="10,0,0,0" Padding="4"  HorizontalAlignment="Left" Background="Gold" Command="{Binding OpenDiagnosisHelperCmd}"></Button>
-                            <Button Content="?" Width="30"  HorizontalAlignment="Left" Margin="10,0,0,0" Background="DarkGray" Command="{Binding ApiExplained}"></Button>
+                            <Button Content="?" Width="30"  HorizontalAlignment="Left" Margin="10,0,0,0" Background="IndianRed" Command="{Binding ApiExplained}"></Button>
                         </StackPanel>
 
                         <Label Content="Diagnosis (free text)" FontStyle="Italic" FontSize="11" Margin="0,10,0,0" />
@@ -111,7 +111,7 @@
         Height="30"
         HorizontalAlignment="Left"
         Margin="0,10,0,0"
-        Foreground="White"
+        Background="Gold"
         Command="{Binding Path=DataContext.MakeDiagnosisCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
         >
                         <Button.Template>
