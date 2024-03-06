@@ -2,6 +2,7 @@
 using EntityLayer;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,11 +28,11 @@ namespace WpfLayer.Views
 
 
         NewAppointmentViewModel newAppointmentViewModel;
-        public NewAppointmentView(Doctor doctor, Patient patient)
+        public NewAppointmentView(Doctor doctor, Patient patient, Action<ObservableCollection<Appointment>> updateAppointmentHistoryCallback)
         {
             this.doctor = doctor;
             this.patient = patient;
-            newAppointmentViewModel = new NewAppointmentViewModel(doctor, patient);
+            newAppointmentViewModel = new NewAppointmentViewModel(doctor, patient, updateAppointmentHistoryCallback);
             DataContext = newAppointmentViewModel;
             InitializeComponent();
         }

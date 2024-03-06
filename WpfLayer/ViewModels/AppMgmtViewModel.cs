@@ -76,6 +76,8 @@ namespace WpfLayer.ViewModels
 
         public ICommand OpenAppScheduleView { get; private set; }
 
+        
+
         public AppMgmtViewModel(Appointment appointment)
         {
             //Initialize commands
@@ -107,6 +109,9 @@ namespace WpfLayer.ViewModels
             patientAppointmentHistory = new ObservableCollection<Appointment>(appointmentController.GetPatientAppointments(patient));
             diagnosisHistory = new ObservableCollection<Diagnosis>(diagnosisController.PatientDiagnosis(patient));
             medicalConditions = new ObservableCollection<String>(diagnosisController.ExtractMedicalConditionsFromApi());
+
+            
+
         }
 
         // Properties that are binded in XAML
@@ -401,10 +406,20 @@ namespace WpfLayer.ViewModels
         }
         public void OpenAppScheduleViewer()
         {
-            NewAppointmentView appScheduleView = new NewAppointmentView(doctor, patient);
+            NewAppointmentView appScheduleView = new NewAppointmentView(doctor, patient, UpdateAppointmentHistory);
             appScheduleView.ShowDialog();
         }
-        
+
+        private void UpdateAppointmentHistory(ObservableCollection<Appointment> updatedAppointments)
+        {
+            // Uppdatera appointmentHistory här
+            PatientAppointmentHistory.Clear();
+            foreach (var appointment in updatedAppointments)
+            {
+                PatientAppointmentHistory.Add(appointment);
+            }
+        }
+
 
         //Other Methods for navigation
         private void CloseWidnow()

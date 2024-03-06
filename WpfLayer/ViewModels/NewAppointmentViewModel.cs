@@ -2,6 +2,7 @@
 using EntityLayer;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,14 +21,19 @@ namespace WpfLayer.ViewModels
         private string newAppointmentReason;
         private string statusbarMessage;
 
+
+        public ObservableCollection<Appointment> patientAppointmentHistory { get; set; } = new ObservableCollection<Appointment>();
+
         public Appointment newAppointment;
         public Doctor doctor; 
         public Patient patient; 
 
-        private ObservableObject patientAppointmentHistory = new ObservableObject();
+        
         public ICommand MakeNewAppointmentCmd { get; private set; }
         public ICommand ReturnToPreviousWindowCmd { get; private set; }
-        public NewAppointmentViewModel(Doctor doctor, Patient patient)
+
+        private Action<ObservableCollection<Appointment>> _updateAppointmentHistoryCallback;
+        public NewAppointmentViewModel(Doctor doctor, Patient patient, Action<ObservableCollection<Appointment>> updateAppointmentHistoryCallback)
         {
             this.doctor = doctor;
             this.patient = patient;
@@ -37,7 +43,10 @@ namespace WpfLayer.ViewModels
             MakeNewAppointmentCmd = new RelayCommand(MakeNewAppointment, CanMakeNewAppointment);
             ReturnToPreviousWindowCmd = new RelayCommand(CloseWidnow);
 
-            
+            patientAppointmentHistory = new ObservableCollection<Appointment>(appointmentController.GetPatientAppointments(patient));
+
+            _updateAppointmentHistoryCallback = updateAppointmentHistoryCallback;
+
         }
 
         public DateTime AppointmentDate
@@ -117,11 +126,12 @@ namespace WpfLayer.ViewModels
             DateTime appointmentDateTime = AppointmentDate.Date + selectedTime;
 
             newAppointment = appointmentController.NewAppointmentByDoctor(patient.patientId, appointmentDateTime, NewAppointmentReason, doctor.doctorID);
-            //Messenger.Default.Send(new NewAppointmentScheduledMessage(patientAppointmentHistory));
 
-            //patientAppointmentHistory.Add(newAppointment);
+            patientAppointmentHistory.Add(newAppointment);
             MessageBox.Show("Appointment scheduled");
             NewAppointmentReason = "";
+
+            _updateAppointmentHistoryCallback(patientAppointmentHistory);
 
             CloseWidnow();
         }
