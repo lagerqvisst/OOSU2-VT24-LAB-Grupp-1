@@ -50,12 +50,13 @@
             // 
             // btnReturnFromUpdateOptions
             // 
+            btnReturnFromUpdateOptions.BackColor = Color.Red;
             btnReturnFromUpdateOptions.Location = new Point(29, 466);
             btnReturnFromUpdateOptions.Name = "btnReturnFromUpdateOptions";
             btnReturnFromUpdateOptions.Size = new Size(61, 24);
             btnReturnFromUpdateOptions.TabIndex = 0;
             btnReturnFromUpdateOptions.Text = "Return";
-            btnReturnFromUpdateOptions.UseVisualStyleBackColor = true;
+            btnReturnFromUpdateOptions.UseVisualStyleBackColor = false;
             btnReturnFromUpdateOptions.Click += btnReturnFromUpdateOptions_Click;
             // 
             // textBox_personalNumber
@@ -85,7 +86,6 @@
             textBox_phoneNumber.Name = "textBox_phoneNumber";
             textBox_phoneNumber.Size = new Size(230, 23);
             textBox_phoneNumber.TabIndex = 4;
-
             // 
             // textBox_emailaddress
             // 
@@ -146,53 +146,58 @@
             // 
             // btnUpdateName
             // 
+            btnUpdateName.BackColor = SystemColors.Info;
             btnUpdateName.Location = new Point(263, 130);
             btnUpdateName.Name = "btnUpdateName";
             btnUpdateName.Size = new Size(195, 24);
             btnUpdateName.TabIndex = 11;
             btnUpdateName.Text = "Update name";
-            btnUpdateName.UseVisualStyleBackColor = true;
+            btnUpdateName.UseVisualStyleBackColor = false;
             btnUpdateName.Click += btnUpdateName_Click;
             // 
             // btnUpdatePersonalNum
             // 
+            btnUpdatePersonalNum.BackColor = SystemColors.Info;
             btnUpdatePersonalNum.Location = new Point(263, 198);
             btnUpdatePersonalNum.Name = "btnUpdatePersonalNum";
             btnUpdatePersonalNum.Size = new Size(195, 26);
             btnUpdatePersonalNum.TabIndex = 12;
             btnUpdatePersonalNum.Text = "Update Personal Number";
-            btnUpdatePersonalNum.UseVisualStyleBackColor = true;
+            btnUpdatePersonalNum.UseVisualStyleBackColor = false;
             btnUpdatePersonalNum.Click += btnUpdatePersonalNum_Click;
             // 
             // btnUpdateAddress
             // 
+            btnUpdateAddress.BackColor = SystemColors.Info;
             btnUpdateAddress.Location = new Point(265, 268);
             btnUpdateAddress.Name = "btnUpdateAddress";
             btnUpdateAddress.Size = new Size(193, 23);
             btnUpdateAddress.TabIndex = 13;
             btnUpdateAddress.Text = "Update Address";
-            btnUpdateAddress.UseVisualStyleBackColor = true;
+            btnUpdateAddress.UseVisualStyleBackColor = false;
             btnUpdateAddress.Click += btnUpdateAddress_Click;
             // 
             // btnUpdatePhoneNumber
             // 
+            btnUpdatePhoneNumber.BackColor = SystemColors.Info;
             btnUpdatePhoneNumber.Location = new Point(265, 334);
             btnUpdatePhoneNumber.Name = "btnUpdatePhoneNumber";
             btnUpdatePhoneNumber.Size = new Size(193, 23);
             btnUpdatePhoneNumber.TabIndex = 14;
             btnUpdatePhoneNumber.Text = "Update Phone number";
             btnUpdatePhoneNumber.UseMnemonic = false;
-            btnUpdatePhoneNumber.UseVisualStyleBackColor = true;
+            btnUpdatePhoneNumber.UseVisualStyleBackColor = false;
             btnUpdatePhoneNumber.Click += btnUpdatePhoneNumber_Click;
             // 
             // btnUpdateEmailAddress
             // 
+            btnUpdateEmailAddress.BackColor = SystemColors.Info;
             btnUpdateEmailAddress.Location = new Point(263, 404);
             btnUpdateEmailAddress.Name = "btnUpdateEmailAddress";
             btnUpdateEmailAddress.Size = new Size(195, 23);
             btnUpdateEmailAddress.TabIndex = 15;
             btnUpdateEmailAddress.Text = "Update Email Address";
-            btnUpdateEmailAddress.UseVisualStyleBackColor = true;
+            btnUpdateEmailAddress.UseVisualStyleBackColor = false;
             btnUpdateEmailAddress.Click += btnUpdateEmailAddress_Click;
             // 
             // label6
@@ -207,14 +212,14 @@
             // labelOptionsHeading
             // 
             labelOptionsHeading.AutoSize = true;
-            labelOptionsHeading.Font = new Font("Georgia", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelOptionsHeading.Font = new Font("Algerian", 14.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
             labelOptionsHeading.Location = new Point(27, 41);
             labelOptionsHeading.Name = "labelOptionsHeading";
-            labelOptionsHeading.Size = new Size(387, 23);
+            labelOptionsHeading.Size = new Size(446, 21);
             labelOptionsHeading.TabIndex = 17;
             labelOptionsHeading.Text = "Update options for {patientToUpdate.name}";
             // 
-            // UpdateOptionsView
+            // UpdatePatOptionsView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -237,7 +242,7 @@
             Controls.Add(textBox_namePatient);
             Controls.Add(textBox_personalNumber);
             Controls.Add(btnReturnFromUpdateOptions);
-            Name = "UpdateOptionsView";
+            Name = "UpdatePatOptionsView";
             Text = "UpdateOptionsView";
             ResumeLayout(false);
             PerformLayout();
