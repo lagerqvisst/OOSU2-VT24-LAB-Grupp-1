@@ -57,7 +57,7 @@
                         <TextBox Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     </StackPanel>
 
-                    <Button Content="Sign in" Width="50" HorizontalAlignment="Left" Margin="20,5,5,5" Background="LightGreen" Command="{Binding SignInCommand}" Padding="3">
+                    <Button Content="Sign in" Width="50" HorizontalAlignment="Left" Margin="20,5,5,5" Background="MediumAquamarine" Command="{Binding SignInCommand}" Padding="3">
 
                     </Button>
                 </StackPanel>
@@ -65,10 +65,10 @@
 
             <Label Grid.Column="1" Grid.Row="5" Content="Auto-populate user credentials" Margin="15,30,0,0" FontStyle="Italic"></Label>
             <StackPanel Grid.Column="1" Grid.Row="6" Margin="20,5,5,5">
-                <Button  Content="Doctor credentials" Width="Auto" HorizontalAlignment="Left"  Margin="0,5,5,5"
-                    Command="{Binding AutoGenDocCredCmd}" Padding="3"></Button>
+                <Button  Content="Doctor credentials" Width="Auto" HorizontalAlignment="Left"  Margin="0,5,5,5" Background="MediumAquamarine"
+                    Command="{Binding AutoGenDocCredCmd}" Padding="3" Click="Button_Click"></Button>
                 
-                <Button Content="Receptionist credentials" Width="Auto" HorizontalAlignment="Left"  Margin="0,5,5,5" Padding="3"
+                <Button Content="Receptionist credentials" Width="Auto" HorizontalAlignment="Left"  Margin="0,5,5,5" Padding="3" Background="MediumAquamarine"
                 Command="{Binding AutoGenRecCredCmd}" ></Button>
             </StackPanel>
 
