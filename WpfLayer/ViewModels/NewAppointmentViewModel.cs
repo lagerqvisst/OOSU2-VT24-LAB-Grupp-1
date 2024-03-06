@@ -22,6 +22,8 @@ namespace WpfLayer.ViewModels
         public Appointment newAppointment;
         public Doctor doctor; 
         public Patient patient; 
+
+        private ObservableObject patientAppointmentHistory = new ObservableObject();
         public ICommand MakeNewAppointmentCmd { get; private set; }
         public ICommand ReturnToPreviousWindowCmd { get; private set; }
         public NewAppointmentViewModel(Doctor doctor, Patient patient)
@@ -31,6 +33,8 @@ namespace WpfLayer.ViewModels
 
             MakeNewAppointmentCmd = new RelayCommand(MakeNewAppointment, CanMakeNewAppointment);
             ReturnToPreviousWindowCmd = new RelayCommand(CloseWidnow);
+
+            
         }
 
         public DateTime AppointmentDate
@@ -100,6 +104,7 @@ namespace WpfLayer.ViewModels
             DateTime appointmentDateTime = AppointmentDate.Date + selectedTime;
 
             newAppointment = appointmentController.NewAppointmentByDoctor(patient.patientId, appointmentDateTime, NewAppointmentReason, doctor.doctorID);
+            //Messenger.Default.Send(new NewAppointmentScheduledMessage(patientAppointmentHistory));
 
             //patientAppointmentHistory.Add(newAppointment);
             MessageBox.Show("Appointment scheduled");
