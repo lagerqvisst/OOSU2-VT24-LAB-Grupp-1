@@ -42,7 +42,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
-        
+
             <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Orientation="Vertical" >
                 <Label Content="Appointment overview" FontWeight="Bold" FontSize="15"></Label>
                 <TextBlock Text="{Binding PatientName}" FontSize="10"></TextBlock>
@@ -50,27 +50,23 @@
                 <TextBlock Text="{Binding AppId}" FontSize="10"></TextBlock>
                 <TextBlock  Text="{Binding AppointmentReason}" FontSize="10"></TextBlock>
             </StackPanel>
-            <Border Grid.Column="1" Grid.Row="2" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5,15,0,5" Width="Auto" Height="150">
+            <Border Grid.Column="1" Grid.Row="2" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5,0,0,5" Width="Auto" Height="200">
 
-                <StackPanel Margin="0,15,0,30">
-                    <Label Content="Add doctors note" FontWeight="Bold" />
-                    <TextBox Name="txtBoxDoctorNote" Text="{Binding DoctorsNote, UpdateSourceTrigger=PropertyChanged}" FontSize="10" 
-                        Height="Auto" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"/>
-                    <Button Content="Add note"
-        Width="100"
-        Height="30"
-        Margin="0,10,0,0"
-        Background="LightGreen"
-        x:Name="btnAddDoctorsNote"
-        HorizontalAlignment="Left"
-        Command="{Binding Path=DataContext.MakeNoteCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                <StackPanel Margin="0,0,0,0">
+                    <Label Content="Add doctors note" FontWeight="Bold"/>
+                    <Label Content="(free text)" FontStyle="Italic" FontSize="11" Margin="0,0,0,0" />
+                    <TextBox Name="txtBoxDoctorNote" Text="{Binding DoctorsNote, UpdateSourceTrigger=PropertyChanged}" FontSize="10"  Margin="5,10,0,0"
+                        Height="50" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"/>
+                    <Button Content="Add note" Width="100" Height="30" Background="LightGreen" HorizontalAlignment="Left" Margin="5,30,0,0"
+                        x:Name="btnAddDoctorsNote" Command="{Binding Path=DataContext.MakeNoteCmd, 
+                        RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
         >
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Background="{TemplateBinding Background}"
-                    BorderBrush="{TemplateBinding BorderBrush}"
-                    BorderThickness="{TemplateBinding BorderThickness}"
-                    CornerRadius="15">
+                                 BorderBrush="{TemplateBinding BorderBrush}"
+                                 BorderThickness="{TemplateBinding BorderThickness}"
+                                 CornerRadius="15">
                                     <ContentPresenter HorizontalAlignment="Center"
                                   VerticalAlignment="Center"/>
                                 </Border>
@@ -85,7 +81,7 @@
             <Border Grid.Column="1" Grid.Row="3" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5,10,0,5" Width="Auto">
                 <StackPanel Margin="0,0,0,30">
                     <Label Content="Diagnosis" FontWeight="Bold" />
-                    
+
                     <Label Content="Use drop-down list to choose from stored conditions. Then enter a diagnosis description." FontStyle="Italic" FontSize="11" Margin="0,0,0,20" />
 
                     <StackPanel Orientation="Vertical">
@@ -95,15 +91,15 @@
                             <Button Content="Diagnosis Helper" Margin="10,0,0,0" Padding="4"  HorizontalAlignment="Left" Background="Gold" Command="{Binding OpenDiagnosisHelperCmd}"></Button>
                             <Button Content="?" Width="30"  HorizontalAlignment="Left" Margin="10,0,0,0" Background="DarkGray" Command="{Binding ApiExplained}"></Button>
                         </StackPanel>
-                        
+
                         <Label Content="Diagnosis (free text)" FontStyle="Italic" FontSize="11" Margin="0,10,0,0" />
                         <TextBox Text="{Binding DiagnosisDescription, UpdateSourceTrigger=PropertyChanged}" FontSize="11" Height="Auto" Width="400" HorizontalAlignment="Left"
                         AcceptsReturn="True" TextWrapping="Wrap" Margin="0,0,0,10"/>
-                        
+
                     </StackPanel>
-                    
-                    
-                    
+
+
+
                     <Label Content="Describe suggested treatment (free text)" FontStyle="Italic" FontSize="11" />
                     <TextBox Text="{Binding TreatmentSuggestion, UpdateSourceTrigger=PropertyChanged}" FontSize="11" Height="Auto" Width="400" HorizontalAlignment="Left"
                     AcceptsReturn="True" TextWrapping="Wrap" />
@@ -155,13 +151,13 @@
 
                         <DataGrid.Columns>
 
-                            <DataGridTextColumn Header="Appointment ID" Binding="{Binding appointmentId}" />
-                            <DataGridTextColumn Header="Patient Name" Binding="{Binding patientName}" />
-                            <DataGridTextColumn Header="Date" Binding="{Binding appointmentDate}" />
-                            <DataGridTextColumn Header="Reason" Binding="{Binding appointmentReason}" />
-                            <DataGridTextColumn Header="Doctor" Binding="{Binding doctorName}" />
-                            <DataGridTextColumn Header="Note from doctor" Binding="{Binding doctorsNote}" />
-                            <DataGridTextColumn Header="Scheduled by" Binding="{Binding receptionistName}" />
+                            <DataGridTextColumn Header="App ID" Binding="{Binding appointmentId}" Width="50" />
+                            <DataGridTextColumn Header="Patient Name" Binding="{Binding patientName}" Width="*" />
+                            <DataGridTextColumn Header="Date" Binding="{Binding appointmentDate}" Width="*" />
+                            <DataGridTextColumn Header="Reason" Binding="{Binding appointmentReason}" Width="50" />
+                            <DataGridTextColumn Header="Doctor" Binding="{Binding doctorName}" Width="*" />
+                            <DataGridTextColumn Header="Note" Binding="{Binding doctorsNote}" Width="40" />
+                            <DataGridTextColumn Header="Scheduled by" Binding="{Binding receptionistName}" Width="*" />
 
 
                         </DataGrid.Columns>
@@ -179,10 +175,10 @@
 
                         <DataGrid.Columns>
                             <!-- Exempel på en synlig kolumn -->
-                            <DataGridTextColumn Header="Diagnosis ID" Binding="{Binding diagnosisId}" />
-                            <DataGridTextColumn Header="Diagnosis Description" Binding="{Binding diagnosisDescription}" />
-                            <DataGridTextColumn Header="Date of diagnosis" Binding="{Binding dateOfDiagnosis}" />
-                            <DataGridTextColumn Header="Suggested Treatment" Binding="{Binding treatmentSuggestion}" />
+                            <DataGridTextColumn Header="Diagnosis ID" Binding="{Binding diagnosisId}" Width="85" />
+                            <DataGridTextColumn Header="Diagnosis Description" Binding="{Binding diagnosisDescription}" Width="135" />
+                            <DataGridTextColumn Header="Date of diagnosis" Binding="{Binding dateOfDiagnosis}" Width="125"/>
+                            <DataGridTextColumn Header="Suggested Treatment" Binding="{Binding treatmentSuggestion}" Width="150" />
 
 
                             <!-- Exempel på en kolumn med synlighet som kontrolleras dynamiskt -->
@@ -226,11 +222,11 @@
             Command="{Binding MakeNewAppointmentCmd}" />
                 </StackPanel>
 
-                
+
 
             </Border>
 
-            
+
 
         </Grid>
 
