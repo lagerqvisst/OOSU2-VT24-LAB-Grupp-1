@@ -1,4 +1,5 @@
-﻿using EntityLayer;
+﻿using BusinessLayer;
+using EntityLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,24 +18,22 @@ using WpfLayer.ViewModels;
 namespace WpfLayer.Views
 {
     /// <summary>
-    /// Interaction logic for PrescriptionView.xaml
+    /// Interaction logic for NewAppointmentView.xaml
     /// </summary>
-    public partial class PrescriptionView : Window
+    public partial class NewAppointmentView : Window
     {
-        PrescriptionViewModel prescriptionViewModel;
+        Doctor doctor;
         Patient patient;
-        public PrescriptionView(Patient patient)
+
+
+        NewAppointmentViewModel newAppointmentViewModel;
+        public NewAppointmentView(Doctor doctor, Patient patient)
         {
-            //Passing the patient object from the doctor view to the PrescriptionViewModel
+            this.doctor = doctor;
             this.patient = patient;
-            prescriptionViewModel = new PrescriptionViewModel(patient);
-            DataContext = prescriptionViewModel;
+            newAppointmentViewModel = new NewAppointmentViewModel(doctor, patient);
+            DataContext = newAppointmentViewModel;
             InitializeComponent();
-
-            
-
-            this.Title = "Prescription Management";
         }
-
     }
 }
