@@ -15,11 +15,13 @@ namespace WpfLayer.ViewModels
     public class NewAppointmentViewModel : ObservableObject
     {
         AppointmentController appointmentController = new AppointmentController();
+        EmailService emailService = new EmailService();
 
         private DateTime appointmentDate = DateTime.Now;
         private int selectedTimeIndex;
         private string newAppointmentReason;
         private string statusbarMessage;
+        private string email; 
 
 
         public ObservableCollection<Appointment> patientAppointmentHistory { get; set; } = new ObservableCollection<Appointment>();
@@ -32,6 +34,8 @@ namespace WpfLayer.ViewModels
         public ICommand MakeNewAppointmentCmd { get; private set; }
         public ICommand ReturnToPreviousWindowCmd { get; private set; }
 
+        public ICommand SendEmailCmd { get; private set; }
+
         private Action<ObservableCollection<Appointment>> _updateAppointmentHistoryCallback;
         public NewAppointmentViewModel(Doctor doctor, Patient patient, Action<ObservableCollection<Appointment>> updateAppointmentHistoryCallback)
         {
@@ -42,10 +46,13 @@ namespace WpfLayer.ViewModels
 
             MakeNewAppointmentCmd = new RelayCommand(MakeNewAppointment, CanMakeNewAppointment);
             ReturnToPreviousWindowCmd = new RelayCommand(CloseWidnow);
+            SendEmailCmd = new RelayCommand(SendEmailConfirmation);
 
             patientAppointmentHistory = new ObservableCollection<Appointment>(appointmentController.GetPatientAppointments(patient));
 
             _updateAppointmentHistoryCallback = updateAppointmentHistoryCallback;
+
+            
 
         }
 
@@ -88,6 +95,25 @@ namespace WpfLayer.ViewModels
             }
         }
 
+        public Appointment NewAppointment
+        {
+            get { return newAppointment; }
+            set
+            {
+                newAppointment = value;
+                OnPropertyChanged("NewAppointment");
+            }
+        }
+
+        public string Email
+        {
+            get { return email; }
+            set
+            {
+                email = value;
+                OnPropertyChanged("Email");
+            }
+        }
 
         private bool CanMakeNewAppointment()
         {
@@ -133,7 +159,20 @@ namespace WpfLayer.ViewModels
 
             _updateAppointmentHistoryCallback(patientAppointmentHistory);
 
-            CloseWidnow();
+            //CloseWidnow();
+        }
+
+        private bool CanSendEmailConfirmation()
+        {
+            return !string.IsNullOrEmpty(Email) && NewAppointment != null;
+        }
+
+        private void SendEmailConfirmation()
+        {
+            
+            string body = $"Your appointment with Dr. {doctor.name} has been scheduled for {NewAppointment.appointmentDate}.\n\nReason: {NewAppointment.appointmentReason}";
+
+            emailService.SendEmail(Email,body);
         }
 
         private void CloseWidnow()

@@ -10,6 +10,9 @@ namespace TestLayer {
             UnitOfWork unitOfWork = new UnitOfWork();
             DrugController drugController = new DrugController();
             DiagnosisController diagnosisController = new DiagnosisController();
+
+            
+
             //context.Reset();
 
 

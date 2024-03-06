@@ -63,9 +63,17 @@
                     FontSize="10" Height="40" Width="200" HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto" />
 
                     <Button Content="Schedule new appointment" Width="200" Height="40" Background="Cornsilk" 
-             HorizontalAlignment="Left" Margin="0,20,0,0" Padding="4"
-             Command="{Binding MakeNewAppointmentCmd}" />
-                </StackPanel>
+                    HorizontalAlignment="Left" Margin="0,20,0,0" Padding="4"
+                        Command="{Binding MakeNewAppointmentCmd}" />
+
+                <Label Content="E-mail confirmation" Margin="0,20,0,0"/>
+                <TextBox Text="{Binding Email}" Width="200" HorizontalAlignment="Left"></TextBox>
+                <Button Content="Send" Command="{Binding SendEmailCmd}" Width="100" HorizontalAlignment="Left" Margin="0,10"></Button>
+            </StackPanel>
+
+            
+                
+
 
 
         </Grid>
