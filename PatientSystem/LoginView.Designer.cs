@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SignIn));
             userNameField = new TextBox();
             userPasswordField = new TextBox();
             BtnSignIn = new Button();
@@ -63,6 +64,7 @@
             // 
             // BtnSignIn
             // 
+            BtnSignIn.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BtnSignIn.Location = new Point(121, 257);
             BtnSignIn.Name = "BtnSignIn";
             BtnSignIn.Size = new Size(241, 31);
@@ -151,6 +153,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Center;
             ClientSize = new Size(503, 486);
             Controls.Add(label5);
             Controls.Add(label4);

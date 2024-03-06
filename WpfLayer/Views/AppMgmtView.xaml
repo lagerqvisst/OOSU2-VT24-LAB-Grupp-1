@@ -5,20 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfLayer.Views" xmlns:viewmodels="clr-namespace:WpfLayer.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AppMgmtViewModel}"
         mc:Ignorable="d"
-        Title="AppMgmtView" Height="1000" Width="1500">
+        Background="#22202f"  
+        Title="AppMgmtView" Height="800" Width="1500">
+    
 
     <DockPanel LastChildFill="True">
         <!--MENY START -->
-        <Menu DockPanel.Dock="Top">
-            <MenuItem Header="_File">
-                <MenuItem Header="Return to previous window" x:Name="menuSignout" Command="{Binding Path=DataContext.CloseWindowCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"></MenuItem>
+        <Menu DockPanel.Dock="Top" Background="#22202f">
+            <MenuItem Header="_File" Foreground="White" Background="#22202f">
+                <MenuItem Header="Return to previous window" x:Name="menuSignout"  Command="{Binding Path=DataContext.CloseWindowCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"></MenuItem>
 
             </MenuItem>
         </Menu>
         <!--MENY SLUT -->
 
-        <StatusBar DockPanel.Dock="Bottom">
-            <TextBlock Text="{Binding StatusBarMessage}" FontStyle="Italic"></TextBlock>
+        <StatusBar DockPanel.Dock="Bottom" Background="#22202f">
+            <TextBlock Text="{Binding StatusBarMessage}" FontStyle="Italic" ></TextBlock>
 
         </StatusBar>
         <!--STATUS MESSAGE slut -->
@@ -42,22 +44,38 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
-        
-            <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Orientation="Vertical" >
-                <Label Content="Appointment overview" FontWeight="Bold" FontSize="15"></Label>
-                <TextBlock Text="{Binding PatientName}" FontSize="10"></TextBlock>
-                <TextBlock  Text="{Binding PatientId}" FontSize="10"></TextBlock>
-                <TextBlock Text="{Binding AppId}" FontSize="10"></TextBlock>
-                <TextBlock  Text="{Binding AppointmentReason}" FontSize="10"></TextBlock>
-            </StackPanel>
-            <Border Grid.Column="1" Grid.Row="2" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5,15,0,5" Width="Auto" Height="150">
 
-                <StackPanel Margin="0,15,0,30">
-                    <Label Content="Add doctors note" FontWeight="Bold" />
-                    <TextBox Name="txtBoxDoctorNote" Text="{Binding DoctorsNote, UpdateSourceTrigger=PropertyChanged}" FontSize="10" 
-                        Height="Auto" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"/>
-                    <Button Content="Add note" Width="100" Height="30" Margin="0,10,0,0" Background="LightGreen" x:Name="btnAddDoctorsNote" 
-                        HorizontalAlignment="Left" Command="{Binding Path=DataContext.MakeNoteCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
+            <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Orientation="Vertical" >
+                <Label Content="Appointment overview" FontWeight="Bold" FontSize="15" Foreground="White"></Label>
+                <TextBlock Text="{Binding PatientName}" FontSize="10" Foreground="White"></TextBlock>
+                <TextBlock  Text="{Binding PatientId}" FontSize="10" Foreground="White"></TextBlock>
+                <TextBlock Text="{Binding AppId}" FontSize="10" Foreground="White"></TextBlock>
+                <TextBlock  Text="{Binding AppointmentReason}" FontSize="10" Foreground="White"></TextBlock>
+            </StackPanel>
+            <Border Grid.Column="1" Grid.Row="2" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5,0,0,5" Width="Auto" Height="200">
+
+                <StackPanel Margin="0,0,0,0" Background="White">
+                    
+                    <Label Content="Add doctors note" FontWeight="Bold"/>
+                    <Label Content="(free text)" FontStyle="Italic" FontSize="11" Margin="0,0,0,0" />
+                    <TextBox Name="txtBoxDoctorNote" Text="{Binding DoctorsNote, UpdateSourceTrigger=PropertyChanged}" FontSize="10"  Margin="5,10,0,0"
+                        Height="50" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"/>
+                    <Button Content="Add note" Width="100" Height="30" Foreground="White" HorizontalAlignment="Left" Margin="5,30,0,0"
+                        x:Name="btnAddDoctorsNote" Command="{Binding Path=DataContext.MakeNoteCmd, 
+                        RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+        >
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                 BorderBrush="{TemplateBinding BorderBrush}"
+                                 BorderThickness="{TemplateBinding BorderThickness}"
+                                 CornerRadius="15">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
                 </StackPanel>
 
 
@@ -65,66 +83,74 @@
             </Border>
             <Border Grid.Column="1" Grid.Row="3" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5,10,0,5" Width="Auto">
                 <StackPanel Margin="0,0,0,30">
-                    <Label Content="Diagnosis" FontWeight="Bold" />
-                    
-                    <Label Content="Use drop-down list to choose from stored conditions. Then enter a diagnosis description." FontStyle="Italic" FontSize="11" Margin="0,0,0,20" />
+                    <Label Content="Diagnosis" FontWeight="Bold" Foreground="White" />
 
-                    <StackPanel Orientation="Vertical">
+                    <Label Content="Use drop-down list to choose from stored conditions. Then enter a diagnosis description." FontStyle="Italic" FontSize="11" Margin="0,0,0,20" Background="White" />
+
+                    <StackPanel Orientation="Vertical" Background="White">
                         <Label Content="Choose a Medical condition (API)" FontStyle="Italic" FontSize="12" />
                         <StackPanel Orientation="Horizontal">
                             <ComboBox ItemsSource="{Binding MedicalConditions}" SelectedItem="{Binding SelectedMedicalCondition}" Width="200" HorizontalAlignment="Left" Background="Coral"></ComboBox>
                             <Button Content="Diagnosis Helper" Margin="10,0,0,0" Padding="4"  HorizontalAlignment="Left" Background="Gold" Command="{Binding OpenDiagnosisHelperCmd}"></Button>
                             <Button Content="?" Width="30"  HorizontalAlignment="Left" Margin="10,0,0,0" Background="DarkGray" Command="{Binding ApiExplained}"></Button>
                         </StackPanel>
-                        
+
                         <Label Content="Diagnosis (free text)" FontStyle="Italic" FontSize="11" Margin="0,10,0,0" />
                         <TextBox Text="{Binding DiagnosisDescription, UpdateSourceTrigger=PropertyChanged}" FontSize="11" Height="Auto" Width="400" HorizontalAlignment="Left"
                         AcceptsReturn="True" TextWrapping="Wrap" Margin="0,0,0,10"/>
-                        
+
                     </StackPanel>
-                    
-                    
-                    
-                    <Label Content="Describe suggested treatment (free text)" FontStyle="Italic" FontSize="11" />
+
+
+
+                    <Label Content="Describe suggested treatment (free text)" FontStyle="Italic" FontSize="11" Background="White" />
                     <TextBox Text="{Binding TreatmentSuggestion, UpdateSourceTrigger=PropertyChanged}" FontSize="11" Height="Auto" Width="400" HorizontalAlignment="Left"
                     AcceptsReturn="True" TextWrapping="Wrap" />
-                    <Button Content="Add diagnosis" Width="100" Height="30" HorizontalAlignment="Left" Margin="0,10,0,0" Background="LightGreen"
-                    Command="{Binding Path=DataContext.MakeDiagnosisCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" />
+                    <Button Content="Add diagnosis"
+        Width="100"
+        Height="30"
+        HorizontalAlignment="Left"
+        Margin="0,10,0,0"
+        Foreground="White"
+        Command="{Binding Path=DataContext.MakeDiagnosisCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+        >
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="15">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
                 </StackPanel>
 
             </Border>
 
-            <Border Grid.Column="5"  Grid.Row="3" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Margin="0,10,0,0" Width="300" Height="150"  HorizontalAlignment="Left">
-
-                <StackPanel >
-
-                    <Label Content="Prescriptions" FontWeight="Bold" FontSize="12" HorizontalAlignment="Left" Margin="10,10,0,0"></Label>
-                    <Label Content="Add new prescriptions to patient or view medical history." FontStyle="Italic" FontSize="10" HorizontalAlignment="Left" Margin="10,5,0,5" />
-                    <Button   Content="Manage Prescriptions" Width="200" Height="40" Background="Bisque" HorizontalAlignment="Left" Margin="10,0,0,0"
-                    Command="{Binding Path=DataContext.OpenPrescriptionMgmtCmd ,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"></Button>
-                </StackPanel>
-
-            </Border>
 
 
-            <Label Grid.Column="3" Grid.Row="1" Content="Patient History" FontWeight="Bold"></Label>
+
+            <Label Grid.Column="3" Grid.Row="1" Content="Patient History" FontWeight="Bold" Foreground="White" FontSize="20"></Label>
 
             <Border  Grid.Column="3" Grid.Row="2" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5,0,0,5">
-                <StackPanel>
-                    <Button Content="Show expanded doctors note from selected appointment" Command="{Binding DataGridShowDoctorsNoteCmd}"  Width="350" Height="30"  FontSize="12" FontStyle="Italic" HorizontalAlignment="Left"  Padding="4" Background="Bisque" Margin="10,10"></Button>
-                    <Button Content="Show expanded reason from selected appointment" Command="{Binding DataGridShowReasonCmd}" Width="350" Height="30"  FontSize="12" FontStyle="Italic" HorizontalAlignment="Left"  Padding="4" Background="Beige" Margin="10,0,0,0"></Button>
+                <StackPanel Background="White">
+                    <Button Content="Show expanded doctors note from selected appointment" Command="{Binding DataGridShowDoctorsNoteCmd}"  Width="350" Height="30"  FontSize="12" FontStyle="Italic" HorizontalAlignment="Right"  Padding="4" Background="Bisque" Margin="10,10,0,0"></Button>
+                    <Button Content="Show expanded reason from selected appointment" Command="{Binding DataGridShowReasonCmd}" Width="350" Height="30"  FontSize="12" FontStyle="Italic" HorizontalAlignment="Right"  Padding="4" Background="Beige" Margin="10,5,0,0"></Button>
                     <Label Content="Appointment history" FontWeight="SemiBold"></Label>
                     <DataGrid ItemsSource="{Binding patientAppointmentHistory}" SelectedItem="{Binding SelectedAppointment}" AutoGenerateColumns="False" >
 
                         <DataGrid.Columns>
 
-                            <DataGridTextColumn Header="Appointment ID" Binding="{Binding appointmentId}" />
-                            <DataGridTextColumn Header="Patient Name" Binding="{Binding patientName}" />
-                            <DataGridTextColumn Header="Date" Binding="{Binding appointmentDate}" />
-                            <DataGridTextColumn Header="Reason" Binding="{Binding appointmentReason}" />
-                            <DataGridTextColumn Header="Doctor" Binding="{Binding doctorName}" />
-                            <DataGridTextColumn Header="Note from doctor" Binding="{Binding doctorsNote}" />
-                            <DataGridTextColumn Header="Scheduled by" Binding="{Binding receptionistName}" />
+                            <DataGridTextColumn Header="App ID" Binding="{Binding appointmentId}" Width="50" />
+                            <DataGridTextColumn Header="Patient Name" Binding="{Binding patientName}" Width="*" />
+                            <DataGridTextColumn Header="Date" Binding="{Binding appointmentDate}" Width="*" />
+                            <DataGridTextColumn Header="Reason" Binding="{Binding appointmentReason}" Width="50" />
+                            <DataGridTextColumn Header="Doctor" Binding="{Binding doctorName}" Width="*" />
+                            <DataGridTextColumn Header="Note" Binding="{Binding doctorsNote}" Width="40" />
+                            <DataGridTextColumn Header="Scheduled by" Binding="{Binding receptionistName}" Width="*" />
 
 
                         </DataGrid.Columns>
@@ -134,18 +160,18 @@
                 </StackPanel>
             </Border>
             <Border Grid.Column="3" Grid.Row="3" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5,10,0,5" Width="Auto">
-                <StackPanel >
-                    <Button Content="Show expanded diagnosis description from selected diagnosis" Command="{Binding DataGridShowDiagnosisCmd}"  Width="180" FontSize="7" FontStyle="Italic" HorizontalAlignment="Left"  Padding="4" Background="Bisque" Margin="10,10"></Button>
-                    <Button Content="Show expanded description of treatment from selected diagnosis" Command="{Binding DataGridShowTreatmentCmd}"  Width="180" FontSize="7" FontStyle="Italic" HorizontalAlignment="Left"  Padding="4" Background="Beige" Margin="10,0,0,0"></Button>
-                    <Label Content="Diagnosis and Treatment history" FontWeight="SemiBold"></Label>
+                <StackPanel Background="White" >
+                    <Button Content="Show expanded diagnosis description from selected diagnosis" Command="{Binding DataGridShowDiagnosisCmd}"  Width="350" Height="30"  FontSize="12" FontStyle="Italic" HorizontalAlignment="Right"  Padding="4" Background="Bisque" Margin="10,10,0,0"></Button>
+                    <Button Content="Show expanded description of treatment from selected diagnosis" Command="{Binding DataGridShowTreatmentCmd}"  Width="350" Height="30"  FontSize="12" FontStyle="Italic" HorizontalAlignment="Right"  Padding="4" Background="Beige" Margin="10,5,0,0"></Button>
+                    <Label Content="Diagnosis and Treatment history" FontWeight="SemiBold" Margin="0,20,0,0" ></Label>
                     <DataGrid ItemsSource="{Binding diagnosisHistory}" SelectedItem="{Binding SelectedDiagnosis}" AutoGenerateColumns="False">
 
                         <DataGrid.Columns>
                             <!-- Exempel på en synlig kolumn -->
-                            <DataGridTextColumn Header="Diagnosis ID" Binding="{Binding diagnosisId}" />
-                            <DataGridTextColumn Header="Diagnosis Description" Binding="{Binding diagnosisDescription}" />
-                            <DataGridTextColumn Header="Date of diagnosis" Binding="{Binding dateOfDiagnosis}" />
-                            <DataGridTextColumn Header="Suggested Treatment" Binding="{Binding treatmentSuggestion}" />
+                            <DataGridTextColumn Header="Diagnosis ID" Binding="{Binding diagnosisId}" Width="85" />
+                            <DataGridTextColumn Header="Diagnosis Description" Binding="{Binding diagnosisDescription}" Width="135" />
+                            <DataGridTextColumn Header="Date of diagnosis" Binding="{Binding dateOfDiagnosis}" Width="125"/>
+                            <DataGridTextColumn Header="Suggested Treatment" Binding="{Binding treatmentSuggestion}" Width="150" />
 
 
                             <!-- Exempel på en kolumn med synlighet som kontrolleras dynamiskt -->
@@ -154,46 +180,15 @@
                     </DataGrid>
                 </StackPanel>
             </Border>
-            <Border Grid.Column="5" Grid.Row="2" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="5" Margin="5,0,0,5" Width="300" >
-                <StackPanel Margin="5">
-                    <Label Content="Choose Date and Time" FontWeight="Bold" />
 
-                    <!-- DatePicker för att välja datum -->
-                    <DatePicker SelectedDate="{Binding AppointmentDate, Mode=TwoWay}" 
-                DisplayDateStart="2022-01-01" DisplayDateEnd="2025-12-31" 
-                SelectedDateFormat="Short" Width="200" HorizontalAlignment="Left" />
 
-                    <Label Content="Select time of day" FontStyle="Italic" FontSize="10" Margin="0,5,0,5" />
-                    <!-- ComboBox för att välja tid på dagen -->
-                    <ComboBox SelectedIndex="{Binding SelectedTimeIndex, Mode=TwoWay}" Width="200" HorizontalAlignment="Left">
-                        <ComboBoxItem>08:00</ComboBoxItem>
-                        <ComboBoxItem>09:00</ComboBoxItem>
-                        <ComboBoxItem>10:00</ComboBoxItem>
-                        <ComboBoxItem>11:00</ComboBoxItem>
-                        <ComboBoxItem>12:00</ComboBoxItem>
-                        <ComboBoxItem>13:00</ComboBoxItem>
-                        <ComboBoxItem>14:00</ComboBoxItem>
-                        <ComboBoxItem>15:00</ComboBoxItem>
-                        <ComboBoxItem>16:00</ComboBoxItem>
-                        <ComboBoxItem>17:00</ComboBoxItem>
-                        <ComboBoxItem>18:00</ComboBoxItem>
-                        <!-- Fyll på med fler alternativ efter behov -->
-                    </ComboBox>
 
-                    <Label Content="Appointment reason" FontStyle="Italic" FontSize="10" Margin="0,5,0,5" />
-                    <TextBox Text="{Binding NewAppointmentReason, UpdateSourceTrigger=PropertyChanged}" 
-             FontSize="10" Height="40" Width="200" HorizontalAlignment="Left" />
+            <StackPanel Grid.Column="1" Grid.Row="4" Orientation="Horizontal" Margin="0,20,0,0">
+            <Button  Content="Schedule new appointment" Width="200" Height="40" Background="Gainsboro" HorizontalAlignment="Left" Margin="0,0,0,0" Command="{Binding OpenAppScheduleView}"></Button>
+            <Button  Content="Manage Prescriptions" Width="200" Height="40" Background="Bisque" HorizontalAlignment="Left" Margin="10,0,0,0"
+                    Command="{Binding Path=DataContext.OpenPrescriptionMgmtCmd ,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"></Button>
 
-                    <Button Content="Schedule new appointment" Width="200" Height="40" Background="Cornsilk" 
-            HorizontalAlignment="Left" Margin="0,20,0,0" Padding="4"
-            Command="{Binding MakeNewAppointmentCmd}" />
-                </StackPanel>
-
-                
-
-            </Border>
-
-            
+            </StackPanel>
 
         </Grid>
 
