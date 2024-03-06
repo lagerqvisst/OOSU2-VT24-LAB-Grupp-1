@@ -10,16 +10,18 @@ namespace TestLayer {
             DrugController drugController = new DrugController();
             DiagnosisController diagnosisController = new DiagnosisController();
 
-            
+
 
             //context.Database.EnsureDeleted();
 
             //context.Database.EnsureCreated();
             //Seed.SeedData(context);
-            
+
 
             //drugController.FillDrugsFromApi();
             //unitOfWork.SeedDBDrugs();
+
+            Console.WriteLine("hejhej");
             
         }
     }
