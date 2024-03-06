@@ -14,8 +14,8 @@
 
     <DockPanel LastChildFill="True">
         <!--MENY START -->
-        <Menu DockPanel.Dock="Top" Background="CornflowerBlue">
-            <MenuItem Header="_File" Background="LightGray">
+        <Menu DockPanel.Dock="Top" Background="Silver">
+            <MenuItem Header="_File" Background="White">
                 <MenuItem Header="Sign out"  Command="{Binding Path=DataContext.SignOutCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Background="Red"></MenuItem>
 
             </MenuItem>
@@ -23,19 +23,21 @@
         <!--MENY SLUT -->
 
         <!--STATUS MESSAGE START -->
-        <StatusBar DockPanel.Dock="Bottom" Background="CornflowerBlue">
+        <StatusBar DockPanel.Dock="Bottom" Background="Silver">
             <TextBlock Text="{Binding DoctorName}" FontStyle="Italic" ></TextBlock>
 
         </StatusBar>
         <!--STATUS MESSAGE slut -->
 
         <!--LÄKARBESÖK FÖR DOCTOR START -->
-        <Grid Background="LightGoldenrodYellow">
+        <Grid Background="LightGray">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10"></ColumnDefinition>
                 <ColumnDefinition Width="464.368"></ColumnDefinition>
                 <ColumnDefinition Width="47.752"/>
                 <ColumnDefinition Width="10"></ColumnDefinition>
+                <ColumnDefinition Width="89*"/>
+                <ColumnDefinition Width="179*"/>
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="1" Margin="10,10,10,10" Grid.ColumnSpan="2">
@@ -57,7 +59,7 @@
 
                 </DataGrid>
 
-                <Button  Content="Choose appointment"  x:Name="btnChosenAppointment" Width="250" HorizontalAlignment="Left" Margin="0,30,0,0" Background="CornflowerBlue" 
+                <Button  Content="Choose appointment"  x:Name="btnChosenAppointment" Width="250" HorizontalAlignment="Left" Margin="0,30,0,0" Background="LightGreen" 
                          Command="{Binding Path=DataContext.OpenAppMgmtCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                          CommandParameter="{Binding ElementName=SelectedAppointment, Path=SelectedItem}" FontFamily="Gineva" Height="25"  MaxWidth="160" FontWeight="UltraLight">
                     <Button.Template>
