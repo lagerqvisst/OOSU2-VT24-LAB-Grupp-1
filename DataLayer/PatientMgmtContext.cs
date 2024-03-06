@@ -14,7 +14,7 @@ namespace DataLayer
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=sqlutb2-db.hb.se, 56077;Database=oosu24xx;User Id=oosu24xx;Password=XXXX;TrustServerCertificate=True;Encrypt=True;");
+            optionsBuilder.UseSqlServer(@"Server=sqlutb2-db.hb.se, 56077;Database=oosu2444;User Id=oosu2444;Password=UML928;TrustServerCertificate=True;Encrypt=True;");
             Console.WriteLine("Test");
 
 

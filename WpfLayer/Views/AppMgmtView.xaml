@@ -44,7 +44,7 @@
             </Grid.RowDefinitions>
         
             <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Orientation="Vertical" >
-                <Label Content="Appointment overview" FontWeight="Bold" FontSize="13"></Label>
+                <Label Content="Appointment overview" FontWeight="Bold" FontSize="15"></Label>
                 <TextBlock Text="{Binding PatientName}" FontSize="10"></TextBlock>
                 <TextBlock  Text="{Binding PatientId}" FontSize="10"></TextBlock>
                 <TextBlock Text="{Binding AppId}" FontSize="10"></TextBlock>
