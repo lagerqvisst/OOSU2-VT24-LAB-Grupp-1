@@ -36,7 +36,7 @@
                 <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Vertical" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="1">
-                <Label  Content="Diagnosis Helper" FontWeight="Bold" FontSize="16" Margin="0,20,0,0"/>
+                <Label  Content="Diagnosis Helper - TEST COMMIT VIA BRANSCH" FontWeight="Bold" FontSize="16" Margin="0,20,0,0"/>
                 <Label  Content="Use the search box below to return medical conditions" FontSize="15" Margin="0,20,0,0" FontFamily="Arial" FontStyle="Normal" Foreground="RoyalBlue"/>
             </StackPanel>
             

@@ -39,11 +39,13 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Column="1" Grid.Row="1" Content="Sign in to your account" FontWeight="Bold" FontSize="15" HorizontalAlignment="Center" Margin="0,20"></Label>
-<<<<<<< Updated upstream
-            <Border Grid.Column="1" Grid.Row="2" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="5" Margin="5,0,0,5" Background="White"  Opacity="0.8">
-=======
+
+           
             <Border Grid.Column="1" Grid.Row="2" BorderBrush="MediumAquamarine" BorderThickness="2" CornerRadius="5" Padding="5" Margin="5,0,0,5" Background="White"  Opacity="0.8">
->>>>>>> Stashed changes
+
+
+           
+
                 <StackPanel>
                     <StackPanel Margin="20,5,5,5">
                         <Label Content="Username"></Label>
