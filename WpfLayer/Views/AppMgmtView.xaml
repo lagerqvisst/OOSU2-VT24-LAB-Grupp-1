@@ -56,8 +56,27 @@
                     <Label Content="Add doctors note" FontWeight="Bold" />
                     <TextBox Name="txtBoxDoctorNote" Text="{Binding DoctorsNote, UpdateSourceTrigger=PropertyChanged}" FontSize="10" 
                         Height="Auto" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"/>
-                    <Button Content="Add note" Width="100" Height="30" Margin="0,10,0,0" Background="LightGreen" x:Name="btnAddDoctorsNote" 
-                        HorizontalAlignment="Left" Command="{Binding Path=DataContext.MakeNoteCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
+                    <Button Content="Add note"
+        Width="100"
+        Height="30"
+        Margin="0,10,0,0"
+        Background="LightGreen"
+        x:Name="btnAddDoctorsNote"
+        HorizontalAlignment="Left"
+        Command="{Binding Path=DataContext.MakeNoteCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+        >
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="15">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
                 </StackPanel>
 
 
@@ -88,8 +107,26 @@
                     <Label Content="Describe suggested treatment (free text)" FontStyle="Italic" FontSize="11" />
                     <TextBox Text="{Binding TreatmentSuggestion, UpdateSourceTrigger=PropertyChanged}" FontSize="11" Height="Auto" Width="400" HorizontalAlignment="Left"
                     AcceptsReturn="True" TextWrapping="Wrap" />
-                    <Button Content="Add diagnosis" Width="100" Height="30" HorizontalAlignment="Left" Margin="0,10,0,0" Background="LightGreen"
-                    Command="{Binding Path=DataContext.MakeDiagnosisCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" />
+                    <Button Content="Add diagnosis"
+        Width="100"
+        Height="30"
+        HorizontalAlignment="Left"
+        Margin="0,10,0,0"
+        Background="LightGreen"
+        Command="{Binding Path=DataContext.MakeDiagnosisCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+        >
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="15">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
                 </StackPanel>
 
             </Border>
