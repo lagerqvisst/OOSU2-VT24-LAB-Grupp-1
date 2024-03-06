@@ -42,7 +42,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
-        
+
             <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Orientation="Vertical" >
                 <Label Content="Appointment overview" FontWeight="Bold" FontSize="15"></Label>
                 <TextBlock Text="{Binding PatientName}" FontSize="10"></TextBlock>
@@ -81,7 +81,7 @@
             <Border Grid.Column="1" Grid.Row="3" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5,10,0,5" Width="Auto">
                 <StackPanel Margin="0,0,0,30">
                     <Label Content="Diagnosis" FontWeight="Bold" />
-                    
+
                     <Label Content="Use drop-down list to choose from stored conditions. Then enter a diagnosis description." FontStyle="Italic" FontSize="11" Margin="0,0,0,20" />
 
                     <StackPanel Orientation="Vertical">
@@ -91,15 +91,15 @@
                             <Button Content="Diagnosis Helper" Margin="10,0,0,0" Padding="4"  HorizontalAlignment="Left" Background="Gold" Command="{Binding OpenDiagnosisHelperCmd}"></Button>
                             <Button Content="?" Width="30"  HorizontalAlignment="Left" Margin="10,0,0,0" Background="DarkGray" Command="{Binding ApiExplained}"></Button>
                         </StackPanel>
-                        
+
                         <Label Content="Diagnosis (free text)" FontStyle="Italic" FontSize="11" Margin="0,10,0,0" />
                         <TextBox Text="{Binding DiagnosisDescription, UpdateSourceTrigger=PropertyChanged}" FontSize="11" Height="Auto" Width="400" HorizontalAlignment="Left"
                         AcceptsReturn="True" TextWrapping="Wrap" Margin="0,0,0,10"/>
-                        
+
                     </StackPanel>
-                    
-                    
-                    
+
+
+
                     <Label Content="Describe suggested treatment (free text)" FontStyle="Italic" FontSize="11" />
                     <TextBox Text="{Binding TreatmentSuggestion, UpdateSourceTrigger=PropertyChanged}" FontSize="11" Height="Auto" Width="400" HorizontalAlignment="Left"
                     AcceptsReturn="True" TextWrapping="Wrap" />
@@ -222,11 +222,11 @@
             Command="{Binding MakeNewAppointmentCmd}" />
                 </StackPanel>
 
-                
+
 
             </Border>
 
-            
+
 
         </Grid>
 
