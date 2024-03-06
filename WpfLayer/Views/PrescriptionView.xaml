@@ -28,8 +28,9 @@
                 <ColumnDefinition Width="250"/>
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="250"/>
                 <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="250"/>
+                
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"/>
@@ -55,7 +56,7 @@
 
             </StackPanel >
             
-                <DataGrid Grid.Column="1" Grid.Row="2"  ItemsSource="{Binding Drugs}" SelectedItem="{Binding SelectedDrug, Mode=TwoWay}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" AutoGenerateColumns="False">
+                <DataGrid Grid.Column="1" Grid.Row="2"  ItemsSource="{Binding Drugs}" SelectedItem="{Binding SelectedDrug, Mode=TwoWay}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" AutoGenerateColumns="False" Background="LightYellow">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Drug ID" Binding="{Binding DrugId}"/>
                         <DataGridTextColumn Header="Description" Binding="{Binding DrugName}"/>
@@ -82,7 +83,7 @@
 
 
             <Label Grid.Column="3" Grid.Row="1" Content="Added drugs" FontWeight="Bold" FontSize="15"/>
-            <DataGrid Grid.Column="3" Grid.Row="2" ItemsSource="{Binding SelectedDrugs}" SelectedItem="{Binding SelectedDrugToRemove, Mode=TwoWay}" AutoGenerateColumns="False">
+            <DataGrid Grid.Column="3" Grid.Row="2" ItemsSource="{Binding SelectedDrugs}" SelectedItem="{Binding SelectedDrugToRemove, Mode=TwoWay}" AutoGenerateColumns="False" Background="Khaki">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Drug ID" Binding="{Binding DrugId}"/>
                     <DataGridTextColumn Header="Description" Binding="{Binding DrugName}"/>
@@ -90,7 +91,7 @@
             </DataGrid>
 
             <Label Grid.Column="5" Grid.Row="1" Content="Prescription History" FontWeight="Bold" FontSize="15"/>
-            <DataGrid x:Name="dgHistory" Grid.Column="5" Grid.Row="2" ItemsSource="{Binding PrescriptionHistory,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedPrescription, Mode=TwoWay}" AutoGenerateColumns="False">
+            <DataGrid x:Name="dgHistory" Grid.Column="5" Grid.Row="2" ItemsSource="{Binding PrescriptionHistory,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedPrescription, Mode=TwoWay}" AutoGenerateColumns="False" Background="AliceBlue">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Prescription ID" Binding="{Binding prescriptionId}"/>
                     <DataGridTextColumn Header="Date" Binding="{Binding dateofPrescription}"/>
@@ -101,11 +102,11 @@
 
             <Button Grid.Column="5" Grid.Row="3" Content="Show Prescription Details (Drugs)" Margin="0,10,0,0" Width="Auto" HorizontalAlignment="Left" Padding="4"
                 Command="{Binding Path=DataContext.ShowDrugsFromPrescriptionCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
-                CommandParameter="{Binding SelectedPrescription}">  
+                CommandParameter="{Binding SelectedPrescription}" Background="Beige">  
             </Button>
 
-            <Label Grid.Column="6" Grid.Row="1" Content="Drugs in selected prescription" FontWeight="Bold" FontSize="15"/>
-            <DataGrid Grid.Column="6" Grid.Row="2" ItemsSource="{Binding DrugsInPrescription,UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False">
+            <Label Grid.Column="7" Grid.Row="1" Content="Drugs in selected prescription" FontWeight="Bold" FontSize="15"/>
+            <DataGrid Grid.Column="7" Grid.Row="2" ItemsSource="{Binding DrugsInPrescription,UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Background="LightGray">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Drug ID" Binding="{Binding DrugId}"/>
                     <DataGridTextColumn Header="Description" Binding="{Binding DrugName}"/>
