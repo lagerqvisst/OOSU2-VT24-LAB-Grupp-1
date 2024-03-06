@@ -29,7 +29,7 @@ namespace WpfLayer.ViewModels
         public ICommand OpenAppMgmtCmd { get; private set; }
         public ICommand SignOutCmd { get; private set; }
 
-        
+        public ICommand DataGridShowDetailsCmd { get; private set; }
 
         public DoctorViewModel(Doctor doctor)
         {
@@ -42,8 +42,7 @@ namespace WpfLayer.ViewModels
             //Initialize commands
             OpenAppMgmtCmd = new RelayCommand(OpenAppointmentManagement, CanOpenAppointmentManagement);
             SignOutCmd = new RelayCommand(SignOut);
-
-            
+            DataGridShowDetailsCmd = new RelayCommand(ShowDetails, CanShowDetails);
         }
 
         // Properties that are binded in XAM
@@ -72,8 +71,19 @@ namespace WpfLayer.ViewModels
             {
                 AppMgmtView appMgmtView = new AppMgmtView(SelectedAppointment);
                 appMgmtView.ShowDialog();
+            }
+        }
 
-               
+        private bool CanShowDetails()
+        {
+            return SelectedAppointment != null;
+        }
+
+        public void ShowDetails()
+        {
+            if (SelectedAppointment != null)
+            {
+                MessageBox.Show($"Doctors note: {SelectedAppointment.doctorsNote}\n\nReason for appointment: {SelectedAppointment.appointmentReason}");
             }
         }
 

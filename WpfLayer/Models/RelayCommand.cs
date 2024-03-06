@@ -7,8 +7,6 @@ using WpfLayer.Commands;
 
 namespace WpfLayer.Models
 {
-    //Här finns RelayCommands XD
-    //Som använder sig av CommandBase
     public class RelayCommand : CommandBase
     {
         private readonly Action _execute = null!;
@@ -41,10 +39,7 @@ namespace WpfLayer.Models
             _execute = execute ?? throw new ArgumentNullException(nameof(execute));
             _canExecute = canExecute;
         }
-
         public override void Execute(object parameter) { _execute((T)parameter); }
-
         public override bool CanExecute(object parameter) => _canExecute == null || _canExecute((T)parameter);
     }
 }
-
