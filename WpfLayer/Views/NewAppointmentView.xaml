@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfLayer.Views"
         mc:Ignorable="d"
-        Title="NewAppointmentView" Height="350" Width="400">
+        Title="NewAppointmentView" Height="350" Width="Auto">
 
     <DockPanel>
 
@@ -29,16 +29,19 @@
                 <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
 
+
+
             <Border Grid.Column="1"  BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Margin="5,15,0,15" Width="300" Padding="4">
                 <StackPanel Margin="5">
                     <Label Content="Choose Date" FontWeight="Bold" />
+
 
                     <!-- DatePicker för att välja datum -->
                     <DatePicker SelectedDate="{Binding AppointmentDate, Mode=TwoWay}" 
                         DisplayDateStart="2022-01-01" DisplayDateEnd="2025-12-31" 
                          SelectedDateFormat="Short" Width="200" HorizontalAlignment="Left" />
 
-                    <Label Content="Select time of day" FontStyle="Italic" FontSize="10" Margin="0,5,0,5" />
+                    <Label Content="Select time of day" FontStyle="Italic" FontSize="10" Margin="0,5,0,0" />
                     <!-- ComboBox för att välja tid på dagen -->
                     <ComboBox SelectedIndex="{Binding SelectedTimeIndex, Mode=TwoWay}" Width="200" HorizontalAlignment="Left">
                         <ComboBoxItem>08:00</ComboBoxItem>
@@ -55,18 +58,15 @@
                         <!-- Fyll på med fler alternativ efter behov -->
                     </ComboBox>
 
-                    <Label Content="Appointment reason" FontStyle="Italic" FontSize="10" Margin="0,5,0,5" />
+                    <Label Content="Appointment reason" FontStyle="Italic" FontSize="10" Margin="0,5,0,0" />
                     <TextBox Text="{Binding NewAppointmentReason, UpdateSourceTrigger=PropertyChanged}" 
-       FontSize="10" Height="40" Width="200" HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto" />
+                    FontSize="10" Height="40" Width="200" HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto" />
 
                     <Button Content="Schedule new appointment" Width="200" Height="40" Background="Cornsilk" 
              HorizontalAlignment="Left" Margin="0,20,0,0" Padding="4"
              Command="{Binding MakeNewAppointmentCmd}" />
                 </StackPanel>
 
-
-
-            </Border>
 
         </Grid>
 
