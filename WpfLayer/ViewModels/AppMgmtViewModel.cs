@@ -65,13 +65,18 @@ namespace WpfLayer.ViewModels
         public ICommand CloseWindowCmd { get; private set; }
         public ICommand DataGridShowDoctorsNoteCmd { get; private set; }
         public ICommand DataGridShowReasonCmd { get; private set; }
-
+        public ICommand DataGridShowDetailsNoteReasonCmd { get; private set; }
         public ICommand DataGridShowDiagnosisCmd { get; private set; }
         public ICommand DataGridShowTreatmentCmd { get; private set; }
+        public ICommand DataGridShowDetailsDiagnosisTreatCmd { get; private set; }
 
         public ICommand ApiExplained { get; private set; }
 
         public ICommand OpenDiagnosisHelperCmd { get; private set; }
+
+        public ICommand OpenAppScheduleView { get; private set; }
+
+        
 
         public AppMgmtViewModel(Appointment appointment)
         {
@@ -81,12 +86,11 @@ namespace WpfLayer.ViewModels
             OpenPrescriptionMgmtCmd = new RelayCommand(OpenPrescriptionView, CanOpenPrescriptionView);
             MakeNewAppointmentCmd = new RelayCommand(MakeNewAppointment, CanMakeNewAppointment);
             CloseWindowCmd = new RelayCommand(CloseWidnow);
-            DataGridShowDoctorsNoteCmd = new RelayCommand(OpenAppointmentDocNote, CanOpenAppointmentDocNote);
-            DataGridShowReasonCmd = new RelayCommand(OpenAppointmentReason, CanOpenAppointmentReason);
-            DataGridShowDiagnosisCmd = new RelayCommand(OpenDiagnosisDescription, CanOpenDiagnosDescription);
-            DataGridShowTreatmentCmd = new RelayCommand(OpenDiagnosisTreatment, CanOpenDiagnosisTreatment);
             ApiExplained = new RelayCommand(ApiExplaination);
             OpenDiagnosisHelperCmd = new RelayCommand(OpenDiagnosisHelper);
+            OpenAppScheduleView = new RelayCommand(OpenAppScheduleViewer);
+            DataGridShowDetailsNoteReasonCmd = new RelayCommand(OpenExpandedDetailsNoteReason, CanOpenExpandedDetailsNoteReason);
+            DataGridShowDetailsDiagnosisTreatCmd = new RelayCommand(OpenExpandedDetailsDiagnosisTreat, CanOpenExpandedDetailsDiagnosisTreat);
 
             //Property values assigned.
             this.appointment = appointment;
@@ -105,6 +109,9 @@ namespace WpfLayer.ViewModels
             patientAppointmentHistory = new ObservableCollection<Appointment>(appointmentController.GetPatientAppointments(patient));
             diagnosisHistory = new ObservableCollection<Diagnosis>(diagnosisController.PatientDiagnosis(patient));
             medicalConditions = new ObservableCollection<String>(diagnosisController.ExtractMedicalConditionsFromApi());
+
+            
+
         }
 
         // Properties that are binded in XAML
@@ -372,64 +379,47 @@ namespace WpfLayer.ViewModels
             NewAppointmentReason = "";
         }
 
-
-
-        private bool CanOpenAppointmentDocNote()
+        private bool CanOpenExpandedDetailsNoteReason()
         {
             return SelectedAppointment != null;
         }
 
-        private void OpenAppointmentDocNote()
+        private void OpenExpandedDetailsNoteReason()
         {
             if (SelectedAppointment != null)
             {
-                SelectedAppointmentDoctorsNote = SelectedAppointment.doctorsNote;
-                MessageBox.Show($"Expanded note: {SelectedAppointmentDoctorsNote} ");
+                MessageBox.Show($"Doctors note: {SelectedAppointment.doctorsNote}\n\nReason for appointment: {SelectedAppointment.appointmentReason}");
             }
         }
 
-        private bool CanOpenAppointmentReason()
-        {
-            return SelectedAppointment != null;
-        }
-
-        private void OpenAppointmentReason()
-        {
-            if (SelectedAppointment != null)
-            {
-                SelectedAppointmentReason = SelectedAppointment.appointmentReason;
-                MessageBox.Show($"Expanded note: {SelectedAppointmentReason} ");
-            }
-        }
-
-        public bool CanOpenDiagnosDescription()
+        private bool CanOpenExpandedDetailsDiagnosisTreat()
         {
             return SelectedDiagnosis != null;
         }
 
-        public void OpenDiagnosisDescription()
+        public void OpenExpandedDetailsDiagnosisTreat()
         {
             if (SelectedDiagnosis != null)
             {
-                SelectedDiagnosisDescription = SelectedDiagnosis.diagnosisDescription;
-                MessageBox.Show($"Expanded note: {SelectedDiagnosisDescription} ");
+                MessageBox.Show($"Diagnosis description: {SelectedDiagnosis.diagnosisDescription}\n\nTreatment suggestion: {SelectedDiagnosis.treatmentSuggestion}");
             }
         }
-
-        public bool CanOpenDiagnosisTreatment()
+        public void OpenAppScheduleViewer()
         {
-            return SelectedDiagnosis != null;
+            NewAppointmentView appScheduleView = new NewAppointmentView(doctor, patient, UpdateAppointmentHistory);
+            appScheduleView.ShowDialog();
         }
 
-        public void OpenDiagnosisTreatment()
+        private void UpdateAppointmentHistory(ObservableCollection<Appointment> updatedAppointments)
         {
-            if (SelectedDiagnosis != null)
+            // Uppdatera appointmentHistory här
+            PatientAppointmentHistory.Clear();
+            foreach (var appointment in updatedAppointments)
             {
-                SelectedTreatmentSuggestion = SelectedDiagnosis.treatmentSuggestion;
-                MessageBox.Show($"Expanded note: {SelectedTreatmentSuggestion} ");
+                PatientAppointmentHistory.Add(appointment);
             }
         }
-        
+
 
         //Other Methods for navigation
         private void CloseWidnow()

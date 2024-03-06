@@ -61,10 +61,25 @@
 
 
                     <Button Content="Log in" Width="100" HorizontalAlignment="Left" Margin="20,5,5,5" Background="MediumAquamarine" Command="{Binding SignInCommand}" Padding="2" BorderThickness="0" Foreground="White">
+                    <Button Content="Log in" Width="100" HorizontalAlignment="Left" Margin="20,5,5,5" Background="MediumAquamarine" Command="{Binding SignInCommand}" Padding="10" BorderThickness="0" Foreground="White">
                         <Button.Effect>
                             <DropShadowEffect Color="Black" BlurRadius="5" ShadowDepth="3" Opacity="0.6"/>
                         </Button.Effect>
                        
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid>
+                                    <Rectangle Fill="{TemplateBinding Background}" RadiusX="5" RadiusY="5"/>
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
+
+                    
+     
+
+
+
                     </Button>
 
                 </StackPanel>

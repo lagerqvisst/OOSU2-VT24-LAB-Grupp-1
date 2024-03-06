@@ -5,64 +5,67 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfLayer.Views"
         mc:Ignorable="d"
-        Title="DoctorView" Height="601" Width="800">
-    
-    
-
-
-
+        Title="DoctorView" SizeToContent="WidthAndHeight">
 
     <DockPanel LastChildFill="True">
         <!--MENY START -->
-        <Menu DockPanel.Dock="Top">
-            <MenuItem Header="_File">
+        <Menu DockPanel.Dock="Top" Background="Silver">
+            <MenuItem Header="_File" Background="White">
                 <MenuItem Header="Sign out"  Command="{Binding Path=DataContext.SignOutCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Background="Red"></MenuItem>
-
             </MenuItem>
         </Menu>
         <!--MENY SLUT -->
 
         <!--STATUS MESSAGE START -->
-        <StatusBar DockPanel.Dock="Bottom">
-            <TextBlock Text="{Binding DoctorName}" FontStyle="Normal" Foreground="Cornsilk"></TextBlock>
-
+        <StatusBar DockPanel.Dock="Bottom" Background="Silver">
+            <TextBlock Text="{Binding DoctorName}" FontStyle="Italic" ></TextBlock>
         </StatusBar>
         <!--STATUS MESSAGE slut -->
 
         <!--LÄKARBESÖK FÖR DOCTOR START -->
+
+        
+       
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition Width="10"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
             
-                <StackPanel Grid.Column="1" Margin="10,10,10,10">
+
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="10"/>
+
+            </Grid.ColumnDefinitions>
+
+
+            <StackPanel Grid.Column="1" Margin="10,10,10,10" Grid.ColumnSpan="1">
                 <Label Content="Select an appointment below to proceed" FontWeight="DemiBold"></Label>
-                <DataGrid Name="dgAppointment" ItemsSource="{Binding Appointments}" SelectedItem="{Binding SelectedAppointment, Mode=TwoWay}" AutoGenerateColumns="False" >
+                <DataGrid Name="dgAppointment" ItemsSource="{Binding Appointments}" SelectedItem="{Binding SelectedAppointment, Mode=TwoWay}" AutoGenerateColumns="False" Background="#CEE6F2" >
 
                     <DataGrid.Columns>
-                        
-                        <DataGridTextColumn Header="Appointment ID" Binding="{Binding appointmentId}" Foreground="Black" />
-                        <DataGridTextColumn Header="Patient Name" Binding="{Binding patientName}" />
-                        <DataGridTextColumn Header="Date" Binding="{Binding appointmentDate}" />
-                        <DataGridTextColumn Header="Reason" Binding="{Binding appointmentReason}" />
-                        <DataGridTextColumn Header="Doctor" Binding="{Binding doctorName}" />
-                        <DataGridTextColumn Header="Note from doctor" Binding="{Binding doctorsNote}" />
-                        <DataGridTextColumn Header="Scheduled by" Binding="{Binding receptionistName}" />
+                        <DataGridTextColumn Header="App ID" Binding="{Binding appointmentId}" Width="50" />
+                        <DataGridTextColumn Header="Patient Name" Binding="{Binding patientName}" Width="Auto" />
+                        <DataGridTextColumn Header="Date" Binding="{Binding appointmentDate}" Width="Auto" />
+                        <DataGridTextColumn Header="Reason" Binding="{Binding appointmentReason}" Width="50" />
+                        <DataGridTextColumn Header="Doctor" Binding="{Binding doctorName}" Width="Auto" />
+                        <DataGridTextColumn Header="Doctors note" Binding="{Binding doctorsNote}" Width="80"/>
+                        <DataGridTextColumn Header="Scheduled by" Binding="{Binding receptionistName}" Width="Auto"/>
 
-                        
-                    </DataGrid.Columns>
 
+                </DataGrid.Columns>
                 </DataGrid>
-                
-                <Button  Content="Choose appointment"  x:Name="btnChosenAppointment" Width="250" HorizontalAlignment="Left" Margin="0,30,0,0"  Background="ForestGreen"
-                         Command="{Binding Path=DataContext.OpenAppMgmtCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
-                         CommandParameter="{Binding ElementName=SelectedAppointment, Path=SelectedItem}">
-                </Button>
+
+                <Button  Content="Choose appointment"  x:Name="btnChosenAppointment" Width="250" HorizontalAlignment="Left" Margin="0,30,0,0" Background="LightGreen" 
+                        Command="{Binding Path=DataContext.OpenAppMgmtCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                        CommandParameter="{Binding ElementName=SelectedAppointment, Path=SelectedItem}" FontFamily="Gineva" Height="25"  MaxWidth="160" FontWeight="UltraLight"></Button>
 
             </StackPanel>
+              
 
+
+                <Button Grid.Column="3" Content="Show expanded details" Command="{Binding DataGridShowDetailsCmd}" Width="200" Height="30"  FontSize="13" FontStyle="Italic" HorizontalAlignment="Right"  Padding="4" Background="Bisque" Margin="0,0,10,22"></Button>
 
         </Grid>
 
