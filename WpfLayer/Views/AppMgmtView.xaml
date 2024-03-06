@@ -50,27 +50,23 @@
                 <TextBlock Text="{Binding AppId}" FontSize="10"></TextBlock>
                 <TextBlock  Text="{Binding AppointmentReason}" FontSize="10"></TextBlock>
             </StackPanel>
-            <Border Grid.Column="1" Grid.Row="2" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5,15,0,5" Width="Auto" Height="150">
+            <Border Grid.Column="1" Grid.Row="2" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5,0,0,5" Width="Auto" Height="200">
 
-                <StackPanel Margin="0,15,0,30">
-                    <Label Content="Add doctors note" FontWeight="Bold" />
-                    <TextBox Name="txtBoxDoctorNote" Text="{Binding DoctorsNote, UpdateSourceTrigger=PropertyChanged}" FontSize="10" 
-                        Height="Auto" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"/>
-                    <Button Content="Add note"
-        Width="100"
-        Height="30"
-        Margin="0,10,0,0"
-        Background="LightGreen"
-        x:Name="btnAddDoctorsNote"
-        HorizontalAlignment="Left"
-        Command="{Binding Path=DataContext.MakeNoteCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                <StackPanel Margin="0,0,0,0">
+                    <Label Content="Add doctors note" FontWeight="Bold"/>
+                    <Label Content="(free text)" FontStyle="Italic" FontSize="11" Margin="0,0,0,0" />
+                    <TextBox Name="txtBoxDoctorNote" Text="{Binding DoctorsNote, UpdateSourceTrigger=PropertyChanged}" FontSize="10"  Margin="5,10,0,0"
+                        Height="50" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"/>
+                    <Button Content="Add note" Width="100" Height="30" Background="LightGreen" HorizontalAlignment="Left" Margin="5,30,0,0"
+                        x:Name="btnAddDoctorsNote" Command="{Binding Path=DataContext.MakeNoteCmd, 
+                        RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
         >
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Background="{TemplateBinding Background}"
-                    BorderBrush="{TemplateBinding BorderBrush}"
-                    BorderThickness="{TemplateBinding BorderThickness}"
-                    CornerRadius="15">
+                                 BorderBrush="{TemplateBinding BorderBrush}"
+                                 BorderThickness="{TemplateBinding BorderThickness}"
+                                 CornerRadius="15">
                                     <ContentPresenter HorizontalAlignment="Center"
                                   VerticalAlignment="Center"/>
                                 </Border>
@@ -155,13 +151,13 @@
 
                         <DataGrid.Columns>
 
-                            <DataGridTextColumn Header="Appointment ID" Binding="{Binding appointmentId}" />
-                            <DataGridTextColumn Header="Patient Name" Binding="{Binding patientName}" />
-                            <DataGridTextColumn Header="Date" Binding="{Binding appointmentDate}" />
-                            <DataGridTextColumn Header="Reason" Binding="{Binding appointmentReason}" />
-                            <DataGridTextColumn Header="Doctor" Binding="{Binding doctorName}" />
-                            <DataGridTextColumn Header="Note from doctor" Binding="{Binding doctorsNote}" />
-                            <DataGridTextColumn Header="Scheduled by" Binding="{Binding receptionistName}" />
+                            <DataGridTextColumn Header="App ID" Binding="{Binding appointmentId}" Width="50" />
+                            <DataGridTextColumn Header="Patient Name" Binding="{Binding patientName}" Width="*" />
+                            <DataGridTextColumn Header="Date" Binding="{Binding appointmentDate}" Width="*" />
+                            <DataGridTextColumn Header="Reason" Binding="{Binding appointmentReason}" Width="50" />
+                            <DataGridTextColumn Header="Doctor" Binding="{Binding doctorName}" Width="*" />
+                            <DataGridTextColumn Header="Note" Binding="{Binding doctorsNote}" Width="40" />
+                            <DataGridTextColumn Header="Scheduled by" Binding="{Binding receptionistName}" Width="*" />
 
 
                         </DataGrid.Columns>
@@ -179,10 +175,10 @@
 
                         <DataGrid.Columns>
                             <!-- Exempel på en synlig kolumn -->
-                            <DataGridTextColumn Header="Diagnosis ID" Binding="{Binding diagnosisId}" />
-                            <DataGridTextColumn Header="Diagnosis Description" Binding="{Binding diagnosisDescription}" />
-                            <DataGridTextColumn Header="Date of diagnosis" Binding="{Binding dateOfDiagnosis}" />
-                            <DataGridTextColumn Header="Suggested Treatment" Binding="{Binding treatmentSuggestion}" />
+                            <DataGridTextColumn Header="Diagnosis ID" Binding="{Binding diagnosisId}" Width="85" />
+                            <DataGridTextColumn Header="Diagnosis Description" Binding="{Binding diagnosisDescription}" Width="135" />
+                            <DataGridTextColumn Header="Date of diagnosis" Binding="{Binding dateOfDiagnosis}" Width="125"/>
+                            <DataGridTextColumn Header="Suggested Treatment" Binding="{Binding treatmentSuggestion}" Width="150" />
 
 
                             <!-- Exempel på en kolumn med synlighet som kontrolleras dynamiskt -->
