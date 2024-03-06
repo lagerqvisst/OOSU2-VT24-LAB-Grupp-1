@@ -18,6 +18,7 @@ namespace WpfLayer.ViewModels
         private DateTime appointmentDate = DateTime.Now;
         private int selectedTimeIndex;
         private string newAppointmentReason;
+        private string statusbarMessage;
 
         public Appointment newAppointment;
         public Doctor doctor; 
@@ -28,6 +29,8 @@ namespace WpfLayer.ViewModels
         {
             this.doctor = doctor;
             this.patient = patient;
+
+            statusbarMessage = $"Appointment Scheduler activated.\n\nNew appointment for Doctor: {doctor.name} (ID: {doctor.doctorID})\n\nPatient: {patient.name} ({patient.patientId})";
 
             MakeNewAppointmentCmd = new RelayCommand(MakeNewAppointment, CanMakeNewAppointment);
             ReturnToPreviousWindowCmd = new RelayCommand(CloseWidnow);
@@ -59,6 +62,16 @@ namespace WpfLayer.ViewModels
             {
                 newAppointmentReason = value;
                 OnPropertyChanged("NewAppointmentReason");
+            }
+        }
+
+        public string StatusbarMessage
+        {
+            get { return statusbarMessage; }
+            set
+            {
+                statusbarMessage = value;
+                OnPropertyChanged("StatusbarMessage");
             }
         }
 

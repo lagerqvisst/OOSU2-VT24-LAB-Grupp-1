@@ -52,7 +52,7 @@
                 <TextBlock Text="{Binding AppId}" FontSize="10" Foreground="White"></TextBlock>
                 <TextBlock  Text="{Binding AppointmentReason}" FontSize="10" Foreground="White"></TextBlock>
             </StackPanel>
-            <Border Grid.Column="1" Grid.Row="2" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5,0,0,5" Width="Auto" Height="200">
+            <Border Grid.Column="1" Grid.Row="2"  BorderThickness="1" CornerRadius="5" Padding="10" Margin="5,0,0,5" Width="Auto" Height="200">
 
                 <StackPanel Margin="0,0,0,0" Background="White">
                     
@@ -81,11 +81,11 @@
 
 
             </Border>
-            <Border Grid.Column="1" Grid.Row="3" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5,10,0,5" Width="Auto">
+            <Border Grid.Column="1" Grid.Row="3"  BorderThickness="1" CornerRadius="5" Padding="10" Margin="5,10,0,5" Width="Auto">
                 <StackPanel Margin="0,0,0,30">
                     <Label Content="Diagnosis" FontWeight="Bold" Foreground="White" />
 
-                    <Label Content="Use drop-down list to choose from stored conditions. Then enter a diagnosis description." FontStyle="Italic" FontSize="11" Margin="0,0,0,20" Background="White" />
+                    <Label Content="Use drop-down list to choose from stored conditions. Then enter a diagnosis description." FontStyle="Italic" FontSize="11" Margin="0,0,0,20" Foreground="White" Background="#22202f" />
 
                     <StackPanel Orientation="Vertical" Background="White">
                         <Label Content="Choose a Medical condition (API)" FontStyle="Italic" FontSize="12" />
@@ -135,7 +135,7 @@
 
             <Label Grid.Column="3" Grid.Row="1" Content="Patient History" FontWeight="Bold" Foreground="White" FontSize="20"></Label>
 
-            <Border  Grid.Column="3" Grid.Row="2" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5,0,0,5">
+            <Border  Grid.Column="3" Grid.Row="2" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5,0,0,5">
                 <StackPanel Background="White">
                     <Button Content="Show expanded details" Command="{Binding DataGridShowDetailsNoteReasonCmd}"  Width="200" Height="30"  FontSize="12" FontStyle="Italic" HorizontalAlignment="Right"  Padding="4" Background="Bisque" Margin="10,10,10,0"></Button>
                     
@@ -159,7 +159,7 @@
                     </DataGrid>
                 </StackPanel>
             </Border>
-            <Border Grid.Column="3" Grid.Row="3" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5,10,0,5" Width="Auto">
+            <Border Grid.Column="3" Grid.Row="3"  BorderThickness="1" CornerRadius="5" Padding="10" Margin="5,10,0,5" Width="Auto">
                 <StackPanel Background="White" >
                     <Button Content="Show expanded details" Command="{Binding DataGridShowDetailsDiagnosisTreatCmd}"  Width="200" Height="30"  FontSize="12" FontStyle="Italic" HorizontalAlignment="Right"  Padding="4" Background="Bisque" Margin="10,10,10,0"></Button>
                     <Label Content="Diagnosis and Treatment history" FontWeight="SemiBold" Margin="0,20,0,0" ></Label>

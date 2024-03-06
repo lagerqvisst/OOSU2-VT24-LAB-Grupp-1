@@ -18,7 +18,7 @@
 
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem>
-                <TextBlock Text="{Binding StatusBarMessage}"/>
+                <TextBlock Text="{Binding StatusbarMessage}"/>
             </StatusBarItem>
         </StatusBar>
 
@@ -29,9 +29,9 @@
                 <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
 
-            <Border Grid.Column="1"  BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Margin="5,15,0,15" Width="Auto" Padding="4">
+            <Border Grid.Column="1"  BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Margin="5,15,0,15" Width="300" Padding="4">
                 <StackPanel Margin="5">
-                    <Label Content="Choose Date and Time" FontWeight="Bold" />
+                    <Label Content="Choose Date" FontWeight="Bold" />
 
                     <!-- DatePicker för att välja datum -->
                     <DatePicker SelectedDate="{Binding AppointmentDate, Mode=TwoWay}" 
