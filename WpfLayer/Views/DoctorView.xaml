@@ -29,6 +29,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="10"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="10"/>
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="1" Margin="10,10,10,10" Grid.ColumnSpan="1">
