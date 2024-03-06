@@ -264,6 +264,9 @@ namespace WpfLayer.ViewModels
             return !string.IsNullOrEmpty(DoctorsNote);
         }
 
+        //kommentar för att testa så att gitten funkar :D
+        // den funkar inte lolz
+
         private void MakeNote()
         {
             if (appointment != null)
