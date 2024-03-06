@@ -1,5 +1,6 @@
 ﻿using EntityLayer;
 using EntityLayer.Junction;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,8 @@ namespace DataLayer
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\Local;Database=PatientMgmt;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=sqlutb2-db.hb.se, 56077;Database=oosu24xx;User Id=oosu24xx;Password=XXXX;TrustServerCertificate=True;Encrypt=True;");
+            Console.WriteLine("Test");
 
 
 
@@ -40,6 +42,28 @@ namespace DataLayer
                 .HasForeignKey(pd => pd.drugId);
 
 
+        }
+        public void Reset()
+        {
+            #region Remove Tables
+            using (SqlConnection conn = new SqlConnection(Database.GetConnectionString()))
+            using (SqlCommand cmd = new SqlCommand("EXEC sp_msforeachtable 'ALTER TABLE ? NOCHECK CONSTRAINT all'; EXEC sp_msforeachtable 'DROP TABLE ?'", conn))
+            {
+                conn.Open();
+                for (int i = 0; i < 5; i++)
+                {
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (System.Exception)
+                    {
+                        // throw;
+                    }
+                }
+                conn.Close();
+            }
+            #endregion
         }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Receptionist> Receptionists { get; set; }
