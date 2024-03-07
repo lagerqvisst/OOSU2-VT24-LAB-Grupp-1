@@ -44,12 +44,14 @@
             // 
             // returnFromView
             // 
+            returnFromView.BackColor = SystemColors.Info;
+            returnFromView.Cursor = Cursors.Hand;
             returnFromView.Location = new Point(22, 395);
             returnFromView.Name = "returnFromView";
             returnFromView.Size = new Size(104, 27);
             returnFromView.TabIndex = 1;
             returnFromView.Text = "Return";
-            returnFromView.UseVisualStyleBackColor = true;
+            returnFromView.UseVisualStyleBackColor = false;
             returnFromView.Click += returnFromView_Click;
             // 
             // label1

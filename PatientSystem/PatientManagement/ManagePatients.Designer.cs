@@ -97,13 +97,15 @@
             // 
             // btnReturnToMainMenu
             // 
+            btnReturnToMainMenu.BackColor = SystemColors.Info;
+            btnReturnToMainMenu.Cursor = Cursors.Hand;
             btnReturnToMainMenu.Font = new Font("Segoe UI", 8.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
             btnReturnToMainMenu.Location = new Point(2, 379);
             btnReturnToMainMenu.Name = "btnReturnToMainMenu";
             btnReturnToMainMenu.Size = new Size(118, 23);
             btnReturnToMainMenu.TabIndex = 5;
             btnReturnToMainMenu.Text = "Return to main menu";
-            btnReturnToMainMenu.UseVisualStyleBackColor = true;
+            btnReturnToMainMenu.UseVisualStyleBackColor = false;
             btnReturnToMainMenu.Click += btnReturnToMainMenu_Click;
             // 
             // btnSearchPatients

@@ -70,22 +70,26 @@
             // 
             // btnRefreshGrid
             // 
+            btnRefreshGrid.BackColor = SystemColors.Info;
+            btnRefreshGrid.Cursor = Cursors.Hand;
             btnRefreshGrid.Location = new Point(662, 352);
             btnRefreshGrid.Name = "btnRefreshGrid";
             btnRefreshGrid.Size = new Size(98, 26);
             btnRefreshGrid.TabIndex = 3;
             btnRefreshGrid.Text = "Refresh data";
-            btnRefreshGrid.UseVisualStyleBackColor = true;
+            btnRefreshGrid.UseVisualStyleBackColor = false;
             btnRefreshGrid.Click += btnRefreshGrid_Click;
             // 
             // btnReturn
             // 
+            btnReturn.BackColor = SystemColors.Info;
+            btnReturn.Cursor = Cursors.Hand;
             btnReturn.Location = new Point(43, 420);
             btnReturn.Name = "btnReturn";
             btnReturn.Size = new Size(80, 22);
             btnReturn.TabIndex = 4;
             btnReturn.Text = "Return";
-            btnReturn.UseVisualStyleBackColor = true;
+            btnReturn.UseVisualStyleBackColor = false;
             btnReturn.Click += btnReturn_Click;
             // 
             // UpdateAppointmentView

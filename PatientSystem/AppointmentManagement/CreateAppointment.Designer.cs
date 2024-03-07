@@ -45,12 +45,14 @@
             // 
             // btnReturnFromCreate
             // 
+            btnReturnFromCreate.BackColor = SystemColors.Info;
+            btnReturnFromCreate.Cursor = Cursors.Hand;
             btnReturnFromCreate.Location = new Point(23, 515);
             btnReturnFromCreate.Name = "btnReturnFromCreate";
             btnReturnFromCreate.Size = new Size(162, 50);
             btnReturnFromCreate.TabIndex = 0;
             btnReturnFromCreate.Text = "Return";
-            btnReturnFromCreate.UseVisualStyleBackColor = true;
+            btnReturnFromCreate.UseVisualStyleBackColor = false;
             btnReturnFromCreate.Click += btnReturnFromCreate_Click;
             // 
             // dataGridViewPatients

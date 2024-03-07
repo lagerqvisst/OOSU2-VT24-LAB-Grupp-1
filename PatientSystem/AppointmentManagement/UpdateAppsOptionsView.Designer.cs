@@ -95,42 +95,50 @@
             // 
             // btnUpdateDate
             // 
+            btnUpdateDate.BackColor = SystemColors.Info;
+            btnUpdateDate.Cursor = Cursors.Hand;
             btnUpdateDate.Location = new Point(317, 73);
             btnUpdateDate.Name = "btnUpdateDate";
             btnUpdateDate.Size = new Size(93, 24);
             btnUpdateDate.TabIndex = 6;
             btnUpdateDate.Text = "Update";
-            btnUpdateDate.UseVisualStyleBackColor = true;
+            btnUpdateDate.UseVisualStyleBackColor = false;
             btnUpdateDate.Click += btnUpdateDate_Click;
             // 
             // btnUpdateReason
             // 
+            btnUpdateReason.BackColor = SystemColors.Info;
+            btnUpdateReason.Cursor = Cursors.Hand;
             btnUpdateReason.Location = new Point(317, 140);
             btnUpdateReason.Name = "btnUpdateReason";
             btnUpdateReason.Size = new Size(93, 23);
             btnUpdateReason.TabIndex = 7;
             btnUpdateReason.Text = "Update";
-            btnUpdateReason.UseVisualStyleBackColor = true;
+            btnUpdateReason.UseVisualStyleBackColor = false;
             btnUpdateReason.Click += btnUpdateReason_Click;
             // 
             // btnReturnFromAppUpdateOps
             // 
+            btnReturnFromAppUpdateOps.BackColor = SystemColors.Info;
+            btnReturnFromAppUpdateOps.Cursor = Cursors.Hand;
             btnReturnFromAppUpdateOps.Location = new Point(31, 398);
             btnReturnFromAppUpdateOps.Name = "btnReturnFromAppUpdateOps";
             btnReturnFromAppUpdateOps.Size = new Size(71, 25);
             btnReturnFromAppUpdateOps.TabIndex = 8;
             btnReturnFromAppUpdateOps.Text = "Return";
-            btnReturnFromAppUpdateOps.UseVisualStyleBackColor = true;
+            btnReturnFromAppUpdateOps.UseVisualStyleBackColor = false;
             btnReturnFromAppUpdateOps.Click += btnReturnFromAppUpdateOps_Click;
             // 
             // btnUpdateDoctor
             // 
+            btnUpdateDoctor.BackColor = SystemColors.Info;
+            btnUpdateDoctor.Cursor = Cursors.Hand;
             btnUpdateDoctor.Location = new Point(317, 212);
             btnUpdateDoctor.Name = "btnUpdateDoctor";
             btnUpdateDoctor.Size = new Size(93, 24);
             btnUpdateDoctor.TabIndex = 9;
             btnUpdateDoctor.Text = "Update";
-            btnUpdateDoctor.UseVisualStyleBackColor = true;
+            btnUpdateDoctor.UseVisualStyleBackColor = false;
             btnUpdateDoctor.Click += btnUpdateDoctor_Click;
             // 
             // UpdateAppsOptionsView

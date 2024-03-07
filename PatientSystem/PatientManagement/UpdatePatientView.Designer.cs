@@ -38,12 +38,14 @@
             // 
             // btnReturnFromUpdateview
             // 
+            btnReturnFromUpdateview.BackColor = SystemColors.Info;
+            btnReturnFromUpdateview.Cursor = Cursors.Hand;
             btnReturnFromUpdateview.Location = new Point(49, 386);
             btnReturnFromUpdateview.Name = "btnReturnFromUpdateview";
             btnReturnFromUpdateview.Size = new Size(119, 31);
             btnReturnFromUpdateview.TabIndex = 0;
             btnReturnFromUpdateview.Text = "Return";
-            btnReturnFromUpdateview.UseVisualStyleBackColor = true;
+            btnReturnFromUpdateview.UseVisualStyleBackColor = false;
             btnReturnFromUpdateview.Click += btnReturnFromUpdateview_Click;
             // 
             // label1
