@@ -71,7 +71,7 @@
             // 
             btnSelectPatientToUpdate.BackColor = Color.LimeGreen;
             btnSelectPatientToUpdate.Cursor = Cursors.Hand;
-            btnSelectPatientToUpdate.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSelectPatientToUpdate.Font = new Font("Arial", 9F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
             btnSelectPatientToUpdate.Location = new Point(49, 313);
             btnSelectPatientToUpdate.Name = "btnSelectPatientToUpdate";
             btnSelectPatientToUpdate.Size = new Size(195, 34);

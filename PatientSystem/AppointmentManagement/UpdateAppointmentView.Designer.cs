@@ -59,6 +59,7 @@
             // 
             btnSelectAppToUpdate.BackColor = Color.LimeGreen;
             btnSelectAppToUpdate.Cursor = Cursors.Hand;
+            btnSelectAppToUpdate.Font = new Font("Arial", 9F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
             btnSelectAppToUpdate.ForeColor = SystemColors.ActiveCaptionText;
             btnSelectAppToUpdate.Location = new Point(37, 352);
             btnSelectAppToUpdate.Name = "btnSelectAppToUpdate";

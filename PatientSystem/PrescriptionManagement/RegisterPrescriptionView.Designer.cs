@@ -103,7 +103,7 @@
             // 
             btnCreatePrescription.BackColor = Color.LimeGreen;
             btnCreatePrescription.Cursor = Cursors.Hand;
-            btnCreatePrescription.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCreatePrescription.Font = new Font("Arial", 9F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
             btnCreatePrescription.Location = new Point(605, 290);
             btnCreatePrescription.Name = "btnCreatePrescription";
             btnCreatePrescription.Size = new Size(403, 47);

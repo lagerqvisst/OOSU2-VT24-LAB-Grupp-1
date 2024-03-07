@@ -130,7 +130,7 @@
             // 
             btnScheduleAppointment.BackColor = Color.LimeGreen;
             btnScheduleAppointment.Cursor = Cursors.Hand;
-            btnScheduleAppointment.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnScheduleAppointment.Font = new Font("Arial", 9F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
             btnScheduleAppointment.ForeColor = SystemColors.ActiveCaptionText;
             btnScheduleAppointment.Location = new Point(619, 400);
             btnScheduleAppointment.Name = "btnScheduleAppointment";

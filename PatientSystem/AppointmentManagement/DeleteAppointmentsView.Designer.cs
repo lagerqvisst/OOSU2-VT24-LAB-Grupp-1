@@ -60,7 +60,7 @@
             // 
             btnDeleteSelectedAppointment.BackColor = Color.LimeGreen;
             btnDeleteSelectedAppointment.Cursor = Cursors.Hand;
-            btnDeleteSelectedAppointment.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDeleteSelectedAppointment.Font = new Font("Arial", 9F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
             btnDeleteSelectedAppointment.ForeColor = Color.Black;
             btnDeleteSelectedAppointment.Location = new Point(47, 310);
             btnDeleteSelectedAppointment.Name = "btnDeleteSelectedAppointment";
