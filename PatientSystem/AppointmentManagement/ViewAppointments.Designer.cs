@@ -36,12 +36,14 @@
             // 
             // btnReturnFromViewApps
             // 
+            btnReturnFromViewApps.BackColor = SystemColors.Info;
+            btnReturnFromViewApps.Cursor = Cursors.Hand;
             btnReturnFromViewApps.Location = new Point(34, 339);
             btnReturnFromViewApps.Name = "btnReturnFromViewApps";
             btnReturnFromViewApps.Size = new Size(75, 23);
             btnReturnFromViewApps.TabIndex = 0;
             btnReturnFromViewApps.Text = "Return";
-            btnReturnFromViewApps.UseVisualStyleBackColor = true;
+            btnReturnFromViewApps.UseVisualStyleBackColor = false;
             btnReturnFromViewApps.Click += btnReturnFromViewApps_Click;
             // 
             // dataGridViewAppointments

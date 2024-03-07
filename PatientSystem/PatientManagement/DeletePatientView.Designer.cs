@@ -37,12 +37,14 @@
             // 
             // btnReturnFromDeleteView
             // 
+            btnReturnFromDeleteView.BackColor = SystemColors.Info;
+            btnReturnFromDeleteView.Cursor = Cursors.Hand;
             btnReturnFromDeleteView.Location = new Point(26, 392);
             btnReturnFromDeleteView.Name = "btnReturnFromDeleteView";
             btnReturnFromDeleteView.Size = new Size(119, 46);
             btnReturnFromDeleteView.TabIndex = 0;
             btnReturnFromDeleteView.Text = "Return";
-            btnReturnFromDeleteView.UseVisualStyleBackColor = true;
+            btnReturnFromDeleteView.UseVisualStyleBackColor = false;
             btnReturnFromDeleteView.Click += btnReturnFromDeleteView_Click;
             // 
             // textselecttodelte

@@ -101,12 +101,14 @@
             // 
             // btnBackFromCreate
             // 
+            btnBackFromCreate.BackColor = SystemColors.Info;
+            btnBackFromCreate.Cursor = Cursors.Hand;
             btnBackFromCreate.Location = new Point(12, 415);
             btnBackFromCreate.Name = "btnBackFromCreate";
             btnBackFromCreate.Size = new Size(75, 23);
             btnBackFromCreate.TabIndex = 7;
             btnBackFromCreate.Text = "Return";
-            btnBackFromCreate.UseVisualStyleBackColor = true;
+            btnBackFromCreate.UseVisualStyleBackColor = false;
             btnBackFromCreate.Click += btnBackFromCreate_Click;
             // 
             // CreatePatient

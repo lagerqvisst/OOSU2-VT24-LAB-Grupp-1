@@ -92,12 +92,14 @@
             // 
             // btnReturn
             // 
+            btnReturn.BackColor = SystemColors.Info;
+            btnReturn.Cursor = Cursors.Hand;
             btnReturn.Location = new Point(12, 410);
             btnReturn.Name = "btnReturn";
             btnReturn.Size = new Size(151, 28);
             btnReturn.TabIndex = 6;
             btnReturn.Text = "Return to main menu";
-            btnReturn.UseVisualStyleBackColor = true;
+            btnReturn.UseVisualStyleBackColor = false;
             btnReturn.Click += btnReturn_Click;
             // 
             // ManageAppointments

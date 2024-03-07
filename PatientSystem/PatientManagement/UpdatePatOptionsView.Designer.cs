@@ -50,7 +50,8 @@
             // 
             // btnReturnFromUpdateOptions
             // 
-            btnReturnFromUpdateOptions.BackColor = Color.Red;
+            btnReturnFromUpdateOptions.BackColor = Color.LimeGreen;
+            btnReturnFromUpdateOptions.Cursor = Cursors.Hand;
             btnReturnFromUpdateOptions.Location = new Point(29, 466);
             btnReturnFromUpdateOptions.Name = "btnReturnFromUpdateOptions";
             btnReturnFromUpdateOptions.Size = new Size(61, 24);

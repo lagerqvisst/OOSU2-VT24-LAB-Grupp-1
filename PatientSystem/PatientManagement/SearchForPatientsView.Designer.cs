@@ -52,12 +52,14 @@
             // 
             // btnReturnToMenu
             // 
+            btnReturnToMenu.BackColor = SystemColors.Info;
+            btnReturnToMenu.Cursor = Cursors.Hand;
             btnReturnToMenu.Location = new Point(48, 393);
             btnReturnToMenu.Name = "btnReturnToMenu";
             btnReturnToMenu.Size = new Size(94, 23);
             btnReturnToMenu.TabIndex = 0;
             btnReturnToMenu.Text = "Return";
-            btnReturnToMenu.UseVisualStyleBackColor = true;
+            btnReturnToMenu.UseVisualStyleBackColor = false;
             btnReturnToMenu.Click += btnReturnToMenu_Click;
             // 
             // labelHeadingSearch

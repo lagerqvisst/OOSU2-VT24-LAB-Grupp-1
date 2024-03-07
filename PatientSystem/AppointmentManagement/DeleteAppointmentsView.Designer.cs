@@ -37,12 +37,14 @@
             // 
             // btnReturnFromDelete
             // 
+            btnReturnFromDelete.BackColor = SystemColors.Info;
+            btnReturnFromDelete.Cursor = Cursors.Hand;
             btnReturnFromDelete.Location = new Point(45, 378);
             btnReturnFromDelete.Name = "btnReturnFromDelete";
             btnReturnFromDelete.Size = new Size(75, 23);
             btnReturnFromDelete.TabIndex = 0;
             btnReturnFromDelete.Text = "Return";
-            btnReturnFromDelete.UseVisualStyleBackColor = true;
+            btnReturnFromDelete.UseVisualStyleBackColor = false;
             btnReturnFromDelete.Click += btnReturnFromDelete_Click;
             // 
             // dataGridViewAppointments
