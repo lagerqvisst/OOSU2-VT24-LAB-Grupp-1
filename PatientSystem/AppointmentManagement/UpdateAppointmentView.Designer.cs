@@ -59,7 +59,7 @@
             // 
             btnSelectAppToUpdate.BackColor = Color.LimeGreen;
             btnSelectAppToUpdate.Cursor = Cursors.Hand;
-            btnSelectAppToUpdate.ForeColor = SystemColors.ButtonHighlight;
+            btnSelectAppToUpdate.ForeColor = SystemColors.ActiveCaptionText;
             btnSelectAppToUpdate.Location = new Point(37, 352);
             btnSelectAppToUpdate.Name = "btnSelectAppToUpdate";
             btnSelectAppToUpdate.Size = new Size(151, 36);

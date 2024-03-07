@@ -56,10 +56,10 @@
             // 
             // btnDeleteSelectedAppointment
             // 
-            btnDeleteSelectedAppointment.BackColor = Color.LightGreen;
+            btnDeleteSelectedAppointment.BackColor = Color.LimeGreen;
             btnDeleteSelectedAppointment.Cursor = Cursors.Hand;
             btnDeleteSelectedAppointment.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnDeleteSelectedAppointment.ForeColor = Color.White;
+            btnDeleteSelectedAppointment.ForeColor = Color.Black;
             btnDeleteSelectedAppointment.Location = new Point(47, 310);
             btnDeleteSelectedAppointment.Name = "btnDeleteSelectedAppointment";
             btnDeleteSelectedAppointment.Size = new Size(151, 30);
