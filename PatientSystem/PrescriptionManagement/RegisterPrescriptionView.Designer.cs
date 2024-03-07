@@ -101,7 +101,8 @@
             // 
             // btnCreatePrescription
             // 
-            btnCreatePrescription.BackColor = Color.Coral;
+            btnCreatePrescription.BackColor = Color.LimeGreen;
+            btnCreatePrescription.Cursor = Cursors.Hand;
             btnCreatePrescription.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCreatePrescription.Location = new Point(605, 290);
             btnCreatePrescription.Name = "btnCreatePrescription";
@@ -122,12 +123,14 @@
             // 
             // btnReturn
             // 
+            btnReturn.BackColor = SystemColors.Info;
+            btnReturn.Cursor = Cursors.Hand;
             btnReturn.Location = new Point(28, 514);
             btnReturn.Name = "btnReturn";
             btnReturn.Size = new Size(101, 23);
             btnReturn.TabIndex = 8;
             btnReturn.Text = "Return";
-            btnReturn.UseVisualStyleBackColor = true;
+            btnReturn.UseVisualStyleBackColor = false;
             btnReturn.Click += btnReturn_Click;
             // 
             // RegisterPrescriptionView
