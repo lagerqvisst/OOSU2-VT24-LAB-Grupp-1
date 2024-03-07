@@ -60,10 +60,18 @@
                     </StackPanel>
 
 
-                    <Button Content="Log in" Width="100" HorizontalAlignment="Left" Margin="20,5,5,5" Background="MediumAquamarine" Command="{Binding SignInCommand}" Padding="2" BorderThickness="0" Foreground="White">
+                    <Button Content="Log in" Width="100" HorizontalAlignment="Left" Margin="20,5,5,5" Background="MediumAquamarine" Command="{Binding SignInCommand}" Padding="2" BorderThickness="1" Foreground="Black" >
                         <Button.Effect>
                             <DropShadowEffect Color="Black" BlurRadius="5" ShadowDepth="3" Opacity="0.6"/>
                         </Button.Effect>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid>
+                                    <Rectangle Fill="{TemplateBinding Background}" RadiusX="5" RadiusY="5"/>
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
                     </Button>
 
                 </StackPanel>
@@ -73,7 +81,7 @@
 
             <StackPanel Grid.Column="1" Grid.Row="6" Margin="20,5,5,5">
                 <Button  Content="Doctor credentials" Width="Auto" HorizontalAlignment="Left"  Margin="0,6,5,5" Foreground="White"  Background="MediumAquamarine"
-                    Command="{Binding AutoGenDocCredCmd}" Padding="3" Click="Button_Click">
+                    Command="{Binding AutoGenDocCredCmd}" Padding="3">
                     <Button.Effect>
                         <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="3" Opacity="0.5"/>
                     </Button.Effect>
