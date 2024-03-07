@@ -50,10 +50,10 @@
             // textselecttodelte
             // 
             textselecttodelte.AutoSize = true;
-            textselecttodelte.Font = new Font("Georgia", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textselecttodelte.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textselecttodelte.Location = new Point(26, 20);
             textselecttodelte.Name = "textselecttodelte";
-            textselecttodelte.Size = new Size(339, 23);
+            textselecttodelte.Size = new Size(303, 23);
             textselecttodelte.TabIndex = 1;
             textselecttodelte.Text = "Select a patient to remove from system";
             // 

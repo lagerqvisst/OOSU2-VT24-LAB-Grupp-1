@@ -88,10 +88,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Georgia", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(87, 54);
             label1.Name = "label1";
-            label1.Size = new Size(145, 18);
+            label1.Size = new Size(135, 19);
             label1.TabIndex = 4;
             label1.Text = "Manage Patients";
             // 

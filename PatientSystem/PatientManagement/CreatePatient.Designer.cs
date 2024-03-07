@@ -93,10 +93,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Georgia", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(58, 60);
             label1.Name = "label1";
-            label1.Size = new Size(220, 15);
+            label1.Size = new Size(214, 15);
             label1.TabIndex = 6;
             label1.Text = "Enter details to create a new patient.";
             // 

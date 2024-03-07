@@ -57,10 +57,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Georgia", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(22, 32);
             label1.Name = "label1";
-            label1.Size = new Size(223, 23);
+            label1.Size = new Size(244, 22);
             label1.TabIndex = 2;
             label1.Text = "Patients stored in system";
             // 
