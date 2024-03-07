@@ -64,14 +64,6 @@
                         <Button.Effect>
                             <DropShadowEffect Color="Black" BlurRadius="5" ShadowDepth="3" Opacity="0.6"/>
                         </Button.Effect>
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Grid>
-                                    <Rectangle Fill="{TemplateBinding Background}" RadiusX="5" RadiusY="5"/>
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
-                                </Grid>
-                            </ControlTemplate>
-                        </Button.Template>
                     </Button>
 
                 </StackPanel>
