@@ -11,8 +11,8 @@ namespace BusinessLayer
     {
         public void SendEmail(string to, string body)
         {
-            string fromMail = "lagerqvistmusik@gmail.com";
-            string fromPassword = "knzh ibgg eofl ouwh";
+            string fromMail = "medicalsystemcommunications@gmail.com";
+            string fromPassword = "vczz pwba wlxe gnik";
 
             MailMessage message = new MailMessage();
             message.From = new MailAddress(fromMail);
