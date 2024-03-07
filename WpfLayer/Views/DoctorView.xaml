@@ -24,21 +24,15 @@
 
         <!--LÄKARBESÖK FÖR DOCTOR START -->
 
-        
-       
         <Grid>
-            
-
             <Grid.ColumnDefinitions>
 
                 <ColumnDefinition Width="10"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="10"/>
+
 
             </Grid.ColumnDefinitions>
-
 
             <StackPanel Grid.Column="1" Margin="10,10,10,10" Grid.ColumnSpan="1">
                 <Border Background="MediumAquamarine" CornerRadius="6">
@@ -46,14 +40,11 @@
                            FontStyle="Italic" Foreground="White" Padding="5"/>
                 </Border>
 
-
                 <DataGrid Name="dgAppointment" ItemsSource="{Binding Appointments}" SelectedItem="{Binding SelectedAppointment, Mode=TwoWay}" 
                           AutoGenerateColumns="False" Background="White" Margin="0,10,0,0" >
 
-
-
-                    <DataGrid.Columns> 
-                        <DataGridTextColumn Header="Appointment ID" Binding="{Binding appointmentId}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="App ID" Binding="{Binding appointmentId}" Width="Auto">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Foreground" Value="MediumAquamarine"/>
@@ -63,7 +54,7 @@
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
 
-                        <DataGridTextColumn Header="Patient Name" Binding="{Binding patientName}">
+                        <DataGridTextColumn Header="Patient Name" Binding="{Binding patientName}" Width="Auto" >
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Foreground" Value="Black"/>
@@ -72,9 +63,9 @@
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
 
-                        <DataGridTextColumn Header="Date" Binding="{Binding appointmentDate}" />
+                        <DataGridTextColumn Header="Date" Binding="{Binding appointmentDate}" Width="Auto" />
 
-                        <DataGridTextColumn Header="Reason" Binding="{Binding appointmentReason}">
+                        <DataGridTextColumn Header="Reason" Binding="{Binding appointmentReason}" Width="50">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Foreground" Value="Black"/>
@@ -83,7 +74,7 @@
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
 
-                        <DataGridTextColumn Header="Doctor" Binding="{Binding doctorName}">
+                        <DataGridTextColumn Header="Doctor" Binding="{Binding doctorName}" Width="Auto">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Foreground" Value="Black"/>
@@ -92,7 +83,7 @@
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
 
-                        <DataGridTextColumn Header="Note from doctor" Binding="{Binding doctorsNote}">
+                        <DataGridTextColumn Header="Doctors note" Binding="{Binding doctorsNote}" Width="80">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Foreground" Value="Black"/>
@@ -101,7 +92,7 @@
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
 
-                        <DataGridTextColumn Header="Scheduled by" Binding="{Binding receptionistName}">
+                        <DataGridTextColumn Header="Scheduled by" Binding="{Binding receptionistName}" Width="Auto">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Foreground" Value="Black"/>
@@ -112,27 +103,27 @@
 
                     </DataGrid.Columns>
                 </DataGrid>
-
-                <Button Content="Choose appointment" x:Name="btnChosenAppointment" Width="250" HorizontalAlignment="Left" Margin="0,10,0,0" Background="MediumAquamarine" Foreground="White"
+                <StackPanel Orientation="Horizontal" Grid.Column="1">
+                    <Button Content="Choose appointment" x:Name="btnChosenAppointment" Width="250" HorizontalAlignment="Left" Margin="10,10,250,10" Background="MediumAquamarine" Foreground="Black"
                         Command="{Binding Path=DataContext.OpenAppMgmtCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                         CommandParameter="{Binding ElementName=SelectedAppointment, Path=SelectedItem}" 
-                        FontFamily="Italic" Height="25" MaxWidth="150">
-                    <Button.Effect>
-                        <DropShadowEffect Color="Black" BlurRadius="4" ShadowDepth="3" Opacity="0.5"/>
-                    </Button.Effect>
-                </Button>
+                        FontStyle="Italic" Height="25" MaxWidth="150">
+                        <Button.Effect>
+                            <DropShadowEffect Color="Black" BlurRadius="4" ShadowDepth="3" Opacity="0.5"/>
+                        </Button.Effect>
+                    </Button>
+
+                    <Button Content="Show expanded details" Command="{Binding DataGridShowDetailsCmd}" Width="150" Height="25" FontSize="13" FontStyle="Italic" HorizontalAlignment="Left" Padding="2" Margin="10,10,10,10" Background="MediumAquamarine" Foreground="Black">
+                        <Button.Effect>
+                            <DropShadowEffect Color="Black" BlurRadius="4" ShadowDepth="3" Opacity="0.5"/>
+                        </Button.Effect>
+                    </Button>
+                </StackPanel>
+
+
 
 
             </StackPanel>
-
-
-
-            <Button Grid.Column="3" Content="Show expanded details" Command="{Binding DataGridShowDetailsCmd}" Width="150" Height="25" FontSize="13" FontStyle="Italic" HorizontalAlignment="Center" Padding="2" Margin="0,0,10,22" Background="MediumAquamarine" Foreground="White">
-                <Button.Effect>
-                    <DropShadowEffect Color="Black" BlurRadius="4" ShadowDepth="3" Opacity="0.5"/>
-                </Button.Effect>
-               
-            </Button>
         </Grid>
 
 
