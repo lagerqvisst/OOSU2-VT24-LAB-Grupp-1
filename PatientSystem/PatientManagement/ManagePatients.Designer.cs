@@ -39,42 +39,50 @@
             // 
             // btnCreateNewPatient
             // 
+            btnCreateNewPatient.BackColor = SystemColors.Info;
+            btnCreateNewPatient.Cursor = Cursors.Hand;
             btnCreateNewPatient.Location = new Point(87, 96);
             btnCreateNewPatient.Name = "btnCreateNewPatient";
             btnCreateNewPatient.Size = new Size(143, 32);
             btnCreateNewPatient.TabIndex = 0;
             btnCreateNewPatient.Text = "CREATE NEW PATIENT";
-            btnCreateNewPatient.UseVisualStyleBackColor = true;
+            btnCreateNewPatient.UseVisualStyleBackColor = false;
             btnCreateNewPatient.Click += btnCreateNewPatient_Click;
             // 
             // btnUpdatePatient
             // 
+            btnUpdatePatient.BackColor = SystemColors.Info;
+            btnUpdatePatient.Cursor = Cursors.Hand;
             btnUpdatePatient.Location = new Point(87, 150);
             btnUpdatePatient.Name = "btnUpdatePatient";
             btnUpdatePatient.Size = new Size(143, 33);
             btnUpdatePatient.TabIndex = 1;
             btnUpdatePatient.Text = "UPDATE PATIENT";
-            btnUpdatePatient.UseVisualStyleBackColor = true;
+            btnUpdatePatient.UseVisualStyleBackColor = false;
             btnUpdatePatient.Click += btnUpdatePatient_Click;
             // 
             // btnViewPatients
             // 
+            btnViewPatients.BackColor = SystemColors.Info;
+            btnViewPatients.Cursor = Cursors.Hand;
             btnViewPatients.Location = new Point(87, 200);
             btnViewPatients.Name = "btnViewPatients";
             btnViewPatients.Size = new Size(143, 34);
             btnViewPatients.TabIndex = 2;
             btnViewPatients.Text = "VIEW PATIENTS";
-            btnViewPatients.UseVisualStyleBackColor = true;
+            btnViewPatients.UseVisualStyleBackColor = false;
             btnViewPatients.Click += btnViewPatients_Click;
             // 
             // btnDeletePatient
             // 
+            btnDeletePatient.BackColor = SystemColors.Info;
+            btnDeletePatient.Cursor = Cursors.Hand;
             btnDeletePatient.Location = new Point(87, 253);
             btnDeletePatient.Name = "btnDeletePatient";
             btnDeletePatient.Size = new Size(143, 36);
             btnDeletePatient.TabIndex = 3;
             btnDeletePatient.Text = "DELETE PATIENT";
-            btnDeletePatient.UseVisualStyleBackColor = true;
+            btnDeletePatient.UseVisualStyleBackColor = false;
             btnDeletePatient.Click += btnDeletePatient_Click;
             // 
             // label1
@@ -100,12 +108,14 @@
             // 
             // btnSearchPatients
             // 
+            btnSearchPatients.BackColor = SystemColors.Info;
+            btnSearchPatients.Cursor = Cursors.Hand;
             btnSearchPatients.Location = new Point(87, 311);
             btnSearchPatients.Name = "btnSearchPatients";
             btnSearchPatients.Size = new Size(143, 36);
             btnSearchPatients.TabIndex = 6;
             btnSearchPatients.Text = "SEARCH FOR PATIENTS";
-            btnSearchPatients.UseVisualStyleBackColor = true;
+            btnSearchPatients.UseVisualStyleBackColor = false;
             btnSearchPatients.Click += btnSearchPatients_Click;
             // 
             // ManagePatients

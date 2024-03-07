@@ -66,14 +66,16 @@
             // 
             // btn_DeleteSelectedPatient
             // 
+            btn_DeleteSelectedPatient.BackColor = Color.LimeGreen;
+            btn_DeleteSelectedPatient.Cursor = Cursors.Hand;
             btn_DeleteSelectedPatient.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btn_DeleteSelectedPatient.ForeColor = Color.IndianRed;
+            btn_DeleteSelectedPatient.ForeColor = Color.Black;
             btn_DeleteSelectedPatient.Location = new Point(26, 301);
             btn_DeleteSelectedPatient.Name = "btn_DeleteSelectedPatient";
             btn_DeleteSelectedPatient.Size = new Size(230, 42);
             btn_DeleteSelectedPatient.TabIndex = 3;
             btn_DeleteSelectedPatient.Text = "DELETE SELECTED PATIENT";
-            btn_DeleteSelectedPatient.UseVisualStyleBackColor = true;
+            btn_DeleteSelectedPatient.UseVisualStyleBackColor = false;
             btn_DeleteSelectedPatient.Click += btn_DeleteSelectedPatient_Click;
             // 
             // DeletePatientView
