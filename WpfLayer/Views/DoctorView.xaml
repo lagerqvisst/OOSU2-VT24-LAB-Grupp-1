@@ -46,7 +46,7 @@
                 </Border>
                 
 
-                <DataGrid Name="dgAppointment" ItemsSource="{Binding Appointments}" SelectedItem="{Binding SelectedAppointment, Mode=TwoWay}" AutoGenerateColumns="False" Background="White" Margin="0,10,0,0" >
+                <DataGrid Name="dgAppointment" ItemsSource="{Binding Appointments}" SelectedItem="{Binding SelectedAppointment, Mode=TwoWay}" AutoGenerateColumns="False" Background="White" Margin="0,10,0,0" SelectionChanged="dgAppointment_SelectionChanged" >
 
                    
                     <DataGrid.Columns> 
