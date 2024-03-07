@@ -57,12 +57,15 @@
             // 
             // btnSelectAppToUpdate
             // 
+            btnSelectAppToUpdate.BackColor = Color.LimeGreen;
+            btnSelectAppToUpdate.Cursor = Cursors.Hand;
+            btnSelectAppToUpdate.ForeColor = SystemColors.ButtonHighlight;
             btnSelectAppToUpdate.Location = new Point(37, 352);
             btnSelectAppToUpdate.Name = "btnSelectAppToUpdate";
             btnSelectAppToUpdate.Size = new Size(151, 36);
             btnSelectAppToUpdate.TabIndex = 2;
             btnSelectAppToUpdate.Text = "SELECT APPOINTMENT";
-            btnSelectAppToUpdate.UseVisualStyleBackColor = true;
+            btnSelectAppToUpdate.UseVisualStyleBackColor = false;
             btnSelectAppToUpdate.Click += btnSelectAppToUpdate_Click;
             // 
             // btnRefreshGrid

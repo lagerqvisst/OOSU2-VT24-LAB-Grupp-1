@@ -56,14 +56,16 @@
             // 
             // btnDeleteSelectedAppointment
             // 
+            btnDeleteSelectedAppointment.BackColor = Color.LightGreen;
+            btnDeleteSelectedAppointment.Cursor = Cursors.Hand;
             btnDeleteSelectedAppointment.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnDeleteSelectedAppointment.ForeColor = Color.IndianRed;
+            btnDeleteSelectedAppointment.ForeColor = Color.White;
             btnDeleteSelectedAppointment.Location = new Point(47, 310);
             btnDeleteSelectedAppointment.Name = "btnDeleteSelectedAppointment";
             btnDeleteSelectedAppointment.Size = new Size(151, 30);
             btnDeleteSelectedAppointment.TabIndex = 2;
             btnDeleteSelectedAppointment.Text = "DELETE APPOINTMENT";
-            btnDeleteSelectedAppointment.UseVisualStyleBackColor = true;
+            btnDeleteSelectedAppointment.UseVisualStyleBackColor = false;
             btnDeleteSelectedAppointment.Click += btnDeleteSelectedAppointment_Click;
             // 
             // label1

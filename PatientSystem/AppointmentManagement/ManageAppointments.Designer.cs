@@ -48,42 +48,46 @@
             // 
             // btnCreateAppointView
             // 
+            btnCreateAppointView.BackColor = SystemColors.Info;
             btnCreateAppointView.Location = new Point(76, 110);
             btnCreateAppointView.Name = "btnCreateAppointView";
             btnCreateAppointView.Size = new Size(232, 23);
             btnCreateAppointView.TabIndex = 2;
             btnCreateAppointView.Text = "CREATE APPOINTMENT";
-            btnCreateAppointView.UseVisualStyleBackColor = true;
+            btnCreateAppointView.UseVisualStyleBackColor = false;
             btnCreateAppointView.Click += btnCreateAppointView_Click;
             // 
             // btnDeleteAppointments
             // 
+            btnDeleteAppointments.BackColor = SystemColors.Info;
             btnDeleteAppointments.Location = new Point(76, 194);
             btnDeleteAppointments.Name = "btnDeleteAppointments";
             btnDeleteAppointments.Size = new Size(232, 27);
             btnDeleteAppointments.TabIndex = 3;
             btnDeleteAppointments.Text = "DELETE APPOINTMENTS";
-            btnDeleteAppointments.UseVisualStyleBackColor = true;
+            btnDeleteAppointments.UseVisualStyleBackColor = false;
             btnDeleteAppointments.Click += btnDeleteAppointments_Click;
             // 
             // btnViewAllAppointmentsView
             // 
+            btnViewAllAppointmentsView.BackColor = SystemColors.Info;
             btnViewAllAppointmentsView.Location = new Point(76, 153);
             btnViewAllAppointmentsView.Name = "btnViewAllAppointmentsView";
             btnViewAllAppointmentsView.Size = new Size(232, 23);
             btnViewAllAppointmentsView.TabIndex = 4;
             btnViewAllAppointmentsView.Text = "VIEW APPOINTMENTS";
-            btnViewAllAppointmentsView.UseVisualStyleBackColor = true;
+            btnViewAllAppointmentsView.UseVisualStyleBackColor = false;
             btnViewAllAppointmentsView.Click += btnViewAllAppointmentsView_Click;
             // 
             // btnUpdateApps
             // 
+            btnUpdateApps.BackColor = SystemColors.Info;
             btnUpdateApps.Location = new Point(76, 245);
             btnUpdateApps.Name = "btnUpdateApps";
             btnUpdateApps.Size = new Size(232, 25);
             btnUpdateApps.TabIndex = 5;
             btnUpdateApps.Text = "UPDATE APPOINTMENTS";
-            btnUpdateApps.UseVisualStyleBackColor = true;
+            btnUpdateApps.UseVisualStyleBackColor = false;
             btnUpdateApps.Click += btnUpdateApps_Click;
             // 
             // btnReturn
