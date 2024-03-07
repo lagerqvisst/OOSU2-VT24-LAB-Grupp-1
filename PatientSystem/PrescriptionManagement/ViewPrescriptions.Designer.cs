@@ -37,10 +37,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Georgia", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(21, 46);
             label1.Name = "label1";
-            label1.Size = new Size(243, 23);
+            label1.Size = new Size(229, 22);
             label1.TabIndex = 0;
             label1.Text = "Prescriptions in system";
             // 

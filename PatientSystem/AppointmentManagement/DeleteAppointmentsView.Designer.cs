@@ -73,10 +73,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Georgia", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(45, 28);
             label1.Name = "label1";
-            label1.Size = new Size(360, 23);
+            label1.Size = new Size(389, 22);
             label1.TabIndex = 3;
             label1.Text = "Select an appointment you want to delete";
             // 

@@ -65,10 +65,10 @@
             // labelHeadingSearch
             // 
             labelHeadingSearch.AutoSize = true;
-            labelHeadingSearch.Font = new Font("Georgia", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelHeadingSearch.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelHeadingSearch.Location = new Point(37, 9);
             labelHeadingSearch.Name = "labelHeadingSearch";
-            labelHeadingSearch.Size = new Size(171, 23);
+            labelHeadingSearch.Size = new Size(186, 22);
             labelHeadingSearch.TabIndex = 1;
             labelHeadingSearch.Text = "Search for patients";
             // 

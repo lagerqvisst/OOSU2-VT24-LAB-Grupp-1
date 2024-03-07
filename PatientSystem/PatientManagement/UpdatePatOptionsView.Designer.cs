@@ -213,10 +213,10 @@
             // labelOptionsHeading
             // 
             labelOptionsHeading.AutoSize = true;
-            labelOptionsHeading.Font = new Font("Algerian", 14.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            labelOptionsHeading.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelOptionsHeading.Location = new Point(27, 41);
             labelOptionsHeading.Name = "labelOptionsHeading";
-            labelOptionsHeading.Size = new Size(446, 21);
+            labelOptionsHeading.Size = new Size(408, 22);
             labelOptionsHeading.TabIndex = 17;
             labelOptionsHeading.Text = "Update options for {patientToUpdate.name}";
             // 
