@@ -105,12 +105,14 @@
             // 
             // btnSearchByName
             // 
+            btnSearchByName.BackColor = Color.LimeGreen;
+            btnSearchByName.Cursor = Cursors.Hand;
             btnSearchByName.Location = new Point(317, 96);
             btnSearchByName.Name = "btnSearchByName";
             btnSearchByName.Size = new Size(52, 23);
             btnSearchByName.TabIndex = 6;
             btnSearchByName.Text = "Search";
-            btnSearchByName.UseVisualStyleBackColor = true;
+            btnSearchByName.UseVisualStyleBackColor = false;
             btnSearchByName.Click += btnSearchByName_Click;
             // 
             // textBoxPersonalNumber
@@ -179,42 +181,50 @@
             // 
             // btnSearchByPersonalNumber
             // 
+            btnSearchByPersonalNumber.BackColor = Color.LimeGreen;
+            btnSearchByPersonalNumber.Cursor = Cursors.Hand;
             btnSearchByPersonalNumber.Location = new Point(317, 161);
             btnSearchByPersonalNumber.Name = "btnSearchByPersonalNumber";
             btnSearchByPersonalNumber.Size = new Size(52, 23);
             btnSearchByPersonalNumber.TabIndex = 15;
             btnSearchByPersonalNumber.Text = "Search";
-            btnSearchByPersonalNumber.UseVisualStyleBackColor = true;
+            btnSearchByPersonalNumber.UseVisualStyleBackColor = false;
             btnSearchByPersonalNumber.Click += btnSearchByPersonalNumber_Click;
             // 
             // btnSearchByAddress
             // 
+            btnSearchByAddress.BackColor = Color.LimeGreen;
+            btnSearchByAddress.Cursor = Cursors.Hand;
             btnSearchByAddress.Location = new Point(317, 219);
             btnSearchByAddress.Name = "btnSearchByAddress";
             btnSearchByAddress.Size = new Size(52, 26);
             btnSearchByAddress.TabIndex = 16;
             btnSearchByAddress.Text = "Search";
-            btnSearchByAddress.UseVisualStyleBackColor = true;
+            btnSearchByAddress.UseVisualStyleBackColor = false;
             btnSearchByAddress.Click += btnSearchByAddress_Click;
             // 
             // btnSearchByPhoneNumber
             // 
+            btnSearchByPhoneNumber.BackColor = Color.LimeGreen;
+            btnSearchByPhoneNumber.Cursor = Cursors.Hand;
             btnSearchByPhoneNumber.Location = new Point(317, 276);
             btnSearchByPhoneNumber.Name = "btnSearchByPhoneNumber";
             btnSearchByPhoneNumber.Size = new Size(52, 23);
             btnSearchByPhoneNumber.TabIndex = 17;
             btnSearchByPhoneNumber.Text = "Search";
-            btnSearchByPhoneNumber.UseVisualStyleBackColor = true;
+            btnSearchByPhoneNumber.UseVisualStyleBackColor = false;
             btnSearchByPhoneNumber.Click += btnSearchByPhoneNumber_Click;
             // 
             // btnSearchByEmailAddress
             // 
+            btnSearchByEmailAddress.BackColor = Color.LimeGreen;
+            btnSearchByEmailAddress.Cursor = Cursors.Hand;
             btnSearchByEmailAddress.Location = new Point(317, 333);
             btnSearchByEmailAddress.Name = "btnSearchByEmailAddress";
             btnSearchByEmailAddress.Size = new Size(52, 25);
             btnSearchByEmailAddress.TabIndex = 18;
             btnSearchByEmailAddress.Text = "Search";
-            btnSearchByEmailAddress.UseVisualStyleBackColor = true;
+            btnSearchByEmailAddress.UseVisualStyleBackColor = false;
             btnSearchByEmailAddress.Click += btnSearchByEmailAddress_Click;
             // 
             // SearchForPatientsView

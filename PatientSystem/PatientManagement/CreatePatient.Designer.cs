@@ -80,7 +80,7 @@
             // 
             // btnCreatePatient
             // 
-            btnCreatePatient.BackColor = Color.GreenYellow;
+            btnCreatePatient.BackColor = Color.LimeGreen;
             btnCreatePatient.Location = new Point(58, 325);
             btnCreatePatient.Name = "btnCreatePatient";
             btnCreatePatient.Size = new Size(220, 41);

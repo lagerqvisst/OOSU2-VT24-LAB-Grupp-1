@@ -67,7 +67,8 @@
             // 
             // btnSelectPatientToUpdate
             // 
-            btnSelectPatientToUpdate.BackColor = Color.PaleTurquoise;
+            btnSelectPatientToUpdate.BackColor = Color.LimeGreen;
+            btnSelectPatientToUpdate.Cursor = Cursors.Hand;
             btnSelectPatientToUpdate.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSelectPatientToUpdate.Location = new Point(49, 313);
             btnSelectPatientToUpdate.Name = "btnSelectPatientToUpdate";
@@ -79,13 +80,15 @@
             // 
             // btnRefreshData
             // 
+            btnRefreshData.BackColor = SystemColors.Info;
+            btnRefreshData.Cursor = Cursors.Hand;
             btnRefreshData.Location = new Point(633, 313);
             btnRefreshData.Name = "btnRefreshData";
             btnRefreshData.Size = new Size(95, 28);
             btnRefreshData.TabIndex = 4;
             btnRefreshData.Text = "Refresh Data";
             btnRefreshData.TextImageRelation = TextImageRelation.TextBeforeImage;
-            btnRefreshData.UseVisualStyleBackColor = true;
+            btnRefreshData.UseVisualStyleBackColor = false;
             btnRefreshData.Click += btnRefreshData_Click;
             // 
             // UpdatePatientView
