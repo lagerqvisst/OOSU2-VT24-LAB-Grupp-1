@@ -157,6 +157,7 @@ namespace WpfLayer.ViewModels
 
             newAppointment = appointmentController.NewAppointmentByDoctor(patient.patientId, appointmentDateTime, NewAppointmentReason, doctor.doctorID);
 
+
             patientAppointmentHistory.Add(newAppointment);
             MessageBox.Show("Appointment scheduled");
             NewAppointmentReason = "";
@@ -174,18 +175,16 @@ namespace WpfLayer.ViewModels
 
         private void SendEmailConfirmation()
         {
-            string fromMail = "medicalsystemcommunications@gmail.com";
-            string fromPassword = "vczz pwba wlxe gnik";
-
             string to = Email;
             string subject = "Your Appointment Confirmation";
 
-            string body = EmailTemplateManager.GenerateAppointmentConfirmationEmail(doctor.name, NewAppointment.appointmentDate, NewAppointment.appointmentReason);
+            string body = EmailService.GenerateAppointmentConfirmationEmail(doctor.name, patient.name,NewAppointment.appointmentId, NewAppointment.appointmentDate, NewAppointment.appointmentReason);
 
-            emailService.SendEmail(fromMail, fromPassword, to, subject, body);
+            emailService.SendEmail(to, subject, body);
 
             MessageBox.Show("Email sent");
         }
+
 
 
 
