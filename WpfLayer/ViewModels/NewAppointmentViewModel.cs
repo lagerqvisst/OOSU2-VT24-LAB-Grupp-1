@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using WpfLayer.Models;
+using static BusinessLayer.EmailService;
 
 namespace WpfLayer.ViewModels
 {
@@ -179,43 +180,13 @@ namespace WpfLayer.ViewModels
             string to = Email;
             string subject = "Your Appointment Confirmation";
 
-            string body = $@"
-            <html>
-            <head>
-                <style>
-                    /* Här kan du lägga till CSS för att formatera mejlet */
-                    body {{
-                        font-family: Arial, sans-serif;
-                        font-size: 14px;
-                    }}
-                    .container {{
-                        max-width: 600px;
-                        margin: 0 auto;
-                        padding: 20px;
-                        border: 1px solid #ccc;
-                        border-radius: 5px;
-                        background-color: #f9f9f9;
-                    }}
-                    h2 {{
-                        color: #007bff;
-                    }}
-                </style>
-            </head>
-            <body>
-                <div class='container'>
-                    <h2>Your Appointment Confirmation</h2>
-                    <p>Dear Patient,</p>
-                    <p>Your appointment with Dr. {doctor.name} has been scheduled for {NewAppointment.appointmentDate}.</p>
-                    <p>Appointment Reason: {NewAppointment.appointmentReason}</p>
-                    <p>Best regards,<br />Medical System</p>
-                </div>
-            </body>
-            </html>";
+            string body = EmailTemplateManager.GenerateAppointmentConfirmationEmail(doctor.name, NewAppointment.appointmentDate, NewAppointment.appointmentReason);
 
             emailService.SendEmail(fromMail, fromPassword, to, subject, body);
 
             MessageBox.Show("Email sent");
         }
+
 
 
         private void CloseWidnow()
