@@ -36,12 +36,14 @@
             // 
             // btnRegNewPrescrip
             // 
+            btnRegNewPrescrip.BackColor = SystemColors.Info;
+            btnRegNewPrescrip.Cursor = Cursors.Hand;
             btnRegNewPrescrip.Location = new Point(122, 103);
             btnRegNewPrescrip.Name = "btnRegNewPrescrip";
             btnRegNewPrescrip.Size = new Size(225, 25);
             btnRegNewPrescrip.TabIndex = 0;
             btnRegNewPrescrip.Text = "REGISTER PRESCRIPTION";
-            btnRegNewPrescrip.UseVisualStyleBackColor = true;
+            btnRegNewPrescrip.UseVisualStyleBackColor = false;
             btnRegNewPrescrip.Click += btnRegNewPrescrip_Click;
             // 
             // label1
@@ -56,22 +58,26 @@
             // 
             // btnViewPrescriptions
             // 
+            btnViewPrescriptions.BackColor = SystemColors.Info;
+            btnViewPrescriptions.Cursor = Cursors.Hand;
             btnViewPrescriptions.Location = new Point(122, 158);
             btnViewPrescriptions.Name = "btnViewPrescriptions";
             btnViewPrescriptions.Size = new Size(225, 26);
             btnViewPrescriptions.TabIndex = 2;
             btnViewPrescriptions.Text = "VIEW PRESCRIPTIONS";
-            btnViewPrescriptions.UseVisualStyleBackColor = true;
+            btnViewPrescriptions.UseVisualStyleBackColor = false;
             btnViewPrescriptions.Click += btnViewPrescriptions_Click;
             // 
             // btnReturn
             // 
+            btnReturn.BackColor = SystemColors.Info;
+            btnReturn.Cursor = Cursors.Hand;
             btnReturn.Location = new Point(12, 412);
             btnReturn.Name = "btnReturn";
             btnReturn.Size = new Size(152, 26);
             btnReturn.TabIndex = 3;
             btnReturn.Text = "Return to main menu";
-            btnReturn.UseVisualStyleBackColor = true;
+            btnReturn.UseVisualStyleBackColor = false;
             btnReturn.Click += btnReturn_Click;
             // 
             // ManagePrescriptionsView

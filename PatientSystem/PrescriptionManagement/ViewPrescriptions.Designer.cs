@@ -54,12 +54,14 @@
             // 
             // btnReturn
             // 
+            btnReturn.BackColor = SystemColors.Info;
+            btnReturn.Cursor = Cursors.Hand;
             btnReturn.Location = new Point(33, 363);
             btnReturn.Name = "btnReturn";
             btnReturn.Size = new Size(68, 29);
             btnReturn.TabIndex = 2;
             btnReturn.Text = "Return";
-            btnReturn.UseVisualStyleBackColor = true;
+            btnReturn.UseVisualStyleBackColor = false;
             btnReturn.Click += btnReturn_Click;
             // 
             // ViewPrescriptions
