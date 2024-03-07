@@ -70,7 +70,7 @@
             // 
             btn_DeleteSelectedPatient.BackColor = Color.LimeGreen;
             btn_DeleteSelectedPatient.Cursor = Cursors.Hand;
-            btn_DeleteSelectedPatient.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_DeleteSelectedPatient.Font = new Font("Arial", 9F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
             btn_DeleteSelectedPatient.ForeColor = Color.Black;
             btn_DeleteSelectedPatient.Location = new Point(26, 301);
             btn_DeleteSelectedPatient.Name = "btn_DeleteSelectedPatient";

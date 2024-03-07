@@ -81,6 +81,7 @@
             // btnCreatePatient
             // 
             btnCreatePatient.BackColor = Color.LimeGreen;
+            btnCreatePatient.Font = new Font("Arial Narrow", 9F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
             btnCreatePatient.Location = new Point(58, 325);
             btnCreatePatient.Name = "btnCreatePatient";
             btnCreatePatient.Size = new Size(220, 41);
