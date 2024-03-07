@@ -30,5 +30,47 @@ namespace BusinessLayer
 
             smtp.Send(message);
         }
+
+        public class EmailTemplateManager
+        {
+            public static string GenerateAppointmentConfirmationEmail(string doctorName, DateTime appointmentDate, string appointmentReason)
+            {
+                string body = $@"
+            <html>
+            <head>
+                <style>
+                    /* Här kan du lägga till CSS för att formatera mejlet */
+                    body {{
+                        font-family: Arial, sans-serif;
+                        font-size: 14px;
+                    }}
+                    .container {{
+                        max-width: 600px;
+                        margin: 0 auto;
+                        padding: 20px;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        background-color: #f9f9f9;
+                    }}
+                    h2 {{
+                        color: #007bff;
+                    }}
+                </style>
+            </head>
+            <body>
+                <div class='container'>
+                    <h2>Your Appointment Confirmation</h2>
+                    <p>Dear Patient,</p>
+                    <p>Your appointment with Dr. {doctorName} has been scheduled for {appointmentDate}.</p>
+                    <p>Appointment Reason: {appointmentReason}</p>
+                    <p>Best regards,<br />Medical System</p>
+                </div>
+            </body>
+            </html>";
+
+                return body;
+            }
+        }
+
     }
 }
