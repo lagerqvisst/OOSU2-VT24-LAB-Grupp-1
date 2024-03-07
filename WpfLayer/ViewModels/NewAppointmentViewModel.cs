@@ -36,6 +36,8 @@ namespace WpfLayer.ViewModels
 
         public ICommand SendEmailCmd { get; private set; }
 
+        public ICommand CloseWindowCmd { get; private set; }
+
         private Action<ObservableCollection<Appointment>> _updateAppointmentHistoryCallback;
         public NewAppointmentViewModel(Doctor doctor, Patient patient, Action<ObservableCollection<Appointment>> updateAppointmentHistoryCallback)
         {
@@ -46,7 +48,8 @@ namespace WpfLayer.ViewModels
 
             MakeNewAppointmentCmd = new RelayCommand(MakeNewAppointment, CanMakeNewAppointment);
             ReturnToPreviousWindowCmd = new RelayCommand(CloseWidnow);
-            SendEmailCmd = new RelayCommand(SendEmailConfirmation);
+            SendEmailCmd = new RelayCommand(SendEmailConfirmation, CanSendEmailConfirmation);
+            CloseWindowCmd = new RelayCommand(CloseWidnow);
 
             patientAppointmentHistory = new ObservableCollection<Appointment>(appointmentController.GetPatientAppointments(patient));
 
@@ -101,7 +104,7 @@ namespace WpfLayer.ViewModels
             set
             {
                 newAppointment = value;
-                OnPropertyChanged("NewAppointment");
+                OnPropertyChanged();
             }
         }
 
@@ -111,7 +114,7 @@ namespace WpfLayer.ViewModels
             set
             {
                 email = value;
-                OnPropertyChanged("Email");
+                OnPropertyChanged();
             }
         }
 
@@ -167,13 +170,53 @@ namespace WpfLayer.ViewModels
             return !string.IsNullOrEmpty(Email) && NewAppointment != null;
         }
 
+
         private void SendEmailConfirmation()
         {
-            
-            string body = $"Your appointment with Dr. {doctor.name} has been scheduled for {NewAppointment.appointmentDate}.\n\nReason: {NewAppointment.appointmentReason}";
+            string fromMail = "medicalsystemcommunications@gmail.com";
+            string fromPassword = "vczz pwba wlxe gnik";
 
-            emailService.SendEmail(Email,body);
+            string to = Email;
+            string subject = "Your Appointment Confirmation";
+
+            string body = $@"
+            <html>
+            <head>
+                <style>
+                    /* Här kan du lägga till CSS för att formatera mejlet */
+                    body {{
+                        font-family: Arial, sans-serif;
+                        font-size: 14px;
+                    }}
+                    .container {{
+                        max-width: 600px;
+                        margin: 0 auto;
+                        padding: 20px;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        background-color: #f9f9f9;
+                    }}
+                    h2 {{
+                        color: #007bff;
+                    }}
+                </style>
+            </head>
+            <body>
+                <div class='container'>
+                    <h2>Your Appointment Confirmation</h2>
+                    <p>Dear Patient,</p>
+                    <p>Your appointment with Dr. {doctor.name} has been scheduled for {NewAppointment.appointmentDate}.</p>
+                    <p>Appointment Reason: {NewAppointment.appointmentReason}</p>
+                    <p>Best regards,<br />Medical System</p>
+                </div>
+            </body>
+            </html>";
+
+            emailService.SendEmail(fromMail, fromPassword, to, subject, body);
+
+            MessageBox.Show("Email sent");
         }
+
 
         private void CloseWidnow()
         {

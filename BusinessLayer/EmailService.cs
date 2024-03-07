@@ -9,16 +9,13 @@ namespace BusinessLayer
 {
     public class EmailService
     {
-        public void SendEmail(string to, string body)
+        public void SendEmail(string from, string password, string to, string subject, string body)
         {
-            string fromMail = "medicalsystemcommunications@gmail.com";
-            string fromPassword = "vczz pwba wlxe gnik";
-
             MailMessage message = new MailMessage();
-            message.From = new MailAddress(fromMail);
-            message.Subject = "Your Appointment Confirmation";
+            message.From = new MailAddress(from);
+            message.Subject = subject;
             message.To.Add(new MailAddress(to));
-            message.Body = $"<html><body>{body}</body></html>";
+            message.Body = body;
             message.IsBodyHtml = true;
 
             var smtp = new SmtpClient
@@ -28,7 +25,7 @@ namespace BusinessLayer
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
-                Credentials = new System.Net.NetworkCredential(fromMail, fromPassword)
+                Credentials = new System.Net.NetworkCredential(from, password)
             };
 
             smtp.Send(message);
