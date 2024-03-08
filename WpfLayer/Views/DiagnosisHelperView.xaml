@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfLayer.Views"
         mc:Ignorable="d"
-        Title="DiagnosisHelperView" Height="500" Width="800">
+        Title="DiagnosisHelperView" Height="600" Width="800">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
@@ -40,25 +40,15 @@
                     <Label Content="Diagnosis Helper" FontWeight="Bold" HorizontalContentAlignment="Center" Foreground="White" Padding="10" FontSize="20"/>
                 </Border>
                 <Label  Content="Use the search box below to return medical conditions" FontSize="15" Margin="0,20,0,0" />
-                <Label  Content="If the patient is describin a neck injury, enter 'neck' to find a condition to classify the patients injury" FontSize="12" Margin="0,20,0,0" />
+                <Label  Content="If the patient is describing a neck injury, enter 'neck' to find a condition to classify the patients injury" FontSize="12" Margin="0,20,0,0" />
                 <Label  Content="Make sure to adjust the max search results prior to searching" FontSize="12" Margin="0,20,0,0" Foreground="Tomato" />
             </StackPanel>
             
             <Label Grid.Column="1" Grid.Row="2" Content="Enter search term:" FontWeight="Bold" FontSize="15" Margin="0,20,0,0"/>
             <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
                 <TextBox Text="{Binding SearchInput, UpdateSourceTrigger=PropertyChanged}" Width="300" Height="30"/>
-                <Button Grid.Row="3" Grid.Column="1" Content="Search"  Margin="10,10" Width="100" Command="{Binding MakeSearchCmd}" Background="MediumAquamarine" Padding="10" FontSize="15" FontWeight="Bold">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}"
-                    BorderBrush="{TemplateBinding BorderBrush}"
-                    BorderThickness="{TemplateBinding BorderThickness}"
-                    CornerRadius="15">
-                                <ContentPresenter HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
+                <Button Grid.Row="3" Grid.Column="1" Content="Search"  Margin="10,10" Height="30"  Command="{Binding MakeSearchCmd}" Background="MediumAquamarine" Padding="4" FontSize="13" FontWeight="Bold">
+
                 </Button>
                 
             </StackPanel>
