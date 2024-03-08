@@ -11,7 +11,7 @@ namespace TestLayer {
             DrugController drugController = new DrugController();
             DiagnosisController diagnosisController = new DiagnosisController();
 
-            
+            Console.WriteLine("Hello World!");
 
             //context.Reset();
 
