@@ -11,7 +11,9 @@ namespace TestLayer {
             DrugController drugController = new DrugController();
             DiagnosisController diagnosisController = new DiagnosisController();
 
-            
+            string fact = LoginController.GetTodaysFact().Result;
+            Console.WriteLine(fact);
+            Console.ReadLine();
 
             //context.Reset();
 
@@ -20,7 +22,7 @@ namespace TestLayer {
             //context.Database.EnsureDeleted();
 
             //context.Database.EnsureCreated();
-            Seed.SeedData(context);
+            //Seed.SeedData(context);
 
 
             //drugController.FillDrugsFromApi();

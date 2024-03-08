@@ -12,9 +12,12 @@
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
                 <MenuItem Header="Exit Application" x:Name="menuSignout" Command="{Binding Path=DataContext.ShutDownCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"></MenuItem>
-
+                <MenuItem Header="Fun fact of the day" Command="{Binding FunFactCmd}"></MenuItem>
             </MenuItem>
         </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+
+        </StatusBar>
         <!--MENY SLUT -->
         <Grid>
 
@@ -61,10 +64,8 @@
 
 
                     <Button Content="Log in" Width="100" HorizontalAlignment="Left" Margin="20,5,5,5" Background="MediumAquamarine" Command="{Binding SignInCommand}" Padding="2" BorderThickness="1" Foreground="Black" >
-                        <Button.Effect>
-                            <DropShadowEffect Color="Black" BlurRadius="5" ShadowDepth="3" Opacity="0.6"/>
-                        </Button.Effect>
                     </Button>
+                    
 
                 </StackPanel>
             </Border>
