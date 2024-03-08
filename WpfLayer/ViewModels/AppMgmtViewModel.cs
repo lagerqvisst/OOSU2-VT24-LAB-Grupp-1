@@ -375,7 +375,8 @@ namespace WpfLayer.ViewModels
             newAppointment = appointmentController.NewAppointmentByDoctor(patient.patientId, appointmentDateTime, NewAppointmentReason, doctor.doctorID);
 
             patientAppointmentHistory.Add(newAppointment);
-            MessageBox.Show("Appointment scheduled");
+            MessageBox.Show($"Appointment scheduled");
+            
             NewAppointmentReason = "";
         }
 

@@ -146,7 +146,7 @@
 
                             <DataGridTextColumn Header="App ID" Binding="{Binding appointmentId}" Width="50" />
                             <DataGridTextColumn Header="Patient Name" Binding="{Binding patientName}" Width="*" />
-                            <DataGridTextColumn Header="Date" Binding="{Binding appointmentDate}" Width="*" />
+                            <DataGridTextColumn Header="Date" Binding="{Binding appointmentDate, StringFormat='yyyy-MM-dd HH:mm'}" Width="*" />
                             <DataGridTextColumn Header="Reason" Binding="{Binding appointmentReason}" Width="50" />
                             <DataGridTextColumn Header="Doctor" Binding="{Binding doctorName}" Width="*" />
                             <DataGridTextColumn Header="Note" Binding="{Binding doctorsNote}" Width="40" />

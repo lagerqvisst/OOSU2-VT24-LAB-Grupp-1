@@ -159,7 +159,7 @@ namespace WpfLayer.ViewModels
 
 
             patientAppointmentHistory.Add(newAppointment);
-            MessageBox.Show("Appointment scheduled");
+            MessageBox.Show($"Appointment scheduled {appointmentDate.ToString("f")}");
             NewAppointmentReason = "";
 
             _updateAppointmentHistoryCallback(patientAppointmentHistory);

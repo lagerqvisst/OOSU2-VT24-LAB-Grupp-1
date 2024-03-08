@@ -31,7 +31,8 @@ namespace EntityLayer
         public Appointment(int patientId, DateTime appointmentDate, string appointmentReason, int doctorID, int? receptionistId)
         {
             this.patientId = patientId;
-            this.appointmentDate = appointmentDate;
+            //this.appointmentDate = appointmentDate.Date;
+            this.appointmentDate = new DateTime(appointmentDate.Year, appointmentDate.Month, appointmentDate.Day, appointmentDate.Hour, appointmentDate.Minute, 0);
             this.appointmentReason = appointmentReason;
             this.doctorID = doctorID;
             this.receptionistId = receptionistId;
@@ -41,7 +42,8 @@ namespace EntityLayer
         public Appointment(int patientId, DateTime appointmentDate, string appointmentReason, int doctorID)
         {
             this.patientId = patientId;
-            this.appointmentDate = appointmentDate.Date;
+            //this.appointmentDate = appointmentDate.Date;
+            this.appointmentDate = new DateTime(appointmentDate.Year, appointmentDate.Month, appointmentDate.Day, appointmentDate.Hour, appointmentDate.Minute, 0);
             this.appointmentReason = appointmentReason;
             this.doctorID = doctorID;
             doctorsNote = "N/A";
