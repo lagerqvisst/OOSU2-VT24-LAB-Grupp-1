@@ -137,7 +137,6 @@ namespace WpfLayer.ViewModels
 
         private async void GenerateFunFact()
         {
-            MessageBox.Show("test");
 
             // Använd await för att vänta på att uppgiften ska slutföras
             _funFact = await LoginController.GetTodaysFact();
