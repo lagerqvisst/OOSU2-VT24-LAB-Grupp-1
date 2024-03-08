@@ -17,15 +17,18 @@ namespace WpfLayer.ViewModels
 {
     public class AppMgmtViewModel : ObservableObject
     {
-        //Controller classes used to extract and create data from repoisitories
+        #region controllers used in the viewmodel
         public AppointmentController appointmentController = new AppointmentController();
         public DoctorController doctorController = new DoctorController();
         public PatientController patientController = new PatientController();
         public DiagnosisController diagnosisController = new DiagnosisController();
+        #endregion
 
         // Properties that are binded in XAML
+        #region private properties
         private string patientName;
         private string patientId;
+        private string _doctorsNote;
         private string appointmentId;
         private string appointmentReason;
         private string newAppointmentReason;
@@ -42,22 +45,27 @@ namespace WpfLayer.ViewModels
         private int selectedTimeIndex;
         private string medicalCondition;
         private string selectedMedicalCondition;
+        #endregion
 
         //Collections that are binded in XAML through DataGrids
+        #region Collections bound in XAML datagrids / comboboxes
         public ObservableCollection<Appointment> appointments { get; set; } = new ObservableCollection<Appointment>();
         public ObservableCollection<Appointment> patientAppointmentHistory { get; set; } = new ObservableCollection<Appointment>();
         public ObservableCollection<Diagnosis> diagnosisHistory { get; set; } = new ObservableCollection<Diagnosis>();
-
         public ObservableCollection<String> medicalConditions { get; set; } = new ObservableCollection<String>();
+        #endregion
 
         //Objects that help to call on controller methods and set values to properties bounded in XAML
+        #region Objects used to call on controller methods and set values to properties bounded in XAML
         public Appointment appointment;
         public Appointment newAppointment;
         public Diagnosis diagnosis;
         public Patient patient;
         public Doctor doctor;
+        #endregion
 
         // Commands
+        #region Commands
         public ICommand MakeNoteCmd { get; private set; }
         public ICommand MakeDiagnosisCmd { get; private set; }
         public ICommand OpenPrescriptionMgmtCmd { get; private set; }
@@ -69,53 +77,55 @@ namespace WpfLayer.ViewModels
         public ICommand DataGridShowDiagnosisCmd { get; private set; }
         public ICommand DataGridShowTreatmentCmd { get; private set; }
         public ICommand DataGridShowDetailsDiagnosisTreatCmd { get; private set; }
-
         public ICommand ApiExplained { get; private set; }
-
         public ICommand OpenDiagnosisHelperCmd { get; private set; }
-
         public ICommand OpenAppScheduleView { get; private set; }
 
-        
+        #endregion
 
         public AppMgmtViewModel(Appointment appointment)
         {
             //Initialize commands
+            #region Commands initialization
             MakeNoteCmd = new RelayCommand(MakeNote, CanMakeNote);
             MakeDiagnosisCmd = new RelayCommand(MakeDiagnosis, CanMakeDiagnosis);
             OpenPrescriptionMgmtCmd = new RelayCommand(OpenPrescriptionView, CanOpenPrescriptionView);
-            MakeNewAppointmentCmd = new RelayCommand(MakeNewAppointment, CanMakeNewAppointment);
             CloseWindowCmd = new RelayCommand(CloseWidnow);
             ApiExplained = new RelayCommand(ApiExplaination);
             OpenDiagnosisHelperCmd = new RelayCommand(OpenDiagnosisHelper);
             OpenAppScheduleView = new RelayCommand(OpenAppScheduleViewer);
             DataGridShowDetailsNoteReasonCmd = new RelayCommand(OpenExpandedDetailsNoteReason, CanOpenExpandedDetailsNoteReason);
             DataGridShowDetailsDiagnosisTreatCmd = new RelayCommand(OpenExpandedDetailsDiagnosisTreat, CanOpenExpandedDetailsDiagnosisTreat);
-
+            #endregion
             //Property values assigned.
             this.appointment = appointment;
             patient = patientController.GetPatientById(appointment.patientId);
             doctor = doctorController.GetDoctorById(appointment.doctorID);
 
             //XAML bounded properties assigned values
+            #region XAML bounded properties assigned values
             patientName = $"Patient name: {patient.name}";
             patientId = $"Patient ID: {patient.patientId}";
             appointmentId = $"Appointment ID: {appointment.appointmentId}";
             appointmentReason = $"Appointment reason: {appointment.appointmentReason}";
             statusBarMessage = $"Currently managing appointment for Patient: {patient.name} - ID: {patient.patientId}\n" +
                 $"Date for appointment: {appointment.appointmentDate}, Reason: {appointment.appointmentReason}";
+            #endregion
 
             //Collections assigned values through controller methods
+            #region Collections assigned values through controller methods
             patientAppointmentHistory = new ObservableCollection<Appointment>(appointmentController.GetPatientAppointments(patient));
             diagnosisHistory = new ObservableCollection<Diagnosis>(diagnosisController.PatientDiagnosis(patient));
             medicalConditions = new ObservableCollection<String>(diagnosisController.ExtractMedicalConditionsFromApi());
+            #endregion
 
             
 
         }
 
         // Properties that are binded in XAML
-        private string _doctorsNote;
+        #region Properties bound in XAML
+        
         public string DoctorsNote
         {
             get { return _doctorsNote; }
@@ -264,7 +274,10 @@ namespace WpfLayer.ViewModels
             set { selectedMedicalCondition = value; OnPropertyChanged(); }
         }
 
+        #endregion
         // Methos that are binded to the commands
+
+        #region Methods bound to commands
         private bool CanMakeNote()
         {
             // Implementera logik för att avgöra om inloggning är möjlig
@@ -336,50 +349,6 @@ namespace WpfLayer.ViewModels
         }
 
 
-        private bool CanMakeNewAppointment()
-        {
-            // Kontrollera att NewAppointmentReason är ifyllt och att AppointmentDate är i framtiden eller nuet
-            return !string.IsNullOrEmpty(NewAppointmentReason) &&
-                   AppointmentDate != null && SelectedTimeIndex != null;
-        }
-
-        private void MakeNewAppointment()
-        {
-            if (AppointmentDate < DateTime.Now)
-            {
-                MessageBox.Show("Unable to schedule appointments for dates earlier than today");
-                return;
-            }
-
-            // Hämta vald tid från ComboBox
-            var selectedTime = SelectedTimeIndex switch
-            {
-                0 => TimeSpan.FromHours(8),   // 08:00 AM
-                1 => TimeSpan.FromHours(9),   // 09:00 AM
-                2 => TimeSpan.FromHours(10), 
-                3 => TimeSpan.FromHours(11),
-                4 => TimeSpan.FromHours(12),
-                5 => TimeSpan.FromHours(13),
-                6 => TimeSpan.FromHours(14),
-                7 => TimeSpan.FromHours(15),
-                8 => TimeSpan.FromHours(16),
-                9 => TimeSpan.FromHours(17),
-                10 => TimeSpan.FromHours(18),
-                                              // Lägg till fler alternativ efter behov
-              
-            };
-
-            // Kombinera valt datum och tid för att skapa ett DateTime-objekt
-            DateTime appointmentDateTime = AppointmentDate.Date + selectedTime;
-
-            newAppointment = appointmentController.NewAppointmentByDoctor(patient.patientId, appointmentDateTime, NewAppointmentReason, doctor.doctorID);
-
-            patientAppointmentHistory.Add(newAppointment);
-            MessageBox.Show($"Appointment scheduled");
-            
-            NewAppointmentReason = "";
-        }
-
         private bool CanOpenExpandedDetailsNoteReason()
         {
             return SelectedAppointment != null;
@@ -433,6 +402,8 @@ namespace WpfLayer.ViewModels
         {
             MessageBox.Show("API Explanation:\n\nThe API retrieves medical conditions from an external source (https://clinicaltables.nlm.nih.gov/apidoc/conditions/v3/doc.html#params).\n\nIt utilizes the LHC FHIR Tools Clinical Table Search Service, allowing users to search for medical conditions using partial or complete terms.\n\nThe API fetches a list of over 2,400 medical conditions along with associated codes and terms. However, due to constraints, it retrieves a maximum of 500 conditions per query.\n\nUsers can search for conditions using various parameters and receive detailed information including ICD-10-CM codes, ICD-9-CM codes, synonyms, and more.\n\nWe have only utilized the API to extract examples of medical conditions.\n\nThe idea is for the doctor to choose a general classification for the condition and the to add a more detailed description for the specific patient.\r\n");
         }
+
+        #endregion
 
 
     }
