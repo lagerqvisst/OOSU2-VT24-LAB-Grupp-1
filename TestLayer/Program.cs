@@ -20,7 +20,7 @@ namespace TestLayer {
             //context.Database.EnsureDeleted();
 
             //context.Database.EnsureCreated();
-            //Seed.SeedData(context);
+            Seed.SeedData(context);
 
 
             //drugController.FillDrugsFromApi();

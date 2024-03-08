@@ -29,6 +29,8 @@ namespace BusinessLayer
 
         public Appointment NewAppointmentByDoctor(int patientId, DateTime appointmentDate, string appointmentReason, int doctorID)
         {
+            appointmentDate = new DateTime(appointmentDate.Year, appointmentDate.Month, appointmentDate.Day, appointmentDate.Hour, appointmentDate.Minute, 0);
+
             Appointment appointment = new Appointment(patientId, appointmentDate, appointmentReason, doctorID);
 
             //För att sätta namnen på patient, doktor och receptionist där namnen är kopplade med faktiska objekt och inte lösa strängar i appointment
@@ -50,7 +52,7 @@ namespace BusinessLayer
         public List<Appointment> GetDoctorSpecificAppointmentsTodayAndFuture(Doctor doctor)
         {
             return unitOfWork.AppointmentRepository
-                .Find(a => a.doctorID == doctor.doctorID && a.appointmentDate.Date >= DateTime.Today)
+                .Find(a => a.doctorID == doctor.doctorID && a.appointmentDate >= DateTime.Today)
                 .ToList();
         }
 
