@@ -62,17 +62,6 @@
                         x:Name="btnAddDoctorsNote" Command="{Binding Path=DataContext.MakeNoteCmd, 
                         RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
 
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}"
-                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                        CornerRadius="15">
-                                    <ContentPresenter HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
 
                     </Button>
                 </StackPanel>
@@ -113,17 +102,7 @@
                         Background="MediumAquamarine"
                         Command="{Binding Path=DataContext.MakeDiagnosisCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
         
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}"
-                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                        CornerRadius="15">
-                                    <ContentPresenter HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
+
                     </Button>
                 </StackPanel>
 
