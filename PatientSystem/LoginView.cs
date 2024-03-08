@@ -2,6 +2,7 @@ using BusinessLayer;
 using EntityLayer;
 using PresentationLayer;
 using DataLayer;
+using System.Windows.Forms;
 
 
 namespace PatientSystem
@@ -16,7 +17,7 @@ namespace PatientSystem
 
             loginController = new LoginController();
 
-            
+            Disclaimer();
 
         }
 
@@ -58,6 +59,12 @@ namespace PatientSystem
             {
                 MessageBox.Show("Invalid username or password");
             }
+        }
+
+        private void Disclaimer()
+        {
+
+            MessageBox.Show("Programmet är startat i WinForms. Sätt startup project som WPFLayer för att se arbetet kopplat till LABB3");
         }
         
 
