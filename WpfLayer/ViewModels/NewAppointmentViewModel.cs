@@ -164,7 +164,7 @@ namespace WpfLayer.ViewModels
 
             _updateAppointmentHistoryCallback(patientAppointmentHistory);
 
-            //CloseWidnow();
+            
         }
 
         private bool CanSendEmailConfirmation()
@@ -182,7 +182,9 @@ namespace WpfLayer.ViewModels
 
             emailService.SendEmail(to, subject, body);
 
-            MessageBox.Show("Email sent");
+            MessageBox.Show("Email sent, returning to appointment management view");
+
+            CloseWidnow();
         }
 
 
