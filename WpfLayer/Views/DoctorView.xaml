@@ -9,9 +9,9 @@
 
     <DockPanel LastChildFill="True">
         <!--MENY START -->
-        <Menu DockPanel.Dock="Top" Background="Silver">
-            <MenuItem Header="_File" Background="White">
-                <MenuItem Header="Sign out"  Command="{Binding Path=DataContext.SignOutCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Background="Red"></MenuItem>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="Sign out"  Command="{Binding Path=DataContext.SignOutCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"></MenuItem>
             </MenuItem>
         </Menu>
         <!--MENY SLUT -->
@@ -34,10 +34,10 @@
 
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="1" Margin="10,10,10,10" Grid.ColumnSpan="1">
-                <Border Background="MediumAquamarine" CornerRadius="6">
-                    <Label Content="Select an appointment below to proceed" FontWeight="Normal" 
-                           FontStyle="Italic" Foreground="White" Padding="5"/>
+            <StackPanel Grid.Column="1" Margin="10,10,10,10" Grid.ColumnSpan="1" >
+                <Border Background="MediumAquamarine" CornerRadius="10" Width="Auto" HorizontalAlignment="Left" Margin="0,15">
+                    <Label Content="Select an appointment below to proceed" FontWeight="Bold" HorizontalContentAlignment="Center"
+                            Foreground="White" Padding="10" FontSize="15"/>
                 </Border>
 
                 <ScrollViewer VerticalScrollBarVisibility="Auto" Height="200">
@@ -105,7 +105,7 @@
                         </DataGrid.Columns>
                     </DataGrid>
                 </ScrollViewer>
-                <StackPanel Orientation="Horizontal" Grid.Column="1">
+                <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="0,15">
                     <Button Content="Choose appointment" x:Name="btnChosenAppointment" Width="250" HorizontalAlignment="Left" Margin="10,10,250,10" Background="MediumAquamarine" Foreground="Black"
                         Command="{Binding Path=DataContext.OpenAppMgmtCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                         CommandParameter="{Binding ElementName=SelectedAppointment, Path=SelectedItem}" 
