@@ -69,7 +69,7 @@
                 </StackPanel>
             </Border>
 
-            <Label Grid.Column="1" Grid.Row="5" Content="Auto-populate user credentials" Margin="15,30,0,0" FontWeight="SemiBold" FontStyle="Italic" FontSize="14" Foreground="DarkGreen" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Label Grid.Column="1" Grid.Row="5" Content="Auto-populate user credentials" Margin="15,30,0,0" FontWeight="SemiBold" FontStyle="Italic" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
             <StackPanel Grid.Column="1" Grid.Row="6" Margin="20,5,5,5">
                 <Button  Content="Doctor credentials" Width="Auto" HorizontalAlignment="Left"  Margin="0,6,5,5" Foreground="White"  Background="MediumAquamarine"
