@@ -153,7 +153,7 @@ namespace WpfLayer.ViewModels
             };
 
             // Kombinera valt datum och tid för att skapa ett DateTime-objekt
-            DateTime appointmentDateTime = AppointmentDate.Date + selectedTime;
+            DateTime appointmentDateTime = AppointmentDate  + selectedTime;
 
             newAppointment = appointmentController.NewAppointmentByDoctor(patient.patientId, appointmentDateTime, NewAppointmentReason, doctor.doctorID);
 
