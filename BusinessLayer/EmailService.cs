@@ -79,7 +79,7 @@ namespace BusinessLayer
                                         <p>Your appointment with Dr. {doctorName} has been scheduled for {appointmentDate.ToShortDateString()} at {appointmentDate.ToShortTimeString()}.</p>
                                         <p>Appointment Reason: {appointmentReason}</p>
                                         <p>Your appointment ID is: {appointmentId}</p>
-                                        <p>Best regards,<br />Medical System</p>
+                                        <p>Best regards,<br />Oasis Medical Center</p>
                                     </div>
                                 </body>
 
