@@ -66,28 +66,28 @@ namespace BusinessLayer
         {
             return unitOfWork.AppointmentRepository.FirstOrDefault(a => a.appointmentId == id);
         }
-
+        //Hämtar alla appointments för en specifik patient
         public List<Appointment> GetPatientAppointments(Patient patient)
         {
             return unitOfWork.AppointmentRepository.Find(a => a.patientId == patient.patientId).ToList();
         }
-
+        //Plockar med en appointment för att sedan ta bort den från databasen
         public Appointment AppointmentToDelete(Appointment appointment)
         {
             unitOfWork.DeleteAppointment(appointment);
             return appointment;
         }
-
+        //Uppdaterar en särskild appointment med ett nytt datum
         public void UpdateAppointmentDate(Appointment appointment, DateTime newDate)
         {
             unitOfWork.UpdateAppointmentDate(appointment, newDate);
         }
-
+        //Uppdaterar en särskild appointment med en ny reason
         public void UpdateAppointmentReason(Appointment appointment, string newReason)
         {
             unitOfWork.UpdateAppointmentReason(appointment, newReason);
         }
-
+        //Uppdaterar en särskild appointment med en ny doktor
         public void UpdateAppointmentDoctor(Appointment apppointment, Doctor newDoctor)
         {
             apppointment.doctorName = newDoctor.name;
@@ -96,6 +96,7 @@ namespace BusinessLayer
            
             
         }
+        //Uppdaterar en särskild appointment med en uppdaterad doctorsnote.
         public void UpdateAppointmentDoctorsNote(Appointment appointment, string newNote)
         {
             unitOfWork.UpdateAppointmentDoctorsNote(appointment, newNote);
