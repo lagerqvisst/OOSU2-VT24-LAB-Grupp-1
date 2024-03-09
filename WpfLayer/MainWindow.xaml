@@ -16,7 +16,7 @@
             </MenuItem>
         </Menu>
         <StatusBar DockPanel.Dock="Bottom">
-
+            <TextBlock Text="Sign in with your credentials to access the system." FontStyle="Italic"></TextBlock>
         </StatusBar>
         <!--MENY SLUT -->
         <Grid>
