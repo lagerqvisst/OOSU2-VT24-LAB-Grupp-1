@@ -13,25 +13,32 @@ namespace WpfLayer.ViewModels
 {
     public class DhViewModel : ObservableObject
     {
-
+        #region Fields
         DiagnosisController diagnosisController = new DiagnosisController();
         private ObservableCollection<string> medicalConditions;
         private int maxResults;
         private int resultsCount;
         private string searchInput;
         private string statusBarMessage = "Diagnosis Helper Ready";
+        #endregion
 
+        #region Commands
         public ICommand MakeSearchCmd { get; set;}
         public ICommand CloseDiagnosisHelperCmd { get; set; }
+        #endregion
 
         public DhViewModel()
         {
+            #region Commands initialization
             MakeSearchCmd = new RelayCommand(MakeSearch, CanMakeSearch);
             CloseDiagnosisHelperCmd = new RelayCommand(CloseDiagnosisHelper);
+            #endregion
+
             medicalConditions = new ObservableCollection<string>();
             
         }
 
+        #region Properties bound in XAML
         public ObservableCollection<string> MedicalConditions
         {
             get { return medicalConditions; }
@@ -82,6 +89,10 @@ namespace WpfLayer.ViewModels
             }
         }
 
+        #endregion
+
+        #region Methods bound to the commands
+
         private bool CanMakeSearch()
         {
             return !string.IsNullOrWhiteSpace(SearchInput) && MaxResults > 0;
@@ -104,5 +115,6 @@ namespace WpfLayer.ViewModels
             Window currentWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
             currentWindow?.Close();
         }
+        #endregion
     }
 }

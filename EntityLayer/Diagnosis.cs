@@ -8,7 +8,7 @@ namespace EntityLayer
 {
     public class Diagnosis
     {
-        public int diagnosisId { get; set; }
+        public int diagnosisId { get; set; } // PK
         public int patientId { get; set; }  // FK för Patient
         public Patient patient { get; set; }
         public string diagnosisDescription { get; set; }

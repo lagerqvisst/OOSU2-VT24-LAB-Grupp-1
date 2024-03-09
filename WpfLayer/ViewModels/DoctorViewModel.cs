@@ -26,10 +26,11 @@ namespace WpfLayer.ViewModels
 
 
         // Commands
+        #region Commands
         public ICommand OpenAppMgmtCmd { get; private set; }
         public ICommand SignOutCmd { get; private set; }
-
         public ICommand DataGridShowDetailsCmd { get; private set; }
+        #endregion
 
         public DoctorViewModel(Doctor doctor)
         {
@@ -40,12 +41,15 @@ namespace WpfLayer.ViewModels
             Appointments = new ObservableCollection<Appointment>(appointmentController.GetDoctorSpecificAppointmentsTodayAndFuture(doctor));
 
             //Initialize commands
+            #region Commands initialization
             OpenAppMgmtCmd = new RelayCommand(OpenAppointmentManagement, CanOpenAppointmentManagement);
             SignOutCmd = new RelayCommand(SignOut);
             DataGridShowDetailsCmd = new RelayCommand(ShowDetails, CanShowDetails);
+            #endregion
         }
 
         // Properties that are binded in XAM
+        #region Properties bound in XAML
         public Appointment SelectedAppointment
         {
             get { return selectedAppointment; }
@@ -57,9 +61,11 @@ namespace WpfLayer.ViewModels
             get { return doctorName; }
             set { doctorName = value; OnPropertyChanged(); }
         }
+        #endregion
 
 
         // Methos that are binded to the commands
+        #region Methods bound to commands
         private bool CanOpenAppointmentManagement()
         {
             return SelectedAppointment != null;
@@ -97,6 +103,7 @@ namespace WpfLayer.ViewModels
                 currentWindow?.Close();
             }
         }
+        #endregion
 
 
 

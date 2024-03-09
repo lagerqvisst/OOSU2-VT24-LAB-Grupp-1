@@ -29,13 +29,13 @@ namespace BusinessLayer
             return patient;
         }
 
+        #region List metoder för att hämta patienter beroende på olika kriterier
+
         public List<Patient> GetAllPatients()
         {
             return unitOfWork.PatientRepository.Find(p => true).ToList();
 
         }
-
-
 
         public List<Patient> GetPatientsByName(string name)
         {
@@ -63,7 +63,10 @@ namespace BusinessLayer
             return unitOfWork.GetPatientByPhoneNumber(phoneNumber);
         }
 
-        //Update methods 
+        #endregion
+
+        //Update methods - användes i LABB2 för att uppfylla kravet full CRUD
+        #region Update methods
         public void UpdatePatientName(Patient patient , string name)
         {
 
@@ -90,7 +93,7 @@ namespace BusinessLayer
             unitOfWork.UpdatePatientPersonalNumber(patient, personalNumber);
         }
 
-        
-        
+        #endregion
+
     }
 }

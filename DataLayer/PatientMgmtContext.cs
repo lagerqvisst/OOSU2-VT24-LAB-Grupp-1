@@ -15,7 +15,7 @@ namespace DataLayer
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=sqlutb2-db.hb.se, 56077;Database=oosu2444;User Id=oosu2444;Password=UML928;TrustServerCertificate=True;Encrypt=True;");
-            Console.WriteLine("Test");
+
 
 
 
@@ -26,7 +26,7 @@ namespace DataLayer
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-
+            //Någon kan förklara hur vi skapar ett junctiontable? :) /alex
 
             modelBuilder.Entity<PrescriptionDrug>()
               .HasKey(pd => new { pd.prescriptionId, pd.drugId });
@@ -65,6 +65,9 @@ namespace DataLayer
             }
             #endregion
         }
+
+        //Tabellerna som ska skapas i databasen
+        #region DbSets
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Receptionist> Receptionists { get; set; }
         public DbSet<Patient> Patients { get; set; }
@@ -73,6 +76,7 @@ namespace DataLayer
         public DbSet<Prescription> Prescriptions { get; set; }
         public DbSet<Drug> Drugs { get; set; }
         public DbSet<PrescriptionDrug> PrescriptionDrugs { get; set; }  
+        #endregion
 
     }
 }

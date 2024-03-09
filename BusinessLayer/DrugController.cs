@@ -12,6 +12,30 @@ namespace BusinessLayer
     public class DrugController
     {
         UnitOfWork unitOfWork = new UnitOfWork();
+
+
+        public List<Drug> GetAllDrugs()
+        {
+            return unitOfWork.DrugRepository.Find(d => true).ToList();
+        }
+
+        public List<Drug> GetDrugsByPrescriptionId(int prescriptionId)
+        {
+            return unitOfWork.PrescriptionDrugRepository.Find(p => p.prescriptionId == prescriptionId).Select(p => p.Drug).ToList();
+        }
+        public Drug GetDrugsByDrugId(int drugId)
+        {
+            return unitOfWork.DrugRepository.FirstOrDefault(d => d.DrugId == drugId);
+        }
+
+
+        /// <summary>
+        /// Nedanstående metoder är inte kopplade till labbkraven utan extra funktionalitet för att öva på att hämta data från en API.
+        /// </summary>
+
+
+        //Metoden returnerar en lista med namn på läkemedel från en API som en stränglista
+        //Ni kan se användningsområdet i prescription vyn där läkaren kan välja läkemedel som ska skrivas ut på receptet.
         public List<string> ApiDrugDataExtract()
         {
             var client = new HttpClient();
@@ -47,6 +71,7 @@ namespace BusinessLayer
             }
 
         }
+        //För att öva på ett flow av att kunna ta information från ett API och lagra i en databas skapar vi en metod som hämtar data från API och lagrar i databasen.
         public void FillDrugsFromApi()
         {
             List<string> DrugNames = ApiDrugDataExtract();
@@ -62,19 +87,7 @@ namespace BusinessLayer
 
 
         }
-        public List<Drug> GetAllDrugs()
-        {
-            return unitOfWork.DrugRepository.Find(d => true).ToList();
-        }
 
-        public List<Drug> GetDrugsByPrescriptionId(int prescriptionId)
-        {
-            return unitOfWork.PrescriptionDrugRepository.Find(p => p.prescriptionId == prescriptionId).Select(p => p.Drug).ToList();
-        }
-        public Drug GetDrugsByDrugId(int drugId)
-        {
-            return unitOfWork.DrugRepository.FirstOrDefault(d => d.DrugId == drugId);
-        }
 
     }
 }

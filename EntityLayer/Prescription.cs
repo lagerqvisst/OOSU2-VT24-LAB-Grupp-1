@@ -10,7 +10,7 @@ namespace EntityLayer
 {
     public class Prescription
     {
-        public int prescriptionId { get; set; }
+        public int prescriptionId { get; set; } //PK
         public int patientId { get; set; }  // FK för Patient
 
         public string patientName { get; set; }

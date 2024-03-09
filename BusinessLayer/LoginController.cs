@@ -34,6 +34,11 @@ namespace BusinessLayer
             return null;
         }
 
+        /// <summary>
+        /// Denna metod och funktionalitet är helt frivillig och frånkopplad från labbuppgiften. 
+        /// Den används på login-vyn för att ge lite random trivia till vårdpersonalen när det loggar in om dagens datum.
+        /// </summary>
+
         public static async Task<string> GetTodaysFact()
         {
             // Hämta dagens datum
