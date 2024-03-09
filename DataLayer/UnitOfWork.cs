@@ -189,12 +189,13 @@ namespace DataLayer
             // Spara ändringar till databasen
             Save();
         }
-
+        //Skapar en ny Appointment
         public void CreateAppointment(Appointment appointment)
         {
-            // Lägg till den nya patienten i repository
+            // Lägg till den nya appointmenten i repository
 
             AppointmentRepository.Add(appointment);
+            //Lägg till den nya appointmenten i tabellen i databasen.
             patientMgmtContext.Appointments.Add(appointment);
 
             // Spara ändringar till databasen
@@ -209,12 +210,13 @@ namespace DataLayer
         {
             // Ta bort patienten från repository
             PatientRepository.Remove(patient);
+            //Ta bort patienten från tabellen i databasen
             patientMgmtContext.Patients.Remove(patient);
 
             // Spara ändringar till databasen
             Save();
         }
-
+        
         public void DeleteAppointment(Appointment appointment)
         {
             // Ta bort appointment från repository
@@ -290,24 +292,25 @@ namespace DataLayer
             Save();
            
         }
-
+        //Uppdaterar ett specifikt appointment med ett nytt datum.
         public void UpdateAppointmentDate(Appointment appointment, DateTime newDate)
         {
             // Hitta det befintliga Appointment-objektet med hjälp av appointmentId
             var appointmentToUpdate = patientMgmtContext.Appointments.FirstOrDefault(a => a.appointmentId == appointment.appointmentId);
             
+            //Sätt det gamla till det nya datumet.
             appointmentToUpdate.appointmentDate = newDate;
             AppointmentRepository.FirstOrDefault(a => a.appointmentId == appointment.appointmentId).appointmentDate = newDate;
 
             // Spara ändringar till databasen
             Save();
         }
-
+        //Plockar fram en specifik appointment för att sedan byta reason.
         public void UpdateAppointmentReason(Appointment appointment, string newReason)
         {
             // Hitta det befintliga Appointment-objektet med hjälp av appointmentId
             var appointmentToUpdate = patientMgmtContext.Appointments.FirstOrDefault(a => a.appointmentId == appointment.appointmentId);
-
+            //Sätter den gamla reason till den nya
             appointmentToUpdate.appointmentReason = newReason;
             AppointmentRepository.FirstOrDefault(a => a.appointmentId == appointment.appointmentId).appointmentReason = newReason;
 
@@ -331,12 +334,12 @@ namespace DataLayer
             // Spara ändringar till databasen
             Save();
         }
-
+        //Uppdaterar specifik appointment med ny doctorsnote.
         public void UpdateAppointmentDoctorsNote(Appointment appointment, string newNote)
         {
             // Hitta det befintliga Appointment-objektet med hjälp av appointmentId
             var appointmentToUpdate = patientMgmtContext.Appointments.FirstOrDefault(a => a.appointmentId == appointment.appointmentId);
-
+            //Sätter gamla doctorsnote till det nya.
             appointmentToUpdate.doctorsNote = newNote;
             AppointmentRepository.FirstOrDefault(a => a.appointmentId == appointment.appointmentId).doctorsNote = newNote;
 
