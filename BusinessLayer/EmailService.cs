@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace BusinessLayer
@@ -15,6 +16,11 @@ namespace BusinessLayer
         /// Där kan man mata in en frivillig mejl som får en bekräftelse på den bokade tiden med information om tiden.
         /// Den är fullt fungerande och skickar mejl till angiven adress.
         /// </summary>
+        /// 
+
+        //Kontrollerar att e-postadressen innehåller minst en teckenföljd följt av "@"-tecknet, följt av en annan teckenföljd, följt av ett punkttecken och en slutlig teckenföljd (t.ex. ".com", ".org", etc.).
+        public static string emailRegexPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+        public static Regex regex = new Regex(emailRegexPattern);
 
         public void SendEmail(string to, string subject, string body)
         {

@@ -185,16 +185,26 @@ namespace WpfLayer.ViewModels
 
         private void SendEmailConfirmation()
         {
-            string to = Email;
-            string subject = "Your Appointment Confirmation";
+            // Kontrollera att e-postadressen är giltig, se EmailService i affärslagret för en förklaring.
+            if (!regex.IsMatch(Email))
+            {
+                MessageBox.Show("Invalid email address");
+                return;
+            }
+            else
+            {
+                string subject = "Your Appointment Confirmation";
 
-            string body = EmailService.GenerateAppointmentConfirmationEmail(doctor.name, patient.name,NewAppointment.appointmentId, NewAppointment.appointmentDate, NewAppointment.appointmentReason);
+                string body = EmailService.GenerateAppointmentConfirmationEmail(doctor.name, patient.name, NewAppointment.appointmentId, NewAppointment.appointmentDate, NewAppointment.appointmentReason);
 
-            emailService.SendEmail(to, subject, body);
+                emailService.SendEmail(Email, subject, body);
 
-            MessageBox.Show("Email sent, returning to appointment management view");
+                MessageBox.Show("Email sent, returning to appointment management view");
 
-            CloseWidnow();
+                CloseWidnow();
+            }
+
+
         }
 
 
