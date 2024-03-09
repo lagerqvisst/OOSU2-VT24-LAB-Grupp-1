@@ -217,8 +217,9 @@ namespace DataLayer
 
         public void DeleteAppointment(Appointment appointment)
         {
-            // Ta bort patienten från repository
+            // Ta bort appointment från repository
             AppointmentRepository.Remove(appointment);
+            //Ta bort appointment från tabellen i databasen
             patientMgmtContext.Appointments.Remove(appointment);
 
             // Spara ändringar till databasen
@@ -294,7 +295,7 @@ namespace DataLayer
         {
             // Hitta det befintliga Appointment-objektet med hjälp av appointmentId
             var appointmentToUpdate = patientMgmtContext.Appointments.FirstOrDefault(a => a.appointmentId == appointment.appointmentId);
-
+            
             appointmentToUpdate.appointmentDate = newDate;
             AppointmentRepository.FirstOrDefault(a => a.appointmentId == appointment.appointmentId).appointmentDate = newDate;
 
