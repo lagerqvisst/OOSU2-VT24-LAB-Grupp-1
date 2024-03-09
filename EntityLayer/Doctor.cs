@@ -8,7 +8,7 @@ namespace EntityLayer
 {
     public class Doctor: IUser
     {
-        public int doctorID { get; set; }   
+        public int doctorID { get; set; }   //PK
         public string specialization { get; set; }
 
         public string name { get; set; }

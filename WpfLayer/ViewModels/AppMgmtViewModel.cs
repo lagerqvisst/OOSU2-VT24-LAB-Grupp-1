@@ -97,6 +97,7 @@ namespace WpfLayer.ViewModels
             DataGridShowDetailsNoteReasonCmd = new RelayCommand(OpenExpandedDetailsNoteReason, CanOpenExpandedDetailsNoteReason);
             DataGridShowDetailsDiagnosisTreatCmd = new RelayCommand(OpenExpandedDetailsDiagnosisTreat, CanOpenExpandedDetailsDiagnosisTreat);
             #endregion
+
             //Property values assigned.
             this.appointment = appointment;
             patient = patientController.GetPatientById(appointment.patientId);

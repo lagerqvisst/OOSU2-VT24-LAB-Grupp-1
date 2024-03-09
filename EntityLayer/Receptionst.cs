@@ -8,7 +8,7 @@ namespace EntityLayer
 {
     public class Receptionist : IUser
     {
-        public int receptionistId { get; set; } 
+        public int receptionistId { get; set; } //PK
         public string name { get; set; }
 
         public string password { get; set; }    

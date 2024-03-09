@@ -23,16 +23,21 @@ namespace WpfLayer.ViewModels
         PrescriptionController prescriptionController = new PrescriptionController();
 
         // Properties that are binded in XAML
+        #region Lists bound in XAML as datagrids
         public ObservableCollection<Drug> Drugs { get; set; } = new ObservableCollection<Drug>(); //DATAGRID
         public ObservableCollection<Drug> DrugsInPrescription { get; set; } = new ObservableCollection<Drug>(); //DATAGRID
         public ObservableCollection<Drug> SelectedDrugs { get; set; } = new ObservableCollection<Drug>(); //DATAGRID 
+
         private ObservableCollection<Prescription> prescriptionHistory;
+        #endregion
 
+
+        #region Properties bound in XAML
         private int totalDrugsOfAllPrescriptions { get; set; }
-
         private string patientName;
         private string patientId;
         private string statusBarPatientInfo;
+        #endregion
 
         // Objects that help to call on controller methods and set values to properties bounded in XAML
         private Drug selectedDrug;
@@ -40,11 +45,13 @@ namespace WpfLayer.ViewModels
         private Prescription selectedPrescription;
 
         // Commands 
+        #region Commands
         public ICommand AddDrugCmd { get; private set; }
         public ICommand RemoveDrugCmd { get; private set; }
         public ICommand SavePrescriptionCmd { get; private set; }
         public ICommand ShowDrugsFromPrescriptionCmd { get; private set; }
         public ICommand CloseWindowCmd { get; private set; }
+        #endregion
 
         public PrescriptionViewModel(Patient patient)
         {
@@ -52,18 +59,23 @@ namespace WpfLayer.ViewModels
             this.patient = patient;
 
             //Initialize commands
+            #region Commands initialization
             AddDrugCmd = new RelayCommand(AddDrugToList, CanAddDrug);
             RemoveDrugCmd = new RelayCommand(RemoveDrug, CanRemoveDrug);
             SavePrescriptionCmd = new RelayCommand(CreatePrescription, CanCreatePrescription);
             ShowDrugsFromPrescriptionCmd = new RelayCommand(ShowDrugsFromPrescription, CanShowDrugsFromPrescription);
             CloseWindowCmd = new RelayCommand(CloseWidnow);
+            #endregion
 
             //Setting the patient's name and ID to the properties that are binded in XAML
+            #region statusbar info
             patientName = $"Patient name: {patient.name}";
             patientId = $"Patient ID: {patient.patientId}";
             statusBarPatientInfo = $"Currently managing prescription for Patient: {patient.name} - ID: {patient.patientId}";
+            #endregion
 
             //Assigning the drugs and prescription from the database to the ObservableCollection
+            #region Assigning drugs and prescription from the database to the ObservableCollection
             Drugs = new ObservableCollection<Drug>(drugController.GetAllDrugs());
             prescriptionHistory = new ObservableCollection<Prescription>(prescriptionController.GetPatientPrescriptionHistory(patient.patientId));
 
@@ -72,10 +84,12 @@ namespace WpfLayer.ViewModels
             {
                 totalDrugsOfAllPrescriptions += prescription.drugCount;
             }
+            #endregion
 
         }
 
         // Properties that are binded in XAML
+        #region Properties bound in XAML
         public string StatusBarPatientInfo
         {
             get { return statusBarPatientInfo; }
@@ -129,8 +143,6 @@ namespace WpfLayer.ViewModels
         }
 
         
- 
-
         public Prescription SelectedPrescription
         {
             get { return selectedPrescription; }
@@ -142,9 +154,11 @@ namespace WpfLayer.ViewModels
             get { return totalDrugsOfAllPrescriptions; }
             set { totalDrugsOfAllPrescriptions = value; OnPropertyChanged(); }
         }
+        #endregion
 
         // Methos that are binded to the commands
 
+        #region Methods bound to the commands
         private bool CanAddDrug()
         {
             return SelectedDrug != null;
@@ -259,6 +273,8 @@ namespace WpfLayer.ViewModels
             Window currentWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
             currentWindow?.Close();
         }
+
+        #endregion
 
     }
 }

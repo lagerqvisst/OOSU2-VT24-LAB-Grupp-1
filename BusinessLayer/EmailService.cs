@@ -9,6 +9,13 @@ namespace BusinessLayer
 {
     public class EmailService
     {
+        /// <summary>
+        /// Denna klass och funktionalitet är helt frivillig och frånkopplad från labben och dess krav.
+        /// Detta används i vyn där en läkare kan boka ett nytt appointment. 
+        /// Där kan man mata in en frivillig mejl som får en bekräftelse på den bokade tiden med information om tiden.
+        /// Den är fullt fungerande och skickar mejl till angiven adress.
+        /// </summary>
+
         public void SendEmail(string to, string subject, string body)
         {
             string fromMail = "medicalsystemcommunications@gmail.com";
@@ -34,7 +41,7 @@ namespace BusinessLayer
             smtp.Send(message);
         }
 
-
+        //Denna metod används för att generera en template med HTML/CSS för att skicka en bekräftelse på en bokad tid.
         public static string GenerateAppointmentConfirmationEmail(string doctorName, string patientName, int appointmentId, DateTime appointmentDate, string appointmentReason)
         {
             string body = $@"

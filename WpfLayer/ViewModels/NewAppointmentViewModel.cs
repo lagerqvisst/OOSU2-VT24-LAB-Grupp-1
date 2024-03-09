@@ -18,26 +18,28 @@ namespace WpfLayer.ViewModels
         AppointmentController appointmentController = new AppointmentController();
         EmailService emailService = new EmailService();
 
+        #region properties
         private DateTime appointmentDate = DateTime.Now;
         private int selectedTimeIndex;
         private string newAppointmentReason;
         private string statusbarMessage;
         private string email; 
+        #endregion
 
 
+        //Uppdateras av callback från AppointmentManagementViewModel eftersom fönstret stängs och inte öppnas på nytt och därmed kan inte objektet skickas med som parameter
         public ObservableCollection<Appointment> patientAppointmentHistory { get; set; } = new ObservableCollection<Appointment>();
 
         public Appointment newAppointment;
         public Doctor doctor; 
-        public Patient patient; 
+        public Patient patient;
 
-        
+        #region Commands
         public ICommand MakeNewAppointmentCmd { get; private set; }
         public ICommand ReturnToPreviousWindowCmd { get; private set; }
-
         public ICommand SendEmailCmd { get; private set; }
-
         public ICommand CloseWindowCmd { get; private set; }
+        #endregion
 
         private Action<ObservableCollection<Appointment>> _updateAppointmentHistoryCallback;
         public NewAppointmentViewModel(Doctor doctor, Patient patient, Action<ObservableCollection<Appointment>> updateAppointmentHistoryCallback)
@@ -47,18 +49,23 @@ namespace WpfLayer.ViewModels
 
             statusbarMessage = $"Appointment Scheduler activated.\n\nNew appointment for Doctor: {doctor.name} (ID: {doctor.doctorID})\n\nPatient: {patient.name} ({patient.patientId})";
 
+            #region Commands initialization
             MakeNewAppointmentCmd = new RelayCommand(MakeNewAppointment, CanMakeNewAppointment);
             ReturnToPreviousWindowCmd = new RelayCommand(CloseWidnow);
             SendEmailCmd = new RelayCommand(SendEmailConfirmation, CanSendEmailConfirmation);
             CloseWindowCmd = new RelayCommand(CloseWidnow);
+            #endregion
 
             patientAppointmentHistory = new ObservableCollection<Appointment>(appointmentController.GetPatientAppointments(patient));
 
+            //Tilldelas från förra vyn som en metod som uppdaterar listan med patientens tidigare bokade tider
             _updateAppointmentHistoryCallback = updateAppointmentHistoryCallback;
 
             
 
         }
+
+        #region Properties bound in XAML
 
         public DateTime AppointmentDate
         {
@@ -118,6 +125,9 @@ namespace WpfLayer.ViewModels
                 OnPropertyChanged();
             }
         }
+        #endregion
+
+        #region Methods bound to the commands
 
         private bool CanMakeNewAppointment()
         {
@@ -195,5 +205,7 @@ namespace WpfLayer.ViewModels
             Window currentWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
             currentWindow?.Close();
         }
+
+        #endregion
     }
 }

@@ -8,7 +8,7 @@ namespace EntityLayer
 {
     public class Patient
     {
-        public int patientId { get; set; }
+        public int patientId { get; set; } //PK
         public string personalNumber { get; set; }
         public string name { get; set; }
         public string address { get; set; }
@@ -25,6 +25,8 @@ namespace EntityLayer
             this.address = address;
             this.phonenumber = phonenumber;
             this.emailaddress = emailaddress;
+
+            //Listor för att hålla reda på patientens diagnoser, recept och bokade tider
             patientDiagnosis = new List<Diagnosis>();
             patientAppointments = new List<Appointment>();
             patientPrescriptions = new List<Prescription>();

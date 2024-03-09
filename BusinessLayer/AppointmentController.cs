@@ -12,21 +12,25 @@ namespace BusinessLayer
     {
         UnitOfWork unitOfWork = new UnitOfWork();
 
+
+
         public Appointment CreateNewAppointment(int patientId, DateTime appointmentDate, string appointmentReason, int doctorID, int receptionistId)
         {
             Appointment appointment = new Appointment(patientId, appointmentDate, appointmentReason, doctorID, receptionistId);
 
             //För att sätta namnen på patient, doktor och receptionist där namnen är kopplade med faktiska objekt och inte lösa strängar i appointment
+            //Se SetNames-metoden i Appointment-klassen. 
+            //Denna lösning används eftersom att EF inte kan lagra objekt som inte är kopplade till databasen.
             appointment.SetNames(unitOfWork.PatientRepository.FirstOrDefault(p => p.patientId == patientId),
                                 unitOfWork.DoctorRepository.FirstOrDefault(d => d.doctorID == doctorID),
                                 unitOfWork.ReceptionistRepository.FirstOrDefault(r => r.receptionistId == receptionistId));
             
-           
 
             unitOfWork.CreateAppointment(appointment);
             return appointment;
         }
 
+        //Denna metod används för att skapa en ny appointment från doktor-vyn. Då behöver vi inte skicka med receptionistId eftersom att det är doktorn som skapar tiden.
         public Appointment NewAppointmentByDoctor(int patientId, DateTime appointmentDate, string appointmentReason, int doctorID)
         {
             appointmentDate = new DateTime(appointmentDate.Year, appointmentDate.Month, appointmentDate.Day, appointmentDate.Hour, appointmentDate.Minute, 0);

@@ -26,6 +26,12 @@ namespace BusinessLayer
         }
 
 
+
+        /// <summary>
+        /// Metoderna nedan är inte kopplat till labbkraven utan extra funktionalitet för att öva på att hämta data från en API.
+        /// </summary>
+
+        //Metoden används i WPF för att fylla en combobox med diagnoser från en API vilket är en del av workflowet för en läkare att först skapa en huvudklassificering av diagnos och sedan en underklassificering som är i fritext.
         public List<string> ExtractMedicalConditionsFromApi()
         {
             var client = new HttpClient();
@@ -63,6 +69,8 @@ namespace BusinessLayer
             }
         }
 
+        //Denna metod används i DhViewModel vilket är en extravy som fungerar som ett hjälpmedel för en läkare som kan söka efter conditions.
+        //Sökinputen från användaren skickas med som parameter och max antal resultat som ska visas.
         public List<string> QueryApiForMedicalConditions(string searchTerm, int maxResults)
         {
             var client = new HttpClient();

@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace EntityLayer.Junction
 {
+
+    /// <summary>
+    /// Denna klass är skapad för att kunna skapa en junction table i databasen mellan Prescription och Drug.
+    /// Detta eftersom vi har ett många till många förhållande mellan Prescription och Drug.
+    /// PK i denna tabell är en kombination av prescriptionId och drugId.
+    /// </summary>
     public class PrescriptionDrug
     {
         public int prescriptionId { get; set; }

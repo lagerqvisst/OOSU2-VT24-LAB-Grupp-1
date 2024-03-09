@@ -55,13 +55,10 @@ namespace DataLayer
             get; private set;
         }
 
-        /// <summary>
-        ///  Create a new instance.
-        /// </summary>
+
         public UnitOfWork()
         {
             patientMgmtContext = new PatientMgmtContext(); // Initialisera patientMgmtContext
-
             DiagnosisRepository = new Repository<Diagnosis>();
             PrescriptionRepository = new Repository<Prescription>();
             PatientRepository = new Repository<Patient>();
@@ -95,6 +92,8 @@ namespace DataLayer
         private void Fill()
         {
 
+            //Sparar ner alla objekt från databasen som listor.
+            #region tempLists from the database
             var patientsFromDb = patientMgmtContext.Patients.ToList();
             var doctorsFromDb = patientMgmtContext.Doctors.ToList();
             var receptionistsFromDb = patientMgmtContext.Receptionists.ToList();
@@ -103,7 +102,12 @@ namespace DataLayer
             var prescriptionsFromDb = patientMgmtContext.Prescriptions.ToList();
             var drugsFromDb = patientMgmtContext.Drugs.ToList();
             var prescriptionDrugsFromDb = patientMgmtContext.PrescriptionDrugs.ToList();
+            #endregion
 
+            //Loops för varje objekt i listorna för att lägga till dem i respektive repository.
+            //Eftersom varje repository faktiskt är tom vid varje ny körning så körs denna metod varje gång programmet startas.
+            //Då fylls repositories med objekt från databasen. Repositories används sedan för att kunna göra CRUD-operationer på objekten i gränssnittet
+            #region for each loop to add the objects to the repositories
             foreach (var patient in patientsFromDb)
             {
                 PatientRepository.Add(patient);
@@ -142,10 +146,13 @@ namespace DataLayer
             {
                 PrescriptionDrugRepository.Add(prescriptionDrug);
             }
+            #endregion
 
-            
         }
 
+        //Metoder som sparar objekt till databasen.
+        //Vi sparar både i DB och repository under run-time så att ex. datagrids ska uppdateras.
+        #region Create methods
         public void CreatePrescription(Prescription prescription)
         {
             PrescriptionRepository.Add(prescription);
@@ -156,8 +163,6 @@ namespace DataLayer
                 PrescriptionDrugRepository.Add(prescriptionDrug);
                 patientMgmtContext.PrescriptionDrugs.Add(prescriptionDrug);
             }
-
-
 
             Save();
         }
@@ -196,6 +201,10 @@ namespace DataLayer
             Save();
         }
 
+        #endregion
+
+        //Metoder som tar bort objekt från databasen.
+        #region Delete methods
         public void DeletePatient(Patient patient)
         {
             // Ta bort patienten från repository
@@ -215,7 +224,9 @@ namespace DataLayer
             // Spara ändringar till databasen
             Save();
         }
+        #endregion
 
+        #region Update methods
         public void UpdatePatientName(Patient patient, string newName)
         {
             // Hitta det befintliga Patient-objektet med hjälp av patientId
@@ -332,10 +343,15 @@ namespace DataLayer
             Save();
         }
 
+        #endregion
 
 
+        /// <summary>
+        /// Dessa metoder är egentligen lite onödiga då vi kan använda repository direkt för att hämta data.
+        /// Men vi ville öva på att använda LINQ i LABB2 direkt mot databasen.
+        /// </summary>
 
-
+        #region Search methods
         public List<Patient> GetPatientByName(string name)
         {
             //Alternativt: return patientMgmtContext.Patients.Where(patient => patient.Name == name).ToList(); - FRÅN JOHANNES MEJL 
@@ -427,6 +443,7 @@ namespace DataLayer
 
             return patients;
         }
+        #endregion
 
         public void SeedDBDrugs()
         {
