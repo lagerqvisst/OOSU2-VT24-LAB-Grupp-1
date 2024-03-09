@@ -21,6 +21,7 @@ namespace WpfLayer
         MainViewModel mainViewModel = new MainViewModel();
         public MainWindow()
         {
+            //Vi bindar datacontexten till viewmodels. Detta återkommer i alla views i code behind.
             DataContext = mainViewModel;
 
             InitializeComponent();

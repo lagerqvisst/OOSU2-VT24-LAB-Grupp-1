@@ -375,12 +375,17 @@ namespace WpfLayer.ViewModels
                 MessageBox.Show($"Diagnosis description: {SelectedDiagnosis.diagnosisDescription}\n\nTreatment suggestion: {SelectedDiagnosis.treatmentSuggestion}");
             }
         }
+
+        //Denna metod är lite speciell då den använder sig av en callback för att uppdatera appointmentHistory. 
+        //Eftersom vi öppnar ett nytt fönster för att skapa ett nytt appointment och när vi stänger det fönstret vill vi att appointmentHistory ska uppdateras.
+        //Det betyder att vyn tar en metod som parameter som den sedan kör när den stänger sig.
+ 
         public void OpenAppScheduleViewer()
         {
             NewAppointmentView appScheduleView = new NewAppointmentView(doctor, patient, UpdateAppointmentHistory);
             appScheduleView.ShowDialog();
         }
-
+        //Kopplad till ovanstående metod
         private void UpdateAppointmentHistory(ObservableCollection<Appointment> updatedAppointments)
         {
             // Uppdatera appointmentHistory här
