@@ -28,6 +28,9 @@ namespace WpfLayer.Views
 
 
         NewAppointmentViewModel newAppointmentViewModel;
+
+        //Märk att vi skickar med en callback till denna vy, denna callback är en metod som uppdaterar listan med tidigare bokade tider.
+        //Det betyder att den tar en metod som input-parameter, se NewAppointmentViewModel-konstruktorn samt själva metoden i AppointmentManagementViewModel.
         public NewAppointmentView(Doctor doctor, Patient patient, Action<ObservableCollection<Appointment>> updateAppointmentHistoryCallback)
         {
             this.doctor = doctor;
@@ -35,6 +38,8 @@ namespace WpfLayer.Views
             newAppointmentViewModel = new NewAppointmentViewModel(doctor, patient, updateAppointmentHistoryCallback);
             DataContext = newAppointmentViewModel;
             InitializeComponent();
+
+            this.Title = "New Appointment";
         }
     }
 }
