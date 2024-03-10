@@ -34,6 +34,42 @@ namespace BusinessLayer
             return null;
         }
 
+        public Doctor GetRandomDoctor()
+        {
+            var random = new Random();
+            var doctors = unitOfWork.DoctorRepository.Find(d => true).ToList(); // Hämta alla läkare och konvertera till en lista
+
+            if (doctors.Any())
+            {
+                var randomIndex = random.Next(0, doctors.Count); // Slumpa ett index inom intervallet av läkarens index
+                return doctors[randomIndex]; // Returnera den slumpmässigt valda läkaren
+            }
+            else
+            {
+                // Om det inte finns några läkare i listan kan du hantera detta här
+                // Till exempel, kasta ett undantag eller returnera null
+                return null;
+            }
+        }
+
+        public Receptionist GetRandomReceptionist()
+        {
+            var random = new Random();
+            var receptionists = unitOfWork.ReceptionistRepository.Find(d => true).ToList(); // Hämta alla läkare och konvertera till en lista
+
+            if (receptionists.Any())
+            {
+                var randomIndex = random.Next(0, receptionists.Count); // Slumpa ett index inom intervallet av läkarens index
+                return receptionists[randomIndex]; // Returnera den slumpmässigt valda läkaren
+            }
+            else
+            {
+                // Om det inte finns några läkare i listan kan du hantera detta här
+                // Till exempel, kasta ett undantag eller returnera null
+                return null;
+            }
+        }
+
         /// <summary>
         /// Denna metod och funktionalitet är helt frivillig och frånkopplad från labbuppgiften. 
         /// Den används på login-vyn för att ge lite random trivia till vårdpersonalen när det loggar in om dagens datum.
