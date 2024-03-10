@@ -11,19 +11,21 @@
         <!--MENY START -->
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
+                <!-- Command to sign out -->
                 <MenuItem Header="Sign out"  Command="{Binding Path=DataContext.SignOutCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"></MenuItem>
             </MenuItem>
         </Menu>
         <!--MENY SLUT -->
 
         <!--STATUS MESSAGE START -->
+        <!-- Status bar for displaying doctor's name -->
         <StatusBar DockPanel.Dock="Bottom" Background="Silver">
             <TextBlock Text="{Binding DoctorName}" FontStyle="Italic" ></TextBlock>
         </StatusBar>
         <!--STATUS MESSAGE slut -->
 
-        <!--LÄKARBESÖK FÖR DOCTOR START -->
 
+        <!-- Doctor's appointments section -->
         <Grid>
             <Grid.ColumnDefinitions>
 
@@ -33,18 +35,20 @@
 
 
             </Grid.ColumnDefinitions>
-
+            <!-- StackPanel for displaying appointments -->
             <StackPanel Grid.Column="1" Margin="10,10,10,10" Grid.ColumnSpan="1" >
                 <Border Background="MediumAquamarine" CornerRadius="10" Width="Auto" HorizontalAlignment="Left" Margin="0,15">
                     <Label Content="Select an appointment below to proceed" FontWeight="Bold" HorizontalContentAlignment="Center"
                             Foreground="White" Padding="10" FontSize="15"/>
                 </Border>
-
+                <!-- ScrollViewer for scrolling through appointments -->
                 <ScrollViewer VerticalScrollBarVisibility="Auto" Height="200">
+                    <!-- DataGrid for displaying appointments -->
                     <DataGrid Name="dgAppointment" ItemsSource="{Binding Appointments}" SelectedItem="{Binding SelectedAppointment, Mode=TwoWay}" 
                           AutoGenerateColumns="False" Background="White" Margin="0,10,0,0" >
 
                         <DataGrid.Columns>
+                            <!-- Appointment ID -->
                             <DataGridTextColumn Header="App ID" Binding="{Binding appointmentId}" Width="Auto">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
@@ -55,6 +59,7 @@
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
 
+                            <!-- Patient Name -->
                             <DataGridTextColumn Header="Patient Name" Binding="{Binding patientName}" Width="Auto" >
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
@@ -64,8 +69,10 @@
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
 
+                            <!-- Appointment Date -->
                             <DataGridTextColumn Header="Date" Binding="{Binding appointmentDate}" Width="Auto" />
 
+                            <!-- Reason for Appointment -->
                             <DataGridTextColumn Header="Reason" Binding="{Binding appointmentReason}" Width="50">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
@@ -75,7 +82,9 @@
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
 
+                            <!-- Doctor's Name -->
                             <DataGridTextColumn Header="Doctor" Binding="{Binding doctorName}" Width="Auto">
+                                <!-- Styling for Doctor's Name -->
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="Foreground" Value="Black"/>
@@ -84,7 +93,9 @@
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
 
+                            <!-- Doctor's Note -->
                             <DataGridTextColumn Header="Doctors note" Binding="{Binding doctorsNote}" Width="80">
+                                <!-- Styling for Doctor's Note -->
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="Foreground" Value="Black"/>
@@ -93,7 +104,9 @@
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
 
+                            <!-- Scheduled by -->
                             <DataGridTextColumn Header="Scheduled by" Binding="{Binding receptionistName}" Width="Auto">
+                                <!-- Styling for Scheduled by -->
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="Foreground" Value="Black"/>
@@ -105,11 +118,14 @@
                         </DataGrid.Columns>
                     </DataGrid>
                 </ScrollViewer>
+                <!-- Buttons for Actions on Appointments -->
                 <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="0,15">
+                    <!-- Button to Choose Appointment -->
                     <Button Content="Choose appointment" x:Name="btnChosenAppointment" Width="250" HorizontalAlignment="Left" Margin="10,10,250,10" Background="MediumAquamarine" Foreground="Black"
                         Command="{Binding Path=DataContext.OpenAppMgmtCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                         CommandParameter="{Binding ElementName=SelectedAppointment, Path=SelectedItem}" 
                         FontStyle="Italic" Height="25" MaxWidth="150">
+                        <!-- Adding Drop Shadow Effect -->
                         <Button.Effect>
                             <DropShadowEffect Color="Black" BlurRadius="4" ShadowDepth="3" Opacity="0.5"/>
                         </Button.Effect>
