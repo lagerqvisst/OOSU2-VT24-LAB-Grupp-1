@@ -12,8 +12,8 @@ using WpfLayer.Models;
 namespace WpfLayer.ViewModels
 {
 
-    // HELA DENNA VYN ÄR HELT OUT OF SCOPE, ENDAST FÖR ATT TESTA OCH ÖVA MED API & COMMANDS.
-
+    // HELA DENNA VYN ÄR HELT OUT OF SCOPE FRÅN LABB 3, ENDAST FÖR ATT TESTA OCH ÖVA MED API & COMMANDS.
+    //Denna viewmodel är kopplad till DiagnosisHelperView som öppnas genom i AppMgmtView genom knappen "Diagnosis Helper".
 
 
 
@@ -103,13 +103,16 @@ namespace WpfLayer.ViewModels
 
         #region Methods bound to the commands
 
+        //Sökning kan göras om söksträngen inte är tom och maxresultat är större än 0 (maxresultat är kopplat till en slider i vyn)
         private bool CanMakeSearch()
         {
             return !string.IsNullOrWhiteSpace(SearchInput) && MaxResults > 0;
         }
 
+        //Metod för att göra en sökning
         public void MakeSearch()
         {
+            //Baserat på söksträngen i textboxen och maxresultatet i slidern så hämtas diagnoser från API
             MedicalConditions = new ObservableCollection<string>(diagnosisController.QueryApiForMedicalConditions(SearchInput, MaxResults));
 
             resultsCount = MedicalConditions.Count;
