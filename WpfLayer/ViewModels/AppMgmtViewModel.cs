@@ -17,14 +17,16 @@ namespace WpfLayer.ViewModels
 {
     public class AppMgmtViewModel : ObservableObject
     {
+        
         #region controllers used in the viewmodel
+        //Kontroller som används för att komma åt metoder i respektive controller
         public AppointmentController appointmentController = new AppointmentController();
         public DoctorController doctorController = new DoctorController();
         public PatientController patientController = new PatientController();
         public DiagnosisController diagnosisController = new DiagnosisController();
         #endregion
 
-        // Properties that are binded in XAML
+        // Properties som är bundna inom XAMl
         #region private properties
         private string patientName;
         private string patientId;
@@ -47,7 +49,8 @@ namespace WpfLayer.ViewModels
         private string selectedMedicalCondition;
         #endregion
 
-        //Collections that are binded in XAML through DataGrids
+        
+        //Collections som är bundna i XAML via DataGrids för att visa information
         #region Collections bound in XAML datagrids / comboboxes
         public ObservableCollection<Appointment> appointments { get; set; } = new ObservableCollection<Appointment>();
         public ObservableCollection<Appointment> patientAppointmentHistory { get; set; } = new ObservableCollection<Appointment>();
@@ -55,7 +58,8 @@ namespace WpfLayer.ViewModels
         public ObservableCollection<String> medicalConditions { get; set; } = new ObservableCollection<String>();
         #endregion
 
-        //Objects that help to call on controller methods and set values to properties bounded in XAML
+        
+        //Här skapas alla relevanta objekt som behövs för att kalla på kontroller metoder och sätta värden till properties som är bundna i XAML
         #region Objects used to call on controller methods and set values to properties bounded in XAML
         public Appointment appointment;
         public Appointment newAppointment;
@@ -64,7 +68,7 @@ namespace WpfLayer.ViewModels
         public Doctor doctor;
         #endregion
 
-        // Commands
+        // Alla Commands som används i vyn
         #region Commands
         public ICommand MakeNoteCmd { get; private set; }
         public ICommand MakeDiagnosisCmd { get; private set; }
@@ -85,7 +89,7 @@ namespace WpfLayer.ViewModels
 
         public AppMgmtViewModel(Appointment appointment)
         {
-            //Initialize commands
+            //Här initieras alla commands med de metoder som behövs.
             #region Commands initialization
             MakeNoteCmd = new RelayCommand(MakeNote, CanMakeNote);
             MakeDiagnosisCmd = new RelayCommand(MakeDiagnosis, CanMakeDiagnosis);
@@ -98,7 +102,7 @@ namespace WpfLayer.ViewModels
             DataGridShowDetailsDiagnosisTreatCmd = new RelayCommand(OpenExpandedDetailsDiagnosisTreat, CanOpenExpandedDetailsDiagnosisTreat);
             #endregion
 
-            //Property values assigned.
+            //Property values tilldelas här
             this.appointment = appointment;
             patient = patientController.GetPatientById(appointment.patientId);
             doctor = doctorController.GetDoctorById(appointment.doctorID);
@@ -124,7 +128,7 @@ namespace WpfLayer.ViewModels
 
         }
 
-        // Properties that are binded in XAML
+        // Här nedan kommer alla properties som är bundna i XAML
         #region Properties bound in XAML
         
         public string DoctorsNote
@@ -133,7 +137,7 @@ namespace WpfLayer.ViewModels
             set
             {
                 _doctorsNote = value;
-                OnPropertyChanged(); // Förutsatt att du har implementerat INotifyPropertyChanged
+                OnPropertyChanged(); 
             }
         }
 
@@ -182,7 +186,7 @@ namespace WpfLayer.ViewModels
             set
             {
                 _diagnosisDescription = value;
-                OnPropertyChanged(); // Förutsatt att du har implementerat INotifyPropertyChanged
+                OnPropertyChanged(); 
             }
         }
 
@@ -210,7 +214,7 @@ namespace WpfLayer.ViewModels
             set
             {
                 _treatmentSuggestion = value;
-                OnPropertyChanged(); // Förutsatt att du har implementerat INotifyPropertyChanged
+                OnPropertyChanged(); 
             }
         }
 
@@ -276,18 +280,18 @@ namespace WpfLayer.ViewModels
         }
 
         #endregion
-        // Methos that are binded to the commands
+        // Alla metoder som är kopplade till commands
 
         #region Methods bound to commands
+        // Avgör om en doktorsnotering kan skapas
         private bool CanMakeNote()
         {
-            // Implementera logik för att avgöra om inloggning är möjlig
+            
             return !string.IsNullOrEmpty(DoctorsNote);
         }
 
-        //kommentar för att testa så att gitten funkar :D
-        // den funkar inte lolz
-
+        
+        //SKapar en doktorsnotering 
         private void MakeNote()
         {
             if (appointment != null)
@@ -295,10 +299,10 @@ namespace WpfLayer.ViewModels
                 appointmentController.UpdateAppointmentDoctorsNote(appointment, DoctorsNote);
                 // Rensa befintliga objekt i patientAppointmentHistory
                 patientAppointmentHistory.Clear();
-                // Lägg till uppdaterade objekt till patientAppointmentHistory
+                // Lägg till alla patientens tidigare bokade tider och uppdatera med den nya noteringen
                 appointmentController.GetPatientAppointments(patient).ToList().ForEach(patientAppointmentHistory.Add);
                 MessageBox.Show("Doktorsnoteringen har uppdaterats");
-                DoctorsNote = "";
+                DoctorsNote = ""; // Rensar textfältet
             }
         }
 
@@ -306,11 +310,11 @@ namespace WpfLayer.ViewModels
 
         private bool CanMakeDiagnosis()
         {
-            // Kan skapa diagnos om man valt från dropdown eller skrivit i fritext
+            // Kan skapa diagnos när man valt från dropdown och skrivit i båda fritextboxarna
             return !string.IsNullOrEmpty(DiagnosisDescription) !=null && SelectedMedicalCondition != null && !string.IsNullOrEmpty(TreatmentSuggestion); 
         }
 
-
+        //Skapar en diagnos  //Fortsätt här!
         private void MakeDiagnosis()
         {
             DateTime dateOfDiagnosis = DateTime.Now;
