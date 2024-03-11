@@ -13,6 +13,8 @@ using static BusinessLayer.EmailService;
 
 namespace WpfLayer.ViewModels
 {
+
+    //EJ GJORD MED KOMMENTARER ÄNNU
     public class NewAppointmentViewModel : ObservableObject
     {
         AppointmentController appointmentController = new AppointmentController();
