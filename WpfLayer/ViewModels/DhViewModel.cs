@@ -11,6 +11,16 @@ using WpfLayer.Models;
 
 namespace WpfLayer.ViewModels
 {
+
+    // HELA DENNA VYN ÄR HELT OUT OF SCOPE, ENDAST FÖR ATT TESTA OCH ÖVA MED API & COMMANDS.
+
+
+
+
+
+
+
+
     public class DhViewModel : ObservableObject
     {
         #region Fields
