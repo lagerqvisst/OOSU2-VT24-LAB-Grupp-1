@@ -121,7 +121,7 @@
                 <!-- Buttons for Actions on Appointments -->
                 <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="0,15">
                     <!-- Button to Choose Appointment -->
-                    <Button Content="Choose appointment" x:Name="btnChosenAppointment" Width="250" HorizontalAlignment="Left" Margin="10,10,250,10" Background="MediumAquamarine" Foreground="Black"
+                    <Button Content="Choose appointment" x:Name="btnChosenAppointment" Width="250" HorizontalAlignment="Left" Margin="10,10,250,10" Foreground="Black"
                         Command="{Binding Path=DataContext.OpenAppMgmtCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
                         CommandParameter="{Binding ElementName=SelectedAppointment, Path=SelectedItem}" 
                         FontStyle="Italic" Height="25" MaxWidth="150">
@@ -131,7 +131,7 @@
                         </Button.Effect>
                     </Button>
 
-                    <Button Content="Show expanded details" Command="{Binding DataGridShowDetailsCmd}" Width="150" Height="25" FontSize="13" FontStyle="Italic" HorizontalAlignment="Left" Padding="2" Margin="10,10,10,10" Background="MediumAquamarine" Foreground="Black">
+                    <Button Content="Show expanded details" Command="{Binding DataGridShowDetailsCmd}" Width="150" Height="25" FontSize="13" FontStyle="Italic" HorizontalAlignment="Left" Padding="2" Margin="10,10,10,10" Foreground="Black">
                         <Button.Effect>
                             <DropShadowEffect Color="Black" BlurRadius="4" ShadowDepth="3" Opacity="0.5"/>
                         </Button.Effect>

@@ -61,8 +61,7 @@
                     <TextBox Text="{Binding NewAppointmentReason, UpdateSourceTrigger=PropertyChanged}" 
                     FontSize="10" Height="40" Width="200" HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto" />
 
-                <Button Content="Schedule new appointment" Width="170" Height="40" Background="MediumAquamarine" 
-                    HorizontalAlignment="Left" Margin="0,20,0,0" Padding="4"
+                <Button Content="Schedule new appointment" Width="170" Height="40" HorizontalAlignment="Left" Margin="0,20,0,0" Padding="4"
                         Command="{Binding MakeNewAppointmentCmd}" />
                 <StackPanel Orientation="Horizontal">
                     <Label Content="E-mail confirmation" Margin="0,20,0,0"/>

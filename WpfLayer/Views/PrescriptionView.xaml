@@ -78,10 +78,10 @@
 
             <!-- Buttons for adding and saving prescriptions -->
             <StackPanel Grid.Column="1" Grid.Row="4" Orientation="Horizontal">
-                <Button Content="Add" Width="50" HorizontalAlignment="Left" Margin="0,10,0,0" Background="MediumAquamarine" Padding="4"
+                <Button Content="Add" Width="50" HorizontalAlignment="Left" Margin="0,10,0,0" Padding="4"
                           Command="{Binding Path=DataContext.AddDrugCmd,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
                             CommandParameter="{Binding ElementName=SelectedDrug, Path=SelectedItem}"/>
-                <Button Content="Save Prescription" Width="100" Margin="99,10,0,0" Background="MediumAquamarine" Padding="4" HorizontalAlignment="Right"
+                <Button Content="Save Prescription" Width="100" Margin="99,10,0,0" Padding="4" HorizontalAlignment="Right"
                         Command="{Binding Path=DataContext.SavePrescriptionCmd,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
             </StackPanel>
 
@@ -123,7 +123,7 @@
             <!-- Button for showing prescription details -->
             <Button Grid.Column="5" Grid.Row="4" Content="Show Prescription Details (Drugs)" Margin="0,10,0,0" Width="Auto" HorizontalAlignment="Left" Padding="4"
                 Command="{Binding Path=DataContext.ShowDrugsFromPrescriptionCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
-                CommandParameter="{Binding SelectedPrescription}" Background="MediumAquamarine">  
+                CommandParameter="{Binding SelectedPrescription}">  
             </Button>
 
             <!-- Label and DataGrid for drugs in selected prescription -->

@@ -62,7 +62,7 @@
                 <!-- Search input text box -->
                 <TextBox Text="{Binding SearchInput, UpdateSourceTrigger=PropertyChanged}" Width="300" Height="30"/>
                 <!-- Search button -->
-                <Button Grid.Row="3" Grid.Column="1" Content="Search"  Margin="10,10" Height="30"  Command="{Binding MakeSearchCmd}" Background="MediumAquamarine" Padding="4" FontSize="13" FontWeight="Bold">
+                <Button Grid.Row="3" Grid.Column="1" Content="Search"  Margin="10,10" Height="30"  Command="{Binding MakeSearchCmd}" Padding="4" FontSize="13" FontWeight="Bold">
 
                 </Button>
                 

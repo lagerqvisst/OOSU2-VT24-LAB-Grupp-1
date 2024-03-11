@@ -63,7 +63,7 @@
                     </StackPanel>
 
 
-                    <Button Content="Log in" Width="100" HorizontalAlignment="Left" Margin="20,5,5,5" Background="MediumAquamarine" Command="{Binding SignInCommand}" Padding="2" BorderThickness="1" Foreground="Black" >
+                    <Button Content="Log in" Width="100" HorizontalAlignment="Left" Margin="20,5,5,5" Command="{Binding SignInCommand}" Padding="2" BorderThickness="1" Foreground="Black" >
                     </Button>
                     
 
@@ -74,7 +74,7 @@
             
 
             <StackPanel Grid.Column="1" Grid.Row="6" Margin="20,5,5,5">
-                <Button  Content="Doctor credentials" Width="Auto" HorizontalAlignment="Left"  Margin="0,6,5,5" Foreground="White"  Background="MediumAquamarine"
+                <Button  Content="Doctor credentials" Width="Auto" HorizontalAlignment="Left"  Margin="0,6,5,5" Foreground="White"
                     Command="{Binding AutoGenDocCredCmd}" Padding="3">
                     <Button.Effect>
                         <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="3" Opacity="0.5"/>
@@ -89,7 +89,7 @@
                     </Button.Template>
                 </Button>
 
-                <Button Content="Receptionist credentials" Width="Auto" HorizontalAlignment="Left"  Margin="0,5,5,5" Padding="3" Foreground="White" Background="MediumAquamarine"
+                <Button Content="Receptionist credentials" Width="Auto" HorizontalAlignment="Left"  Margin="0,5,5,5" Padding="3" Foreground="White"
                 Command="{Binding AutoGenRecCredCmd}" >
                     <Button.Effect>
                         <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="3" Opacity="0.5"/>
@@ -103,6 +103,8 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
+
+               
             </StackPanel>
 
         </Grid>
