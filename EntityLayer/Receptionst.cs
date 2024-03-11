@@ -11,12 +11,16 @@ namespace EntityLayer
 
 {
     public class Receptionist : IUser
+
+    #region Receptionist properties 
     {
         public int receptionistId { get; set; } //PK
         public string name { get; set; }
 
         public string password { get; set; }    
         public List<Appointment> receptionistAppointments { get; set; }
+
+        #endregion Receptionist properties 
 
         // Konstruktorn för Receptionisten tar två parametrar (namn och lösenord) och
         // används för att instansiera objektet. Vid instansiering sätts namn och lösenord,

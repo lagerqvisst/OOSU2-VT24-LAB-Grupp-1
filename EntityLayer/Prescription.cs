@@ -11,7 +11,7 @@ namespace EntityLayer
     public class Prescription
 
     {
-        #region Properties
+        #region Presrcription properties
 
         public int prescriptionId { get; set; } // Primärnyckel för receptet.
         public int patientId { get; set; }  // Främmande nyckel för att koppla till en patient.
@@ -25,7 +25,7 @@ namespace EntityLayer
 
         public List<PrescriptionDrug> PrescriptionDrugs { get; set; } = new List<PrescriptionDrug>(); // En lista som håller reda på sambandet mellan recept och läkemedel.
 
-        #endregion Properties
+        #endregion Presrcription properties
 
         // Här skapas en ny instans av observableCollection för att lagra läkemedel. Vi skapar också en 
         // ny lista för att hålla reda på sambandet mellan recept (Prescription) och läkemedel (drugs).
@@ -46,6 +46,7 @@ namespace EntityLayer
         #endregion Instans av observableCollection för att lagra läkemedel
 
         #region Metoder för att tilldela värden
+
         // Metod för att tilldela ett värde till patientName.
 
         public void SetPatientName(string patientName)
