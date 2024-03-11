@@ -16,16 +16,16 @@ namespace WpfLayer.ViewModels
 {
     public class DoctorViewModel : ObservableObject
     {
-        //Controller class to return appointment object based on doctor object in the view
+        //Kontroller som används för att komma åt metoder
         private readonly AppointmentController appointmentController = new AppointmentController();
 
-        // Properties that are binded in XAML
+        // Properties som är bundna i XAML
         private string doctorName;
         private Appointment selectedAppointment;
         public ObservableCollection<Appointment> Appointments { get; set; }
 
 
-        // Commands
+        // Alla Commands som används i vyn
         #region Commands
         public ICommand OpenAppMgmtCmd { get; private set; }
         public ICommand SignOutCmd { get; private set; }
@@ -34,13 +34,15 @@ namespace WpfLayer.ViewModels
 
         public DoctorViewModel(Doctor doctor)
         {
-            //Setting the doctor's name to the doctorName property that is binded in XAML
+            
+            //Sätter doktorns namn till doctorName propertyn som är bunden i XAML
             doctorName = $"Signed in as Doctor: {doctor.name}";
             
-            //Assigning the doctor's appointments to the ObservableCollection
+            
+            //Hämtar alla doktorns kommande och nuvarande bokade tider
             Appointments = new ObservableCollection<Appointment>(appointmentController.GetDoctorSpecificAppointmentsTodayAndFuture(doctor));
 
-            //Initialize commands
+            //Initierar alla commands med metoder som ska köras
             #region Commands initialization
             OpenAppMgmtCmd = new RelayCommand(OpenAppointmentManagement, CanOpenAppointmentManagement);
             SignOutCmd = new RelayCommand(SignOut);
@@ -48,7 +50,7 @@ namespace WpfLayer.ViewModels
             #endregion
         }
 
-        // Properties that are binded in XAM
+        // Properties som är bundna i XAML
         #region Properties bound in XAML
         public Appointment SelectedAppointment
         {
@@ -64,13 +66,14 @@ namespace WpfLayer.ViewModels
         #endregion
 
 
-        // Methos that are binded to the commands
+        // Alla metoder som är bundna till commands
         #region Methods bound to commands
+        //Kollar så att det finns en vald appointment
         private bool CanOpenAppointmentManagement()
         {
             return SelectedAppointment != null;
         }
-
+        //Öppnar en ny vy om vald appointment inte är null med den valda appointmenten
         private void OpenAppointmentManagement()
         {
             if (SelectedAppointment != null)
@@ -80,11 +83,13 @@ namespace WpfLayer.ViewModels
             }
         }
 
+        //Kollar så att det finns en vald appointment
         private bool CanShowDetails()
         {
             return SelectedAppointment != null;
         }
 
+        //Visar doctorsnote och appointmentReason om vald appointment
         public void ShowDetails()
         {
             if (SelectedAppointment != null)
@@ -93,7 +98,7 @@ namespace WpfLayer.ViewModels
             }
         }
 
-        //Other Methods for navigation
+        //Metod för att logga ut
         private void SignOut()
         {
             MessageBoxResult result = MessageBox.Show("Are you sure you want to sign out?", "Sign out", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -105,9 +110,6 @@ namespace WpfLayer.ViewModels
         }
         #endregion
 
-
-
-
     }
-    }
+}
 
