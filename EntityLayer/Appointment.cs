@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 namespace EntityLayer
 {
     public class Appointment
+
+        #region Appointment properties
+
     {
         public int appointmentId { get; set; }  //PK
         public int patientId { get; set; } //FK
@@ -28,10 +31,16 @@ namespace EntityLayer
         public int? receptionistId { get; set; } //FK
         public string? receptionistName { get; set; }
 
+        #endregion Appointment properties
+
+        #region Constructors
 
         //Constructorn är overloaded för att kunna skapa en appointment med eller utan receptionistId.
         //Overloadingen togs med i LABB3 då ett krav var att en läkare skulle kunna skapa en ny tid. 
         //Tidigare i LABB2 var det endaste receptionisten som kunde skapa en tid och då behövdes inte överlagringen.
+
+
+
         public Appointment(int patientId, DateTime appointmentDate, string appointmentReason, int doctorID, int? receptionistId)
         {
             this.patientId = patientId;
@@ -51,11 +60,16 @@ namespace EntityLayer
 
         }
 
+        #endregion Constructors
+
+        #region Methods
+
         /// <summary>
         /// Märk att attributen för doktor och receptionist INTE är kopplade till objekt utan lösa strängar.
         /// Därav skapades denna lösning som en workaround för att kunna visa namnen på doktor och receptionist i WPF.
         /// Se AppointmentController för hur detta används.
         /// </summary>
+
 
 
         public void SetNames(Patient patient, Doctor doctor, Receptionist receptionist)
@@ -78,7 +92,7 @@ namespace EntityLayer
 
         }
 
-
+        #endregion Methods
 
     }
 

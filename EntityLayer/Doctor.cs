@@ -8,7 +8,7 @@ namespace EntityLayer
 {
     public class Doctor : IUser
 
-    #region Doctor properties
+        #region Doctor properties
     {
         public int doctorID { get; set; } // Primärnyckel för doktorn.
         public string specialization { get; set; } // Specialisering för doktorn.

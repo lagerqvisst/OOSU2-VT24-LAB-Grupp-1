@@ -12,7 +12,7 @@ namespace EntityLayer
 {
     public class Receptionist : IUser
 
-    #region Receptionist properties 
+        #region Receptionist properties 
     {
         public int receptionistId { get; set; } //PK
         public string name { get; set; }
@@ -26,12 +26,15 @@ namespace EntityLayer
         // används för att instansiera objektet. Vid instansiering sätts namn och lösenord,
         // och en tom lista för möten skapas och kopplas till receptionisten.
 
+        #region Constructor
         public Receptionist(string name, string password)
         {
             this.name = name;
             this.password = password;
             receptionistAppointments = new List<Appointment>();
         }
+
+        #endregion Constructor
 
     }
 }
