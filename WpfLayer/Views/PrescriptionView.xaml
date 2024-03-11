@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfLayer.Views" xmlns:viewmodels="clr-namespace:WpfLayer.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:PrescriptionViewModel}"
+        xmlns:local="clr-namespace:WpfLayer.Views" xmlns:viewmodels="clr-namespace:WpfLayer.ViewModels" 
+        
         mc:Ignorable="d"
         Title="PrescriptionView" Height="600" Width="1300">
     <DockPanel>
@@ -11,7 +12,7 @@
             <Menu DockPanel.Dock="Top">
                 <!-- File menu with return option -->
                 <MenuItem Header="_File">
-                    <MenuItem Header="Return to previous window"  Command="{Binding Path=DataContext.CloseWindowCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"></MenuItem>
+                    <MenuItem Header="Return to previous window"  Command="{Binding CloseWindowCmd}"></MenuItem>
                 </MenuItem>
             </Menu>
         </Menu>
@@ -21,7 +22,8 @@
         </StatusBar>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="25.862"/>
+                <ColumnDefinition Width="24.138"/>
                 <ColumnDefinition Width="250"/>
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="250"/>
@@ -30,7 +32,7 @@
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="250"/>
             </Grid.ColumnDefinitions>
-            
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"/>
                 <RowDefinition Height="Auto"/>
@@ -39,45 +41,45 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
-           
-            <Border Grid.Column="1" Grid.Row="0" Background="MediumAquamarine" CornerRadius="10" Width="Auto" HorizontalAlignment="Left" Margin="0,15">
+
+            <Border Grid.Column="2" Grid.Row="0" Background="MediumAquamarine" CornerRadius="10" Width="Auto" HorizontalAlignment="Left" Margin="0,15,0,15">
                 <Border.Effect>
                     <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="5" Opacity="0.5"/>
                 </Border.Effect>
-                <Label Content="Prescription Management" FontWeight="Bold" HorizontalContentAlignment="Center" Foreground="White" Padding="10" FontSize="18"/>
+                <Label Content="Prescription Management" FontWeight="Bold" HorizontalContentAlignment="Center" Foreground="Black" Padding="10" FontSize="18"/>
             </Border>
 
             <!-- Patient information -->
-            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" Margin="0,20,0,0">
-                <Label Content="{Binding PatientName}" FontWeight="Bold" FontSize="11"/>
-                <Label Content="{Binding PatientId}"  FontWeight="Bold"  FontSize="11"/>
+            <StackPanel Grid.Column="2" Grid.Row="1" Orientation="Vertical" Margin="0,20,0,0">
+                <Label Content="{Binding PatientName}" FontWeight="Bold" FontSize="11" Background="Transparent"/>
+                <Label Content="{Binding PatientId}"  FontWeight="Bold"  FontSize="11" Background="Transparent"/>
             </StackPanel>
 
             <!-- Available drugs section -->
-            <StackPanel Grid.Column="1" Grid.Row="2" Margin="0,10">
-                <Label Content="Available drugs in database" FontWeight="SemiBold" FontSize="15" Background="MediumAquamarine" Foreground="White" Height="31">
+            <StackPanel Grid.Column="2" Grid.Row="2" Margin="0,10,0,10">
+                <Label Content="Available drugs in database" FontWeight="SemiBold" FontSize="15" Background="MediumAquamarine" Foreground="Black" Height="31">
                     <!-- Adding drop shadow effect -->
                     <Label.Effect>
                         <DropShadowEffect ShadowDepth="3" Direction="315" Opacity="0.7"/>
                     </Label.Effect>
                 </Label>
-                <Label FontSize="10" FontStyle="Italic">
+                <Label FontSize="10" FontStyle="Italic" Background="Transparent" Margin="0,10,0,0">
                     <Hyperlink NavigateUri="https://dailymed.nlm.nih.gov/dailymed/" FontStyle="Italic">
                         API from https://dailymed.nlm.nih.gov/dailymed/
                     </Hyperlink>
                 </Label>
             </StackPanel >
             <!-- DataGrid for displaying available drugs -->
-            <DataGrid Grid.Column="1" Grid.Row="3" ItemsSource="{Binding Drugs}" SelectedItem="{Binding SelectedDrug, Mode=TwoWay}" VerticalScrollBarVisibility="Auto"
-                          HorizontalScrollBarVisibility="Auto" AutoGenerateColumns="False"  SelectionMode="Single">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Drug ID" Binding="{Binding DrugId}"/>
-                        <DataGridTextColumn Header="Description" Binding="{Binding DrugName}"/>
-                    </DataGrid.Columns>
-                </DataGrid>
+            <DataGrid Grid.Column="2" Grid.Row="3" ItemsSource="{Binding Drugs}" SelectedItem="{Binding SelectedDrug, Mode=TwoWay}" VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Auto" AutoGenerateColumns="False"  SelectionMode="Single" Margin="0,0,0,36" Grid.RowSpan="2" Height="200">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Drug ID" Binding="{Binding DrugId}"/>
+                    <DataGridTextColumn Header="Description" Binding="{Binding DrugName}"/>
+                </DataGrid.Columns>
+            </DataGrid>
 
             <!-- Buttons for adding and saving prescriptions -->
-            <StackPanel Grid.Column="1" Grid.Row="4" Orientation="Horizontal">
+            <StackPanel Grid.Column="2" Grid.Row="4" Orientation="Horizontal" Margin="0,0,0,50" Grid.RowSpan="2">
                 <Button Content="Add" Width="50" HorizontalAlignment="Left" Margin="0,10,0,0" Padding="4"
                           Command="{Binding Path=DataContext.AddDrugCmd,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
                             CommandParameter="{Binding ElementName=SelectedDrug, Path=SelectedItem}"/>
@@ -85,19 +87,18 @@
                         Command="{Binding Path=DataContext.SavePrescriptionCmd,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
             </StackPanel>
 
-
             <!-- Button and DataGrid for removing drugs -->
-            <Button Grid.Column="3" Grid.Row="4" Content="Remove" Width="100" Margin="0,10,0,0" Background="Tomato" HorizontalAlignment="Left" Padding="4"
+            <Button Grid.Column="4" Grid.Row="4" Content="Remove" Width="100" Margin="0,10,0,50" Background="Tomato" HorizontalAlignment="Left" Padding="4"
                          Command="{Binding Path=DataContext.RemoveDrugCmd,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
-                         CommandParameter="{Binding ElementName=SelectedDrugToRemove, Path=SelectedItem}"/>
+                         CommandParameter="{Binding ElementName=SelectedDrugToRemove, Path=SelectedItem}" Grid.RowSpan="2"/>
 
-            <Label Grid.Column="3" Grid.Row="2" Content="Added drugs" FontWeight="SemiBold" FontSize="15" Background="MediumAquamarine" Foreground="White" Margin="0,10,0,36">
+            <Label Grid.Column="4" Grid.Row="2" Content="Added drugs" FontWeight="SemiBold" FontSize="15" Background="MediumAquamarine" Foreground="Black" Margin="0,10,0,36">
                 <!-- Adding drop shadow effect -->
                 <Label.Effect>
                     <DropShadowEffect ShadowDepth="3" Direction="315" Opacity="0.7"/>
                 </Label.Effect>
             </Label>
-            <DataGrid Grid.Column="3" Grid.Row="3" ItemsSource="{Binding SelectedDrugs}" SelectedItem="{Binding SelectedDrugToRemove, Mode=TwoWay}" AutoGenerateColumns="False" >
+            <DataGrid Grid.Column="4" Grid.Row="3" ItemsSource="{Binding SelectedDrugs}" SelectedItem="{Binding SelectedDrugToRemove, Mode=TwoWay}" AutoGenerateColumns="False" Margin="0,0,0,36" Grid.RowSpan="2" Height="200" VerticalScrollBarVisibility="Auto">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Drug ID" Binding="{Binding DrugId}"/>
                     <DataGridTextColumn Header="Description" Binding="{Binding DrugName}"/>
@@ -105,14 +106,14 @@
             </DataGrid>
 
             <!-- Label and DataGrid for prescription history -->
-            <Label Grid.Column="5" Grid.Row="2" Content="Prescription History" FontWeight="SemiBold" FontSize="15" Grid.ColumnSpan="2" Margin="0,10,50,36" Background="MediumAquamarine" Foreground="White">
+            <Label Grid.Column="6" Grid.Row="2" Content="Prescription History" FontWeight="SemiBold" FontSize="15" Grid.ColumnSpan="2" Margin="0,10,50,36" Background="MediumAquamarine" Foreground="Black">
                 <!-- Adding drop shadow effect -->
                 <Label.Effect>
                     <DropShadowEffect ShadowDepth="3" Direction="315" Opacity="0.7"/>
                 </Label.Effect>
             </Label>
-            <DataGrid x:Name="dgHistory" Grid.Column="5" Grid.Row="3" ItemsSource="{Binding PrescriptionHistory,UpdateSourceTrigger=PropertyChanged}"
-                      SelectedItem="{Binding SelectedPrescription, Mode=TwoWay}" AutoGenerateColumns="False" SelectionMode="Single">
+            <DataGrid x:Name="dgHistory" Grid.Column="6" Grid.Row="3" ItemsSource="{Binding PrescriptionHistory,UpdateSourceTrigger=PropertyChanged}"
+                      SelectedItem="{Binding SelectedPrescription, Mode=TwoWay}" AutoGenerateColumns="False" SelectionMode="Single" Grid.ColumnSpan="2" Margin="0,0,50,36" Grid.RowSpan="2" Height="200" VerticalScrollBarVisibility="Auto">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Prescription ID" Binding="{Binding prescriptionId}"/>
                     <DataGridTextColumn Header="Date" Binding="{Binding dateofPrescription}"/>
@@ -121,19 +122,19 @@
 
             </DataGrid>
             <!-- Button for showing prescription details -->
-            <Button Grid.Column="5" Grid.Row="4" Content="Show Prescription Details (Drugs)" Margin="0,10,0,0" Width="Auto" HorizontalAlignment="Left" Padding="4"
+            <Button Grid.Column="6" Grid.Row="4" Content="Show Prescription Details (Drugs)" Margin="0,10,0,50" Width="Auto" HorizontalAlignment="Left" Padding="4"
                 Command="{Binding Path=DataContext.ShowDrugsFromPrescriptionCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" 
-                CommandParameter="{Binding SelectedPrescription}">  
+                CommandParameter="{Binding SelectedPrescription}" Grid.RowSpan="2">
             </Button>
 
             <!-- Label and DataGrid for drugs in selected prescription -->
-            <Label Grid.Column="7" Grid.Row="2" Content="Drugs in selected prescription" FontWeight="SemiBold" FontSize="15" Margin="0,10,0,36" Background="MediumAquamarine" Foreground="White">
+            <Label Grid.Column="8" Grid.Row="2" Content="Drugs in selected prescription" FontWeight="SemiBold" FontSize="15" Margin="0,10,0,36" Background="MediumAquamarine" Foreground="Black">
                 <!-- Adding drop shadow effect -->
                 <Label.Effect>
                     <DropShadowEffect ShadowDepth="3" Direction="315" Opacity="0.7"/>
                 </Label.Effect>
             </Label>
-            <DataGrid Grid.Column="7" Grid.Row="3" ItemsSource="{Binding DrugsInPrescription,UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" >
+            <DataGrid Grid.Column="8" Grid.Row="3" ItemsSource="{Binding DrugsInPrescription,UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Margin="0,0,0,36" Grid.RowSpan="2" Height="200" VerticalScrollBarVisibility="Auto">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Drug ID" Binding="{Binding DrugId}"/>
                     <DataGridTextColumn Header="Description" Binding="{Binding DrugName}"/>

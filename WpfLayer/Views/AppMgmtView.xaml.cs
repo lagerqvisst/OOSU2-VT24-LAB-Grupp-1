@@ -28,9 +28,7 @@ namespace WpfLayer.Views
             appMgmtViewModel = new AppMgmtViewModel(appointment);
             DataContext = appMgmtViewModel;
             InitializeComponent();
-
             this.Title = "Appointment Management";
         }
-
     }
 }

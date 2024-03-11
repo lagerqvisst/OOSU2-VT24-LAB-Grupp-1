@@ -19,7 +19,6 @@
         <StatusBar DockPanel.Dock="Bottom">
             <!--Text som visar med hjälp av Binding vilken patients appointments-->
             <TextBlock Text="{Binding StatusBarMessage}" FontStyle="Italic"></TextBlock>
-
         </StatusBar>
         <!--STATUS MESSAGE slut -->
 
@@ -43,7 +42,7 @@
 
             <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Orientation="Vertical" Margin="10,0,10,0">
                 <Border Background="MediumAquamarine" CornerRadius="10" Width="Auto" HorizontalAlignment="Left" Margin="0,15">
-                    <Label Content="Appointment Management Dashboard" FontWeight="Bold" HorizontalContentAlignment="Center" Foreground="White" Padding="10" FontSize="20"/>
+                    <Label Content="Appointment Management Dashboard" FontWeight="Bold" HorizontalContentAlignment="Center" Foreground="Black" Padding="10" FontSize="20"/>
                 </Border>
                 <!--Skriv ut all relevant information om patienten med hjälp av respektive binding.-->
                 <TextBlock Text="{Binding PatientName}" FontSize="11"></TextBlock>
@@ -57,14 +56,13 @@
                 <StackPanel Margin="0,0,0,0">
                     
                     <Label Content="Add doctors note" FontWeight="Bold"/>
-                    <Label Content="(free text)" FontStyle="Italic" FontSize="11" Margin="0,0,0,0" />
+                    <Label Content="(free text)" FontStyle="Italic" FontSize="11" Margin="0,0,0,0" Background="Transparent" />
                     <!--Binder DoctorsNote Property och sätter Update för att den ska uppdateras direkt i gränssnittet-->
                     <TextBox Name="txtBoxDoctorNote" Text="{Binding DoctorsNote, UpdateSourceTrigger=PropertyChanged}" FontSize="10"  Margin="5,10,0,0"
                         Height="50" Width="300" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" HorizontalAlignment="Left"/>
                     <!--Binder till MakeNote Commandet som byter den gamla Doctorsnote mot det nya.-->
                     <Button Content="Add note" Width="100" Height="30" FontSize="10" HorizontalAlignment="Left" Margin="5,30,0,0"
-                        x:Name="btnAddDoctorsNote" Command="{Binding Path=DataContext.MakeNoteCmd, 
-                        RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
+                        x:Name="btnAddDoctorsNote" Command="{Binding MakeNoteCmd}">
 
                     </Button>
                 </StackPanel>
@@ -72,12 +70,12 @@
             </Border>
             <Border Grid.Column="1" Grid.Row="3"  BorderBrush="MediumAquamarine"  BorderThickness="1" CornerRadius="5" Padding="10" Margin="5,10,0,5" Width="Auto">
                 <StackPanel Margin="0,0,0,30">
-                    <Label Content="Diagnosis" FontWeight="Bold"/>
+                    <Label Content="Diagnosis" FontWeight="Bold" Background="Transparent"/>
 
-                    <Label Content="Use drop-down list to choose from stored conditions. Then enter a diagnosis description." FontStyle="Italic" FontSize="11" Margin="0,0,0,20"/>
+                    <Label Content="Use drop-down list to choose from stored conditions. Then enter a diagnosis description." FontStyle="Italic" FontSize="11" Margin="0,0,0,20" Background="Transparent"/>
 
                     <StackPanel Orientation="Vertical">
-                        <Label Content="Choose a Medical condition (API)" FontStyle="Italic" FontSize="12" />
+                        <Label Content="Choose a Medical condition (API)" FontStyle="Italic" FontSize="12" Background="Transparent" />
                         <StackPanel Orientation="Horizontal">
                             <!--Fyller ComboBoxen med alla MedicalConditions samt sätter SelectedItem till ett valt MedicalCondition-->
                             <ComboBox ItemsSource="{Binding MedicalConditions}" SelectedItem="{Binding SelectedMedicalCondition}" Width="200" HorizontalAlignment="Left"></ComboBox>
@@ -85,33 +83,32 @@
                             <Button Content="?" Width="30"  HorizontalAlignment="Left" Margin="10,0,0,0" Background="IndianRed" Command="{Binding ApiExplained}"></Button>
                         </StackPanel>
 
-                        <Label Content="Diagnosis (free text)" FontStyle="Italic" FontSize="11" Margin="0,10,0,0" />
+                        <Label Content="Diagnosis (free text)" FontStyle="Italic" FontSize="11" Margin="0,10,0,0" Background="Transparent" />
                         <!--Binder DiagnosisDescription Property och sätter Update för att den ska uppdateras direkt i gränssnittet-->
                         <TextBox Text="{Binding DiagnosisDescription, UpdateSourceTrigger=PropertyChanged}" FontSize="11" Height="50" Width="400" HorizontalAlignment="Left"
                         AcceptsReturn="True" TextWrapping="Wrap" Margin="0,0,0,10" VerticalScrollBarVisibility="Auto" />
 
                     </StackPanel>
 
-                    <Label Content="Describe suggested treatment (free text)" FontStyle="Italic" FontSize="11"/>
+                    <Label Content="Describe suggested treatment (free text)" FontStyle="Italic" FontSize="11" Background="Transparent"/>
                     <!--Binder TreatmentSuggestion Property och sätter Update för att den ska uppdateras direkt i gränssnittet-->
                     <TextBox Text="{Binding TreatmentSuggestion, UpdateSourceTrigger=PropertyChanged}" FontSize="11" Height="50" Width="400" HorizontalAlignment="Left"
                     AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
                     <!--Kallar på Commandet MakeDiagnosisCmd som skapar den nya Diagnosen.-->
                     <Button Content="Add diagnosis" Width="100" Height="30" HorizontalAlignment="Left" Margin="0,10,0,0"
-                        Command="{Binding Path=DataContext.MakeDiagnosisCmd, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
+                        Command="{Binding MakeDiagnosisCmd}">
                     </Button>
                 </StackPanel>
-
             </Border>
 
-            <Label Grid.Column="3" Grid.Row="1" Content="Patient History" FontWeight="Bold" Foreground="White" FontSize="20"></Label>
+            <Label Grid.Column="3" Grid.Row="1" Content="Patient History" FontWeight="Bold" Foreground="Black" Background="Transparent" FontSize="20"></Label>
 
             <Border  Grid.Column="3" Grid.Row="2"  BorderBrush="MediumAquamarine" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5,0,0,5">
                 <StackPanel Background="White">
                     <!--Visar Doctorsnote och anledning till appointment via commandet-->
                     <Button Content="Show expanded details" Command="{Binding DataGridShowDetailsNoteReasonCmd}"  Width="Auto" Height="30"  FontSize="12" FontStyle="Italic" HorizontalAlignment="Right"  Padding="4" Background="Bisque" Margin="10,10,10,0"></Button>
-                    
-                    <Label Content="Appointment history" FontWeight="SemiBold"></Label>
+
+                    <Label Content="Appointment history" FontWeight="SemiBold" Background="Transparent"></Label>
                     <ScrollViewer VerticalScrollBarVisibility="Auto" Height="200">
                         <!--Visar appointment historiken för patienten samt sätter SelectedItem till en vald appointment.-->
                         <DataGrid ItemsSource="{Binding patientAppointmentHistory}" SelectedItem="{Binding SelectedAppointment}" AutoGenerateColumns="False" >
@@ -147,8 +144,6 @@
                                 <DataGridTextColumn Header="Diagnosis Description" Binding="{Binding diagnosisDescription}" Width="135" />
                                 <DataGridTextColumn Header="Date of diagnosis" Binding="{Binding dateOfDiagnosis}" Width="125"/>
                                 <DataGridTextColumn Header="Suggested Treatment" Binding="{Binding treatmentSuggestion}" Width="150" />
-
-
                                 <!-- Exempel på en kolumn med synlighet som kontrolleras dynamiskt -->
                             </DataGrid.Columns>
 
@@ -164,7 +159,7 @@
             <Button  Content="Schedule new appointment" Width="200" Height="40" HorizontalAlignment="Left" Margin="0,0,0,0" Command="{Binding OpenAppScheduleView}"></Button>
                 <!--Öppnar ett nytt fönster genom Commandot för att sedan kunna fortsätta hantera Prescriptions-->
                 <Button  Content="Manage Prescriptions" Width="200" Height="40" HorizontalAlignment="Left" Margin="30,0,0,0"
-                    Command="{Binding Path=DataContext.OpenPrescriptionMgmtCmd ,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"></Button>
+                    Command="{Binding OpenPrescriptionMgmtCmd}"></Button>
 
             </StackPanel>
 

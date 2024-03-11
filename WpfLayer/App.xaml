@@ -9,5 +9,9 @@
             <Setter Property="Background" Value="MediumAquamarine"/>
             <!-- 10 Left and Right and 5 Top and Bottom-->
         </Style>
+        
+        <Style TargetType="Label">
+            <Setter Property="Background" Value="MediumAquamarine"/>
+        </Style>
     </Application.Resources>
 </Application>

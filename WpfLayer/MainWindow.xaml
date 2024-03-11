@@ -7,11 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="450">
 
-    <DockPanel LastChildFill="True">
+    <DockPanel>
         <!--MENY START -->
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
-                <MenuItem Header="Exit Application" x:Name="menuSignout" Command="{Binding Path=DataContext.ShutDownCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"></MenuItem>
+                <MenuItem Header="Exit Application" x:Name="menuSignout" Command="{Binding ShutDownCommand}" ></MenuItem>
                 <MenuItem Header="Fun fact of the day" Command="{Binding FunFactCmd}"></MenuItem>
             </MenuItem>
         </Menu>
@@ -26,6 +26,7 @@
                 <ColumnDefinition Width="350"></ColumnDefinition>
                 <ColumnDefinition Width="20"></ColumnDefinition>
             </Grid.ColumnDefinitions>
+            
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
@@ -38,12 +39,11 @@
                 <RowDefinition Height="auto"></RowDefinition>
             </Grid.RowDefinitions>
 
-
             <Border Grid.Column="1" Grid.Row="1" Background="MediumAquamarine" CornerRadius="8" Margin="0,20" Padding="15" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Border.Effect>
                     <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="5" Opacity="0.5"/>
                 </Border.Effect>
-                <Label Content="Oasis Medical Center" FontWeight="SemiBold" FontSize="16" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Content="Oasis Medical Center" FontWeight="SemiBold" FontSize="16" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
 
             <Border Grid.Column="1" Grid.Row="2" BorderBrush="MediumAquamarine" BorderThickness="2" CornerRadius="5" Padding="5" Margin="5,1,0,4" Background="White"  Opacity="1.3">
@@ -53,28 +53,26 @@
 
                 <StackPanel>
                     <StackPanel Margin="20,5,5,5">
-                        <Label Content="Username" FontWeight="SemiBold" FontStyle="Italic" FontSize="13" Foreground="MediumAquamarine" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
+                        <Label Content="Username" FontWeight="SemiBold" FontStyle="Italic" FontSize="13" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Black" Background="Transparent"></Label>
                         <TextBox Text="{Binding Path=UserName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     </StackPanel>
 
                     <StackPanel Margin="20,5,5,5">
-                        <Label Content="Password" FontWeight="SemiBold" FontStyle="Italic" FontSize="13" Foreground="MediumAquamarine" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
+                        <Label Content="Password" FontWeight="SemiBold" FontStyle="Italic" FontSize="13" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Black" Background="Transparent" ></Label>
                         <TextBox Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     </StackPanel>
 
-
-                    <Button Content="Log in" Width="100" HorizontalAlignment="Left" Margin="20,5,5,5" Command="{Binding SignInCommand}" Padding="2" BorderThickness="1" Foreground="Black" >
+                    <Button Content="Log in" Width="100" HorizontalAlignment="Left" Margin="20,5,5,5" Command="{Binding SignInCommand}" Padding="2" BorderThickness="1" Foreground="Black" FontSize="13">
                     </Button>
-                    
 
                 </StackPanel>
             </Border>
 
-            <Label Grid.Column="1" Grid.Row="5" Content="Auto-populate random user credentials" Margin="15,30,0,0" FontWeight="SemiBold" FontStyle="Italic" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            
+            <Label Grid.Column="1" Grid.Row="5" Content="Auto-populate random user credentials" Margin="15,30,0,0" FontWeight="SemiBold" FontStyle="Italic" FontSize="14" 
+                   Background="Transparent" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
             <StackPanel Grid.Column="1" Grid.Row="6" Margin="20,5,5,5">
-                <Button  Content="Doctor credentials" Width="Auto" HorizontalAlignment="Left"  Margin="0,6,5,5" Foreground="White"
+                <Button  Content="Doctor credentials" Width="Auto" HorizontalAlignment="Left"  Margin="0,6,5,5" Foreground="Black"
                     Command="{Binding AutoGenDocCredCmd}" Padding="3">
                     <Button.Effect>
                         <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="3" Opacity="0.5"/>
@@ -89,7 +87,7 @@
                     </Button.Template>
                 </Button>
 
-                <Button Content="Receptionist credentials" Width="Auto" HorizontalAlignment="Left"  Margin="0,5,5,5" Padding="3" Foreground="White"
+                <Button Content="Receptionist credentials" Width="Auto" HorizontalAlignment="Left"  Margin="0,5,5,5" Padding="3" Foreground="Black"
                 Command="{Binding AutoGenRecCredCmd}" >
                     <Button.Effect>
                         <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="3" Opacity="0.5"/>

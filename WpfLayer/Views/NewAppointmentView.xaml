@@ -5,14 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfLayer.Views"
         mc:Ignorable="d"
-        Title="NewAppointmentView" Height="500" Width="300">
+        Title="NewAppointmentView" Height="450" Width="300">
 
     <DockPanel>
-
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
                 <MenuItem Header="Return to previous window" x:Name="menuSignout" Command="{Binding CloseWindowCmd}"></MenuItem>
-
             </MenuItem>
         </Menu>
 
@@ -29,58 +27,48 @@
                 <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
 
-
-
-           
-                <StackPanel Grid.Column="1" Margin="5">
-                    <Label Content="Choose Date" FontWeight="Bold" />
+            <StackPanel Grid.Column="1" Margin="5">
+                <Label Content="Choose Date" FontWeight="Bold" Background="Transparent"/>
 
                 <!-- DatePicker för att välja datum -->
-                    <DatePicker SelectedDate="{Binding AppointmentDate, Mode=TwoWay}" 
+                <DatePicker SelectedDate="{Binding AppointmentDate, Mode=TwoWay}" 
                         DisplayDateStart="2022-01-01" DisplayDateEnd="2025-12-31" 
                          SelectedDateFormat="Short" Width="200" HorizontalAlignment="Left" />
 
-                    <Label Content="Select time of day" FontStyle="Italic" FontSize="10" Margin="0,5,0,0" />
-                    <!-- ComboBox för att välja tid på dagen -->
-                    <ComboBox SelectedIndex="{Binding SelectedTimeIndex, Mode=TwoWay}" Width="200" HorizontalAlignment="Left">
-                        <ComboBoxItem>08:00</ComboBoxItem>
-                        <ComboBoxItem>09:00</ComboBoxItem>
-                        <ComboBoxItem>10:00</ComboBoxItem>
-                        <ComboBoxItem>11:00</ComboBoxItem>
-                        <ComboBoxItem>12:00</ComboBoxItem>
-                        <ComboBoxItem>13:00</ComboBoxItem>
-                        <ComboBoxItem>14:00</ComboBoxItem>
-                        <ComboBoxItem>15:00</ComboBoxItem>
-                        <ComboBoxItem>16:00</ComboBoxItem>
-                        <ComboBoxItem>17:00</ComboBoxItem>
-                        <ComboBoxItem>18:00</ComboBoxItem>
-                        <!-- Fyll på med fler alternativ efter behov -->
-                    </ComboBox>
+                <Label Content="Select time of day" FontStyle="Italic" FontSize="12" Margin="0,5,0,0" Background="Transparent"/>
+                <!-- ComboBox för att välja tid på dagen -->
+                <ComboBox SelectedIndex="{Binding SelectedTimeIndex, Mode=TwoWay}" Width="200" HorizontalAlignment="Left">
+                    <ComboBoxItem>08:00</ComboBoxItem>
+                    <ComboBoxItem>09:00</ComboBoxItem>
+                    <ComboBoxItem>10:00</ComboBoxItem>
+                    <ComboBoxItem>11:00</ComboBoxItem>
+                    <ComboBoxItem>12:00</ComboBoxItem>
+                    <ComboBoxItem>13:00</ComboBoxItem>
+                    <ComboBoxItem>14:00</ComboBoxItem>
+                    <ComboBoxItem>15:00</ComboBoxItem>
+                    <ComboBoxItem>16:00</ComboBoxItem>
+                    <ComboBoxItem>17:00</ComboBoxItem>
+                    <ComboBoxItem>18:00</ComboBoxItem>
+                    <!-- Fyll på med fler alternativ efter behov -->
+                </ComboBox>
 
-                    <Label Content="Appointment reason" FontStyle="Italic" FontSize="10" Margin="0,5,0,0" />
-                    <TextBox Text="{Binding NewAppointmentReason, UpdateSourceTrigger=PropertyChanged}" 
-                    FontSize="10" Height="40" Width="200" HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto" />
+                <Label Content="Appointment reason" FontStyle="Italic" FontSize="12" Margin="0,5,0,0" Background="Transparent" />
+                <TextBox Text="{Binding NewAppointmentReason, UpdateSourceTrigger=PropertyChanged}" 
+                    FontSize="10" Height="40" Width="200" HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto"/>
 
                 <Button Content="Schedule new appointment" Width="170" Height="40" HorizontalAlignment="Left" Margin="0,20,0,0" Padding="4"
                         Command="{Binding MakeNewAppointmentCmd}" />
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="E-mail confirmation" Margin="0,20,0,0"/>
-                    <Label Content="( Fully functional! )" Margin="0,20,0,0" FontSize="9" FontStyle="Italic" FontWeight="DemiBold" Foreground="MediumAquamarine"></Label>
+                    <Label Content="E-mail confirmation" Margin="0,20,0,0" Background="Transparent"/>
+                    <Label Content="( Fully functional! )" Margin="0,25,0,0" FontSize="10" FontStyle="Italic" FontWeight="DemiBold" Foreground="Black" Background="Transparent"></Label>
                 </StackPanel>
 
                 <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Width="200" HorizontalAlignment="Left"></TextBox>
                 <Button Content="Send" Command="{Binding SendEmailCmd}" Width="100" HorizontalAlignment="Left" Margin="0,10"></Button>
             </StackPanel>
 
-            
-                
-
-
-
         </Grid>
 
     </DockPanel>
-   
 
-    
 </Window>
