@@ -7,6 +7,9 @@
         
         mc:Ignorable="d"
         Title="PrescriptionView" Height="600" Width="1300">
+    
+    <!-- EJ GJORD MED KOMMENTARER ÄNNU -->
+    
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <Menu DockPanel.Dock="Top">

@@ -24,7 +24,8 @@ namespace WpfLayer.Views
         DoctorViewModel doctorViewModel;
         public DoctorView(Doctor doctor)
         {
-            //Passing the doctor object from the sign in view to the DoctorViewModel
+           
+            //Skickar doctor objektet från Log In view till DoctorViewModel
             doctorViewModel = new DoctorViewModel(doctor);
             DataContext = doctorViewModel;
 

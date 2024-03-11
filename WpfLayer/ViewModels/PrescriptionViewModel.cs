@@ -13,6 +13,7 @@ using EntityLayer.Junction;
 
 namespace WpfLayer.ViewModels
 {
+    //EJ GJORD MED KOMMENTARER ÄNNU
     public class PrescriptionViewModel : ObservableObject
     {
 

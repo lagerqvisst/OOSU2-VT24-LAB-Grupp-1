@@ -24,7 +24,8 @@ namespace WpfLayer.Views
         AppMgmtViewModel appMgmtViewModel;
         public AppMgmtView(Appointment appointment)
         {
-            //Passing the appointment object from the doctor view to the AppMgmtViewModel (selected appointment)
+ 
+            //Skickar appointment objektet från doctor view till AppMgmtViewModel (selected appointment)
             appMgmtViewModel = new AppMgmtViewModel(appointment);
             DataContext = appMgmtViewModel;
             InitializeComponent();
