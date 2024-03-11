@@ -94,7 +94,7 @@ namespace WpfLayer.ViewModels
             MakeNoteCmd = new RelayCommand(MakeNote, CanMakeNote);
             MakeDiagnosisCmd = new RelayCommand(MakeDiagnosis, CanMakeDiagnosis);
             OpenPrescriptionMgmtCmd = new RelayCommand(OpenPrescriptionView, CanOpenPrescriptionView);
-            CloseWindowCmd = new RelayCommand(CloseWidnow);
+            CloseWindowCmd = new RelayCommand(CloseWindow);
             ApiExplained = new RelayCommand(ApiExplaination);
             OpenDiagnosisHelperCmd = new RelayCommand(OpenDiagnosisHelper);
             OpenAppScheduleView = new RelayCommand(OpenAppScheduleViewer);
@@ -283,6 +283,7 @@ namespace WpfLayer.ViewModels
         // Alla metoder som är kopplade till commands
 
         #region Methods bound to commands
+        
         // Avgör om en doktorsnotering kan skapas
         private bool CanMakeNote()
         {
@@ -314,7 +315,7 @@ namespace WpfLayer.ViewModels
             return !string.IsNullOrEmpty(DiagnosisDescription) !=null && SelectedMedicalCondition != null && !string.IsNullOrEmpty(TreatmentSuggestion); 
         }
 
-        //Skapar en diagnos  //Fortsätt här!
+        //Skapar en diagnos 
         private void MakeDiagnosis()
         {
             DateTime dateOfDiagnosis = DateTime.Now;
@@ -331,7 +332,7 @@ namespace WpfLayer.ViewModels
             OnPropertyChanged(nameof(diagnosisHistory));
         }
 
-
+        //Öppnar ett nytt fönster för att skapa en ny tid om en patient är vald.
         private bool CanOpenPrescriptionView()
         {
             if (patient != null)
@@ -340,25 +341,27 @@ namespace WpfLayer.ViewModels
             }
             else return false;
         }
+
+        //Öppnar ett nytt fönster för att skapa en ny tid om en patient är vald.
         private void OpenPrescriptionView()
         {
             PrescriptionView prescriptionView = new PrescriptionView(patient);
             prescriptionView.ShowDialog();
         }
 
-
+        //Öppnar ett nytt fönster för att få hjälp med att välja diagnos.
         private void OpenDiagnosisHelper()
         {
             DiagnosisHelperView diagnosisHelperView = new DiagnosisHelperView();
             diagnosisHelperView.ShowDialog();
         }
 
-
+        //Metod som kollar om något är valt och isåfall går vidare till metoden OpenExpandedDetailsNoteReason
         private bool CanOpenExpandedDetailsNoteReason()
         {
             return SelectedAppointment != null;
         }
-
+        //Metod som visar information om doctorsnote och appointmentReason om selectedAppointment inte är null
         private void OpenExpandedDetailsNoteReason()
         {
             if (SelectedAppointment != null)
@@ -366,12 +369,12 @@ namespace WpfLayer.ViewModels
                 MessageBox.Show($"Doctors note: {SelectedAppointment.doctorsNote}\n\nReason for appointment: {SelectedAppointment.appointmentReason}");
             }
         }
-
+        //Tittar så att det valts en diagnos och isåfall går vidare till metoden OpenExpandedDetailsDiagnosisTreat
         private bool CanOpenExpandedDetailsDiagnosisTreat()
         {
             return SelectedDiagnosis != null;
         }
-
+        //Visar information om diagnosbeskrivning och behandlingsförslag om selectedDiagnosis inte är null
         public void OpenExpandedDetailsDiagnosisTreat()
         {
             if (SelectedDiagnosis != null)
@@ -402,7 +405,7 @@ namespace WpfLayer.ViewModels
 
 
         //Other Methods for navigation
-        private void CloseWidnow()
+        private void CloseWindow()
         {
             Window currentWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
             currentWindow?.Close();
