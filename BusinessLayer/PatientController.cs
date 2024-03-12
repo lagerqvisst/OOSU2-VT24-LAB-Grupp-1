@@ -10,7 +10,11 @@ namespace BusinessLayer
 {
     public class PatientController
     {
+        #region UnitOfWork
         UnitOfWork unitOfWork = new UnitOfWork();
+        #endregion
+
+        #region CRUD Operations
 
         public Patient CreateNewPatient(string personalNumber, string name, string address, string phonenumber, string emailaddress)
         {
@@ -28,6 +32,8 @@ namespace BusinessLayer
             unitOfWork.DeletePatient(patient);
             return patient;
         }
+
+        #endregion CRUD Operations
 
         #region List metoder för att hämta patienter beroende på olika kriterier
 
