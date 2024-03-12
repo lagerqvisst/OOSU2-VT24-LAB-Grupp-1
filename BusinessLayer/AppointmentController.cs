@@ -12,8 +12,7 @@ namespace BusinessLayer
     {
         UnitOfWork unitOfWork = new UnitOfWork();
 
-
-
+        #region Create
         public Appointment CreateNewAppointment(int patientId, DateTime appointmentDate, string appointmentReason, int doctorID, int receptionistId)
         {
             Appointment appointment = new Appointment(patientId, appointmentDate, appointmentReason, doctorID, receptionistId);
@@ -24,7 +23,6 @@ namespace BusinessLayer
             appointment.SetNames(unitOfWork.PatientRepository.FirstOrDefault(p => p.patientId == patientId),
                                 unitOfWork.DoctorRepository.FirstOrDefault(d => d.doctorID == doctorID),
                                 unitOfWork.ReceptionistRepository.FirstOrDefault(r => r.receptionistId == receptionistId));
-            
 
             unitOfWork.CreateAppointment(appointment);
             return appointment;
@@ -39,14 +37,14 @@ namespace BusinessLayer
 
             //För att sätta namnen på patient, doktor och receptionist där namnen är kopplade med faktiska objekt och inte lösa strängar i appointment
             appointment.SetNames(unitOfWork.PatientRepository.FirstOrDefault(p => p.patientId == patientId),
-                                               unitOfWork.DoctorRepository.FirstOrDefault(d => d.doctorID == doctorID));
-
-
+                                                unitOfWork.DoctorRepository.FirstOrDefault(d => d.doctorID == doctorID));
 
             unitOfWork.CreateAppointment(appointment);
             return appointment;
         }
+        #endregion
 
+        #region Read
         public List<Appointment> GetAllAppointments()
         {
             return unitOfWork.AppointmentRepository.Find(a => true).ToList();
@@ -60,46 +58,53 @@ namespace BusinessLayer
                 .ToList();
         }
 
-
         //Onödig metod, använd hela objekt istället... 
         public Appointment GetAppointmentById(int id)
         {
             return unitOfWork.AppointmentRepository.FirstOrDefault(a => a.appointmentId == id);
         }
+
         //Hämtar alla appointments för en specifik patient
         public List<Appointment> GetPatientAppointments(Patient patient)
         {
             return unitOfWork.AppointmentRepository.Find(a => a.patientId == patient.patientId).ToList();
         }
+        #endregion
+
+        #region Update
         //Plockar med en appointment för att sedan ta bort den från databasen
         public Appointment AppointmentToDelete(Appointment appointment)
         {
             unitOfWork.DeleteAppointment(appointment);
             return appointment;
         }
+
         //Uppdaterar en särskild appointment med ett nytt datum
         public void UpdateAppointmentDate(Appointment appointment, DateTime newDate)
         {
             unitOfWork.UpdateAppointmentDate(appointment, newDate);
         }
+
         //Uppdaterar en särskild appointment med en ny reason
         public void UpdateAppointmentReason(Appointment appointment, string newReason)
         {
             unitOfWork.UpdateAppointmentReason(appointment, newReason);
         }
+
         //Uppdaterar en särskild appointment med en ny doktor
         public void UpdateAppointmentDoctor(Appointment apppointment, Doctor newDoctor)
         {
             apppointment.doctorName = newDoctor.name;
             apppointment.doctorID = newDoctor.doctorID;
             unitOfWork.UpdateAppointmentDoctor(apppointment, newDoctor);
-           
-            
         }
+
         //Uppdaterar en särskild appointment med en uppdaterad doctorsnote.
         public void UpdateAppointmentDoctorsNote(Appointment appointment, string newNote)
         {
             unitOfWork.UpdateAppointmentDoctorsNote(appointment, newNote);
         }
+        #endregion
     }
+
 }
