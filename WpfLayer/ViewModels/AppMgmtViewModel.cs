@@ -18,7 +18,7 @@ namespace WpfLayer.ViewModels
     public class AppMgmtViewModel : ObservableObject
     {
         
-        #region controllers used in the viewmodel
+        #region Controllers used in the viewmodel
         //Kontroller som används för att komma åt metoder i respektive controller
         public AppointmentController appointmentController = new AppointmentController();
         public DoctorController doctorController = new DoctorController();
@@ -27,7 +27,7 @@ namespace WpfLayer.ViewModels
         #endregion
 
         // Properties som är bundna inom XAMl
-        #region private properties
+        #region Private properties
         private string patientName;
         private string patientId;
         private string _doctorsNote;
@@ -107,7 +107,6 @@ namespace WpfLayer.ViewModels
             patient = patientController.GetPatientById(appointment.patientId);
             doctor = doctorController.GetDoctorById(appointment.doctorID);
 
-            //XAML bounded properties assigned values
             #region XAML bounded properties assigned values
             patientName = $"Patient name: {patient.name}";
             patientId = $"Patient ID: {patient.patientId}";
@@ -117,14 +116,11 @@ namespace WpfLayer.ViewModels
                 $"Date for appointment: {appointment.appointmentDate}, Reason: {appointment.appointmentReason}";
             #endregion
 
-            //Collections assigned values through controller methods
             #region Collections assigned values through controller methods
             patientAppointmentHistory = new ObservableCollection<Appointment>(appointmentController.GetPatientAppointments(patient));
             diagnosisHistory = new ObservableCollection<Diagnosis>(diagnosisController.PatientDiagnosis(patient));
             medicalConditions = new ObservableCollection<String>(diagnosisController.ExtractMedicalConditionsFromApi());
             #endregion
-
-            
 
         }
 
@@ -280,8 +276,8 @@ namespace WpfLayer.ViewModels
         }
 
         #endregion
-        // Alla metoder som är kopplade till commands
 
+        // Alla metoder som är kopplade till commands
         #region Methods bound to commands
         
         // Avgör om en doktorsnotering kan skapas
@@ -290,7 +286,6 @@ namespace WpfLayer.ViewModels
             
             return !string.IsNullOrEmpty(DoctorsNote);
         }
-
         
         //SKapar en doktorsnotering 
         private void MakeNote()
@@ -306,8 +301,6 @@ namespace WpfLayer.ViewModels
                 DoctorsNote = ""; // Rensar textfältet
             }
         }
-
-
 
         private bool CanMakeDiagnosis()
         {
@@ -421,8 +414,6 @@ namespace WpfLayer.ViewModels
         }
 
         #endregion
-
-
     }
 }
 

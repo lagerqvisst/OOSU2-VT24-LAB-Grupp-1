@@ -13,8 +13,7 @@ using static BusinessLayer.EmailService;
 
 namespace WpfLayer.ViewModels
 {
-
-    //EJ GJORD MED KOMMENTARER ÄNNU
+    //Klassen ärver från ObservableObject som är en klass som implementerar INotifyPropertyChanged
     public class NewAppointmentViewModel : ObservableObject
     {
         AppointmentController appointmentController = new AppointmentController();
@@ -29,7 +28,7 @@ namespace WpfLayer.ViewModels
         #endregion
 
 
-        //Uppdateras av callback från AppointmentManagementViewModel eftersom fönstret stängs och inte öppnas på nytt och därmed kan inte objektet skickas med som parameter
+        //Uppdateras av callback från AppointmentManagementViewModel eftersom när fönstret stängs manuellt av användaren och inte öppnas på nytt kan inte objektet skickas med som parameter
         public ObservableCollection<Appointment> patientAppointmentHistory { get; set; } = new ObservableCollection<Appointment>();
 
         public Appointment newAppointment;
@@ -43,7 +42,10 @@ namespace WpfLayer.ViewModels
         public ICommand CloseWindowCmd { get; private set; }
         #endregion
 
+        // Vi gör en Action som tar en ObservableCollection<Appointment> som parameter och döper den till updateAppointmentHistoryCallback
         private Action<ObservableCollection<Appointment>> _updateAppointmentHistoryCallback;
+
+        //Konstruktor som är lite special pga att vi behöver skicka med en callback för att uppdatera listan med patientens tidigare bokade tider.
         public NewAppointmentViewModel(Doctor doctor, Patient patient, Action<ObservableCollection<Appointment>> updateAppointmentHistoryCallback)
         {
             this.doctor = doctor;
@@ -58,13 +60,11 @@ namespace WpfLayer.ViewModels
             CloseWindowCmd = new RelayCommand(CloseWidnow);
             #endregion
 
+            //Hämtar patientens tidigare bokade tider från databasen
             patientAppointmentHistory = new ObservableCollection<Appointment>(appointmentController.GetPatientAppointments(patient));
 
             //Tilldelas från förra vyn som en metod som uppdaterar listan med patientens tidigare bokade tider
             _updateAppointmentHistoryCallback = updateAppointmentHistoryCallback;
-
-            
-
         }
 
         #region Properties bound in XAML
@@ -161,29 +161,26 @@ namespace WpfLayer.ViewModels
                 9 => TimeSpan.FromHours(17),
                 10 => TimeSpan.FromHours(18),
                 // Lägg till fler alternativ efter behov
-
             };
 
             // Kombinera valt datum och tid för att skapa ett DateTime-objekt
             DateTime appointmentDateTime = AppointmentDate  + selectedTime;
 
+            //Skapar nytt appointment på inloggad doktor.
             newAppointment = appointmentController.NewAppointmentByDoctor(patient.patientId, appointmentDateTime, NewAppointmentReason, doctor.doctorID);
-
 
             patientAppointmentHistory.Add(newAppointment);
             MessageBox.Show("Appointment scheduled");
             NewAppointmentReason = "";
 
+            //Uppdaterar listan i tidigare vy.
             _updateAppointmentHistoryCallback(patientAppointmentHistory);
-
-            
         }
 
         private bool CanSendEmailConfirmation()
         {
             return !string.IsNullOrEmpty(Email) && NewAppointment != null;
         }
-
 
         private void SendEmailConfirmation()
         {
@@ -205,19 +202,13 @@ namespace WpfLayer.ViewModels
 
                 CloseWidnow();
             }
-
-
         }
-
-
-
 
         private void CloseWidnow()
         {
             Window currentWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
             currentWindow?.Close();
         }
-
         #endregion
     }
 }
