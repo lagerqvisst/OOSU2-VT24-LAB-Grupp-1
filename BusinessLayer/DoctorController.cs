@@ -30,6 +30,6 @@ namespace BusinessLayer
         {
             return unitOfWork.DoctorRepository.Find(d => true).ToList();
         }
-        #endregion CRUD Operations
+
     }
 }

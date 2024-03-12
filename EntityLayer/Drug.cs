@@ -9,15 +9,23 @@ namespace EntityLayer
 {
     public class Drug
     {
-        public int DrugId { get; set; }
-        public string DrugName { get; set; }
 
-        public List<PrescriptionDrug> PrescriptionDrugs { get; set; }
+        #region Drug properties
 
+        public int DrugId { get; set; } // Unik identifierare för läkemedlet.
+        public string DrugName { get; set; } // Namnet på läkemedlet.
+
+        public List<PrescriptionDrug> PrescriptionDrugs { get; set; } // Lista som håller reda på sambandet mellan läkemedlet och recept.
+
+        #endregion Drug properties
+
+        #region Constructor
 
         public Drug(string drugName)
         {
-            this.DrugName = drugName;
+            this.DrugName = drugName; // Konstruktor som sätter namnet på läkemedlet vid instansiering.
         }
+
+        #endregion Constructor
     }
 }

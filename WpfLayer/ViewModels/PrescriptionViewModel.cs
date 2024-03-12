@@ -15,14 +15,14 @@ namespace WpfLayer.ViewModels
 {
     public class PrescriptionViewModel : ObservableObject
     {
+        //Lokal variabel som skickar patientobjekt från föregående vy, se konstruktor för tilldelning.
+        Patient patient; 
 
-        Patient patient; //Local variable that passes patient object from the previous view, see constructor for assignemnt.
-
-        //Controller classes to extract and create data from the database
+        //Kontrollerklasser för att hämta relevanta metoder
         DrugController drugController = new DrugController();
         PrescriptionController prescriptionController = new PrescriptionController();
 
-        // Properties that are binded in XAML
+        // Listor som är bundna in XAML
         #region Lists bound in XAML as datagrids
         public ObservableCollection<Drug> Drugs { get; set; } = new ObservableCollection<Drug>(); //DATAGRID
         public ObservableCollection<Drug> DrugsInPrescription { get; set; } = new ObservableCollection<Drug>(); //DATAGRID
@@ -31,7 +31,7 @@ namespace WpfLayer.ViewModels
         private ObservableCollection<Prescription> prescriptionHistory;
         #endregion
 
-
+        //Properties som är bundna i XAML
         #region Properties bound in XAML
         private int totalDrugsOfAllPrescriptions { get; set; }
         private string patientName;
@@ -39,12 +39,11 @@ namespace WpfLayer.ViewModels
         private string statusBarPatientInfo;
         #endregion
 
-        // Objects that help to call on controller methods and set values to properties bounded in XAML
+        //Objekt som hjälper till att anropa kontrollermetoder och sätta värden till egenskaper som är bundna i XAML
         private Drug selectedDrug;
         private Drug selectedDrugToRemove;
         private Prescription selectedPrescription;
 
-        // Commands 
         #region Commands
         public ICommand AddDrugCmd { get; private set; }
         public ICommand RemoveDrugCmd { get; private set; }
@@ -55,10 +54,9 @@ namespace WpfLayer.ViewModels
 
         public PrescriptionViewModel(Patient patient)
         {
-            //Assigning the patient object to the local variable
+            //Tilldelar patientobjektet till den lokala variabeln
             this.patient = patient;
 
-            //Initialize commands
             #region Commands initialization
             AddDrugCmd = new RelayCommand(AddDrugToList, CanAddDrug);
             RemoveDrugCmd = new RelayCommand(RemoveDrug, CanRemoveDrug);
@@ -67,28 +65,26 @@ namespace WpfLayer.ViewModels
             CloseWindowCmd = new RelayCommand(CloseWidnow);
             #endregion
 
-            //Setting the patient's name and ID to the properties that are binded in XAML
+            //Sätter patientens namn och ID till egenskaperna som är bundna i XAML
             #region statusbar info
             patientName = $"Patient name: {patient.name}";
             patientId = $"Patient ID: {patient.patientId}";
             statusBarPatientInfo = $"Currently managing prescription for Patient: {patient.name} - ID: {patient.patientId}";
             #endregion
 
-            //Assigning the drugs and prescription from the database to the ObservableCollection
             #region Assigning drugs and prescription from the database to the ObservableCollection
             Drugs = new ObservableCollection<Drug>(drugController.GetAllDrugs());
             prescriptionHistory = new ObservableCollection<Prescription>(prescriptionController.GetPatientPrescriptionHistory(patient.patientId));
 
-            //Assigning the total number of drugs from all prescriptions to the property that is binded in XAML in warning textblock
+            //Tilldelar totala antalet läkemedel från alla recept till egenskapen som är bunden i XAML i varningstextblocket
             foreach(var prescription in prescriptionHistory)
             {
+                // += gör att det ökar för varje recept som läggs till, samt minns det som redan finns i totalDrugsOfAllPrescriptions
                 totalDrugsOfAllPrescriptions += prescription.drugCount;
             }
             #endregion
-
         }
 
-        // Properties that are binded in XAML
         #region Properties bound in XAML
         public string StatusBarPatientInfo
         {
@@ -129,8 +125,6 @@ namespace WpfLayer.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        
         public Drug SelectedDrug
         {
             get { return selectedDrug; }
@@ -141,7 +135,6 @@ namespace WpfLayer.ViewModels
             get { return selectedDrugToRemove; }
             set { selectedDrugToRemove = value; OnPropertyChanged(); }
         }
-
         
         public Prescription SelectedPrescription
         {
@@ -156,8 +149,7 @@ namespace WpfLayer.ViewModels
         }
         #endregion
 
-        // Methos that are binded to the commands
-
+        // Metoder som binder till commands
         #region Methods bound to the commands
         private bool CanAddDrug()
         {
@@ -170,7 +162,6 @@ namespace WpfLayer.ViewModels
             {
                 SelectedDrugs.Add(SelectedDrug);
             }
-
         }
 
         private bool CanRemoveDrug()
@@ -193,7 +184,8 @@ namespace WpfLayer.ViewModels
 
         private void CreatePrescription()
         {
-            if(prescriptionHistory.Count > 0) //Warning only prompts if there are existing prescriptions
+            //Varnar bara om det finns befintliga recept
+            if (prescriptionHistory.Count > 0) 
             {
                 MessageBoxResult result = MessageBox.Show($"Patient {patient.name} has {prescriptionHistory.Count} prescriptions on record, totaling {TotalDrugsOfAllPrescriptions} drugs prescribed.\n\nBefore proceeding, have you ensured that the current prescription does not contraindicate with any existing or concurrent prescriptions?\n\nPlease review the Prescription History for further information. \n\nThis can help reduce the risk of unwanted side effects.", "Drug Interaction Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
@@ -201,15 +193,11 @@ namespace WpfLayer.ViewModels
                 {
                     AddPrescription();
                 }
-
             }
             else
             {
                 AddPrescription();
             }
-
-
-
         }
 
         private void AddPrescription()
@@ -221,24 +209,18 @@ namespace WpfLayer.ViewModels
 
             // Uppdatera recept historiken
             prescriptionHistory.Add(prescription);
-            
 
             // Uppdatera gränssnittet genom att meddela att en egenskap har ändrats
             OnPropertyChanged(nameof(PrescriptionHistory));
 
-
             totalDrugsOfAllPrescriptions += prescription.drugCount;
-            
 
             OnPropertyChanged(nameof(TotalDrugsOfAllPrescriptions)); //FUNGERAR INTE ATT UPPDATERA. 
 
             MessageBox.Show($"Prescription has been created.\n{prescription.drugCount} drugs were prescribed to patient.");
-            
 
             SelectedDrugs.Clear(); // Ta bort befintliga element
         }
-
-
 
         private bool CanShowDrugsFromPrescription()
         {
@@ -265,8 +247,6 @@ namespace WpfLayer.ViewModels
             }
         }
 
-
-
         //Other Methods for navigation
         private void CloseWidnow()
         {
@@ -275,6 +255,5 @@ namespace WpfLayer.ViewModels
         }
 
         #endregion
-
     }
 }

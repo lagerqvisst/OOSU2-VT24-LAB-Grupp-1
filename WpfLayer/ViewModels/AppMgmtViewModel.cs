@@ -17,15 +17,17 @@ namespace WpfLayer.ViewModels
 {
     public class AppMgmtViewModel : ObservableObject
     {
-        #region controllers used in the viewmodel
+        
+        #region Controllers used in the viewmodel
+        //Kontroller som används för att komma åt metoder i respektive controller
         public AppointmentController appointmentController = new AppointmentController();
         public DoctorController doctorController = new DoctorController();
         public PatientController patientController = new PatientController();
         public DiagnosisController diagnosisController = new DiagnosisController();
         #endregion
 
-        // Properties that are binded in XAML
-        #region private properties
+        // Properties som är bundna inom XAMl
+        #region Private properties
         private string patientName;
         private string patientId;
         private string _doctorsNote;
@@ -47,7 +49,8 @@ namespace WpfLayer.ViewModels
         private string selectedMedicalCondition;
         #endregion
 
-        //Collections that are binded in XAML through DataGrids
+        
+        //Collections som är bundna i XAML via DataGrids för att visa information
         #region Collections bound in XAML datagrids / comboboxes
         public ObservableCollection<Appointment> appointments { get; set; } = new ObservableCollection<Appointment>();
         public ObservableCollection<Appointment> patientAppointmentHistory { get; set; } = new ObservableCollection<Appointment>();
@@ -55,7 +58,8 @@ namespace WpfLayer.ViewModels
         public ObservableCollection<String> medicalConditions { get; set; } = new ObservableCollection<String>();
         #endregion
 
-        //Objects that help to call on controller methods and set values to properties bounded in XAML
+        
+        //Här skapas alla relevanta objekt som behövs för att kalla på kontroller metoder och sätta värden till properties som är bundna i XAML
         #region Objects used to call on controller methods and set values to properties bounded in XAML
         public Appointment appointment;
         public Appointment newAppointment;
@@ -64,7 +68,7 @@ namespace WpfLayer.ViewModels
         public Doctor doctor;
         #endregion
 
-        // Commands
+        // Alla Commands som används i vyn
         #region Commands
         public ICommand MakeNoteCmd { get; private set; }
         public ICommand MakeDiagnosisCmd { get; private set; }
@@ -85,12 +89,12 @@ namespace WpfLayer.ViewModels
 
         public AppMgmtViewModel(Appointment appointment)
         {
-            //Initialize commands
+            //Här initieras alla commands med de metoder som behövs.
             #region Commands initialization
             MakeNoteCmd = new RelayCommand(MakeNote, CanMakeNote);
             MakeDiagnosisCmd = new RelayCommand(MakeDiagnosis, CanMakeDiagnosis);
             OpenPrescriptionMgmtCmd = new RelayCommand(OpenPrescriptionView, CanOpenPrescriptionView);
-            CloseWindowCmd = new RelayCommand(CloseWidnow);
+            CloseWindowCmd = new RelayCommand(CloseWindow);
             ApiExplained = new RelayCommand(ApiExplaination);
             OpenDiagnosisHelperCmd = new RelayCommand(OpenDiagnosisHelper);
             OpenAppScheduleView = new RelayCommand(OpenAppScheduleViewer);
@@ -98,12 +102,11 @@ namespace WpfLayer.ViewModels
             DataGridShowDetailsDiagnosisTreatCmd = new RelayCommand(OpenExpandedDetailsDiagnosisTreat, CanOpenExpandedDetailsDiagnosisTreat);
             #endregion
 
-            //Property values assigned.
+            //Property values tilldelas här
             this.appointment = appointment;
             patient = patientController.GetPatientById(appointment.patientId);
             doctor = doctorController.GetDoctorById(appointment.doctorID);
 
-            //XAML bounded properties assigned values
             #region XAML bounded properties assigned values
             patientName = $"Patient name: {patient.name}";
             patientId = $"Patient ID: {patient.patientId}";
@@ -113,18 +116,15 @@ namespace WpfLayer.ViewModels
                 $"Date for appointment: {appointment.appointmentDate}, Reason: {appointment.appointmentReason}";
             #endregion
 
-            //Collections assigned values through controller methods
             #region Collections assigned values through controller methods
             patientAppointmentHistory = new ObservableCollection<Appointment>(appointmentController.GetPatientAppointments(patient));
             diagnosisHistory = new ObservableCollection<Diagnosis>(diagnosisController.PatientDiagnosis(patient));
             medicalConditions = new ObservableCollection<String>(diagnosisController.ExtractMedicalConditionsFromApi());
             #endregion
 
-            
-
         }
 
-        // Properties that are binded in XAML
+        // Här nedan kommer alla properties som är bundna i XAML
         #region Properties bound in XAML
         
         public string DoctorsNote
@@ -133,7 +133,7 @@ namespace WpfLayer.ViewModels
             set
             {
                 _doctorsNote = value;
-                OnPropertyChanged(); // Förutsatt att du har implementerat INotifyPropertyChanged
+                OnPropertyChanged(); 
             }
         }
 
@@ -182,7 +182,7 @@ namespace WpfLayer.ViewModels
             set
             {
                 _diagnosisDescription = value;
-                OnPropertyChanged(); // Förutsatt att du har implementerat INotifyPropertyChanged
+                OnPropertyChanged(); 
             }
         }
 
@@ -210,7 +210,7 @@ namespace WpfLayer.ViewModels
             set
             {
                 _treatmentSuggestion = value;
-                OnPropertyChanged(); // Förutsatt att du har implementerat INotifyPropertyChanged
+                OnPropertyChanged(); 
             }
         }
 
@@ -276,18 +276,18 @@ namespace WpfLayer.ViewModels
         }
 
         #endregion
-        // Methos that are binded to the commands
 
+        // Alla metoder som är kopplade till commands
         #region Methods bound to commands
+        
+        // Avgör om en doktorsnotering kan skapas
         private bool CanMakeNote()
         {
-            // Implementera logik för att avgöra om inloggning är möjlig
+            
             return !string.IsNullOrEmpty(DoctorsNote);
         }
-
-        //kommentar för att testa så att gitten funkar :D
-        // den funkar inte lolz
-
+        
+        //SKapar en doktorsnotering 
         private void MakeNote()
         {
             if (appointment != null)
@@ -295,22 +295,20 @@ namespace WpfLayer.ViewModels
                 appointmentController.UpdateAppointmentDoctorsNote(appointment, DoctorsNote);
                 // Rensa befintliga objekt i patientAppointmentHistory
                 patientAppointmentHistory.Clear();
-                // Lägg till uppdaterade objekt till patientAppointmentHistory
+                // Lägg till alla patientens tidigare bokade tider och uppdatera med den nya noteringen
                 appointmentController.GetPatientAppointments(patient).ToList().ForEach(patientAppointmentHistory.Add);
                 MessageBox.Show("Doktorsnoteringen har uppdaterats");
-                DoctorsNote = "";
+                DoctorsNote = ""; // Rensar textfältet
             }
         }
 
-
-
         private bool CanMakeDiagnosis()
         {
-            // Kan skapa diagnos om man valt från dropdown eller skrivit i fritext
+            // Kan skapa diagnos när man valt från dropdown och skrivit i båda fritextboxarna
             return !string.IsNullOrEmpty(DiagnosisDescription) !=null && SelectedMedicalCondition != null && !string.IsNullOrEmpty(TreatmentSuggestion); 
         }
 
-
+        //Skapar en diagnos 
         private void MakeDiagnosis()
         {
             DateTime dateOfDiagnosis = DateTime.Now;
@@ -327,7 +325,7 @@ namespace WpfLayer.ViewModels
             OnPropertyChanged(nameof(diagnosisHistory));
         }
 
-
+        //Öppnar ett nytt fönster för att skapa en ny tid om en patient är vald.
         private bool CanOpenPrescriptionView()
         {
             if (patient != null)
@@ -336,25 +334,27 @@ namespace WpfLayer.ViewModels
             }
             else return false;
         }
+
+        //Öppnar ett nytt fönster för att skapa en ny tid om en patient är vald.
         private void OpenPrescriptionView()
         {
             PrescriptionView prescriptionView = new PrescriptionView(patient);
             prescriptionView.ShowDialog();
         }
 
-
+        //Öppnar ett nytt fönster för att få hjälp med att välja diagnos.
         private void OpenDiagnosisHelper()
         {
             DiagnosisHelperView diagnosisHelperView = new DiagnosisHelperView();
             diagnosisHelperView.ShowDialog();
         }
 
-
+        //Metod som kollar om något är valt och isåfall går vidare till metoden OpenExpandedDetailsNoteReason
         private bool CanOpenExpandedDetailsNoteReason()
         {
             return SelectedAppointment != null;
         }
-
+        //Metod som visar information om doctorsnote och appointmentReason om selectedAppointment inte är null
         private void OpenExpandedDetailsNoteReason()
         {
             if (SelectedAppointment != null)
@@ -362,12 +362,12 @@ namespace WpfLayer.ViewModels
                 MessageBox.Show($"Doctors note: {SelectedAppointment.doctorsNote}\n\nReason for appointment: {SelectedAppointment.appointmentReason}");
             }
         }
-
+        //Tittar så att det valts en diagnos och isåfall går vidare till metoden OpenExpandedDetailsDiagnosisTreat
         private bool CanOpenExpandedDetailsDiagnosisTreat()
         {
             return SelectedDiagnosis != null;
         }
-
+        //Visar information om diagnosbeskrivning och behandlingsförslag om selectedDiagnosis inte är null
         public void OpenExpandedDetailsDiagnosisTreat()
         {
             if (SelectedDiagnosis != null)
@@ -398,20 +398,22 @@ namespace WpfLayer.ViewModels
 
 
         //Other Methods for navigation
-        private void CloseWidnow()
+        private void CloseWindow()
         {
             Window currentWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
             currentWindow?.Close();
         }
 
+        //Out of scope, en MessageBox som förklarar vad API:et gör.
         private void ApiExplaination()
         {
-            MessageBox.Show("API Explanation:\n\nThe API retrieves medical conditions from an external source (https://clinicaltables.nlm.nih.gov/apidoc/conditions/v3/doc.html#params).\n\nIt utilizes the LHC FHIR Tools Clinical Table Search Service, allowing users to search for medical conditions using partial or complete terms.\n\nThe API fetches a list of over 2,400 medical conditions along with associated codes and terms. However, due to constraints, it retrieves a maximum of 500 conditions per query.\n\nUsers can search for conditions using various parameters and receive detailed information including ICD-10-CM codes, ICD-9-CM codes, synonyms, and more.\n\nWe have only utilized the API to extract examples of medical conditions.\n\nThe idea is for the doctor to choose a general classification for the condition and the to add a more detailed description for the specific patient.\r\n");
+            MessageBox.Show("API Explanation:\n\nThe API retrieves medical conditions from an external source (https://clinicaltables.nlm.nih.gov/apidoc/conditions/v3/doc.html#params).\n\n" +
+                "It utilizes the LHC FHIR Tools Clinical Table Search Service, allowing users to search for medical conditions using partial or complete terms.\n\nThe API fetches a list of over 2,400 medical conditions along with associated codes and terms. However, due to constraints," +
+                " it retrieves a maximum of 500 conditions per query.\n\nUsers can search for conditions using various parameters and receive detailed information including ICD-10-CM codes, ICD-9-CM codes, synonyms, and more.\n\nWe have only utilized the API to extract examples of medical conditions.\n\n" +
+                "The idea is for the doctor to choose a general classification for the condition and the to add a more detailed description for the specific patient.\r\n");
         }
 
         #endregion
-
-
     }
 }
 

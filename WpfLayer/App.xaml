@@ -4,6 +4,14 @@
              xmlns:local="clr-namespace:WpfLayer"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style  TargetType="Button">
+            <Setter Property="Padding" Value="10 5"/>
+            <Setter Property="Background" Value="MediumAquamarine"/>
+            <!-- 10 Left and Right and 5 Top and Bottom-->
+        </Style>
+        
+        <Style TargetType="Label">
+            <Setter Property="Background" Value="MediumAquamarine"/>
+        </Style>
     </Application.Resources>
 </Application>

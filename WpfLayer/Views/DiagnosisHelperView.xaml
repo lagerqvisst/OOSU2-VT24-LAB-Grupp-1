@@ -7,18 +7,34 @@
         mc:Ignorable="d"
         Title="DiagnosisHelperView" Height="600" Width="800">
     <DockPanel>
+        
+        <!-- HELA DENNA VYN ÄR HELT OUT OF SCOPE, ENDAST FÖR ATT TESTA OCH ÖVA MED API. -->
+        
+        
+        
+        
+        
+        <!-- MENY START -->
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
+        
+                <!-- Binder ett command för att kunna stänga fönstret. -->
                 <MenuItem Header="Return" Command="{Binding CloseDiagnosisHelperCmd}"/>
             </MenuItem>
         </Menu>
+        <!-- MENY SLUT -->
 
+        <!-- STATUS BAR START -->
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem>
+                
+                <!-- Skapar ett textblock inom StatusBar som är bundet till StatusBarMessage. Visar hur många resultat sökningen fick. -->
                 <TextBlock Text="{Binding StatusBarMessage}"/>
             </StatusBarItem>
         </StatusBar>
+        <!-- STATUS BAR SLUT -->
 
+      
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
@@ -35,38 +51,52 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
+
+            <!-- StackPanel med titel och beskrivningar -->
             <StackPanel Orientation="Vertical" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="1">
                 <Border Background="MediumAquamarine" CornerRadius="10" Width="Auto" HorizontalAlignment="Left" Margin="0,15">
-                    <Label Content="Diagnosis Helper" FontWeight="Bold" HorizontalContentAlignment="Center" Foreground="White" Padding="10" FontSize="20"/>
+                    <Border.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="5" Opacity="0.5"/>
+                    </Border.Effect>
+                    <Label Content="Diagnosis Helper" FontWeight="Bold" HorizontalContentAlignment="Center" Foreground="Black" Padding="10" FontSize="20"/>
                 </Border>
-                <Label  Content="Use the search box below to return medical conditions" FontSize="15" Margin="0,20,0,0" />
-                <Label  Content="If the patient is describing a neck injury, enter 'neck' to find a condition to classify the patients injury" FontSize="12" Margin="0,20,0,0" />
-                <Label  Content="Make sure to adjust the max search results prior to searching" FontSize="12" Margin="0,20,0,0" Foreground="Tomato" />
+                <Label  Content="Use the search box below to return medical conditions" FontSize="15" FontWeight="SemiBold" Margin="0,20,0,0" Background="Transparent" />
+                <Label  Content="If the patient is describing a neck injury, enter 'neck' to find a condition to classify the patients injury" FontSize="12" Margin="0,20,0,0" Background="Transparent" />
+                <Label  Content="Make sure to adjust the max search results prior to searching" FontSize="12" FontWeight="SemiBold" Margin="0,20,0,0" Foreground="Tomato" Background="Transparent"/>
             </StackPanel>
             
-            <Label Grid.Column="1" Grid.Row="2" Content="Enter search term:" FontWeight="Bold" FontSize="15" Margin="0,20,0,0"/>
+            
+            <!-- "Enter search term rubrik" -->
+            <Label Grid.Column="1" Grid.Row="2" Content="Enter search term:" FontWeight="Bold" FontSize="15" Margin="0,20,0,0" Background="Transparent"/>
+            
+            <!-- StackPanel containing search input and search button -->
             <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+                
+                <!-- Baserat på texten i textbox görs en matchning i API:t för att hitta liknande sjukdomar. -->
                 <TextBox Text="{Binding SearchInput, UpdateSourceTrigger=PropertyChanged}" Width="300" Height="30"/>
-                <Button Grid.Row="3" Grid.Column="1" Content="Search"  Margin="10,10" Height="30"  Command="{Binding MakeSearchCmd}" Background="MediumAquamarine" Padding="4" FontSize="13" FontWeight="Bold">
+                <!-- Sök knapp -->
+                <Button Grid.Row="3" Grid.Column="1" Content="Search"  Margin="10,10" Height="30"  Command="{Binding MakeSearchCmd}" Padding="4" FontSize="13" FontWeight="Bold">
 
                 </Button>
-                
             </StackPanel>
 
-            <Slider Grid.Column="2" Grid.Row="3" Minimum="0" Maximum="500" Value="{Binding MaxResults, Mode=TwoWay}" Width="200" HorizontalAlignment="Left" Margin="0,10,0,0" />
-
+            <!-- Slider för att justera hur många resultat som ska visas -->
+            <Slider Grid.Column="2" Grid.Row="3" Minimum="0" Maximum="500" Value="{Binding MaxResults, Mode=TwoWay}" Width="200" HorizontalAlignment="Left" Margin="5,15,0,0" />
+            
+            <!-- Visar max resultat -->
             <StackPanel Grid.Column="2" Grid.Row="2" Orientation="Horizontal">
                 <Label  Content="Max search results:" Margin="0,20,0,0"/>
                 <Label  Content="{Binding MaxResults}" Margin="0,20,0,0"/>
             </StackPanel>
+            
+            <!-- Visar antalet sjukdomar funna på sökningen. -->
             <StackPanel Grid.Column="1" Grid.Row="4" Orientation="Horizontal">
-                <Label  Content="Conditions found:" FontWeight="Bold" Margin="0,20,0,0"/>
-                <Label Content="{Binding ResultsCount}" Margin="2,20,0,0"/>
+                <Label  Content="Conditions found:" FontWeight="Bold" Margin="0,20,0,0" Background="Transparent"/>
+                <Label Content="{Binding ResultsCount}" Margin="2,20,0,0" Background="Transparent"/>
             </StackPanel>
             
+            <!-- Visar sjukdomarna som är funna på sökningen -->
             <ListView Grid.Row="5" Grid.Column="1" ItemsSource="{Binding MedicalConditions}"/>
         </Grid>
-
     </DockPanel>
-
 </Window>
