@@ -18,10 +18,15 @@ namespace BusinessLayer
         /// </summary>
         /// 
 
+        #region Email Validation
+
         //Kontrollerar att e-postadressen innehåller minst en teckenföljd följt av "@"-tecknet, följt av en annan teckenföljd, följt av ett punkttecken och en slutlig teckenföljd (t.ex. ".com", ".org", etc.).
         public static string emailRegexPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
         public static Regex regex = new Regex(emailRegexPattern);
 
+        #endregion Email Validation
+
+        #region Email Sending
         public void SendEmail(string to, string subject, string body)
         {
             string fromMail = "medicalsystemcommunications@gmail.com";
@@ -46,6 +51,10 @@ namespace BusinessLayer
 
             smtp.Send(message);
         }
+
+        #endregion Email Sending
+
+        #region Email Template Generation
 
         //Denna metod används för att generera en template med HTML/CSS för att skicka en bekräftelse på en bokad tid.
         public static string GenerateAppointmentConfirmationEmail(string doctorName, string patientName, int appointmentId, DateTime appointmentDate, string appointmentReason)
@@ -88,6 +97,7 @@ namespace BusinessLayer
             return body;
         }
 
+        #endregion Email Template Generation
 
     }
 }
