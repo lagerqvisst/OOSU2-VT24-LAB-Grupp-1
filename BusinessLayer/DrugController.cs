@@ -11,31 +11,41 @@ namespace BusinessLayer
 {
     public class DrugController
     {
-        UnitOfWork unitOfWork = new UnitOfWork();
+        #region UnitOfWork
+        private UnitOfWork unitOfWork = new UnitOfWork();
+        #endregion UnitOfWork
 
-
+        #region CRUD Operations
+        /// <summary>
+        /// Hämtar alla läkemedel från databasen.
+        /// </summary>
         public List<Drug> GetAllDrugs()
         {
             return unitOfWork.DrugRepository.Find(d => true).ToList();
         }
 
+        /// <summary>
+        /// Hämtar läkemedel baserat på recept-ID från databasen.
+        /// </summary>
         public List<Drug> GetDrugsByPrescriptionId(int prescriptionId)
         {
             return unitOfWork.PrescriptionDrugRepository.Find(p => p.prescriptionId == prescriptionId).Select(p => p.Drug).ToList();
         }
+
+        /// <summary>
+        /// Hämtar ett läkemedel baserat på läkemedels-ID från databasen.
+        /// </summary>
         public Drug GetDrugsByDrugId(int drugId)
         {
             return unitOfWork.DrugRepository.FirstOrDefault(d => d.DrugId == drugId);
         }
+        #endregion CRUD Operations
 
-
+        #region Extra Functionality (API drugnames)
         /// <summary>
-        /// Nedanstående metoder är inte kopplade till labbkraven utan extra funktionalitet för att öva på att hämta data från en API.
+        /// Hämtar data från en API och returnerar en lista med namn på läkemedel.
         /// </summary>
-
-
-        //Metoden returnerar en lista med namn på läkemedel från en API som en stränglista
-        //Ni kan se användningsområdet i prescription vyn där läkaren kan välja läkemedel som ska skrivas ut på receptet.
+        /// <returns>En lista med namn på läkemedel.</returns>
         public List<string> ApiDrugDataExtract()
         {
             var client = new HttpClient();
@@ -50,10 +60,7 @@ namespace BusinessLayer
                 response.EnsureSuccessStatusCode();
                 var body = response.Content.ReadAsStringAsync().Result;
 
-
                 var jsonObject = JObject.Parse(body);
-
-
                 var dataArray = jsonObject["data"];
 
                 List<string> drugNames = new List<string>();
@@ -69,9 +76,11 @@ namespace BusinessLayer
 
                 return drugNames;
             }
-
         }
-        //För att öva på ett flow av att kunna ta information från ett API och lagra i en databas skapar vi en metod som hämtar data från API och lagrar i databasen.
+
+        /// <summary>
+        /// Fyller databasen med läkemedelsdata från en API.
+        /// </summary>
         public void FillDrugsFromApi()
         {
             List<string> DrugNames = ApiDrugDataExtract();
@@ -82,12 +91,9 @@ namespace BusinessLayer
                 Drug drug = new Drug(drugName);
                 drugs.Add(drug);
                 unitOfWork.DrugRepository.Add(drug);
-
             }
-
-
         }
-
-
+        #endregion 
     }
+
 }

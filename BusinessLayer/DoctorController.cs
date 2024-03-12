@@ -8,23 +8,28 @@ using EntityLayer;
 
 namespace BusinessLayer
 {
-    
+
     public class DoctorController
     {
-       UnitOfWork unitOfWork = new UnitOfWork();
+        #region UnitOfWork
+        private UnitOfWork unitOfWork = new UnitOfWork();
+        #endregion UnitOfWork
 
+        #region CRUD Operations
 
+        // Hämtar en läkare baserat på läkarens ID från databasen och returnerar läkarens information
+
+       
         public Doctor GetDoctorById(int doctorId)
         {
             return unitOfWork.DoctorRepository.FirstOrDefault(d => d.doctorID == doctorId);
         }
+
+        // Hämtar alla läkare från databasen returnar en lista med alla läkare.
         public List<Doctor> GetAllDoctors()
         {
             return unitOfWork.DoctorRepository.Find(d => true).ToList();
         }
-
-
-
 
     }
 }

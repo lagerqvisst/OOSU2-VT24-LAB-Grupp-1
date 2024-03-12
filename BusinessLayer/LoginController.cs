@@ -76,49 +76,7 @@ namespace BusinessLayer
             return null;
         }
         #endregion Authentication Methods
-
-<<<<<<< Updated upstream
-=======
-        #region Random User Retrieval
-        /// <summary>
-        /// Hämtar en slumpmässigt vald läkare.
-        /// </summary>
-        public Doctor GetRandomDoctor()
-        {
-            var random = new Random();
-            var doctors = unitOfWork.DoctorRepository.Find(d => true).ToList();
-
-            if (doctors.Any())
-            {
-                var randomIndex = random.Next(0, doctors.Count);
-                return doctors[randomIndex];
-            }
-            else
-            {
-                return null;
-            }
-        }
-
->>>>>>> Stashed changes
-        /// <summary>
-        /// Hämtar en slumpmässigt vald receptionist.
-        /// </summary>
-        public Receptionist GetRandomReceptionist()
-        {
-            var random = new Random();
-            var receptionists = unitOfWork.ReceptionistRepository.Find(d => true).ToList();
-
-            if (receptionists.Any())
-            {
-                var randomIndex = random.Next(0, receptionists.Count);
-                return receptionists[randomIndex];
-            }
-            else
-            {
-                return null;
-            }
-        }
-        #endregion Random User Retrieval
+        
 
         #region Random Fact Retrieval
         /// <summary>
