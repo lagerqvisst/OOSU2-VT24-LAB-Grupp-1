@@ -11,7 +11,12 @@ namespace BusinessLayer
 {
     public class DiagnosisController
     {
+
+        #region UnitOfWork
         UnitOfWork unitOfWork = new UnitOfWork();
+        #endregion
+
+        #region CRUD Operations
 
         public Diagnosis AddDiagnosis(int patientId, string diagnosisDescription, DateTime dateOfDiagnosis, string treatmentSuggestion)
         {
@@ -24,14 +29,19 @@ namespace BusinessLayer
         {
             return unitOfWork.DiagnosisRepository.Find(d => d.patientId == patient.patientId).ToList(); 
         }
-
+        #endregion CRUD Operations
 
 
         /// <summary>
         /// Metoderna nedan är inte kopplat till labbkraven utan extra funktionalitet för att öva på att hämta data från en API.
         /// </summary>
 
-        //Metoden används i WPF för att fylla en combobox med diagnoser från en API vilket är en del av workflowet för en läkare att först skapa en huvudklassificering av diagnos och sedan en underklassificering som är i fritext.
+        // Metoden används i WPF för att fylla en combobox med diagnoser från en API vilket är en del av workflowet för en läkare att 
+        // först skapa en huvudklassificering av diagnos och sedan en underklassificering som är i fritext.
+
+
+        #region Extract conditions API
+
         public List<string> ExtractMedicalConditionsFromApi()
         {
             var client = new HttpClient();
@@ -69,8 +79,13 @@ namespace BusinessLayer
             }
         }
 
+        #endregion Extract conditions API
+
         //Denna metod används i DhViewModel vilket är en extravy som fungerar som ett hjälpmedel för en läkare som kan söka efter conditions.
         //Sökinputen från användaren skickas med som parameter och max antal resultat som ska visas.
+
+        #region QueryApi for Medical Conditions
+
         public List<string> QueryApiForMedicalConditions(string searchTerm, int maxResults)
         {
             var client = new HttpClient();
@@ -100,6 +115,8 @@ namespace BusinessLayer
                 Console.WriteLine("Error: " + ex.Message);
                 return null;
             }
+
+            #endregion QueryApi for Medical Conditions
         }
 
     }
