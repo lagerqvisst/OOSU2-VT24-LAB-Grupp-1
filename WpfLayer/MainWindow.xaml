@@ -13,6 +13,7 @@
         <!--MENY START -->
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
+                <!--Kallar på Commandet ShutDownCommand som stänger ner applikationen-->
                 <MenuItem Header="Exit Application" x:Name="menuSignout" Command="{Binding ShutDownCommand}" ></MenuItem>
                 <MenuItem Header="Fun fact of the day" Command="{Binding FunFactCmd}"></MenuItem>
             </MenuItem>
@@ -56,14 +57,17 @@
                 <StackPanel>
                     <StackPanel Margin="20,5,5,5">
                         <Label Content="Username" FontWeight="SemiBold" FontStyle="Italic" FontSize="13" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Black" Background="Transparent"></Label>
+                        <!--Hämtar användarnamnet via Binding som håller i UserName-->
                         <TextBox Text="{Binding Path=UserName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     </StackPanel>
 
                     <StackPanel Margin="20,5,5,5">
                         <Label Content="Password" FontWeight="SemiBold" FontStyle="Italic" FontSize="13" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Black" Background="Transparent" ></Label>
+                        <!--Hämtar lösenordet via Binding som håller i PassWord-->
                         <TextBox Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     </StackPanel>
-
+                    
+                    <!--Kallar på Command SignInCommand som kollar om användarnamnet och lösenordet stämmer överens -->
                     <Button Content="Log in" Width="100" HorizontalAlignment="Left" Margin="20,5,5,5" Command="{Binding SignInCommand}" Padding="2" BorderThickness="1" Foreground="Black" FontSize="13">
                     </Button>
 
@@ -74,6 +78,8 @@
                    Background="Transparent" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
             <StackPanel Grid.Column="1" Grid.Row="6" Margin="20,5,5,5">
+                
+                <!--Kallar på Commandet AutoGenDocCredCmd som hämtar en slumpad Doktor-->
                 <Button  Content="Doctor credentials" Width="Auto" HorizontalAlignment="Left"  Margin="0,6,5,5" Foreground="Black"
                     Command="{Binding AutoGenDocCredCmd}" Padding="3">
                     <Button.Effect>
@@ -88,7 +94,7 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-
+                <!--Kallar på Commandet AutoGenRecCredCmd som hämtar en slumpad Receptionist-->
                 <Button Content="Receptionist credentials" Width="Auto" HorizontalAlignment="Left"  Margin="0,5,5,5" Padding="3" Foreground="Black"
                 Command="{Binding AutoGenRecCredCmd}" >
                     <Button.Effect>
