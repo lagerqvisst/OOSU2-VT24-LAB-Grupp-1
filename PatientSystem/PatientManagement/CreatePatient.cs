@@ -32,6 +32,5 @@ namespace PresentationLayer
             MessageBox.Show("Patient created");
             this.Close();
         }
-
     }
 }

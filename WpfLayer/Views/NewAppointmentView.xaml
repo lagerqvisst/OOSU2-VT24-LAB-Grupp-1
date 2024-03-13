@@ -7,83 +7,84 @@
         mc:Ignorable="d"
         Title="NewAppointmentView" Height="550" Width="300">
     <!--DOCKPANEL START-->
-    <DockPanel>
-        
-        <!--MENU START-->
-        <Menu DockPanel.Dock="Top">
-            <MenuItem Header="_File">
-                <!--Kallar på Commandot CloswWindowCmd som stänger aktuellt fönster.-->
-                <MenuItem Header="Return to previous window" x:Name="menuSignout" Command="{Binding CloseWindowCmd}"></MenuItem>
-            </MenuItem>
-        </Menu>
-        <!--MENU SLUT-->
-        
-        
-        <!--STATUSBAR START-->
-        <StatusBar DockPanel.Dock="Bottom">
-            <StatusBarItem>
-                <!--Binder Propertyn StatusBarMessage som visar vem ansvarig Doctor och vilken patient det handlar om.-->
-                <TextBlock Text="{Binding StatusbarMessage}"/>
-            </StatusBarItem>
-        </StatusBar>
-        <!--STATUSBAR SLUT-->
-        
-        
-        <!--GRID START-->
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10" />
-                <ColumnDefinition Width="4*" />
-                <ColumnDefinition Width="10" />
-            </Grid.ColumnDefinitions>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <DockPanel>
 
-            <StackPanel Grid.Column="1" Margin="5">
-                <Label Content="Choose Date" FontWeight="Bold" Background="Transparent"/>
+            <!--MENU START-->
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <!--Kallar på Commandot CloswWindowCmd som stänger aktuellt fönster.-->
+                    <MenuItem Header="Return to previous window" x:Name="menuSignout" Command="{Binding CloseWindowCmd}"></MenuItem>
+                </MenuItem>
+            </Menu>
+            <!--MENU SLUT-->
 
-                <!-- DatePicker för att välja datum samt sätter AppointmentDate till det valda datumet -->
-                <DatePicker SelectedDate="{Binding AppointmentDate, Mode=TwoWay}" 
+
+            <!--STATUSBAR START-->
+            <StatusBar DockPanel.Dock="Bottom">
+                <StatusBarItem>
+                    <!--Binder Propertyn StatusBarMessage som visar vem ansvarig Doctor och vilken patient det handlar om.-->
+                    <TextBlock Text="{Binding StatusbarMessage}"/>
+                </StatusBarItem>
+            </StatusBar>
+            <!--STATUSBAR SLUT-->
+
+
+            <!--GRID START-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="10" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="1" Margin="5">
+                    <Label Content="Choose Date" FontWeight="Bold" Background="Transparent"/>
+
+                    <!-- DatePicker för att välja datum samt sätter AppointmentDate till det valda datumet -->
+                    <DatePicker SelectedDate="{Binding AppointmentDate, Mode=TwoWay}" 
                         DisplayDateStart="2024-01-01" DisplayDateEnd="2026-12-31" 
                          SelectedDateFormat="Short" Width="200" HorizontalAlignment="Left" />
 
-                <Label Content="Select time of day" FontStyle="Italic" FontSize="12" Margin="0,5,0,0" Background="Transparent"/>
-                <!-- ComboBox för att välja tid på dagen -->
-                <ComboBox SelectedIndex="{Binding SelectedTimeIndex, Mode=TwoWay}" Width="200" HorizontalAlignment="Left">
-                    <ComboBoxItem>08:00</ComboBoxItem>
-                    <ComboBoxItem>09:00</ComboBoxItem>
-                    <ComboBoxItem>10:00</ComboBoxItem>
-                    <ComboBoxItem>11:00</ComboBoxItem>
-                    <ComboBoxItem>12:00</ComboBoxItem>
-                    <ComboBoxItem>13:00</ComboBoxItem>
-                    <ComboBoxItem>14:00</ComboBoxItem>
-                    <ComboBoxItem>15:00</ComboBoxItem>
-                    <ComboBoxItem>16:00</ComboBoxItem>
-                    <ComboBoxItem>17:00</ComboBoxItem>
-                    <ComboBoxItem>18:00</ComboBoxItem>
-                    <!-- Fyll på med fler alternativ efter behov -->
-                </ComboBox>
+                    <Label Content="Select time of day" FontStyle="Italic" FontSize="12" Margin="0,5,0,0" Background="Transparent"/>
+                    <!-- ComboBox för att välja tid på dagen -->
+                    <ComboBox SelectedIndex="{Binding SelectedTimeIndex, Mode=TwoWay}" Width="200" HorizontalAlignment="Left">
+                        <ComboBoxItem>08:00</ComboBoxItem>
+                        <ComboBoxItem>09:00</ComboBoxItem>
+                        <ComboBoxItem>10:00</ComboBoxItem>
+                        <ComboBoxItem>11:00</ComboBoxItem>
+                        <ComboBoxItem>12:00</ComboBoxItem>
+                        <ComboBoxItem>13:00</ComboBoxItem>
+                        <ComboBoxItem>14:00</ComboBoxItem>
+                        <ComboBoxItem>15:00</ComboBoxItem>
+                        <ComboBoxItem>16:00</ComboBoxItem>
+                        <ComboBoxItem>17:00</ComboBoxItem>
+                        <ComboBoxItem>18:00</ComboBoxItem>
+                        <!-- Fyll på med fler alternativ efter behov -->
+                    </ComboBox>
 
-                <Label Content="Appointment reason" FontStyle="Italic" FontSize="12" Margin="0,5,0,0" Background="Transparent" />
-                <!-- TextBox för att skriva in anledning till besöket samt ger värder till NewAppointmentReason-->
-                <TextBox Text="{Binding NewAppointmentReason, UpdateSourceTrigger=PropertyChanged}" 
+                    <Label Content="Appointment reason" FontStyle="Italic" FontSize="12" Margin="0,5,0,0" Background="Transparent" />
+                    <!-- TextBox för att skriva in anledning till besöket samt ger värder till NewAppointmentReason-->
+                    <TextBox Text="{Binding NewAppointmentReason, UpdateSourceTrigger=PropertyChanged}" 
                     FontSize="10" Height="40" Width="200" HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto"/>
 
-                <!--Kallar på Commandot MakeNewAppointmentCmd för att skapa ett nytt apointment med tidigare inlagd data.-->
-                <Button Content="Schedule new appointment" Width="170" Height="40" HorizontalAlignment="Left" Margin="0,20,0,0" Padding="4" 
+                    <!--Kallar på Commandot MakeNewAppointmentCmd för att skapa ett nytt apointment med tidigare inlagd data.-->
+                    <Button Content="Schedule new appointment" Width="170" Height="40" HorizontalAlignment="Left" Margin="0,20,0,0" Padding="4" 
                         Command="{Binding MakeNewAppointmentCmd}" />
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="E-mail confirmation" Margin="0,20,0,0" Background="Transparent"/>
-                    <Label Content="( Fully functional! )" Margin="0,25,0,0" FontSize="10" FontStyle="Italic" FontWeight="DemiBold" Foreground="Black" Background="Transparent"></Label>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="E-mail confirmation" Margin="0,20,0,0" Background="Transparent"/>
+                        <Label Content="( Fully functional! )" Margin="0,25,0,0" FontSize="10" FontStyle="Italic" FontWeight="DemiBold" Foreground="Black" Background="Transparent"></Label>
+                    </StackPanel>
+
+                    <!-- TextBox för att skriva in e-postadress samt ger värde till Propertyn Email. Kallar på Commandet SendEmailCmd som skickar iväg mail-->
+                    <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Width="200" HorizontalAlignment="Left"></TextBox>
+                    <Button Content="Send" Command="{Binding SendEmailCmd}" Width="100" HorizontalAlignment="Left" Margin="0,10"></Button>
                 </StackPanel>
-                
-                <!-- TextBox för att skriva in e-postadress samt ger värde till Propertyn Email. Kallar på Commandet SendEmailCmd som skickar iväg mail-->
-                <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Width="200" HorizontalAlignment="Left"></TextBox>
-                <Button Content="Send" Command="{Binding SendEmailCmd}" Width="100" HorizontalAlignment="Left" Margin="0,10"></Button>
-            </StackPanel>
 
-        </Grid>
-        <!--GRID SLUT-->
+            </Grid>
+            <!--GRID SLUT-->
 
-    </DockPanel>
-    <!--DOCKPANEL SLUT-->
-
+        </DockPanel>
+        <!--DOCKPANEL SLUT-->
+    </ScrollViewer>
 </Window>

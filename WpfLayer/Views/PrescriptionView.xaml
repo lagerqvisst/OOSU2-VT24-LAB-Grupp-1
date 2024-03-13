@@ -7,166 +7,167 @@
         
         mc:Ignorable="d"
         Title="PrescriptionView" Height="600" Width="1300">
-    
-   
-    <!--DOCKPANEL START-->
-    <DockPanel>
-        
-        <!--MENU START-->
-        <Menu DockPanel.Dock="Top">
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <!--DOCKPANEL START-->
+        <DockPanel>
+
+            <!--MENU START-->
             <Menu DockPanel.Dock="Top">
-                <!-- File menu with return option -->
-                <MenuItem Header="_File">
-                    <MenuItem Header="Return to previous window"  Command="{Binding CloseWindowCmd}"></MenuItem>
-                </MenuItem>
+                <Menu DockPanel.Dock="Top">
+                    <!-- File menu with return option -->
+                    <MenuItem Header="_File">
+                        <MenuItem Header="Return to previous window"  Command="{Binding CloseWindowCmd}"></MenuItem>
+                    </MenuItem>
+                </Menu>
             </Menu>
-        </Menu>
-        <!--MENU SLUT-->
-        
-        <!--STATUSBAR START-->
-        <StatusBar DockPanel.Dock="Bottom">
-            <!-- Text Block som kallar på Commandot StatusBarPatientInfo som skriver ut Namn och ID -->
-            <TextBlock Text="{Binding StatusBarPatientInfo}" FontStyle="Italic"></TextBlock>
-        </StatusBar>
-        <!--STATUSBAR SLUT-->
-        
-        <!--GRID START-->
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="25.862"/>
-                <ColumnDefinition Width="24.138"/>
-                <ColumnDefinition Width="250"/>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="250"/>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="250"/>
-            </Grid.ColumnDefinitions>
+            <!--MENU SLUT-->
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="75"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="250"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="50"/>
-            </Grid.RowDefinitions>
+            <!--STATUSBAR START-->
+            <StatusBar DockPanel.Dock="Bottom">
+                <!-- Text Block som kallar på Commandot StatusBarPatientInfo som skriver ut Namn och ID -->
+                <TextBlock Text="{Binding StatusBarPatientInfo}" FontStyle="Italic"></TextBlock>
+            </StatusBar>
+            <!--STATUSBAR SLUT-->
 
-            <!--BORDER START-->
-            <Border Grid.Column="2" Grid.Row="0" Background="MediumAquamarine" CornerRadius="10" Width="Auto" HorizontalAlignment="Left" Margin="0,15,0,15">
-                <Border.Effect>
-                    <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="5" Opacity="0.5"/>
-                </Border.Effect>
-                <Label Content="Prescription Management" FontWeight="Bold" HorizontalContentAlignment="Center" Foreground="Black" Padding="10" FontSize="18"/>
-            </Border>
-            <!--BORDER SLUT-->
-            
+            <!--GRID START-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25.862"/>
+                    <ColumnDefinition Width="24.138"/>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="250"/>
+                </Grid.ColumnDefinitions>
 
-            <!-- STACKPANEL START -->
-            <StackPanel Grid.Column="2" Grid.Row="1" Orientation="Vertical" Margin="0,20,0,0">
-                <!--Binding som visar den aktuella patientents namn-->
-                <Label Content="{Binding PatientName}" FontWeight="Bold" FontSize="11" Background="Transparent"/>
-                <!--Binding som visar den aktuella patientents ID-->
-                <Label Content="{Binding PatientId}"  FontWeight="Bold"  FontSize="11" Background="Transparent"/>
-            </StackPanel>
-            <!--STACKPANEL SLUT-->
-            
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="250"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
 
-            <!-- STACKPANEL DRUGS START -->
-            <StackPanel Grid.Column="2" Grid.Row="2" Margin="0,10,0,10">
-                <Label Content="Available drugs in database" FontWeight="SemiBold" FontSize="15" Background="MediumAquamarine" Foreground="Black" Height="31">
+                <!--BORDER START-->
+                <Border Grid.Column="2" Grid.Row="0" Background="MediumAquamarine" CornerRadius="10" Width="Auto" HorizontalAlignment="Left" Margin="0,15,0,15">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="5" Opacity="0.5"/>
+                    </Border.Effect>
+                    <Label Content="Prescription Management" FontWeight="Bold" HorizontalContentAlignment="Center" Foreground="Black" Padding="10" FontSize="18"/>
+                </Border>
+                <!--BORDER SLUT-->
+
+
+                <!-- STACKPANEL START -->
+                <StackPanel Grid.Column="2" Grid.Row="1" Orientation="Vertical" Margin="0,20,0,0">
+                    <!--Binding som visar den aktuella patientents namn-->
+                    <Label Content="{Binding PatientName}" FontWeight="Bold" FontSize="11" Background="Transparent"/>
+                    <!--Binding som visar den aktuella patientents ID-->
+                    <Label Content="{Binding PatientId}"  FontWeight="Bold"  FontSize="11" Background="Transparent"/>
+                </StackPanel>
+                <!--STACKPANEL SLUT-->
+
+
+                <!-- STACKPANEL DRUGS START -->
+                <StackPanel Grid.Column="2" Grid.Row="2" Margin="0,10,0,10">
+                    <Label Content="Available drugs in database" FontWeight="SemiBold" FontSize="15" Background="MediumAquamarine" Foreground="Black" Height="31">
+                        <Label.Effect>
+                            <DropShadowEffect ShadowDepth="3" Direction="315" Opacity="0.7"/>
+                        </Label.Effect>
+                    </Label>
+                    <Label FontSize="10" FontStyle="Italic" Background="Transparent" Margin="0,10,0,0">
+                        <Hyperlink NavigateUri="https://dailymed.nlm.nih.gov/dailymed/" FontStyle="Italic">
+                            API from https://dailymed.nlm.nih.gov/dailymed/
+                        </Hyperlink>
+                    </Label>
+                </StackPanel >
+                <!-- DataGrid för att visa tillgängliga DRUGS, Binder till en Lista samt sätter SelectedItem till en vald Drug. Twoway uppdaterar gränssnittet samt källans värde-->
+                <DataGrid Grid.Column="2" Grid.Row="3" ItemsSource="{Binding Drugs}" SelectedItem="{Binding SelectedDrug, Mode=TwoWay}" VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Auto" AutoGenerateColumns="False"  SelectionMode="Single" Margin="0,0,0,36" Grid.RowSpan="2" Height="200">
+                    <DataGrid.Columns>
+                        <!--Bindar DrugId ifrån entiteten Drug-->
+                        <DataGridTextColumn Header="Drug ID" Binding="{Binding DrugId}"/>
+                        <!--Bindar DrugName ifrån entiteten Drug-->
+                        <DataGridTextColumn Header="Description" Binding="{Binding DrugName}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <!-- Buttons för att lägga till och spara prescriptions -->
+                <StackPanel Grid.Column="2" Grid.Row="4" Orientation="Horizontal" Margin="0,0,0,50" Grid.RowSpan="2">
+                    <!--Command som bindar AddDrugCmd som är till för att lägga till nya drugs i listan-->
+                    <Button Content="Add" Width="50" HorizontalAlignment="Left" Margin="0,10,0,0" Padding="4"
+                          Command="{Binding AddDrugCmd}" 
+                            CommandParameter="{Binding ElementName=SelectedDrug, Path=SelectedItem}"/>
+                    <!--Command som bindar SavePrescriptionCmd som är till för att spara de nya drugsen-->
+                    <Button Content="Save Prescription" Width="100" Margin="99,10,0,0" Padding="4" HorizontalAlignment="Right"
+                        Command="{Binding SavePrescriptionCmd}"/>
+                </StackPanel>
+
+                <!-- Button och DataGrid för att ta bort drugs. Kallar på Commandet RemoveDrugCmd som plockar bort ett drug genom att binda till ett SelectedDrugToRemove-->
+                <Button Grid.Column="4" Grid.Row="4" Content="Remove" Width="100" Margin="0,10,0,50" Background="Tomato" HorizontalAlignment="Left" Padding="4"
+                         Command="{Binding RemoveDrugCmd}" 
+                         CommandParameter="{Binding ElementName=SelectedDrugToRemove, Path=SelectedItem}" Grid.RowSpan="2"/>
+
+                <Label Grid.Column="4" Grid.Row="2" Content="Added drugs" FontWeight="SemiBold" FontSize="15" Background="MediumAquamarine" Foreground="Black" Margin="0,10,0,36">
                     <Label.Effect>
                         <DropShadowEffect ShadowDepth="3" Direction="315" Opacity="0.7"/>
                     </Label.Effect>
                 </Label>
-                <Label FontSize="10" FontStyle="Italic" Background="Transparent" Margin="0,10,0,0">
-                    <Hyperlink NavigateUri="https://dailymed.nlm.nih.gov/dailymed/" FontStyle="Italic">
-                        API from https://dailymed.nlm.nih.gov/dailymed/
-                    </Hyperlink>
+                <!--Här skrivs alla valda drugs ut och kopplar SelectedItem till propertyn SelectedDrugToRemove samt tillsätter Twoway så det ska påverka gränssnittet och datakällan.-->
+                <DataGrid Grid.Column="4" Grid.Row="3" ItemsSource="{Binding SelectedDrugs}" SelectedItem="{Binding SelectedDrugToRemove, Mode=TwoWay}" AutoGenerateColumns="False" Margin="0,0,0,36" Grid.RowSpan="2" Height="200" VerticalScrollBarVisibility="Auto">
+                    <DataGrid.Columns>
+                        <!--Skriver ut propertyn DrugId genom entiteten Drug via Binding-->
+                        <DataGridTextColumn Header="Drug ID" Binding="{Binding DrugId}"/>
+                        <!--Skriver ut propertyn DrugName genom entiteten Drug via Binding-->
+                        <DataGridTextColumn Header="Description" Binding="{Binding DrugName}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <!-- Label och DataGrid för prescription history -->
+                <Label Grid.Column="6" Grid.Row="2" Content="Prescription History" FontWeight="SemiBold" FontSize="15" Grid.ColumnSpan="2" Margin="0,10,50,36" Background="MediumAquamarine" Foreground="Black">
+                    <Label.Effect>
+                        <DropShadowEffect ShadowDepth="3" Direction="315" Opacity="0.7"/>
+                    </Label.Effect>
                 </Label>
-            </StackPanel >
-            <!-- DataGrid för att visa tillgängliga DRUGS, Binder till en Lista samt sätter SelectedItem till en vald Drug. Twoway uppdaterar gränssnittet samt källans värde-->
-            <DataGrid Grid.Column="2" Grid.Row="3" ItemsSource="{Binding Drugs}" SelectedItem="{Binding SelectedDrug, Mode=TwoWay}" VerticalScrollBarVisibility="Auto"
-                          HorizontalScrollBarVisibility="Auto" AutoGenerateColumns="False"  SelectionMode="Single" Margin="0,0,0,36" Grid.RowSpan="2" Height="200">
-                <DataGrid.Columns>
-                    <!--Bindar DrugId ifrån entiteten Drug-->
-                    <DataGridTextColumn Header="Drug ID" Binding="{Binding DrugId}"/>
-                    <!--Bindar DrugName ifrån entiteten Drug-->
-                    <DataGridTextColumn Header="Description" Binding="{Binding DrugName}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-
-            <!-- Buttons för att lägga till och spara prescriptions -->
-            <StackPanel Grid.Column="2" Grid.Row="4" Orientation="Horizontal" Margin="0,0,0,50" Grid.RowSpan="2">
-                <!--Command som bindar AddDrugCmd som är till för att lägga till nya drugs i listan-->
-                <Button Content="Add" Width="50" HorizontalAlignment="Left" Margin="0,10,0,0" Padding="4"
-                          Command="{Binding AddDrugCmd}" 
-                            CommandParameter="{Binding ElementName=SelectedDrug, Path=SelectedItem}"/>
-                <!--Command som bindar SavePrescriptionCmd som är till för att spara de nya drugsen-->
-                <Button Content="Save Prescription" Width="100" Margin="99,10,0,0" Padding="4" HorizontalAlignment="Right"
-                        Command="{Binding SavePrescriptionCmd}"/>
-            </StackPanel>
-
-            <!-- Button och DataGrid för att ta bort drugs. Kallar på Commandet RemoveDrugCmd som plockar bort ett drug genom att binda till ett SelectedDrugToRemove-->
-            <Button Grid.Column="4" Grid.Row="4" Content="Remove" Width="100" Margin="0,10,0,50" Background="Tomato" HorizontalAlignment="Left" Padding="4"
-                         Command="{Binding RemoveDrugCmd}" 
-                         CommandParameter="{Binding ElementName=SelectedDrugToRemove, Path=SelectedItem}" Grid.RowSpan="2"/>
-
-            <Label Grid.Column="4" Grid.Row="2" Content="Added drugs" FontWeight="SemiBold" FontSize="15" Background="MediumAquamarine" Foreground="Black" Margin="0,10,0,36">
-                <Label.Effect>
-                    <DropShadowEffect ShadowDepth="3" Direction="315" Opacity="0.7"/>
-                </Label.Effect>
-            </Label>
-            <!--Här skrivs alla valda drugs ut och kopplar SelectedItem till propertyn SelectedDrugToRemove samt tillsätter Twoway så det ska påverka gränssnittet och datakällan.-->
-            <DataGrid Grid.Column="4" Grid.Row="3" ItemsSource="{Binding SelectedDrugs}" SelectedItem="{Binding SelectedDrugToRemove, Mode=TwoWay}" AutoGenerateColumns="False" Margin="0,0,0,36" Grid.RowSpan="2" Height="200" VerticalScrollBarVisibility="Auto">
-                <DataGrid.Columns>
-                    <!--Skriver ut propertyn DrugId genom entiteten Drug via Binding-->
-                    <DataGridTextColumn Header="Drug ID" Binding="{Binding DrugId}"/>
-                    <!--Skriver ut propertyn DrugName genom entiteten Drug via Binding-->
-                    <DataGridTextColumn Header="Description" Binding="{Binding DrugName}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-
-            <!-- Label och DataGrid för prescription history -->
-            <Label Grid.Column="6" Grid.Row="2" Content="Prescription History" FontWeight="SemiBold" FontSize="15" Grid.ColumnSpan="2" Margin="0,10,50,36" Background="MediumAquamarine" Foreground="Black">
-                <Label.Effect>
-                    <DropShadowEffect ShadowDepth="3" Direction="315" Opacity="0.7"/>
-                </Label.Effect>
-            </Label>
-            <!--Skriver ut all Prescriptionhistorik samt sätter SelectedItem till en Prescription-->
-            <DataGrid x:Name="dgHistory" Grid.Column="6" Grid.Row="3" ItemsSource="{Binding PrescriptionHistory,UpdateSourceTrigger=PropertyChanged}"
+                <!--Skriver ut all Prescriptionhistorik samt sätter SelectedItem till en Prescription-->
+                <DataGrid x:Name="dgHistory" Grid.Column="6" Grid.Row="3" ItemsSource="{Binding PrescriptionHistory,UpdateSourceTrigger=PropertyChanged}"
                       SelectedItem="{Binding SelectedPrescription, Mode=TwoWay}" AutoGenerateColumns="False" SelectionMode="Single" Grid.ColumnSpan="2" Margin="0,0,50,36" Grid.RowSpan="2" Height="200" VerticalScrollBarVisibility="Auto">
-                <DataGrid.Columns>
-                    <!--Skriver ut propertyn prescriptionId genom entiteten Prescription via Binding-->
-                    <DataGridTextColumn Header="Prescription ID" Binding="{Binding prescriptionId}"/>
-                    <!--Skriver ut propertyn dateOfPrescription genom entiteten Prescription via Binding-->
-                    <DataGridTextColumn Header="Date" Binding="{Binding dateofPrescription}"/>
-                    <!--Skriver ut propertyn drugCount genom entiteten Prescription via Binding-->
-                    <DataGridTextColumn Header="Amount of drugs" Binding="{Binding drugCount}"/>
-                </DataGrid.Columns>
+                    <DataGrid.Columns>
+                        <!--Skriver ut propertyn prescriptionId genom entiteten Prescription via Binding-->
+                        <DataGridTextColumn Header="Prescription ID" Binding="{Binding prescriptionId}"/>
+                        <!--Skriver ut propertyn dateOfPrescription genom entiteten Prescription via Binding-->
+                        <DataGridTextColumn Header="Date" Binding="{Binding dateofPrescription}"/>
+                        <!--Skriver ut propertyn drugCount genom entiteten Prescription via Binding-->
+                        <DataGridTextColumn Header="Amount of drugs" Binding="{Binding drugCount}"/>
+                    </DataGrid.Columns>
 
-            </DataGrid>
-            <!-- Command hämtar alla Drugs från ett specifikt prescriptionId -->
-            <Button Grid.Column="6" Grid.Row="4" Content="Show Prescription Details (Drugs)" Margin="0,10,0,50" Width="Auto" HorizontalAlignment="Left" Padding="4"
+                </DataGrid>
+                <!-- Command hämtar alla Drugs från ett specifikt prescriptionId -->
+                <Button Grid.Column="6" Grid.Row="4" Content="Show Prescription Details (Drugs)" Margin="0,10,0,50" Width="Auto" HorizontalAlignment="Left" Padding="4"
                 Command="{Binding ShowDrugsFromPrescriptionCmd}" 
                 CommandParameter="{Binding SelectedPrescription}" Grid.RowSpan="2">
-            </Button>
+                </Button>
 
-            <!-- Label och DataGrid för drugs i vald prescription -->
-            <Label Grid.Column="8" Grid.Row="2" Content="Drugs in selected prescription" FontWeight="SemiBold" FontSize="15" Margin="0,10,0,36" Background="MediumAquamarine" Foreground="Black">
-                <Label.Effect>
-                    <DropShadowEffect ShadowDepth="3" Direction="315" Opacity="0.7"/>
-                </Label.Effect>
-            </Label>
-            <!--Hämtar alla DrugsInPrescription-->
-            <DataGrid Grid.Column="8" Grid.Row="3" ItemsSource="{Binding DrugsInPrescription,UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Margin="0,0,0,36" Grid.RowSpan="2" Height="200" VerticalScrollBarVisibility="Auto">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Drug ID" Binding="{Binding DrugId}"/>
-                    <DataGridTextColumn Header="Description" Binding="{Binding DrugName}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </Grid>
-    </DockPanel>
-    <!--DOCKPANEL SLUT-->
+                <!-- Label och DataGrid för drugs i vald prescription -->
+                <Label Grid.Column="8" Grid.Row="2" Content="Drugs in selected prescription" FontWeight="SemiBold" FontSize="15" Margin="0,10,0,36" Background="MediumAquamarine" Foreground="Black">
+                    <Label.Effect>
+                        <DropShadowEffect ShadowDepth="3" Direction="315" Opacity="0.7"/>
+                    </Label.Effect>
+                </Label>
+                <!--Hämtar alla DrugsInPrescription-->
+                <DataGrid Grid.Column="8" Grid.Row="3" ItemsSource="{Binding DrugsInPrescription,UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Margin="0,0,0,36" Grid.RowSpan="2" Height="200" VerticalScrollBarVisibility="Auto">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Drug ID" Binding="{Binding DrugId}"/>
+                        <DataGridTextColumn Header="Description" Binding="{Binding DrugName}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </DockPanel>
+        <!--DOCKPANEL SLUT-->
+    </ScrollViewer>
 </Window>

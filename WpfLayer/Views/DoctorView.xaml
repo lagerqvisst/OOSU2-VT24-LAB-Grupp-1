@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:WpfLayer.Views"
         mc:Ignorable="d"
         Title="DoctorView" SizeToContent="WidthAndHeight">
-
-    <DockPanel>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <DockPanel>
         
         <!--MENY START -->
         <Menu DockPanel.Dock="Top">
@@ -150,4 +150,5 @@
         </Grid>
         <!-- APPOINTMENT GRID SLUT -->
     </DockPanel>
+    </ScrollViewer>
 </Window>

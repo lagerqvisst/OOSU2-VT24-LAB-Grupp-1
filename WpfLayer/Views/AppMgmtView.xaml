@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfLayer.Views" 
         mc:Ignorable="d" 
-        Title="AppMgmtView" Height="1000" Width="1200">
+        Title="AppMgmtView" SizeToContent="WidthAndHeight">
 
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
     <DockPanel>
         <!--MENY START -->
         <Menu DockPanel.Dock="Top" >
@@ -22,8 +23,8 @@
             <TextBlock Text="{Binding StatusBarMessage}" FontStyle="Italic"></TextBlock>
         </StatusBar>
         <!--STATUS MESSAGE slut -->
-
-        <Grid>
+        
+            <Grid>
             <!-- Kolumner -->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
@@ -183,4 +184,5 @@
             </Border>
         </Grid>
     </DockPanel>
+    </ScrollViewer>
 </Window>
