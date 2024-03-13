@@ -25,6 +25,7 @@ namespace EntityLayer
         public List<Prescription> patientPrescriptions { get; set; } // Lista för patientens recept.
         #endregion Listor
 
+        //Konstruktor för att instansiera en patient
         public Patient(string personalNumber, string name, string address, string phonenumber, string emailaddress)
 
         #region Initialisering och listhantering
@@ -36,12 +37,11 @@ namespace EntityLayer
             this.emailaddress = emailaddress;
 
             // Listor för att hålla reda på patientens diagnoser, recept och bokade tider
-            patientDiagnosis = new List<Diagnosis>();
+            //Lägger till listan för varje instans för att det inte ska vara null.
+            patientDiagnosis = new List<Diagnosis>(); 
             patientAppointments = new List<Appointment>();
             patientPrescriptions = new List<Prescription>();
         }
-
-
         #endregion Initialisering och listhantering
     }
 }
