@@ -14,7 +14,10 @@ namespace DataLayer
 {
     public class UnitOfWork
     {
+        #region Context
         public PatientMgmtContext patientMgmtContext;
+        #endregion
+        #region Repositories
         public Repository<Diagnosis> DiagnosisRepository
         {
             get; private set;
@@ -54,8 +57,9 @@ namespace DataLayer
         {
             get; private set;
         }
+        #endregion
 
-
+        #region Konstruktor 
         public UnitOfWork()
         {
             patientMgmtContext = new PatientMgmtContext(); // Initialisera patientMgmtContext
@@ -69,9 +73,9 @@ namespace DataLayer
             PrescriptionDrugRepository = new Repository<PrescriptionDrug>();
 
             
-            //Initialize the tables if this is the first UnitOfWork.
+          
             
-            
+            // Om det inte finns några patienter i databasen så fylls den med exempeldata.
             if (PatientRepository.IsEmpty())
             {
                 Fill();
@@ -79,10 +83,10 @@ namespace DataLayer
             
            
         }
+        #endregion
 
-        /// <summary>
-        ///  Save the changes made.
-        /// </summary>
+        
+        //Spara alla ändringar till databasen.
         public void Save()
         {
             patientMgmtContext.SaveChanges();
@@ -107,7 +111,7 @@ namespace DataLayer
             //Loops för varje objekt i listorna för att lägga till dem i respektive repository.
             //Eftersom varje repository faktiskt är tom vid varje ny körning så körs denna metod varje gång programmet startas.
             //Då fylls repositories med objekt från databasen. Repositories används sedan för att kunna göra CRUD-operationer på objekten i gränssnittet
-            #region for each loop to add the objects to the repositories
+            #region för varje loop läggs objekt till i respektive repository
             foreach (var patient in patientsFromDb)
             {
                 PatientRepository.Add(patient);
@@ -155,35 +159,40 @@ namespace DataLayer
         #region Create methods
         public void CreatePrescription(Prescription prescription)
         {
+            // Lägg till den nya prescription i repository
             PrescriptionRepository.Add(prescription);
+            //Lägg till den nya prescription i tabellen i databasen.
             patientMgmtContext.Prescriptions.Add(prescription);
 
+           //Iterera över alla PrescriptionDrugs i prescription och lägg till dem i PrescriptionDrugRepository och i tabellen i databasen.
             foreach (var prescriptionDrug in prescription.PrescriptionDrugs)
             {
                 PrescriptionDrugRepository.Add(prescriptionDrug);
                 patientMgmtContext.PrescriptionDrugs.Add(prescriptionDrug);
             }
-
+            //Spara ändringar till databasen
             Save();
         }
 
 
-
+        //Skapar en ny patient
         public void CreatePatient(Patient patient)
         {
           
             // Lägg till den nya patienten i repository
             PatientRepository.Add(patient);
+            //Lägg till den nya patienten i tabellen i databasen.
             patientMgmtContext.Patients.Add(patient);
 
             // Spara ändringar till databasen
             Save();
         }
-
+        //Skapar en ny Diagnosis
         public void CreateDiagnosis(Diagnosis diagnosis)
         {
-            // Lägg till den nya patienten i repository
+            // Lägg till den nya Diagnosis i repository
             DiagnosisRepository.Add(diagnosis);
+            //Lägg till den nya Diagnosis i tabellen i databasen.
             patientMgmtContext.Diagnoses.Add(diagnosis);
 
             // Spara ändringar till databasen
@@ -193,7 +202,6 @@ namespace DataLayer
         public void CreateAppointment(Appointment appointment)
         {
             // Lägg till den nya appointmenten i repository
-
             AppointmentRepository.Add(appointment);
             //Lägg till den nya appointmenten i tabellen i databasen.
             patientMgmtContext.Appointments.Add(appointment);
@@ -206,6 +214,8 @@ namespace DataLayer
 
         //Metoder som tar bort objekt från databasen.
         #region Delete methods
+
+        //Tar bort en specifik patient från databasen.
         public void DeletePatient(Patient patient)
         {
             // Ta bort patienten från repository
@@ -216,7 +226,7 @@ namespace DataLayer
             // Spara ändringar till databasen
             Save();
         }
-        
+        //Tar bort en specifik appointment från databasen.
         public void DeleteAppointment(Appointment appointment)
         {
             // Ta bort appointment från repository
@@ -229,12 +239,16 @@ namespace DataLayer
         }
         #endregion
 
+        //Metoder som uppdaterar objekt i databasen.
         #region Update methods
+
+        //Uppdaterar en specifik patient med nytt namn.
         public void UpdatePatientName(Patient patient, string newName)
         {
             // Hitta det befintliga Patient-objektet med hjälp av patientId
             var patientToUpdate = patientMgmtContext.Patients.FirstOrDefault(p => p.patientId == patient.patientId);
 
+            //Sätt det gamla namnet till det nya.
             patientToUpdate.name = newName;
             PatientRepository.FirstOrDefault(p => p.patientId == patient.patientId).name = newName;
 
@@ -244,11 +258,13 @@ namespace DataLayer
       
         }
 
+        //Uppdaterar en specifik patient med ny adress.
         public void UpdatePatientAddress(Patient patient, string newAddress)
         {
             // Hitta det befintliga Patient-objektet med hjälp av patientId
             var patientToUpdate = patientMgmtContext.Patients.FirstOrDefault(p => p.patientId == patient.patientId);
 
+            //Sätt den gamla adressen till den nya.
             patientToUpdate.address = newAddress;
             PatientRepository.FirstOrDefault(p => p.patientId == patient.patientId).address = newAddress;
 
@@ -256,11 +272,13 @@ namespace DataLayer
             Save();
         }
 
+        //Uppdaterar en specifik patient med nytt telefonnummer.
         public void UpdatePatientPhoneNumber(Patient patient, string newPhoneNumber)
         {
             // Hitta det befintliga Patient-objektet med hjälp av patientId
             var patientToUpdate = patientMgmtContext.Patients.FirstOrDefault(p => p.patientId == patient.patientId);
 
+            //Sätt det gamla telefonnumret till det nya.
             patientToUpdate.phonenumber = newPhoneNumber;
             PatientRepository.FirstOrDefault(p => p.patientId == patient.patientId).phonenumber = newPhoneNumber;
 
@@ -268,11 +286,13 @@ namespace DataLayer
             Save();
         }
 
+        //Uppdaterar en specifik patient med ny email.
         public void UpdatePatientEmail(Patient patient, string newEmail)
         {
             // Hitta det befintliga Patient-objektet med hjälp av patientId
             var patientToUpdate = patientMgmtContext.Patients.FirstOrDefault(p => p.patientId == patient.patientId);
 
+            //Sätt det gamla email till det nya.
             patientToUpdate.emailaddress = newEmail;
             PatientRepository.FirstOrDefault(p => p.patientId == patient.patientId).emailaddress = newEmail;
 
@@ -280,11 +300,13 @@ namespace DataLayer
             Save();
         }
 
+        //Uppdaterar en specifik patient med nytt personnummer.
         public void UpdatePatientPersonalNumber(Patient patient, string newPersonalNumber)
         {
             // Hitta det befintliga Patient-objektet med hjälp av patientId
             var patientToUpdate = patientMgmtContext.Patients.FirstOrDefault(p => p.patientId == patient.patientId);
 
+            //Sätt det gamla personnumret till det nya.
             patientToUpdate.personalNumber = newPersonalNumber;
             PatientRepository.FirstOrDefault(p => p.patientId == patient.patientId).personalNumber = newPersonalNumber;
 
@@ -305,11 +327,12 @@ namespace DataLayer
             // Spara ändringar till databasen
             Save();
         }
-        //Plockar fram en specifik appointment för att sedan byta reason.
+        //Uppdaterar ett specifikt appointment med ny reason.
         public void UpdateAppointmentReason(Appointment appointment, string newReason)
         {
             // Hitta det befintliga Appointment-objektet med hjälp av appointmentId
             var appointmentToUpdate = patientMgmtContext.Appointments.FirstOrDefault(a => a.appointmentId == appointment.appointmentId);
+
             //Sätter den gamla reason till den nya
             appointmentToUpdate.appointmentReason = newReason;
             AppointmentRepository.FirstOrDefault(a => a.appointmentId == appointment.appointmentId).appointmentReason = newReason;
@@ -318,7 +341,7 @@ namespace DataLayer
             Save();
         }
 
-        //LÖS BUGGARNA I DENNA METOD
+        //Uppdaterar specifik appointment med ny doctor.
         public void UpdateAppointmentDoctor(Appointment appointment, Doctor newDoctor)
         {
             // Hitta det befintliga Appointment-objektet med hjälp av appointmentId
@@ -331,16 +354,22 @@ namespace DataLayer
             appointmentToUpdate.doctorID = newDoctor.doctorID;
             appointmentToUpdate.doctorName = newDoctor.name;
 
+            AppointmentRepository.FirstOrDefault(a => a.appointmentId == appointment.appointmentId).doctorID = newDoctor.doctorID;
+            AppointmentRepository.FirstOrDefault(a => a.appointmentId == appointment.appointmentId).doctorName = newDoctor.name;
+
             // Spara ändringar till databasen
             Save();
         }
+
         //Uppdaterar specifik appointment med ny doctorsnote.
         public void UpdateAppointmentDoctorsNote(Appointment appointment, string newNote)
         {
             // Hitta det befintliga Appointment-objektet med hjälp av appointmentId
             var appointmentToUpdate = patientMgmtContext.Appointments.FirstOrDefault(a => a.appointmentId == appointment.appointmentId);
+
             //Sätter gamla doctorsnote till det nya.
             appointmentToUpdate.doctorsNote = newNote;
+
             AppointmentRepository.FirstOrDefault(a => a.appointmentId == appointment.appointmentId).doctorsNote = newNote;
 
             // Spara ändringar till databasen
@@ -356,6 +385,8 @@ namespace DataLayer
         /// </summary>
 
         #region Search methods
+
+        //Hämtar alla patienter från databasen baserat på namn.
         public List<Patient> GetPatientByName(string name)
         {
             //Alternativt: return patientMgmtContext.Patients.Where(patient => patient.Name == name).ToList(); - FRÅN JOHANNES MEJL 
@@ -369,6 +400,7 @@ namespace DataLayer
             foreach(var patientInDb in result)
             {
                 patient = new Patient(patientInDb.personalNumber, patientInDb.name, patientInDb.address, patientInDb.phonenumber, patientInDb.emailaddress);
+                patient.patientId = patientInDb.patientId;
                 patients.Add(patient);
             }
 
@@ -376,6 +408,7 @@ namespace DataLayer
           
         }
 
+        //Hämtar alla patienter från databasen baserat på personnummer.
         public List<Patient> GetPatientByPersonalNumber(string personalNumber)
         {
             var result = from p in patientMgmtContext.Patients
@@ -388,12 +421,14 @@ namespace DataLayer
             foreach (var patientInDb in result)
             {
                 patient = new Patient(patientInDb.personalNumber, patientInDb.name, patientInDb.address, patientInDb.phonenumber, patientInDb.emailaddress);
+                patient.patientId = patientInDb.patientId;
                 patients.Add(patient);
             }
 
             return patients;
         }
 
+        //Hämtar alla patienter från databasen baserat på adress.
         public List<Patient> GetPatientByAddress(string address)
         {
             var result = from p in patientMgmtContext.Patients
@@ -406,12 +441,14 @@ namespace DataLayer
             foreach (var patientInDb in result)
             {
                 patient = new Patient(patientInDb.personalNumber, patientInDb.name, patientInDb.address, patientInDb.phonenumber, patientInDb.emailaddress);
+                patient.patientId = patientInDb.patientId;
                 patients.Add(patient);
             }
 
             return patients;
         }   
 
+        //Hämtar alla patienter från databasen baserat på telefonnummer.
         public List<Patient> GetPatientByPhoneNumber(string phoneNumber)
         {
             var result = from p in patientMgmtContext.Patients
@@ -424,12 +461,14 @@ namespace DataLayer
             foreach (var patientInDb in result)
             {
                 patient = new Patient(patientInDb.personalNumber, patientInDb.name, patientInDb.address, patientInDb.phonenumber, patientInDb.emailaddress);
+                patient.patientId = patientInDb.patientId;
                 patients.Add(patient);
             }
 
             return patients;
         }
 
+        //Hämtar alla patienter från databasen baserat på email.
         public List<Patient> GetPatientsByEmailAddress(string emailAddress)
         {
             var result = from p in patientMgmtContext.Patients
@@ -441,7 +480,9 @@ namespace DataLayer
 
             foreach (var patientInDb in result)
             {
+                
                 patient = new Patient(patientInDb.personalNumber, patientInDb.name, patientInDb.address, patientInDb.phonenumber, patientInDb.emailaddress);
+                patient.patientId = patientInDb.patientId;
                 patients.Add(patient);
             }
 
@@ -449,6 +490,7 @@ namespace DataLayer
         }
         #endregion
 
+        //Hämtar alla drugs i databasen.
         public void SeedDBDrugs()
         {
             // Hämta alla läkemedel från repository

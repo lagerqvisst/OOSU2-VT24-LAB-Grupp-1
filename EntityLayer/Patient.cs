@@ -8,7 +8,7 @@ namespace EntityLayer
 {
     public class Patient
 
-        #region Patient properties
+    #region Patient properties
     {
         public int patientId { get; set; } // Primärnyckel för patienten.
         public string personalNumber { get; set; } // Personnummer för patienten.
@@ -40,6 +40,8 @@ namespace EntityLayer
             patientAppointments = new List<Appointment>();
             patientPrescriptions = new List<Prescription>();
         }
+
+
         #endregion Initialisering och listhantering
     }
 }
