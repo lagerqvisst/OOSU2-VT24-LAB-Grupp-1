@@ -12,29 +12,25 @@ namespace BusinessLayer
     public class DrugController
     {
         #region UnitOfWork
+        // Skapar en instans av UnitOfWork för att kunna använda sig av metoder från UnitOfWork.
         private UnitOfWork unitOfWork = new UnitOfWork();
         #endregion UnitOfWork
 
         #region CRUD Operations
-        /// <summary>
-        /// Hämtar alla läkemedel från databasen.
-        /// </summary>
+        
+        // Hämtar alla läkemedel från databasen och returnerar en lista.
         public List<Drug> GetAllDrugs()
         {
             return unitOfWork.DrugRepository.Find(d => true).ToList();
         }
-
-        /// <summary>
-        /// Hämtar läkemedel baserat på recept-ID från databasen.
-        /// </summary>
+        
+        // Här används ett junction table som hämtar alla Drugs inom ett PrescriptionId och returnerar en lista med Drugs.
         public List<Drug> GetDrugsByPrescriptionId(int prescriptionId)
         {
             return unitOfWork.PrescriptionDrugRepository.Find(p => p.prescriptionId == prescriptionId).Select(p => p.Drug).ToList();
         }
-
-        /// <summary>
-        /// Hämtar ett läkemedel baserat på läkemedels-ID från databasen.
-        /// </summary>
+        
+        // Hämtar ett läkemedel baserat på DrugId från databasen.
         public Drug GetDrugsByDrugId(int drugId)
         {
             return unitOfWork.DrugRepository.FirstOrDefault(d => d.DrugId == drugId);
@@ -43,7 +39,7 @@ namespace BusinessLayer
 
         #region Extra Functionality (API drugnames)
         /// <summary>
-        /// Hämtar data från en API och returnerar en lista med namn på läkemedel.
+        /// Hämtar data från en API och returnerar en lista med namn på läkemedel (Out of Scope).
         /// </summary>
         /// <returns>En lista med namn på läkemedel.</returns>
         public List<string> ApiDrugDataExtract()

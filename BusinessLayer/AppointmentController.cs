@@ -13,6 +13,7 @@ namespace BusinessLayer
         UnitOfWork unitOfWork = new UnitOfWork();
 
         #region Create
+        //Skapar nytt appointment med patientId, datum, reason, doktorId och receptionistId.
         public Appointment CreateNewAppointment(int patientId, DateTime appointmentDate, string appointmentReason, int doctorID, int receptionistId)
         {
             Appointment appointment = new Appointment(patientId, appointmentDate, appointmentReason, doctorID, receptionistId);
@@ -36,6 +37,7 @@ namespace BusinessLayer
             Appointment appointment = new Appointment(patientId, appointmentDate, appointmentReason, doctorID);
 
             //För att sätta namnen på patient, doktor och receptionist där namnen är kopplade med faktiska objekt och inte lösa strängar i appointment
+            //Denna tar endast patientId och doctorID eftersom att det är doktorn som skapar tiden och då behöver vi inte sätta receptionist.
             appointment.SetNames(unitOfWork.PatientRepository.FirstOrDefault(p => p.patientId == patientId),
                                                 unitOfWork.DoctorRepository.FirstOrDefault(d => d.doctorID == doctorID));
 
@@ -45,6 +47,7 @@ namespace BusinessLayer
         #endregion
 
         #region Read
+        //Skriver ut alla Appointments
         public List<Appointment> GetAllAppointments()
         {
             return unitOfWork.AppointmentRepository.Find(a => true).ToList();
@@ -58,7 +61,7 @@ namespace BusinessLayer
                 .ToList();
         }
 
-        //Onödig metod, använd hela objekt istället... 
+        //Använd denna för att hämta alla appointments genom att använda appointmentId.
         public Appointment GetAppointmentById(int id)
         {
             return unitOfWork.AppointmentRepository.FirstOrDefault(a => a.appointmentId == id);
