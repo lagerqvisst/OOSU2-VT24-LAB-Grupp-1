@@ -60,7 +60,7 @@
 
                 <!-- Doctors note -->
                 <StackPanel Margin="0,0,0,0">
-                    <Label Content="Add doctors note" FontWeight="Bold"/>
+                    <Label Content="Add doctors note" FontWeight="Bold" Background="Transparent"/>
                     <Label Content="(free text)" FontStyle="Italic" FontSize="11" Margin="0,0,0,0" Background="Transparent" />
                     <!--Binder DoctorsNote Property och sätter Update för att den ska uppdateras direkt i gränssnittet-->
                     <TextBox Name="txtBoxDoctorNote" Text="{Binding DoctorsNote, UpdateSourceTrigger=PropertyChanged}" FontSize="10"  Margin="5,10,0,0"
