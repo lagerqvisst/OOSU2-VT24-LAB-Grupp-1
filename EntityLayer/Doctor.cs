@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace EntityLayer
 {
+    //Ärver av IUser för att kunna logga in som Doctor
     public class Doctor : IUser
 
         #region Doctor properties
@@ -16,7 +17,7 @@ namespace EntityLayer
         public string name { get; set; } // Namn på doktorn.
 
         public string password { get; set; } // Lösenord för doktorn.
-        public List<Appointment> Appointments { get; set; } // Lista för att hålla reda på doktorns bokade tider (Navigationsegenskap).
+        public List<Appointment> Appointments { get; set; } // Lista för att hålla reda på doktorns bokade tider.
         #endregion Doctor properties
 
         #region Constructor
@@ -25,7 +26,9 @@ namespace EntityLayer
             this.specialization = specialization;
             this.name = name;
             this.password = password;
-            Appointments = new List<Appointment>();
+
+            //Initialiserar listan för att hålla reda på doktorns bokade tider.
+            Appointments = new List<Appointment>(); //Lägger till listan för varje instans för att det inte ska vara null.
         }
         #endregion Constructor
     }

@@ -12,23 +12,23 @@ namespace EntityLayer
 
         #region Appointment properties
     {
-        public int appointmentId { get; set; }  //PK
-        public int patientId { get; set; } //FK
-        public string patientName { get; set; }
+        public int appointmentId { get; set; }  //Primärnyckel för Appointment
+        public int patientId { get; set; } //Främmande nyckel för att koppla till en patient
+        public string patientName { get; set; } //Får patients namn genom att sätta det i SetNames-metoden
 
-        public Patient patient { get; set; }
-        public DateTime appointmentDate { get; set; }
-        public string appointmentReason { get; set; }
+        public Patient patient { get; set; } //Är ett objekt av klassen Patient
+        public DateTime appointmentDate { get; set; } //Datum och tid för Appointment
+        public string appointmentReason { get; set; } //Anledning för Appointment
 
         public string ? doctorsNote { get; set; } //Kan vara null om läkaren inte har skrivit något samt att när en receptionist skapar en tid så är det null.
 
-        public Doctor doctor { get; set; }
-        public int doctorID { get; set; } //FK
-        public string doctorName { get; set; }
+        public Doctor doctor { get; set; } //Är ett objekt av klassen Doctor
+        public int doctorID { get; set; } //Främmande nyckel för att koppla till en doktor
+        public string doctorName { get; set; } //Får doktorns namn genom att sätta det i SetNames-metoden
 
-        public Receptionist receptionist { get; set; }
-        public int? receptionistId { get; set; } //FK (Kan vara null)
-        public string? receptionistName { get; set; } //(Kan vara null)
+        public Receptionist receptionist { get; set; } //Är ett objekt av klassen Receptionist
+        public int? receptionistId { get; set; } //Främmande nyckel för att koppla till en receptionist (Kan vara null)
+        public string? receptionistName { get; set; } //Får receptionistens namn genom att sätta det i SetNames-metoden (Kan vara null)
 
         #endregion Appointment properties
 

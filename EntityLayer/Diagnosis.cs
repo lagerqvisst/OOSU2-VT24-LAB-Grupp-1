@@ -22,6 +22,7 @@ namespace EntityLayer
         #region Constructor
         public Diagnosis(int patientId, string diagnosisDescription, DateTime dateOfDiagnosis, string treatmentSuggestion)
         {
+            
             this.patientId = patientId;
             this.patient = patient;
             this.diagnosisDescription = diagnosisDescription;

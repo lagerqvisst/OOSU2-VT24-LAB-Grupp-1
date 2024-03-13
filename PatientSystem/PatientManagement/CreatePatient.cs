@@ -28,9 +28,10 @@ namespace PresentationLayer
         private void btnCreatePatient_Click(object sender, EventArgs e)
         {
             patientController.CreateNewPatient(persNumber_textbox.Text, namePatient_textbox.Text, adress_textbox.Text, phonenumber_textbox.Text, emailAdress_textbox.Text);
-            
+
             MessageBox.Show("Patient created");
-            this.Close(); 
+            this.Close();
         }
+
     }
 }
