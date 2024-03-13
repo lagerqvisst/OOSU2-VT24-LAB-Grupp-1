@@ -12,14 +12,13 @@ namespace BusinessLayer
     public class DoctorController
     {
         #region UnitOfWork
+        // Skapar en instans av UnitOfWork för att kunna använda sig av metoder från UnitOfWork.
         private UnitOfWork unitOfWork = new UnitOfWork();
         #endregion UnitOfWork
 
         #region CRUD Operations
 
         // Hämtar en läkare baserat på läkarens ID från databasen och returnerar läkarens information
-
-       
         public Doctor GetDoctorById(int doctorId)
         {
             return unitOfWork.DoctorRepository.FirstOrDefault(d => d.doctorID == doctorId);

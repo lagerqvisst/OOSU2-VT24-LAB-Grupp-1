@@ -187,7 +187,9 @@ namespace WpfLayer.ViewModels
             //Varnar bara om det finns befintliga recept
             if (prescriptionHistory.Count > 0) 
             {
-                MessageBoxResult result = MessageBox.Show($"Patient {patient.name} has {prescriptionHistory.Count} prescriptions on record, totaling {TotalDrugsOfAllPrescriptions} drugs prescribed.\n\nBefore proceeding, have you ensured that the current prescription does not contraindicate with any existing or concurrent prescriptions?\n\nPlease review the Prescription History for further information. \n\nThis can help reduce the risk of unwanted side effects.", "Drug Interaction Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                MessageBoxResult result = MessageBox.Show($"Patient {patient.name} has {prescriptionHistory.Count} prescriptions on record, totaling {TotalDrugsOfAllPrescriptions}" +
+                    $" drugs prescribed.\n\nBefore proceeding, have you ensured that the current prescription does not contraindicate with any existing or concurrent prescriptions?\n\n" +
+                    $"Please review the Prescription History for further information. \n\nThis can help reduce the risk of unwanted side effects.", "Drug Interaction Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                 if (result == MessageBoxResult.Yes)
                 {
@@ -215,7 +217,7 @@ namespace WpfLayer.ViewModels
 
             totalDrugsOfAllPrescriptions += prescription.drugCount;
 
-            OnPropertyChanged(nameof(TotalDrugsOfAllPrescriptions)); //FUNGERAR INTE ATT UPPDATERA. 
+            OnPropertyChanged(nameof(TotalDrugsOfAllPrescriptions));
 
             MessageBox.Show($"Prescription has been created.\n{prescription.drugCount} drugs were prescribed to patient.");
 
@@ -246,14 +248,12 @@ namespace WpfLayer.ViewModels
                 OnPropertyChanged(nameof(DrugsInPrescription));
             }
         }
-
         //Other Methods for navigation
         private void CloseWidnow()
         {
             Window currentWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
             currentWindow?.Close();
         }
-
         #endregion
     }
 }

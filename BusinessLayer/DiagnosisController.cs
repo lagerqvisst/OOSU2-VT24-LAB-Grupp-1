@@ -13,11 +13,13 @@ namespace BusinessLayer
     {
 
         #region UnitOfWork
+        // Skapar en instans av UnitOfWork för att kunna använda sig av metoder från UnitOfWork.
         UnitOfWork unitOfWork = new UnitOfWork();
         #endregion
 
         #region CRUD Operations
 
+        //Skapa / Lägg till diagnos för specifik patient
         public Diagnosis AddDiagnosis(int patientId, string diagnosisDescription, DateTime dateOfDiagnosis, string treatmentSuggestion)
         {
             Diagnosis diagnosis = new Diagnosis(patientId, diagnosisDescription, dateOfDiagnosis, treatmentSuggestion);
@@ -25,6 +27,7 @@ namespace BusinessLayer
             return diagnosis;
         }
 
+        //Hämta en lista av diagnoser för specifik patient
         public List<Diagnosis> PatientDiagnosis(Patient patient)
         {
             return unitOfWork.DiagnosisRepository.Find(d => d.patientId == patient.patientId).ToList(); 
@@ -42,6 +45,7 @@ namespace BusinessLayer
 
         #region Extract conditions API
 
+        //API (Out of Scope)
         public List<string> ExtractMedicalConditionsFromApi()
         {
             var client = new HttpClient();
@@ -80,12 +84,11 @@ namespace BusinessLayer
         }
 
         #endregion Extract conditions API
-
         //Denna metod används i DhViewModel vilket är en extravy som fungerar som ett hjälpmedel för en läkare som kan söka efter conditions.
         //Sökinputen från användaren skickas med som parameter och max antal resultat som ska visas.
 
         #region QueryApi for Medical Conditions
-
+        //API (Out of Scope)
         public List<string> QueryApiForMedicalConditions(string searchTerm, int maxResults)
         {
             var client = new HttpClient();
@@ -115,11 +118,7 @@ namespace BusinessLayer
                 Console.WriteLine("Error: " + ex.Message);
                 return null;
             }
-
             #endregion QueryApi for Medical Conditions
         }
-
     }
-
-
 }

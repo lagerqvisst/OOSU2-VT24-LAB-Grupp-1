@@ -11,7 +11,6 @@ namespace EntityLayer
     public class Appointment
 
         #region Appointment properties
-
     {
         public int appointmentId { get; set; }  //PK
         public int patientId { get; set; } //FK
@@ -28,8 +27,8 @@ namespace EntityLayer
         public string doctorName { get; set; }
 
         public Receptionist receptionist { get; set; }
-        public int? receptionistId { get; set; } //FK
-        public string? receptionistName { get; set; }
+        public int? receptionistId { get; set; } //FK (Kan vara null)
+        public string? receptionistName { get; set; } //(Kan vara null)
 
         #endregion Appointment properties
 
@@ -37,10 +36,9 @@ namespace EntityLayer
 
         //Constructorn är overloaded för att kunna skapa en appointment med eller utan receptionistId.
         //Overloadingen togs med i LABB3 då ett krav var att en läkare skulle kunna skapa en ny tid. 
-        //Tidigare i LABB2 var det endaste receptionisten som kunde skapa en tid och då behövdes inte överlagringen.
+        //Tidigare i LAB2 var det endaste receptionisten som kunde skapa en tid och då behövdes inte överlagringen.
 
-
-
+        //Med receptionist (kan ändå vara NULL dock)
         public Appointment(int patientId, DateTime appointmentDate, string appointmentReason, int doctorID, int? receptionistId)
         {
             this.patientId = patientId;
@@ -48,16 +46,15 @@ namespace EntityLayer
             this.appointmentReason = appointmentReason;
             this.doctorID = doctorID;
             this.receptionistId = receptionistId;
-
         }
 
+        //Utan receptionist
         public Appointment(int patientId, DateTime appointmentDate, string appointmentReason, int doctorID)
         {
             this.patientId = patientId;
             this.appointmentDate = new DateTime(appointmentDate.Year, appointmentDate.Month, appointmentDate.Day, appointmentDate.Hour, appointmentDate.Minute, 0);
             this.appointmentReason = appointmentReason;
             this.doctorID = doctorID;
-
         }
 
         #endregion Constructors
@@ -70,15 +67,11 @@ namespace EntityLayer
         /// Se AppointmentController för hur detta används.
         /// </summary>
 
-
-
         public void SetNames(Patient patient, Doctor doctor, Receptionist receptionist)
         {
             patientName = patient.name;
             doctorName = doctor.name;  
             receptionistName = receptionist.name;
-           
-          
         }
 
         //Overloaded SetNames-metod för att kunna sätta namn på patient och doktor utan att behöva skicka med receptionist.
@@ -86,15 +79,8 @@ namespace EntityLayer
         {
             patientName = patient.name;
             doctorName = doctor.name;
-
-
- 
-
         }
 
         #endregion Methods
-
     }
-
-
 }

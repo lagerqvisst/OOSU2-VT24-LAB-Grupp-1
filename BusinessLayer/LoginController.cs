@@ -6,19 +6,20 @@ namespace BusinessLayer
     public class LoginController
     {
         #region UnitOfWork
+        // Skapar en instans av UnitOfWork för att kunna använda sig av metoder från UnitOfWork.
         private UnitOfWork unitOfWork = new UnitOfWork();
         #endregion UnitOfWork
 
         #region Authentication Methods
-        /// <summary>
-        /// Loggar in en receptionist med angivet användarnamn och lösenord.
-        /// </summary>
+       
+        // Loggar in en receptionist med angivet användarnamn och lösenord.
         public Receptionist Login(string username, string password)
         {
             Receptionist receptionist = unitOfWork.ReceptionistRepository.FirstOrDefault(r => r.name == username && r.password == password);
             return receptionist;
         }
 
+        //Genererar en slumpmässig, befintlig läkare.
         public Doctor GetRandomDoctor()
         {
             var random = new Random();
@@ -37,6 +38,7 @@ namespace BusinessLayer
             }
         }
 
+        //Genererar en slumpmässig, befintlig receptionist.
         public Receptionist GetRandomReceptionist()
         {
             var random = new Random();
@@ -76,10 +78,10 @@ namespace BusinessLayer
             return null;
         }
         #endregion Authentication Methods
-        
 
         #region Random Fact Retrieval
         /// <summary>
+        /// (Out of Scope)
         /// Hämtar ett slumpmässigt fakta från Numbers API baserat på dagens datum.
         /// </summary>
         public static async Task<string> GetTodaysFact()
