@@ -8,12 +8,15 @@ using System.Threading.Tasks;
 
 namespace DataLayer
 {
+    //Klass används för att seeda databasen med hårdkodad data
     public class Seed
     {
+        
         public static void SeedData(PatientMgmtContext patientMgmtContext)
         {
 
             #region Patients
+            //Lägger till hårdkodade patienter i databasen
             patientMgmtContext.Patients.Add(new Patient("1999-02-01-2288", "John Doe", "Doey Street 5", "0701337420", "domaster@glocalnet.com"));
             patientMgmtContext.Patients.Add(new Patient("1985-07-15-1234", "Alice Smith", "123 Main Street", "0701234567", "alice@example.com"));
             patientMgmtContext.Patients.Add(new Patient("1976-11-30-7890", "Bob Johnson", "456 Elm Street", "0709876543", "bob@example.com"));
@@ -28,6 +31,7 @@ namespace DataLayer
             #endregion
 
             #region Doctors
+            //Lägger till hårdkodade doktorer i dataabsen
             patientMgmtContext.Doctors.Add(new Doctor("Tom Crane", "wowdoctorimgood123", "Surgeon"));
             patientMgmtContext.Doctors.Add(new Doctor("Ella Thompson", "passcode123", "Pediatrician"));
             patientMgmtContext.Doctors.Add(new Doctor("William Clark", "password456", "Cardiologist"));
@@ -42,6 +46,7 @@ namespace DataLayer
             #endregion
 
             #region Receptionists
+            //Lägger till hårdkodade receptionister i databasen
             patientMgmtContext.Receptionists.Add(new Receptionist("Rebecca Smith", "receptionistpass123"));
             patientMgmtContext.Receptionists.Add(new Receptionist("Natalie Wilson", "receptionistpass456"));
             patientMgmtContext.Receptionists.Add(new Receptionist("Ethan Brown", "receptionistpass789"));

@@ -12,12 +12,11 @@ namespace DataLayer
 {
     public class PatientMgmtContext : DbContext
     {
+        //Anslutning till databasen
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            //Koppla till databasen
             optionsBuilder.UseSqlServer(@"Server=sqlutb2-db.hb.se, 56077;Database=oosu2444;User Id=oosu2444;Password=UML928;TrustServerCertificate=True;Encrypt=True;");
-
-
-
 
             base.OnConfiguring(optionsBuilder);
         }
@@ -26,16 +25,19 @@ namespace DataLayer
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            //Någon kan förklara hur vi skapar ett junctiontable? :) /alex
 
+            
+            //Sätter att PrescriptionDrug har två nycklar.
             modelBuilder.Entity<PrescriptionDrug>()
               .HasKey(pd => new { pd.prescriptionId, pd.drugId });
 
+            //Sätter att PrescriptionDrug har ett objekt av Prescription med en lista av PrescriptionDrugs och att dess främmande nyckel är prescriptionId
             modelBuilder.Entity<PrescriptionDrug>()
                 .HasOne(pd => pd.Prescription)
                 .WithMany(p => p.PrescriptionDrugs)
                 .HasForeignKey(pd => pd.prescriptionId);
-
+            
+             //Sätter att PrescriptionDrug har ett objekt av Drug med en lista av PrescriptionDrugs och att dess främmande nyckel är drugId
             modelBuilder.Entity<PrescriptionDrug>()
                 .HasOne(pd => pd.Drug)
                 .WithMany(d => d.PrescriptionDrugs)
@@ -43,6 +45,8 @@ namespace DataLayer
 
 
         }
+
+        //Metod för att återställa databasen
         public void Reset()
         {
             #region Remove Tables
