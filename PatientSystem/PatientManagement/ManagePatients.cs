@@ -13,8 +13,8 @@ namespace PresentationLayer
 {
     public partial class ManagePatients : Form
     {
-        Receptionist receptionst;
-        public ManagePatients(Receptionist receptionst)
+        //Receptionist receptionst;
+        public ManagePatients(/*Receptionist receptionst*/)
         {
             InitializeComponent();
         }

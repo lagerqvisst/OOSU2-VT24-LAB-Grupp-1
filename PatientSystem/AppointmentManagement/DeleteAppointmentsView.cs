@@ -16,28 +16,33 @@ namespace PresentationLayer
 {
     public partial class DeleteAppointmentsView : Form
     {
+        //Hämtar en kontroller samt en appointment
         AppointmentController appointmentController = new AppointmentController();
         Appointment appointment;
 
+        //Konstruktor
         public DeleteAppointmentsView()
         {
             InitializeComponent();
+            //Uppdaterar datagridview
             RefreshAppointmentsDataGridView();
         }
-
+        //Navigeringsknapp tillbaka till föregående vy
         private void btnReturnFromDelete_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        //Uppdaterar datagridview
         private void RefreshAppointmentsDataGridView()
         {
             dataGridViewAppointments.DataSource = new BindingList<Appointment>(appointmentController.GetAllAppointments());
+            //Gömmer onödiga kolumner
             dataGridViewAppointments.Columns["doctor"].Visible = false;
             dataGridViewAppointments.Columns["patient"].Visible = false;
             dataGridViewAppointments.Columns["receptionist"].Visible = false;
         }
-
+        //Hämtar appointment som valts i datagridview
         private void dataGridViewAppointments_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //appointmentId = (int)dataGridViewAppointments.Rows[e.RowIndex].Cells[0].Value;
@@ -47,7 +52,7 @@ namespace PresentationLayer
 
             if (e.RowIndex >= 0) // Kontrollera att det är en giltig rad
             {
-
+                //Sätter appointment till den valda appointmenten
                 appointment = dataGridViewAppointments.Rows[e.RowIndex].DataBoundItem as Appointment;
                 MessageBox.Show($"Appointment: {appointment.appointmentId} selected");
 
@@ -55,6 +60,7 @@ namespace PresentationLayer
 
         }
 
+        //Tar bort vald appointment
         private void btnDeleteSelectedAppointment_Click(object sender, EventArgs e)
         {
             if (appointment == null)
@@ -66,6 +72,7 @@ namespace PresentationLayer
             {
                 appointmentController.AppointmentToDelete(appointment);
                 MessageBox.Show("Appointment removed");
+                //Uppdaterar datagridview efter borttagning
                 RefreshAppointmentsDataGridView();
             }
  

@@ -14,27 +14,35 @@ namespace PresentationLayer
 {
     public partial class CreateAppointment : Form
     {
+        //Hämtar alla värden som behövs för att skapa en ny appointment
         Receptionist receptionist;
         Doctor doctor;
         Patient patient;
         DateTime appointmentDate;
         string appointmentReason;
 
+        //Hämtar alla kontroller som behövs 
         PatientController patientController = new PatientController();
         DoctorController doctorController = new DoctorController();
         AppointmentController appointmentController = new AppointmentController();
+
+        //Konstruktor
         public CreateAppointment(Receptionist receptionist)
         {
             InitializeComponent();
+            //Sätter den faktiska receptionisten
             this.receptionist = receptionist;
+            //Uppdaterar datagridview
             RefreshPatientsDataGridView();
         }
 
+        //Navigeringsknapp tillbaka till föregående vy
         private void btnReturnFromCreate_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        //Uppdaterar alla datagridviews
         private void RefreshPatientsDataGridView()
         {
 
@@ -43,6 +51,7 @@ namespace PresentationLayer
 
         }
 
+        //Hämtar patienten som valts i datagridview
         private void dataGridViewPatients_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //patientId = (int)dataGridViewPatients.Rows[e.RowIndex].Cells[0].Value;
@@ -59,6 +68,7 @@ namespace PresentationLayer
             
         }
 
+        //Hämtar doktorn som valts i datagridview
         private void dataGridViewDoctors_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //Funkar utan att använda byID metod
@@ -76,6 +86,7 @@ namespace PresentationLayer
             
         }
 
+        //Skapar en ny appointment
         private void btnScheduleAppointment_Click(object sender, EventArgs e)
         {
 
