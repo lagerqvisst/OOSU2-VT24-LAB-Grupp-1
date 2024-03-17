@@ -17,13 +17,16 @@ namespace PresentationLayer
 {
     public partial class UpdateAppointmentView : Form
     {
+        //Hämtar en kontroller samt en appointment
         AppointmentController appointmentController = new AppointmentController();
         Appointment appointment;
 
 
+        //Konstruktor
         public UpdateAppointmentView()
         {
             InitializeComponent();
+            //Uppdaterar datagridview
             RefreshAppointmentsDataGridView();
         }
 
@@ -35,6 +38,7 @@ namespace PresentationLayer
             }
         }
 
+        //Uppdaterar datagridview
         private void RefreshAppointmentsDataGridView()
         {
            
@@ -49,7 +53,7 @@ namespace PresentationLayer
         }
 
 
-
+        //Hämtar appointment som valts i datagridview
         private void dataGridViewAppointments_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //appointmentId = (int)dataGridViewAppointments.Rows[e.RowIndex].Cells[0].Value;
@@ -59,13 +63,14 @@ namespace PresentationLayer
 
             if (e.RowIndex >= 0) // Kontrollera att det är en giltig rad
             {
-
+                //Sätter appointment till den valda appointmenten
                 appointment = dataGridViewAppointments.Rows[e.RowIndex].DataBoundItem as Appointment;
                 MessageBox.Show($"Appointment: {appointment.appointmentId} selected");  
 
             }
         }
 
+        //Knapp för att navigera till UpdateAppsOptionsView med vald appointment
         private void btnSelectAppToUpdate_Click(object sender, EventArgs e)
         {
             if (appointment == null)
@@ -81,11 +86,13 @@ namespace PresentationLayer
             
         }
 
+        //Navigeringsknapp tillbaka till föregående vy
         private void btnReturn_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        //Knapp för att uppdatera datagridview
         private void btnRefreshGrid_Click(object sender, EventArgs e)
         {
             RefreshAppointmentsDataGridView();

@@ -16,22 +16,28 @@ namespace PresentationLayer
 {
     public partial class DeletePatientView : Form
     {
+        //Hämtar en kontroller samt en patient och patientId
         PatientController patientController = new PatientController();
         Patient clickedPatient;
         public int patientId;
 
+        //Konstruktor
         public DeletePatientView()
         {
             InitializeComponent();
+            //Uppdaterar datagridview
             RefreshPatientsDataGridView();
         }
 
+        //Navigeringsknapp tillbaka till föregående vy
         private void btnReturnFromDeleteView_Click(object sender, EventArgs e)
         {
             this.Close();
+            //Uppdaterar datagridview
             RefreshPatientsDataGridView();
         }
 
+        //Uppdaterar datagridview med patienter
         private void RefreshPatientsDataGridView()
         {
             
@@ -41,6 +47,7 @@ namespace PresentationLayer
 
         }
 
+        //Hämtar patienten som valts i datagridview
         private void dataGridView_PatientsToDelete_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Hämta värdet från primary key-kolumnen
@@ -50,7 +57,7 @@ namespace PresentationLayer
 
             if (e.RowIndex >= 0) // Kontrollera att det är en giltig rad
             {
-
+                //Sätt clickedPatient till den valda patienten
                 clickedPatient = dataGridView_PatientsToDelete.Rows[e.RowIndex].DataBoundItem as Patient;
                 MessageBox.Show($"Patient: {clickedPatient.name} selected");
                 
@@ -59,7 +66,7 @@ namespace PresentationLayer
 
         }
 
-
+        //Ta bort vald patient
         private void btn_DeleteSelectedPatient_Click(object sender, EventArgs e)
         {
             if (clickedPatient != null)
