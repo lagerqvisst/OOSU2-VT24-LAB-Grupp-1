@@ -14,6 +14,7 @@ namespace PresentationLayer
 {
     public partial class UpdatePatientView : Form
     {
+        
         PatientController patientController = new PatientController();
         Patient clickedPatient;
         public UpdatePatientView()
@@ -22,10 +23,13 @@ namespace PresentationLayer
             RefreshPatientsDataGridView();
         }
 
+        
         private void btnReturnFromUpdateview_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+        //Uppdaterar datagridview med patienter
         private void RefreshPatientsDataGridView()
         {
 
@@ -46,6 +50,7 @@ namespace PresentationLayer
             }
         }
 
+        //Uppdatera den valda patienten
         private void btnSelectPatientToUpdate_Click(object sender, EventArgs e)
         {
             if (clickedPatient != null)

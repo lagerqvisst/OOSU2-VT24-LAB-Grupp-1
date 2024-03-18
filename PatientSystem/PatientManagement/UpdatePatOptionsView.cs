@@ -14,6 +14,7 @@ namespace PresentationLayer
 {
     public partial class UpdatePatOptionsView : Form
     {
+        //Hämtar patient, controller och alla uppdateringsvärden
         Patient patientToUpdate;
         PatientController patientController = new PatientController();
 
@@ -48,6 +49,7 @@ namespace PresentationLayer
 
         }
 
+        //Uppdaterar patientens namn
         public void btnUpdateName_Click(object sender, EventArgs e)
         {
             //RefreshTextBoxes();
@@ -59,6 +61,7 @@ namespace PresentationLayer
             MessageBox.Show("Name updated");
         }
 
+        //Uppdaterar patientens personnummer
         public void btnUpdatePersonalNum_Click(object sender, EventArgs e)
         {
             personalNumberToUpdate = textBox_personalNumber.Text;
@@ -67,6 +70,7 @@ namespace PresentationLayer
             MessageBox.Show("Personal number updated");
         }
 
+        //Uppdaterar patientens adress
         public void btnUpdateAddress_Click(object sender, EventArgs e)
         {
             addressToUpdate = textBox_address.Text;
@@ -75,6 +79,7 @@ namespace PresentationLayer
             MessageBox.Show("Address updated");
         }
 
+        //Uppdaterar patientens telefonnummer
         private void btnUpdatePhoneNumber_Click(object sender, EventArgs e)
         {
             phoneNumberToUpdate = textBox_phoneNumber.Text;
@@ -83,6 +88,7 @@ namespace PresentationLayer
             MessageBox.Show("Phone number updated");
         }
 
+        //Uppdaterar patientens e-postadress
         private void btnUpdateEmailAddress_Click(object sender, EventArgs e)
         {
             emailToUpdate = textBox_emailaddress.Text;

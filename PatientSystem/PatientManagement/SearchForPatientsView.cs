@@ -26,6 +26,7 @@ namespace PresentationLayer
             this.Close();
         }
 
+        // Sök efter patienter med namn
         private void btnSearchByName_Click(object sender, EventArgs e)
         {
             searchValue = textBoxByName.Text;
@@ -33,6 +34,7 @@ namespace PresentationLayer
             dataGridViewSearchResults.DataSource = new BindingList<Patient>(patients);
         }
 
+        // Sök efter patienter med personnummer
         private void btnSearchByPersonalNumber_Click(object sender, EventArgs e)
         {
             searchValue = textBoxPersonalNumber.Text;
@@ -40,6 +42,7 @@ namespace PresentationLayer
             dataGridViewSearchResults.DataSource = new BindingList<Patient>(patients);
         }
 
+        // Sök efter patienter med adress
         private void btnSearchByAddress_Click(object sender, EventArgs e)
         {
             searchValue = textBoxAddress.Text;
@@ -47,6 +50,7 @@ namespace PresentationLayer
             dataGridViewSearchResults.DataSource = new BindingList<Patient>(patients);
         }
 
+        // Sök efter patienter med telefonnummer
         private void btnSearchByPhoneNumber_Click(object sender, EventArgs e)
         {
             searchValue = textBoxPhoneNumber.Text;
@@ -54,6 +58,7 @@ namespace PresentationLayer
             dataGridViewSearchResults.DataSource = new BindingList<Patient>(patients);
         }
 
+        // Sök efter patienter med e-postadress
         private void btnSearchByEmailAddress_Click(object sender, EventArgs e)
         {
             searchValue = textBoxEmailAddress.Text;

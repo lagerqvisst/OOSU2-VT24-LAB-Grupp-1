@@ -37,7 +37,7 @@ namespace PresentationLayer
 
         private void btnManagePatients_Click(object sender, EventArgs e)
         {
-            ManagePatients managePatients = new ManagePatients(/*receptionst*/);
+            ManagePatients managePatients = new ManagePatients(receptionst);
             managePatients.Show();
         }
 
