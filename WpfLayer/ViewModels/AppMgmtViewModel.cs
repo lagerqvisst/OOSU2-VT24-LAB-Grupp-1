@@ -297,7 +297,7 @@ namespace WpfLayer.ViewModels
                 patientAppointmentHistory.Clear();
                 // Lägg till alla patientens tidigare bokade tider och uppdatera med den nya noteringen
                 appointmentController.GetPatientAppointments(patient).ToList().ForEach(patientAppointmentHistory.Add);
-                MessageBox.Show("Doktorsnoteringen har uppdaterats");
+                MessageBox.Show("Doctors note updated");
                 DoctorsNote = ""; // Rensar textfältet
             }
         }
@@ -318,7 +318,7 @@ namespace WpfLayer.ViewModels
             diagnosis = diagnosisController.AddDiagnosis(appointment.patientId, DiagnosisDescription, dateOfDiagnosis, TreatmentSuggestion);
             // Lägg till den nya diagnosen i diagnosisHistory
             diagnosisHistory.Add(diagnosis);
-            MessageBox.Show("Diagnos har lagts till");
+            MessageBox.Show("Diagnosis added");
             DiagnosisDescription = "";
 
             // Uppdatera gränssnittet genom att meddela att en egenskap har ändrats

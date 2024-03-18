@@ -111,7 +111,7 @@ namespace WpfLayer.ViewModels
             else
             {
                 //Om användaren inte är en doktor eller receptionist visas ett felmeddelande.
-                MessageBox.Show("Fel användare eller lösenord");
+                MessageBox.Show("Wrong user or password");
             }
         }
 
